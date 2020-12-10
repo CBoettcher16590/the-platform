@@ -3,18 +3,28 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './index.css';
 
-<h1>Our Articles</h1>
-const BorderPage = () => {
-    return (
-    <>
-        <span className="block-example border border-dark"></span>
-        <span className="block-example border-top border-dark"></span>
-        <span className="block-example border-right border-dark"></span>
-        <span className="block-example border-bottom border-dark"></span>
-        <span className="block-example border-left border-dark"></span>
-    </>
-    );
+
+class MyHeader extends React.Component {
+    render() {
+      return (
+        <div>
+        <h1 style={{color: "red"}}>The Articles</h1>
+        <p>Look what is featured</p>
+        </div>
+      );
     }
-    
-    export default BorderPage;
+  }
+  class MyHeader extends React.Component {
+    render() {
+      return (
+        <div>
+        <h1 style={{backgroundColor: "lightblue"}}>Hello Style!</h1>
+        <p>Add a little style!.</p>
+        </div>
+      );
+    }
+  }
+  
+  ReactDOM.render(<MyHeader />, document.getElementById('root'));
