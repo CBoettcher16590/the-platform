@@ -1,15 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Button } from 'react-bootstrap';
+import { Route, useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import './App.css';
+import SignUp from './forms/signup'
+
+
+
+function form(): string{
+
+  let route = './forms/signup'
+
+      return route
+  
+
+}
 
 function App() {
-  return (
+  let history = useHistory();
+
+  const redirect = () => {
+    history.push(form())
+  }
+  return <>
     <div className="App">
-      <header className="App-header">
-        <h1>HOME PAGE</h1>
-      </header>
+
+    <Button  onClick = {redirect}  type = "submit" variant="danger" block > Sign Up!</Button> 
+
     </div>
-  );
+  </>
 }
 
 export default App;
