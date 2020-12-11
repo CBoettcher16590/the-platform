@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '../layouts/MainLayout';
 import Card from 'react-bootstrap/Card'
 import './pages.css';
-import { Button, Container } from 'react-bootstrap';
+import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import { useHistory } from 'react-router';
 
@@ -16,6 +16,18 @@ function HomePage(props:{}){
           history.push('/signup')
         }
 return  <>
+                
+                <Navbar bg="dark" variant="dark">
+                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                <Nav className="mr-auto">
+                <Nav.Link href="#home">Home</Nav.Link>
+                <Nav.Link href="#features">Features</Nav.Link>
+                <Nav.Link href="#pricing">Pricing</Nav.Link>
+                </Nav>
+                </Navbar>
+              
+
+
 
                 <h1>Home Page</h1>
                 <Button onClick={redirect} type = "button" variant="warning" block >Sign-Up</Button>
