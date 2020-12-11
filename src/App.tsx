@@ -1,35 +1,45 @@
 import React from 'react';
-import { Alert, Button } from 'react-bootstrap';
+import logo from './logo.svg';
 import './App.css';
-import SignUp from './forms/signup'
-import { useHistory, Route, BrowserRouter } from 'react-router-dom';
-import { Path } from 'typescript';
+import { useHistory } from 'react-router';
 
 
- function App() {
-  const history = useHistory();
 
+function goBack(): string{
 
-  return <>
-<BrowserRouter>
+  let route = './forms/signup'
 
+      return route
+  
+
+}
+
+function App() {
+
+  let history = useHistory();
+
+  const redirect = () => {
+    history.push(goBack())
+  }
+  return (
     <div className="App">
-
-   <Alert>
-                <Alert.Heading>Welcome to The PlatForm !</Alert.Heading>
-                <p>
-                Enjoy Reading ! 
-                </p>
-            </Alert>
-   <Route path="./forms/signup"></Route>
-   <Button onClick = {() => history.push("/signup", { from: "forms" })} >Sign Up!!!</Button>
-
-
-     
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+<button onClick = {redirect}> Sign up!</button>
+      </header>
     </div>
-    </BrowserRouter>
-
-  </>
+  );
 }
 
 export default App;
