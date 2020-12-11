@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import ThePlatform from './ThePlatform';
 import HomePage from './pages/home'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HomePage />
+    <ThePlatform />
   </React.StrictMode>,
   document.getElementById('root')
 );
