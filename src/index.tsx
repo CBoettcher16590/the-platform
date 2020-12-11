@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import HomePage from './pages/home'
 import * as serviceWorker from './serviceWorker';
-
+import Article from './pages/article';
 ReactDOM.render(
   <React.StrictMode>
-    <HomePage />
+    <Article />
   </React.StrictMode>,
   document.getElementById('root')
 );
