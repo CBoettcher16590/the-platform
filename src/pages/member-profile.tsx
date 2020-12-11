@@ -1,49 +1,118 @@
-import React from 'react';
+import React, { Component } from 'react'
+import { Card, Button, CardGroup } from 'react-bootstrap'
+import cat from '../images/cat.jpg'
 
 
 export default function profile(){
 
+  return<>
+    
 
-    return <>
-<div >
-    <div >
-                    <div ><img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" alt="..." width="130" ></img><a >Edit profile</a></div>
-                    <div >
-                        <h4 >Colby Boettcher</h4>
-                        <p > <i ></i>Kelowna</p>
-                    </div>
-                </div>
-            </div>
+<Card style={{ width: '20rem' }}>
+  <Card.Img variant="top" src= {cat} />
+  <br/>
 
-            <div >
-                <h5 >About</h5>
-                <div >
-                    <p >Web Developer</p>
-                    <p >Lives in Kelowna</p>
-                    <p >He loves coding!</p>
-                </div>
-            </div>
-            <div >
-            <div >
-                    <h5 >Purchased Articles</h5><a href="#" >Show all</a>
-                </div>
-                <div className="row">
-                    <div ><img src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" > </img></div>
-                    <div ><img src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" > </img></div>
-                    <div ><img src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="" > </img></div>
-                    <div ><img src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" > </img></div>
-                </div>
-                <div >
-                    <h5 >My Favorite List</h5><a href="#" >Show all</a>
-                </div>
-                <div className="row">
-                    <div ><img src="https://images.unsplash.com/photo-1469594292607-7bd90f8d3ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" > </img></div>
-                    <div ><img src="https://images.unsplash.com/photo-1493571716545-b559a19edd14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" > </img></div>
-                    <div ><img src="https://images.unsplash.com/photo-1453791052107-5c843da62d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="" > </img></div>
-                    <div ><img src="https://images.unsplash.com/photo-1475724017904-b712052c192a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt="" > </img></div>
-                </div>
+  <Card.Body>
+    <Card.Title><h2>Donald Trump</h2></Card.Title>
+    <br/>
+    <br/>
+    <Card.Title><h5>Bio</h5></Card.Title>
 
-            </div>
+    <Card.Text>
+   Q: What’s the best thing about Switzerland?
+   A: I don’t know, but the flag is a big plus.
+    </Card.Text>
+    <Button variant="primary">Edite Profile</Button>
+  </Card.Body>
+</Card>
+<br/>
+<Card className="text-center">
+  <Card.Header><h3>Purchased Articles</h3></Card.Header>
+  <Card.Body>
+  <CardGroup>
+  <Card>
+    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Body>
+    <Card.Title><h4>Article title</h4></Card.Title>
+      <Card.Text>
+        This is a wider card with supporting text below as a natural lead-in to
+        additional content. This content is a little bit longer.
+      </Card.Text>
+    </Card.Body>
+  </Card>
+  <Card>
+    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Body>
+    <Card.Title><h4>Article title</h4></Card.Title>
+      <Card.Text>
+        This card has supporting text below as a natural lead-in to additional
+        content.{' '}
+      </Card.Text>
+    </Card.Body>
 
-</>
+  </Card>
+  <Card>
+    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Body>
+    <Card.Title><h4>Article title</h4></Card.Title>
+      <Card.Text>
+        This is a wider card with supporting text below as a natural lead-in to
+        additional content. This card has even longer content than the first to
+        show that equal height action.
+      </Card.Text>
+    </Card.Body>
+
+  </Card>
+</CardGroup>
+    <Button variant="primary">See All </Button>
+  </Card.Body>
+  <Card.Footer className="text-muted" />
+</Card>
+
+<br/>
+<Card className="text-center">
+  <Card.Header><h3>My Favorite List</h3></Card.Header>
+  <Card.Body>
+  <CardGroup>
+  <Card>
+    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Body>
+    <Card.Title><h4>Article title</h4></Card.Title>
+      <Card.Text>
+        This is a wider card with supporting text below as a natural lead-in to
+        additional content. This content is a little bit longer.
+      </Card.Text>
+    </Card.Body>
+  </Card>
+  <Card>
+    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Body>
+    <Card.Title><h4>Article title</h4></Card.Title>
+      <Card.Text>
+        This card has supporting text below as a natural lead-in to additional
+        content.{' '}
+      </Card.Text>
+    </Card.Body>
+
+  </Card>
+  <Card>
+    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Body>
+      <Card.Title><h4>Article title</h4></Card.Title>
+      <Card.Text>
+        This is a wider card with supporting text below as a natural lead-in to
+        additional content. This card has even longer content than the first to
+        show that equal height action.
+      </Card.Text>
+    </Card.Body>
+
+  </Card>
+</CardGroup>
+    <Button variant="primary">See All </Button>
+  </Card.Body>
+  <Card.Footer className="text-muted" />
+</Card>
+<br/>
+
+  </>
 }
