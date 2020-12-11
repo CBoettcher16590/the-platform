@@ -1,11 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Button } from 'react-bootstrap';
+import { Route, useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import './App.css';
-import { useHistory } from 'react-router';
+import SignUp from './pages/forms/signup'
 
 
 
-function goBack(): string{
+function form(): string{
 
   let route = './forms/signup'
 
@@ -15,31 +17,18 @@ function goBack(): string{
 }
 
 function App() {
-
   let history = useHistory();
 
   const redirect = () => {
-    history.push(goBack())
+    history.push(form())
   }
-  return (
+  return <>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-<button onClick = {redirect}> Sign up!</button>
-      </header>
+
+    <Button  onClick = {redirect}  type = "submit" variant="danger" block > Sign Up!</Button> 
+
     </div>
-  );
+  </>
 }
 
 export default App;

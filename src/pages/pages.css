@@ -1,0 +1,14 @@
+.homeCard{
+    padding: 15px;
+    width: '18rem';
+    float: "left";
+    margin-left:"30px";
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.cardImage{
+    height:150px;
+    width:auto;
+    margin-right: 20px;
+}
