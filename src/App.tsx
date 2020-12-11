@@ -1,35 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import { Button } from 'react-bootstrap';
-import { Route, useHistory } from 'react-router';
-import { Link } from 'react-router-dom';
-import './App.css';
-import SignUp from './forms/signup'
-
-
-
-function form(): string{
-
-  let route = './forms/signup'
-
-      return route
-  
-
-}
-
-function App() {
-  let history = useHistory();
-
-  const redirect = () => {
-    history.push(form())
-  }
-  return <>
-    <div className="App">
-
-    <Button  onClick = {redirect}  type = "submit" variant="danger" block > Sign Up!</Button> 
-
-    </div>
-=======
 import { Alert, Button } from 'react-bootstrap';
 import './App.css';
 import SignUp from './forms/signup'
@@ -60,7 +29,6 @@ import { Path } from 'typescript';
     </div>
     </BrowserRouter>
 
->>>>>>> ddffbe7a5884ccb5956cd59ce57839748ecde858
   </>
 }
 
