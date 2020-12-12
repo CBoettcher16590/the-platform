@@ -4,7 +4,12 @@ import HomePage from '../../the-platform/src/pages/home';
 import SignUp from '../../the-platform/src/pages/forms/signup';
 import Login from '../../the-platform/src/pages/forms/signin';
 import profile from './pages/members/member-profile';
+<<<<<<< HEAD
 import adminHome from '../../the-platform/src/systemAdmin/homepage';
+=======
+import adminHome from '../../the-platform/src/systemAdmin/homepage'
+import Article from './pages/article';
+>>>>>>> 3a1239de31e478b5864bbd563ea72690412989c4
 import favorite from './pages/members/favorite';
 import purchased from './pages/members/purchased';
 import Admin_profile from './systemAdmin/profile';
@@ -39,6 +44,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/RepArticles" component={reported_articles} />
                     <Route path="/AUprofile" component={author_profile} />
                     <Route path="/profile" component={profile} />
+                    <Route path="/article" component={Article} />
                     <Route path="/profileFavorite" component= {favorite} />
                     <Route path="/profilePurchased" component= {purchased} />
                     <Route path="/ADProfile" component={Admin_profile} />

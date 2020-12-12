@@ -51,11 +51,7 @@ export default function Login() {
 
                 <div className="form-group">
                     <label>Password </label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Enter password"
-                    />
+                    <input type="password" className="form-control" placeholder="Enter password" />
                 </div>
 
                 <Button onClick = {redirect}type="submit" className="btn btn-primary btn-block">
@@ -65,6 +61,7 @@ export default function Login() {
                     Forgot your Password ? <a href="forms/signin">Help</a>
                 </p>
             </form>
+        );
 
 </MainLayout>
 
