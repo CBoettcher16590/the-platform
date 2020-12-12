@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Card, Button, CardGroup, Nav } from 'react-bootstrap'
-import myInfo from './myinfo'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import cat from '../../images/cat.jpg'
+import Littlecat from '../../images/little.jpg'
+import favorite from './favorite';
 
 
 
@@ -11,7 +13,7 @@ export default function profile(){
     
 
 <Card style={{ width: '20rem' }}>
-  <Card.Img variant="top" src= "holder.js/100px160" />
+  <Card.Img variant="top" src= {cat} />
   <br/>
 
   <Card.Body>
@@ -33,7 +35,7 @@ export default function profile(){
   <Card.Body>
   <CardGroup>
   <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -43,7 +45,7 @@ export default function profile(){
     </Card.Body>
   </Card>
   <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Img variant="top" src={Littlecat}/>
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -54,7 +56,7 @@ export default function profile(){
 
   </Card>
   <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -66,7 +68,9 @@ export default function profile(){
 
   </Card>
 </CardGroup>
-    <Button variant="primary">See All </Button>
+<br/>
+
+<Nav.Link href= "/profilePurchased" >See All </Nav.Link>
   </Card.Body>
   <Card.Footer className="text-muted" />
 </Card>
@@ -77,7 +81,7 @@ export default function profile(){
   <Card.Body>
   <CardGroup>
   <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -87,7 +91,7 @@ export default function profile(){
     </Card.Body>
   </Card>
   <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -98,7 +102,7 @@ export default function profile(){
 
   </Card>
   <Card>
-    <Card.Img variant="top" src="holder.js/100px160" />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
       <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -110,7 +114,8 @@ export default function profile(){
 
   </Card>
 </CardGroup>
-    <Button variant="primary">See All </Button>
+<br/>
+    <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
   </Card.Body>
   <Card.Footer className="text-muted" />
 </Card>
