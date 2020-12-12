@@ -28,7 +28,9 @@ export default function SignUp() {
 
             <div className="form-group">
                 <label>Email </label>
-                <input type="email" placeholder="Enter email" />
+                <input type="email"
+               className="form-control"
+                placeholder="Enter email" />
             </div>
             <br />
 
@@ -77,7 +79,7 @@ export default function SignUp() {
                 Sign Up
             </button>
             <p className="forgot-password text-right">
-                Already registered <a href="./signin">sign in?</a>
+                Already registered <a href="/signin">sign in?</a>
             </p>
         </form>
 

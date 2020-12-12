@@ -1,17 +1,41 @@
-import React, { Component } from 'react'
-import { Card, Button, CardGroup, Nav } from 'react-bootstrap'
+import React from 'react';
+import { Navbar, Nav, Card, CardGroup, CardDeck } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import cat from '../../images/cat.jpg'
-import Littlecat from '../../images/little.jpg'
-import favorite from './favorite';
+import Littlecat from '../images/little.jpg'
+import cat from '../images/cat.jpg'
 
 
 
-export default function profile(){
 
-  return<>
-    
 
+ export default function author_profile (porps: {}) {
+     
+
+
+  
+
+      return <>
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+  <Nav className="mr-auto">
+  <Nav.Link href="/authorHome"> The-Platform</Nav.Link>
+      </Nav>
+    <Nav className="mr-auto">
+      <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
+      </Nav>    
+      <Nav className="mr-auto">
+      <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
+      </Nav>
+      <Nav className="mr-auto">
+      <Nav.Link href="#Reported Reviews">My Articles</Nav.Link>
+      </Nav>
+    <Nav>
+      <Navbar.Brand> My Account</Navbar.Brand>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+<br/>
 <Card style={{ width: '20rem' }}>
   <Card.Img variant="top" src= {cat} />
   <br/>
@@ -31,9 +55,9 @@ export default function profile(){
 </Card>
 <br/>
 <Card className="text-center">
-  <Card.Header><h3>Purchased Articles</h3></Card.Header>
+<Card.Header><h3>Purchased Articles</h3></Card.Header>
   <Card.Body>
-  <CardGroup>
+  <CardDeck>
   <Card>
     <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
@@ -67,19 +91,20 @@ export default function profile(){
     </Card.Body>
 
   </Card>
-</CardGroup>
-<br/>
+</CardDeck>
 
-<Nav.Link href= "/profilePurchased" >See All </Nav.Link>
+<br/>
   </Card.Body>
+  <Nav.Link href= "/profilePurchased" >See All </Nav.Link>
   <Card.Footer className="text-muted" />
 </Card>
 
 <br/>
 <Card className="text-center">
-  <Card.Header><h3>My Favorite List</h3></Card.Header>
+<Card.Header><h3>My Favorite List</h3></Card.Header>
+
   <Card.Body>
-  <CardGroup>
+  <CardDeck>
   <Card>
     <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
@@ -113,13 +138,11 @@ export default function profile(){
     </Card.Body>
 
   </Card>
-</CardGroup>
+  </CardDeck>
 <br/>
-    <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
+<Nav.Link href= "/profileFavorite" >See All </Nav.Link>
   </Card.Body>
-  <Card.Footer className="text-muted" />
 </Card>
 <br/>
-
-  </>
-}
+</>
+ }

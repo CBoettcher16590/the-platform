@@ -1,39 +1,38 @@
-import React, { Component } from 'react'
-import { Card, Button, CardGroup, Nav } from 'react-bootstrap'
+import React from 'react';
+import { Navbar, Nav, Card, CardGroup, CardDeck } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import cat from '../../images/cat.jpg'
-import Littlecat from '../../images/little.jpg'
-import favorite from './favorite';
+import Littlecat from '../images/little.jpg'
 
 
 
-export default function profile(){
 
-  return<>
-    
 
-<Card style={{ width: '20rem' }}>
-  <Card.Img variant="top" src= {cat} />
-  <br/>
+ export default function OrganizationHome (porps: {}) {
+     
 
-  <Card.Body>
-    <Card.Title><h2>Donald Trump</h2></Card.Title>
-    <br/>
-    <br/>
-    <Card.Title><h5>Bio</h5></Card.Title>
 
-    <Card.Text>
-   Q: What’s the best thing about Switzerland?
-   A: I don’t know, but the flag is a big plus.
-    </Card.Text>
-    <Nav.Link href = "#" >Edite Profile</Nav.Link>
-  </Card.Body>
-</Card>
+  
+
+      return <>
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="#OrganizationAuthors">Organization Authors</Nav.Link>
+      </Nav>    
+      <Nav className="mr-auto">
+      <Nav.Link href="#OrganizationArticles">Organization Articles</Nav.Link>
+      </Nav>
+    <Nav>
+      <Nav.Link href="/OrgProfile"> My Account</Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
 <br/>
 <Card className="text-center">
-  <Card.Header><h3>Purchased Articles</h3></Card.Header>
   <Card.Body>
-  <CardGroup>
+  <CardDeck>
   <Card>
     <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
@@ -67,19 +66,17 @@ export default function profile(){
     </Card.Body>
 
   </Card>
-</CardGroup>
-<br/>
+</CardDeck>
 
-<Nav.Link href= "/profilePurchased" >See All </Nav.Link>
+<br/>
   </Card.Body>
   <Card.Footer className="text-muted" />
 </Card>
 
 <br/>
 <Card className="text-center">
-  <Card.Header><h3>My Favorite List</h3></Card.Header>
   <Card.Body>
-  <CardGroup>
+  <CardDeck>
   <Card>
     <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
@@ -113,13 +110,11 @@ export default function profile(){
     </Card.Body>
 
   </Card>
-</CardGroup>
+  </CardDeck>
 <br/>
-    <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
   </Card.Body>
-  <Card.Footer className="text-muted" />
 </Card>
 <br/>
 
-  </>
-}
+</>
+ }
