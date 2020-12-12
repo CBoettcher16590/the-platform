@@ -18,6 +18,32 @@
     margin-right: 20px;
 }
 
+.articleImage{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    width: 700px;
+    height: 500px;
+    object-fit: cover;
+
+}
+#authorAvatar{
+   margin: 40px 0 20px 0;
+   width: 100px;
+   height: 100px;
+   object-fit: cover;
+}
+
+.articleTop{
+    margin: 30px 0 0 30px;
+}
+
+.authorInfo{
+  margin-top: 40px;
+   
+}
+
 .homeStories{
     margin-top: 20px;
     align-items: center;

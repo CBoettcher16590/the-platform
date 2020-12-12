@@ -4,7 +4,8 @@ import HomePage from '../../the-platform/src/pages/home';
 import SignUp from '../../the-platform/src/pages/forms/signup';
 import Login from '../../the-platform/src/pages/forms/signin';
 import profile from './pages/members/member-profile';
-import adminHome from '../../the-platform/src/systemAdmin/homepage';
+import adminHome from '../../the-platform/src/systemAdmin/homepage'
+import Article from './pages/article';
 import favorite from './pages/members/favorite';
 import purchased from './pages/members/purchased';
 import Admin_profile from './systemAdmin/profile';
@@ -16,6 +17,8 @@ import Editor from './pages/editors';
 import reported_articles from './systemAdmin/reportedArticles';
 import reported_reviews from './systemAdmin/reportedReviews';
 import users from './systemAdmin/users';
+import OrganizationHome from './organization/homepage';
+
 
 export default function ThePlatform( props:{} ){
 
@@ -31,11 +34,13 @@ export default function ThePlatform( props:{} ){
                     <Route path="/adminHome" component={adminHome} />
                     <Route path="/memberHome" component={memberHome} />
                     <Route path="/authorHome" component={authorHome} />
+                    <Route path="/OrgHome" component={OrganizationHome} />
                     <Route path="/signin" component={Login} />
                     <Route path="/signup" component={SignUp} />
                     <Route path="/signin" component={Login} />
                     <Route path="/AUprofile" component={author_profile} />
                     <Route path="/profile" component={profile} />
+                    <Route path="/article" component={Article} />
                     <Route path="/profileFavorite" component= {favorite} />
                     <Route path="/profilePurchased" component= {purchased} />
                     <Route path="/ADProfile" component={Admin_profile} />

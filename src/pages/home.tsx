@@ -1,6 +1,5 @@
 import React from 'react';
 import MainLayout from '../layouts/MainLayout';
-import Card from 'react-bootstrap/Card'
 import './pages.css';
 import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useHistory } from 'react-router';
@@ -10,20 +9,12 @@ import { Divider } from '@material-ui/core';
 
 
 
-
 function HomePage(props:{}){
-
-        let history = useHistory();
-
-        const redirect = () => {
-          history.push('/signup')
-        }
+       
 return  <>
               
         <MainLayout>
 
-                <h1>Home Page</h1>
-                        <Button onClick={redirect} type = "button" variant="warning" block >Sign-Up</Button>
                         <section className="homeWelcome">
                                 <img src="https://images.unsplash.com/photo-1589782182965-c6512208e2b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"></img>
                                 <div className="welcomeText">
@@ -44,6 +35,7 @@ return  <>
                                                         Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
+                                                <a href="/article">Check Out the Articles</a>
                                         </div>
                                 </div>
                                 <div className="homeCard">
@@ -54,27 +46,24 @@ return  <>
                                                         Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
+                                                <a href="/article">Check Out the Articles</a>
                                         </div>
                                 </div>
                                 <div className="homeCard">
                                         <img className="cardImage" src="https://images.unsplash.com/photo-1606352466047-7cef02b312bb?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1062&q=80" />
-                                        <div>
-                                                <div>Article Title</div>
-                                                <div>
+                                        <div className="article">
+                                                <h2>Article Title</h2>
+                                                <p>
                                                         Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
-                                                </div>
+                                                </p>
+                                                <a href="/article">Check Out the Articles</a>
                                         </div>
                                 </div>
                         </section> 
                        
 
         </MainLayout>
-
-
-               
-               
-
          </>    
 
   
