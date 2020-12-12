@@ -36,6 +36,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 </Navbar>
 <br/>
 
+<Nav.Link href="#Reported articles">Reported-Articles</Nav.Link>
+<Nav.Link href="#Reported Reviews">Reported-Reviews</Nav.Link>
+<Nav.Link href="#users">Users</Nav.Link>
+
 <CardGroup>
   <Card>
     <Card.Img variant="top" src="img" />
