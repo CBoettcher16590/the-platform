@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
- export default function Editors (porps: {}) {
+ export default function Editor (porps: {}) {
      
 
 

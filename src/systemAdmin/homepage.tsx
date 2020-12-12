@@ -19,13 +19,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="#Reported articles">Reported-Articles</Nav.Link>
+      <Nav.Link href="/reportedArticles">Reported-Articles</Nav.Link>
       </Nav>    
       <Nav className="mr-auto">
-      <Nav.Link href="#Reported Reviews">Reported-Reviews</Nav.Link>
+      <Nav.Link href="/reportedReviews">Reported-Reviews</Nav.Link>
       </Nav>
       <Nav className="mr-auto">
-      <Nav.Link href="#users">Users</Nav.Link>
+      <Nav.Link href="/users">Users</Nav.Link>
       </Nav>
     <Nav>
       <Nav.Link href="/ADProfile"> My Account</Nav.Link>

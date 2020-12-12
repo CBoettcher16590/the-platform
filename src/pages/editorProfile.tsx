@@ -5,17 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
-
-
-
-
- export default function EditorPending (porps: {}) {
-    import { disconnect } from 'process';
-    import React from 'react';
-    import { Navbar, Nav, Card, CardGroup } from 'react-bootstrap';
-    import 'bootstrap/dist/css/bootstrap.min.css';
     import cat from '../images/cat.jpg'
     import little from '../images/little.jpg'
     

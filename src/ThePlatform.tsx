@@ -4,22 +4,18 @@ import HomePage from '../../the-platform/src/pages/home';
 import SignUp from '../../the-platform/src/pages/forms/signup';
 import Login from '../../the-platform/src/pages/forms/signin';
 import profile from './pages/members/member-profile';
-<<<<<<< HEAD
 import adminHome from '../../the-platform/src/systemAdmin/homepage';
-import Editors from './pages/editors';
-import Card from 'react-bootstrap/Card';
-import { Button } from 'react-bootstrap';
-import EditorPending from './pages/editorPending';
-=======
-import adminHome from '../../the-platform/src/systemAdmin/homepage'
 import favorite from './pages/members/favorite';
 import purchased from './pages/members/purchased';
 import Admin_profile from './systemAdmin/profile';
 import memberHome from './pages/members/homepage';
 import authorHome from './author/homepage';
 import author_profile from './author/profile';
-
->>>>>>> d1a68868377a9bb9bb941e85c130833cd8a77bd0
+import EditorProfile from './pages/editorProfile';
+import Editor from './pages/editors';
+import reported_articles from './systemAdmin/reportedArticles';
+import reported_reviews from './systemAdmin/reportedReviews';
+import users from './systemAdmin/users';
 
 export default function ThePlatform( props:{} ){
 
@@ -27,8 +23,11 @@ export default function ThePlatform( props:{} ){
             <div>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/editorPending" component={EditorPending} />
-                    <Route path="/editors" component={Editors} />
+                    <Route path="/users" component={users} />
+                    <Route path="/reportedReviews" component={reported_reviews} />
+                    <Route path="/reportedArticles" component={reported_articles} />
+                    <Route path="/editorProfile" component={EditorProfile} />
+                    <Route path="/editors" component={Editor} />
                     <Route path="/adminHome" component={adminHome} />
                     <Route path="/memberHome" component={memberHome} />
                     <Route path="/authorHome" component={authorHome} />
@@ -41,6 +40,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/profilePurchased" component= {purchased} />
                     <Route path="/ADProfile" component={Admin_profile} />
                     <Route path="/" component={HomePage} />
+
                 </Switch>
             </BrowserRouter>
             </div>

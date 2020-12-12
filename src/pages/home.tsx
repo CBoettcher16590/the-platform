@@ -2,13 +2,7 @@ import React from 'react';
 import MainLayout from '../layouts/MainLayout';
 import Card from 'react-bootstrap/Card'
 import './pages.css';
-<<<<<<< HEAD
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav'
-import { Button, Container } from 'react-bootstrap';
-=======
 import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
->>>>>>> d1a68868377a9bb9bb941e85c130833cd8a77bd0
 import { useHistory } from 'react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Divider } from '@material-ui/core';
