@@ -2,11 +2,18 @@ import React from 'react';
 import MainLayout from '../layouts/MainLayout';
 import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav'
+import { Button, Container } from 'react-bootstrap';
+
+
+
 
 
 
 
 function HomePage(props:{}){
+
        
 return  <>
               
@@ -58,6 +65,11 @@ return  <>
                        
 
         </MainLayout>
+
+
+               
+               
+
          </>    
 
   

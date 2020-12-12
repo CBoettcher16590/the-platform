@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import ThePlatform from './ThePlatform';
-import HomePage from './pages/home'
 import * as serviceWorker from './serviceWorker';
-import Article from './pages/article';
+
 ReactDOM.render(
   <React.StrictMode>
     <ThePlatform />

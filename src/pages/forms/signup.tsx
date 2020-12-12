@@ -28,7 +28,9 @@ export default function SignUp() {
 
             <div className="form-group">
                 <label>Email </label>
-                <input type="email" placeholder="Enter email" />
+                <input type="email"
+               className="form-control"
+                placeholder="Enter email" />
             </div>
             <br />
 
