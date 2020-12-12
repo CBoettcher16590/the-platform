@@ -1,5 +1,4 @@
 import React from 'react';
-import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { BrowserRouter as Router, useHistory } from 'react-router-dom';
 import { stringify } from 'querystring';
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
@@ -31,9 +30,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       <Nav.Link href="#users">Users</Nav.Link>
       </Nav>
     <Nav>
-      <Nav.Link eventKey={2} href="#memes">
-        My Account
-      </Nav.Link>
+      <Nav.Link href="/ADProfile"> My Account</Nav.Link>
     </Nav>
   </Navbar.Collapse>
 </Navbar>

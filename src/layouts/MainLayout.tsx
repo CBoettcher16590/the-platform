@@ -16,7 +16,6 @@ export default function MainLayout(props: PropsWithChildren<{}>) {
                         <Row>
                             <Col md={10} sm={8}></Col>
                             <Col md={2} sm={4}>
-                                    <Button variant="outline-warning" >#</Button>    
                             </Col>
                         </Row>
                     </Container>
