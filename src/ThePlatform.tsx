@@ -6,6 +6,9 @@ import Login from '../../the-platform/src/pages/forms/signin';
 import profile from './pages/members/member-profile';
 import adminHome from '../../the-platform/src/systemAdmin/homepage';
 import Editors from './pages/editors';
+import Card from 'react-bootstrap/Card';
+import { Button } from 'react-bootstrap';
+import EditorPending from './pages/editorPending';
 
 export default function ThePlatform( props:{} ){
 
@@ -13,6 +16,7 @@ export default function ThePlatform( props:{} ){
             <div>
             <BrowserRouter>
                 <Switch>
+                    <Route path="/editorPending" component={EditorPending} />
                     <Route path="/editors" component={Editors} />
                     <Route path="/adminHome" component={adminHome} />
                     <Route path="/signup" component={SignUp} />

@@ -1,8 +1,11 @@
 import React from 'react';
 
-import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
 import reported_articles from '../systemAdmin/reportedArticles'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 
 
@@ -15,41 +18,39 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   
 
       return <>
+    
 
-<CardGroup>
-  <Card>
-    <Card.Img variant="top" src="img" />
-    <Card.Body>
-      <Card.Title>Article title</Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src="img" />
-    <Card.Body>
-      <Card.Title>Article title</Card.Title>
-      <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src="img" />
-    <Card.Body>
-      <Card.Title>Article title</Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
+    <h1>Editors Page</h1>
+      
 
-  </Card>
-</CardGroup>
+                
+                
+
+
+
+
+
+<Card style={{ width: '70%' }}>
+  <Card.Img variant="top" src="" />
+  <Card.Body>
+    <Card.Title>Pending articles</Card.Title>
+    <Card.Text>
+      Do not forget about these pending articles.
+    </Card.Text>
+    <Button variant="primary">Review Articles</Button>
+  </Card.Body>
+</Card>
+
+<Card style={{ width: '70%' }}>
+  <Card.Img variant="top" src="" />
+  <Card.Body>
+    <Card.Title>reported Articles</Card.Title>
+    <Card.Text>
+      Do not forget about these pending articles.
+    </Card.Text>
+    <Button variant="primary">Review Articles</Button>
+  </Card.Body>
+</Card>
         
 </>
  }

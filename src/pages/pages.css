@@ -1,19 +1,10 @@
 .homeCard{
-<<<<<<< HEAD
-    padding: 15px;
-    width: '18rem';
-    float: "left";
-    margin-left:"30px";
-    display: flex;
-    margin-bottom: 50px;
-=======
     border: 1px solid black;
     padding: 15px;
     width: '18rem';
     margin-left:"30px";
     display: flex;
     margin-bottom: 15px;
->>>>>>> 5b40fe20949608b5f46fea8936dd62f222c56221
 }
 
 .cardImage{
@@ -21,12 +12,6 @@
     width:auto;
     margin-right: 20px;
 }
-<<<<<<< HEAD
-.articleContents{
-    width:100%;
-    text-align: center;
-    margin-right: auto;
-=======
 
 .homeStories{
 
@@ -51,5 +36,4 @@
 .welcomeText{
     display: flex;
     border: 1px solid black;
->>>>>>> 5b40fe20949608b5f46fea8936dd62f222c56221
 }
