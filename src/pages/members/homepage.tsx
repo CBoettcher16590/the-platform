@@ -16,7 +16,7 @@ import Littlecat from '../../images/little.jpg'
 
       return <>
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
+  <Navbar.Brand href = "/memberHome" >The-Platform</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
@@ -26,7 +26,7 @@ import Littlecat from '../../images/little.jpg'
       <Nav.Link href="#Reported Reviews">Most recent</Nav.Link>
       </Nav>
     <Nav>
-      <Nav.Link href="/ADProfile"> My Account</Nav.Link>
+      <Nav.Link href="/profile"> My Account</Nav.Link>
     </Nav>
   </Navbar.Collapse>
 </Navbar>
