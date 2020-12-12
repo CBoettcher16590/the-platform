@@ -1,37 +1,42 @@
-import { disconnect } from 'process';
 import React from 'react';
-import { Navbar, Nav, Card, CardGroup } from 'react-bootstrap';
+import { Navbar, Nav, Card, CardGroup, CardDeck } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Littlecat from '../images/little.jpg'
 import cat from '../images/cat.jpg'
-import little from '../images/little.jpg'
 
 
 
- export default function Admin_profile(){
 
- 
-        return <>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-          <Nav.Link href = "/adminHome" > The-Platform</Nav.Link>
-              </Nav> 
-            <Nav className="mr-auto">
-              <Nav.Link href="#Reported articles">Reported-Articles</Nav.Link>
-              </Nav>    
-              <Nav className="mr-auto">
-              <Nav.Link href="#Reported Reviews">Reported-Reviews</Nav.Link>
-              </Nav>
-              <Nav className="mr-auto">
-              <Nav.Link href="#users">Users</Nav.Link>
-              </Nav>
-            <Nav>
-              <Navbar.Brand href="/ADProfile"> My Account</Navbar.Brand>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        <Card style={{ width: '30rem' }}>
+
+ export default function author_profile (porps: {}) {
+     
+
+
+  
+
+      return <>
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+  <Nav className="mr-auto">
+  <Nav.Link href="/authorHome"> The-Platform</Nav.Link>
+      </Nav>
+    <Nav className="mr-auto">
+      <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
+      </Nav>    
+      <Nav className="mr-auto">
+      <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
+      </Nav>
+      <Nav className="mr-auto">
+      <Nav.Link href="#Reported Reviews">My Articles</Nav.Link>
+      </Nav>
+    <Nav>
+      <Navbar.Brand> My Account</Navbar.Brand>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+<br/>
+<Card style={{ width: '20rem' }}>
   <Card.Img variant="top" src= {cat} />
   <br/>
 
@@ -49,13 +54,12 @@ import little from '../images/little.jpg'
   </Card.Body>
 </Card>
 <br/>
-<div className= "raw">
-<Card className="text-center" style={{ width: '100rem' }}>
-  <Card.Header><h3>Purchased Articles</h3></Card.Header>
+<Card className="text-center">
+<Card.Header><h3>Purchased Articles</h3></Card.Header>
   <Card.Body>
-  <CardGroup>
+  <CardDeck>
   <Card>
-    <Card.Img variant="top" src={little} />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -65,7 +69,7 @@ import little from '../images/little.jpg'
     </Card.Body>
   </Card>
   <Card>
-    <Card.Img variant="top" src={little}/>
+    <Card.Img variant="top" src={Littlecat}/>
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -76,7 +80,7 @@ import little from '../images/little.jpg'
 
   </Card>
   <Card>
-    <Card.Img variant="top" src={little} />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -87,21 +91,22 @@ import little from '../images/little.jpg'
     </Card.Body>
 
   </Card>
-</CardGroup>
-<br/>
+</CardDeck>
 
-<Nav.Link href= "/profilePurchased" >See All </Nav.Link>
+<br/>
   </Card.Body>
+  <Nav.Link href= "/profilePurchased" >See All </Nav.Link>
   <Card.Footer className="text-muted" />
 </Card>
 
 <br/>
-<Card className="text-center"  style={{ width: '100rem' }}>
-  <Card.Header><h3>My Favorite List</h3></Card.Header>
+<Card className="text-center">
+<Card.Header><h3>My Favorite List</h3></Card.Header>
+
   <Card.Body>
-  <CardGroup>
+  <CardDeck>
   <Card>
-    <Card.Img variant="top" src={little} />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -111,7 +116,7 @@ import little from '../images/little.jpg'
     </Card.Body>
   </Card>
   <Card>
-    <Card.Img variant="top" src={little} />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -122,7 +127,7 @@ import little from '../images/little.jpg'
 
   </Card>
   <Card>
-    <Card.Img variant="top" src={little} />
+    <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
       <Card.Title><h4>Article title</h4></Card.Title>
       <Card.Text>
@@ -133,13 +138,11 @@ import little from '../images/little.jpg'
     </Card.Body>
 
   </Card>
-</CardGroup>
+  </CardDeck>
 <br/>
-    <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
+<Nav.Link href= "/profileFavorite" >See All </Nav.Link>
   </Card.Body>
-  <Card.Footer className="text-muted" />
 </Card>
 <br/>
-</div>
-     </>
+</>
  }
