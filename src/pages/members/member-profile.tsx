@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Card, Button, CardGroup } from 'react-bootstrap'
+import { Card, Button, CardGroup, Nav } from 'react-bootstrap'
 import myInfo from './myinfo'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 export default function profile(){
@@ -22,7 +24,7 @@ export default function profile(){
    Q: What’s the best thing about Switzerland?
    A: I don’t know, but the flag is a big plus.
     </Card.Text>
-    <Button onClick = {myInfo} variant="primary">Edite Profile</Button>
+    <Nav.Link href = "#" >Edite Profile</Nav.Link>
   </Card.Body>
 </Card>
 <br/>
