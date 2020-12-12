@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Login from './signin'
 
 export default function SignUp() {
 
@@ -73,7 +74,7 @@ export default function SignUp() {
                 Sign Up
             </button>
             <p className="forgot-password text-right">
-                Already registered <a href="forms/signin">sign in?</a>
+                Already registered <a href="./signin">sign in?</a>
             </p>
         </form>
     );
