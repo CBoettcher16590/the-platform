@@ -1,5 +1,7 @@
 .homeCard{
-    border: 1px solid black;
+    border: 2px solid grey;
+    border-radius: 5px;
+    background-color: rgb(167, 230, 255) ;
     padding: 15px;
     width: '18rem';
     margin-left:"30px";
@@ -8,26 +10,27 @@
 }
 
 .cardImage{
+    border: 1px solid black;
+    border-radius: 5px;
     height:150px;
     width:auto;
+    object-fit: cover;
     margin-right: 20px;
 }
 
 .homeStories{
-
+    margin-top: 20px;
     align-items: center;
     display: flex;
     flex-direction: column;
-    width: 95vw;
 }
 .homeWelcome{
-    border: 1px solid black;
-    height: 300px;
-    background-color:lightgray;
+    display: flex;
+    height: auto;
+    background-color: rgb(208, 242, 255) ;
 }
 .homeWelcome img {
-    padding-top:20px;
-    margin-left: 20px;
+    padding:20px;
     height: 250px;
     width: 250px;
     object-fit:cover;
@@ -35,5 +38,6 @@
 }
 .welcomeText{
     display: flex;
-    border: 1px solid black;
+    flex-direction: column;
+    padding-left: 30px;
 }
