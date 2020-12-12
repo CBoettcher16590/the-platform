@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Button, CardGroup } from 'react-bootstrap'
-import cat from '../images/cat.jpg'
+import myInfo from './myinfo'
 
 
 export default function profile(){
@@ -9,7 +9,7 @@ export default function profile(){
     
 
 <Card style={{ width: '20rem' }}>
-  <Card.Img variant="top" src= {cat} />
+  <Card.Img variant="top" src= "holder.js/100px160" />
   <br/>
 
   <Card.Body>
@@ -22,7 +22,7 @@ export default function profile(){
    Q: What’s the best thing about Switzerland?
    A: I don’t know, but the flag is a big plus.
     </Card.Text>
-    <Button variant="primary">Edite Profile</Button>
+    <Button onClick = {myInfo} variant="primary">Edite Profile</Button>
   </Card.Body>
 </Card>
 <br/>
