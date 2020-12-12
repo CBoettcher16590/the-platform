@@ -1,10 +1,19 @@
 .homeCard{
+<<<<<<< HEAD
     padding: 15px;
     width: '18rem';
     float: "left";
     margin-left:"30px";
     display: flex;
     margin-bottom: 50px;
+=======
+    border: 1px solid black;
+    padding: 15px;
+    width: '18rem';
+    margin-left:"30px";
+    display: flex;
+    margin-bottom: 15px;
+>>>>>>> 5b40fe20949608b5f46fea8936dd62f222c56221
 }
 
 .cardImage{
@@ -12,8 +21,35 @@
     width:auto;
     margin-right: 20px;
 }
+<<<<<<< HEAD
 .articleContents{
     width:100%;
     text-align: center;
     margin-right: auto;
+=======
+
+.homeStories{
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 95vw;
+}
+.homeWelcome{
+    border: 1px solid black;
+    height: 300px;
+    background-color:lightgray;
+}
+.homeWelcome img {
+    padding-top:20px;
+    margin-left: 20px;
+    height: 250px;
+    width: 250px;
+    object-fit:cover;
+    border-radius: 50%;
+}
+.welcomeText{
+    display: flex;
+    border: 1px solid black;
+>>>>>>> 5b40fe20949608b5f46fea8936dd62f222c56221
 }
