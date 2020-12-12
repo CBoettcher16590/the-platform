@@ -4,17 +4,20 @@ import HomePage from '../../the-platform/src/pages/home';
 import SignUp from '../../the-platform/src/pages/forms/signup';
 import Login from '../../the-platform/src/pages/forms/signin';
 import profile from './pages/members/member-profile';
-import adminHome from '../../the-platform/src/systemAdmin/homepage'
+import adminHome from '../../the-platform/src/systemAdmin/homepage';
 import favorite from './pages/members/favorite';
 import purchased from './pages/members/purchased';
 import Admin_profile from './systemAdmin/profile';
 import memberHome from './pages/members/homepage';
 import authorHome from './author/homepage';
 import author_profile from './author/profile';
-import OrganizationHome from './organization/homepage'; 
+import EditorProfile from './pages/editorProfile';
+import Editor from './pages/editors';
 import reported_articles from './systemAdmin/reportedArticles';
+import reported_reviews from './systemAdmin/reportedReviews';
+import users from './systemAdmin/users';
+import OrganizationHome from './organization/homepage';
 import Organization_profile from './organization/profile';
-
 
 export default function ThePlatform( props:{} ){
 
@@ -22,6 +25,11 @@ export default function ThePlatform( props:{} ){
             <div>
             <BrowserRouter>
                 <Switch>
+                    <Route path="/users" component={users} />
+                    <Route path="/reportedReviews" component={reported_reviews} />
+                    <Route path="/reportedArticles" component={reported_articles} />
+                    <Route path="/editorProfile" component={EditorProfile} />
+                    <Route path="/editors" component={Editor} />
                     <Route path="/adminHome" component={adminHome} />
                     <Route path="/memberHome" component={memberHome} />
                     <Route path="/authorHome" component={authorHome} />
@@ -36,6 +44,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/ADProfile" component={Admin_profile} />
                     <Route path="/orgProfile" component={Organization_profile} />
                     <Route path="/" component={HomePage} />
+
                 </Switch>
             </BrowserRouter>
             </div>

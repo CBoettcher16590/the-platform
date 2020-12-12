@@ -1,7 +1,4 @@
 import React from 'react';
-import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
-import { BrowserRouter as Router, useHistory } from 'react-router-dom';
-import { stringify } from 'querystring';
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
 import reported_articles from '../systemAdmin/reportedArticles'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,13 +19,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="/RepArticles">Reported-Articles</Nav.Link>
+      <Nav.Link href="/reportedArticles">Reported-Articles</Nav.Link>
       </Nav>    
       <Nav className="mr-auto">
-      <Nav.Link href="#Reported Reviews">Reported-Reviews</Nav.Link>
+      <Nav.Link href="/reportedReviews">Reported-Reviews</Nav.Link>
       </Nav>
       <Nav className="mr-auto">
-      <Nav.Link href="#users">Users</Nav.Link>
+      <Nav.Link href="/users">Users</Nav.Link>
       </Nav>
     <Nav>
       <Nav.Link href="/ADProfile"> My Account</Nav.Link>
