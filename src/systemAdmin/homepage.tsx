@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
 import reported_articles from '../systemAdmin/reportedArticles'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,13 +7,34 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
- export default function Editors (porps: {}) {
+ export default function adminHome (porps: {}) {
      
 
 
   
 
       return <>
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="#Reported articles">Reported-Articles</Nav.Link>
+      </Nav>    
+      <Nav className="mr-auto">
+      <Nav.Link href="#Reported Reviews">Reported-Reviews</Nav.Link>
+      </Nav>
+      <Nav className="mr-auto">
+      <Nav.Link href="#users">Users</Nav.Link>
+      </Nav>
+    <Nav>
+      <Nav.Link eventKey={2} href="#memes">
+        My Account
+      </Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+<br/>
 
 <CardGroup>
   <Card>
