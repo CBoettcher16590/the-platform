@@ -21,7 +21,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link href="#Reported articles">Reported-Articles</Nav.Link>
+      <Nav.Link href="/RepArticles">Reported-Articles</Nav.Link>
       </Nav>    
       <Nav className="mr-auto">
       <Nav.Link href="#Reported Reviews">Reported-Reviews</Nav.Link>
