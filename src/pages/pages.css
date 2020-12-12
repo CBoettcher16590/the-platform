@@ -14,6 +14,7 @@
     border-radius: 5px;
     height:150px;
     width:auto;
+    object-fit: cover;
     margin-right: 20px;
 }
 
@@ -22,7 +23,6 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    width: 95vw;
 }
 .homeWelcome{
     display: flex;
