@@ -2,9 +2,10 @@ import React from 'react';
 import MainLayout from '../layouts/MainLayout';
 import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav'
-import { Button, Container } from 'react-bootstrap';
+import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { useHistory } from 'react-router';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Divider } from '@material-ui/core';
 
 
 
@@ -68,11 +69,6 @@ return  <>
                        
 
         </MainLayout>
-
-
-               
-               
-
          </>    
 
   

@@ -7,12 +7,13 @@ export default function TopNavbar( props:{} ){
 
     return <>
             <Navbar bg="dark" variant="dark">
+<<<<<<< HEAD
                 <Navbar.Brand href="/">The Platform</Navbar.Brand>
+=======
+                <Navbar.Brand href="#/">The-platform</Navbar.Brand>
+>>>>>>> feature/editors
                 <Nav className="mr-auto">
-                    <Nav.Link href="/signup">SignUp</Nav.Link>
-                    <Nav.Link href="#features">Features</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
-                </Nav>
+                 </Nav>
             </Navbar>
             </>;
 

@@ -7,8 +7,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import cat from '../images/cat.jpg';
 import little from '../images/little.jpg';
 
-export default function editorProfile( props:{} ){
-
+    
+    
+     export default function EditorProfile(){
+    
+     
             return <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
