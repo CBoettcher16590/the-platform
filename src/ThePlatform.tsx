@@ -5,6 +5,7 @@ import SignUp from '../../the-platform/src/pages/forms/signup';
 import Login from '../../the-platform/src/pages/forms/signin';
 import profile from './pages/members/member-profile';
 import adminHome from '../../the-platform/src/systemAdmin/homepage'
+import Article from './pages/article';
 
 
 export default function ThePlatform( props:{} ){
@@ -17,6 +18,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/signup" component={SignUp} />
                     <Route path="/signin" component={Login} />
                     <Route path="/profile" component={profile} />
+                    <Route path="/article" component={Article} />
                     <Route path="/" component={HomePage} />
                 </Switch>
             </BrowserRouter>

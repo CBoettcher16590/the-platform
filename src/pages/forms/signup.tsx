@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import Login from './signin'
+import MainLayout from "../../layouts/MainLayout";
+
 
 export default function SignUp() {
 
-    return (
-        <form>
+    return <>
+    <MainLayout>
+
+    <form>
             <h3>Sign Up</h3>
 
             <div className="form-group">
@@ -77,6 +80,9 @@ export default function SignUp() {
                 Already registered <a href="./signin">sign in?</a>
             </p>
         </form>
-    );
+
+    </MainLayout>
+       
+    </>
 
 }

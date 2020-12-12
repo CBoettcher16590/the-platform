@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import MainLayout from "../../layouts/MainLayout";
 
 export default class Login extends Component {
     render() {
-        return (
-            <form>
+        return <>
+        <MainLayout>
+
+        <form>
                 <h3>Sign In</h3>
 
                 <div className="form-group">
@@ -32,7 +35,10 @@ export default class Login extends Component {
                     Forgot <a href="#">password?</a>
                 </p>
             </form>
-        );
+
+        </MainLayout>
+            
+       </>
     }
 }
 

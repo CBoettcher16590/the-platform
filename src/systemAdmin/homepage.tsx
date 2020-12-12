@@ -1,5 +1,4 @@
 import React from 'react';
-import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { BrowserRouter as Router, useHistory } from 'react-router-dom';
 import { stringify } from 'querystring';
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
@@ -38,6 +37,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   </Navbar.Collapse>
 </Navbar>
 <br/>
+
+<Nav.Link href="#Reported articles">Reported-Articles</Nav.Link>
+<Nav.Link href="#Reported Reviews">Reported-Reviews</Nav.Link>
+<Nav.Link href="#users">Users</Nav.Link>
 
 <CardGroup>
   <Card>
