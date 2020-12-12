@@ -1,7 +1,17 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
+import { useAuthentication } from '../../data/useAuthentication';
 
 export default function Login() {
+
+    const authModel = useAuthentication();
+    const [ username, setUsername ] = useState<string>('');
+    const [ password, setPassword ] = useState<string>('');
+
+    function handleLogin(e:any){
+        e.preventDefault();
+        authModel.login( username, password );
+    }   
 
     return <>
 <MainLayout>
@@ -29,6 +39,7 @@ export default function Login() {
                     Forgot your Password ? <a href="forms/signin">Help</a>
                 </p>
             </form>
+        );
 
         </MainLayout>
             
