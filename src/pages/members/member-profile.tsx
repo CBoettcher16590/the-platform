@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Button, CardGroup, Nav } from 'react-bootstrap'
+import { Card, Button, CardGroup, Nav, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import cat from '../../images/cat.jpg'
 import Littlecat from '../../images/little.jpg'
@@ -10,7 +10,24 @@ import favorite from './favorite';
 export default function profile(){
 
   return<>
-    
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+          <Nav.Link href = "/memberHome" > The-Platform</Nav.Link>
+              </Nav> 
+            <Nav className="mr-auto">
+            <Nav.Link href="#Reported articles">Free To Read</Nav.Link>
+              </Nav>    
+              <Nav className="mr-auto">
+              <Nav.Link href="#Reported Reviews">Most recent</Nav.Link>
+              </Nav>
+            <Nav>
+              <Navbar.Brand href="/ADProfile"> My Account</Navbar.Brand>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        <br/>
 
 <Card style={{ width: '20rem' }}>
   <Card.Img variant="top" src= {cat} />

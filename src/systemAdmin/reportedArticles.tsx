@@ -7,7 +7,7 @@ import MainLayout from '../layouts/MainLayout';
     <MainLayout>
 
         <div>
-            <h3>Reported Articles</h3>
+            <h3>Reported Articles will appear here</h3>
         </div>
 
     </MainLayout>

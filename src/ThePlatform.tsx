@@ -18,6 +18,7 @@ import reported_articles from './systemAdmin/reportedArticles';
 import reported_reviews from './systemAdmin/reportedReviews';
 import users from './systemAdmin/users';
 import OrganizationHome from './organization/homepage';
+import Organization_profile from './organization/profile';
 
 
 export default function ThePlatform( props:{} ){
@@ -37,13 +38,14 @@ export default function ThePlatform( props:{} ){
                     <Route path="/OrgHome" component={OrganizationHome} />
                     <Route path="/signin" component={Login} />
                     <Route path="/signup" component={SignUp} />
-                    <Route path="/signin" component={Login} />
+                    <Route path="/RepArticles" component={reported_articles} />
                     <Route path="/AUprofile" component={author_profile} />
                     <Route path="/profile" component={profile} />
                     <Route path="/article" component={Article} />
                     <Route path="/profileFavorite" component= {favorite} />
                     <Route path="/profilePurchased" component= {purchased} />
                     <Route path="/ADProfile" component={Admin_profile} />
+                    <Route path="/orgProfile" component={Organization_profile} />
                     <Route path="/" component={HomePage} />
 
                 </Switch>
