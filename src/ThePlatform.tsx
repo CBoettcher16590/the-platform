@@ -6,6 +6,7 @@ import Login from '../../the-platform/src/pages/forms/signin';
 import profile from './pages/members/member-profile';
 import adminHome from '../../the-platform/src/systemAdmin/homepage';
 import Editor from './pages/editors';
+import SubmitArticle from './pages/submitArticle'
 import Article from './pages/article';
 import favorite from './pages/members/favorite';
 import purchased from './pages/members/purchased';
@@ -40,6 +41,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/AUprofile" component={author_profile} />
                     <Route path="/profile" component={profile} />
                     <Route path="/article" component={Article} />
+                    <Route path="/newArticle" component={SubmitArticle} />
                     <Route path="/profileFavorite" component= {favorite} />
                     <Route path="/profilePurchased" component= {purchased} />
                     <Route path="/ADProfile" component={Admin_profile} />
