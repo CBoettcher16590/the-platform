@@ -41,7 +41,7 @@ render(){
           <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
         </Nav>
         <Nav className="mr-auto">
-          <Nav.Link href="#Reported Reviews">My Articles</Nav.Link>
+          <Nav.Link href="/authorArticles">My Articles</Nav.Link>
         </Nav>
         <Nav>
           <Navbar.Brand> My Account</Navbar.Brand>
@@ -63,7 +63,7 @@ render(){
           Q: What’s the best thing about Switzerland?
           A: I don’t know, but the flag is a big plus.
         </Card.Text>
-        <Nav.Link href="#">Edite Profile</Nav.Link>
+        <Nav.Link href="/AUupdateMyInfo">Edite Profile</Nav.Link>
       </Card.Body>
     </Card>
     <br />
@@ -110,6 +110,8 @@ render(){
 
       <br />
     </Card.Body>
+    <br />
+
     <Nav.Link href="/profilePurchased">See All </Nav.Link>
     <Card.Footer className="text-muted" />
   <br /><Card className="text-center">

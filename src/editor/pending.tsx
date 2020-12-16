@@ -1,35 +1,27 @@
 import React from 'react';
-
-import reported_articles from '../systemAdmin/reportedArticles'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+export default function pending (porps: {}) {
 
+return<>
 
-
-
-
- export default function Editor (porps: {}) {
-     
-
-
-  
-
-      return <>
-    
-
-    <h1>Editors Page</h1>
-      
-
+<Navbar bg="dark" variant="dark">
+                <Nav className="mr-auto">
+                <Nav className="mr-auto">
+                    <Nav.Link href="/editors">The Platform</Nav.Link>
+                </Nav>
+                <Nav className="mr-auto">
+                    <Navbar.Brand href="/pendingArticles">Pending Articles</Navbar.Brand>
+                </Nav>
+                <Nav className="mr-auto">
+                    <Nav.Link href="/rejectedArticles">Rejected Articles</Nav.Link>
+                </Nav>
                 
-                
-
-
-
-
-
+                 </Nav>
+              </Navbar>  
+              <br/>
 <Card style={{ width: '70%' }}>
   <Card.Img variant="top" src="" />
   <Card.Body>
@@ -51,6 +43,5 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     <Button variant="primary">Review Articles</Button>
   </Card.Body>
 </Card>
-        
 </>
- }
+}

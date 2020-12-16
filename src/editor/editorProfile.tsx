@@ -48,7 +48,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
        Q: What’s the best thing about Switzerland?
        A: I don’t know, but the flag is a big plus.
         </Card.Text>
-        <Nav.Link href = "#" >Edite Profile</Nav.Link>
+        <Nav.Link href = "/EDupdateMyInfo" >Edite Profile</Nav.Link>
       </Card.Body>
     </Card>
     <br/>

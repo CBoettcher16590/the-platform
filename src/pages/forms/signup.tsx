@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-<<<<<<< HEAD
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import MainLayout from "../../layouts/MainLayout";
 import Login from './signin'
 
 
@@ -37,19 +37,13 @@ export default function SignUp() {
  const redirect = () => {
    history.push(randomRedirect())
  }
-    return (
-        <form>
-=======
-import MainLayout from "../../layouts/MainLayout";
 
-
-export default function SignUp() {
 
     return <>
+
     <MainLayout>
 
     <form>
->>>>>>> 3a1239de31e478b5864bbd563ea72690412989c4
             <h3>Sign Up</h3>
 
             <div className="form-group">
@@ -117,26 +111,16 @@ export default function SignUp() {
             </div>
             <br />
 
-<<<<<<< HEAD
             <Button  onClick= {redirect} type="submit" className="btn btn-primary btn-block">
                 Sign Up
             </Button>
-=======
-            <button type="submit" className="btn btn-primary btn-block">
-                Sign Up
-            </button>
->>>>>>> 3a1239de31e478b5864bbd563ea72690412989c4
             <p className="forgot-password text-right">
                 Already registered <a href="/signin">sign in?</a>
             </p>
         </form>
-<<<<<<< HEAD
-    );
-=======
 
     </MainLayout>
        
     </>
->>>>>>> 3a1239de31e478b5864bbd563ea72690412989c4
 
 }

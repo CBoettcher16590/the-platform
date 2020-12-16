@@ -2,6 +2,7 @@ import React from 'react';
 import MainLayout from '../layouts/MainLayout';
 import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar, Nav } from 'react-bootstrap';
 
 
 
@@ -10,8 +11,14 @@ function HomePage(props:{}){
        
 return  <>
               
-        <MainLayout>
-
+              <Navbar bg="dark" variant="dark">
+                <Navbar.Brand href="/">The Platform</Navbar.Brand>
+                <Nav className="mr-auto">
+                <Nav className="mr-auto">
+                    <Nav.Link href="/signup"> Sign Up</Nav.Link>
+                </Nav>
+                 </Nav>
+              </Navbar>
                         <section className="homeWelcome">
                                 <img src="https://images.unsplash.com/photo-1589782182965-c6512208e2b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"></img>
                                 <div className="welcomeText">
@@ -60,15 +67,6 @@ return  <>
                         </section> 
                        
 
-        </MainLayout>
-<<<<<<< HEAD
-
-
-               
-               
-
-=======
->>>>>>> 3a1239de31e478b5864bbd563ea72690412989c4
          </>    
 
   
