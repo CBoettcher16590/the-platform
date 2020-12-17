@@ -42,7 +42,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/profile" component={profile} />
                     <Route path="/article" component={Article} />
                     <Route path="/newArticle" component={SubmitArticle} />
-                    <Route path="/profileFavorite" component= {favorite} />
+                    {/* <Route path="/profileFavorite" component={favorite} /> */}
                     <Route path="/profilePurchased" component= {purchased} />
                     <Route path="/ADProfile" component={Admin_profile} />
                     <Route path="/" component={HomePage} />
