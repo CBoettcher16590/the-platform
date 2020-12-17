@@ -115,7 +115,7 @@ export default function SignUp() {
                 Sign Up
             </Button>
             <p className="forgot-password text-right">
-                Already registered <a href="/signin">sign in?</a>
+                Already registered <a href="./signin">sign in?</a>
             </p>
         </form>
 

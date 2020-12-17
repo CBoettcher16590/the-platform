@@ -5,6 +5,7 @@ import SignUp from '../../the-platform/src/pages/forms/signup';
 import Login from '../../the-platform/src/pages/forms/signin';
 import profile from './pages/members/member-profile';
 import adminHome from '../../the-platform/src/systemAdmin/homepage'
+import SubmitArticle from './pages/submitArticle'
 import Article from './pages/article';
 import favorite from './pages/members/favorite';
 import purchased from './pages/members/purchased';
@@ -12,11 +13,7 @@ import Admin_profile from './systemAdmin/profile';
 import memberHome from './pages/members/homepage';
 import authorHome from './author/homepage';
 import author_profile from './author/profile';
-import EditorProfile from './editor/editorProfile';
 import Editor from './editor/editors';
-import reported_articles from './systemAdmin/reportedArticles';
-import reported_reviews from './systemAdmin/reportedReviews';
-import users from './systemAdmin/users';
 import OrganizationHome from './organization/homepage';
 import Organization_profile from './organization/profile';
 import pending from './editor/pending'
@@ -36,17 +33,23 @@ import AD_edit_profile from './systemAdmin/editprofile';
 import AD_personal_info from './systemAdmin/personalInfo';
 import freeToRead from './pages/members/freeToRead';
 import mostRecentArcticles from './pages/members/mostRecentArcticles';
+import EditorProfile from './editor/editorProfile';
+import reported_articles from './systemAdmin/reportedArticles';
+import reported_reviews from './systemAdmin/reportedReviews';
+import users from './systemAdmin/users';
+
 export default function ThePlatform( props:{} ){
 
     return (
             <div>
             <BrowserRouter>
                 <Switch>
+                    {/* <Route path="/editorPending" component={EditorPending} /> */}
+                    <Route path="/editors" component={Editor} />
                     <Route path="/users" component={users} />
                     <Route path="/reportedReviews" component={reported_reviews} />
                     <Route path="/reportedArticles" component={reported_articles} />
                     <Route path="/editorProfile" component={EditorProfile} />
-                    <Route path="/editors" component={Editor} />
                     <Route path="/adminHome" component={adminHome} />
                     <Route path="/memberHome" component={memberHome} />
                     <Route path="/authorHome" component={authorHome} />
@@ -72,6 +75,10 @@ export default function ThePlatform( props:{} ){
                     <Route path="/article" component={Article} />
                     <Route path="/freetoread" component={freeToRead} />
                     <Route path="/recentar" component={mostRecentArcticles} />
+                    <Route path="/AUprofile" component={author_profile} />
+                    <Route path="/profile" component={profile} />
+                    <Route path="/article" component={Article} />
+                    <Route path="/newArticle" component={SubmitArticle} />
                     <Route path="/profileFavorite" component= {favorite} />
                     <Route path="/profilePurchased" component= {purchased} />
                     <Route path="/ADProfile" component={Admin_profile} />

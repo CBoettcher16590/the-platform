@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
+import { useAuthentication } from '../../data/useAuthentication';
+import { Button } from "react-bootstrap";
 
 
 function randomRedirect():string{
@@ -30,12 +30,16 @@ function randomRedirect():string{
   }
 export default function Login() {
 
-    let history = useHistory();
+    const authModel = useAuthentication();
+    const [ username, setUsername ] = useState<string>('');
+    const [ password, setPassword ] = useState<string>('');
 
- const redirect = () => {
-   history.push(randomRedirect())
- }
-    return (
+    function handleLogin(e:any){
+        e.preventDefault();
+        authModel.login( username, password );
+    }   
+
+    return <>
 <MainLayout>
 
     <form>
@@ -54,7 +58,7 @@ export default function Login() {
                     <input type="password" className="form-control" placeholder="Enter password" />
                 </div>
 
-                <Button onClick = {redirect}type="submit" className="btn btn-primary btn-block">
+                <Button onClick = {handleLogin}type="submit" className="btn btn-primary btn-block">
                     Sign In
                 </Button>
                 <p className="forgot-password text-right">
@@ -63,9 +67,8 @@ export default function Login() {
             </form>
         );
 
-</MainLayout>
+        </MainLayout>
+            
+       </>
+    }
 
-       
-    );
-
-}

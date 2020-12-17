@@ -19,7 +19,7 @@ export default function authorHome(porps: {}) {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
+          <Nav.Link href="/newArticle">Write an Article</Nav.Link>
         </Nav>
         <Nav className="mr-auto">
           <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
