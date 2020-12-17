@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import MainLayout from "../../layouts/MainLayout";
+
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import MainLayout from "../../layouts/MainLayout";
 import Login from './signin'
 
 
@@ -37,13 +38,9 @@ export default function SignUp() {
  const redirect = () => {
    history.push(randomRedirect())
  }
-
-
     return <>
-
-    <MainLayout>
-
-    <form>
+   <MainLayout>
+        <form>
             <h3>Sign Up</h3>
 
             <div className="form-group">

@@ -13,9 +13,6 @@ import Admin_profile from './systemAdmin/profile';
 import memberHome from './pages/members/homepage';
 import authorHome from './author/homepage';
 import author_profile from './author/profile';
-import Editor from './editor/editors';
-import OrganizationHome from './organization/homepage';
-import Organization_profile from './organization/profile';
 import pending from './editor/pending'
 import Rejected from './editor/rejected';
 import my_articles from './author/myArticles';
@@ -34,9 +31,13 @@ import AD_personal_info from './systemAdmin/personalInfo';
 import freeToRead from './pages/members/freeToRead';
 import mostRecentArcticles from './pages/members/mostRecentArcticles';
 import EditorProfile from './editor/editorProfile';
+import Editor from './editor/editors';
 import reported_articles from './systemAdmin/reportedArticles';
 import reported_reviews from './systemAdmin/reportedReviews';
 import users from './systemAdmin/users';
+import OrganizationHome from './organization/homepage';
+import Organization_profile from './organization/profile';
+
 
 export default function ThePlatform( props:{} ){
 
