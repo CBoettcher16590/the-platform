@@ -65,7 +65,7 @@ export default function Login() {
                     Forgot your Password ? <a href="forms/signin">Help</a>
                 </p>
             </form>
-        );
+        
 
         </MainLayout>
             

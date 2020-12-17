@@ -17,9 +17,14 @@ function HomePage(props:{}){
        
 return  <>
               
-        <MainLayout>
-                <a href="/newArticle">New Article</a>
-
+        <Navbar bg="dark" variant="dark">
+                <Navbar.Brand href="/">The Platform</Navbar.Brand>
+                <Nav className="mr-auto">
+                 </Nav>
+                 <Nav>
+                         <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
+                 </Nav>
+            </Navbar>
                         <section className="homeWelcome">
                                 <img src="https://images.unsplash.com/photo-1589782182965-c6512208e2b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"></img>
                                 <div className="welcomeText">
@@ -68,7 +73,6 @@ return  <>
                         </section> 
                        
 
-        </MainLayout>
          </>    
 
   
