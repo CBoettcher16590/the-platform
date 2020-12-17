@@ -1,15 +1,13 @@
+const { config } = require('@fortawesome/fontawesome-svg-core');
 var mysql      = require('mysql');
 
-var connection = mysql.createConnection({
+var pool = mysql.createPool(config);
+
+
+const config = {
   host     : '3306',
   user     : 'admin',
   password : 'stargazer2020',
   database : 'theplatform'
-});
-
-connection.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-  });
-
-  module.exports = connection;
+}
+  module.exports = pool;

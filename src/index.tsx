@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import ThePlatform from './ThePlatform';
 import * as serviceWorker from './serviceWorker';
+import { RecoilRoot } from 'recoil';
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <RecoilRoot>
     <ThePlatform />
+    </RecoilRoot>
+   
   </React.StrictMode>,
   document.getElementById('root')
 );
