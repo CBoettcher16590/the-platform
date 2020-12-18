@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import HomePage from '../../the-platform/src/pages/home';
-import SignUp from '../../the-platform/src/pages/forms/signup';
-import Login from '../../the-platform/src/pages/forms/signin';
+import HomePage from './pages/home';
+import SignUp from './pages/forms/signup';
+import Login from './pages/forms/signin';
 import profile from './pages/members/member-profile';
-import adminHome from '../../the-platform/src/systemAdmin/homepage'
+import adminHome from './systemAdmin/homepage'
 import SubmitArticle from './pages/submitArticle'
 import Article from './pages/article';
 import favorite from './pages/members/favorite';
