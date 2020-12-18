@@ -2,12 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import ThePlatform from './ThePlatform';
-import HomePage from './pages/home'
 import * as serviceWorker from './serviceWorker';
-import Article from './pages/article';
+import { RecoilRoot } from 'recoil';
+
+
 ReactDOM.render(
   <React.StrictMode>
+    <RecoilRoot>
     <ThePlatform />
+    </RecoilRoot>
+   
   </React.StrictMode>,
   document.getElementById('root')
 );

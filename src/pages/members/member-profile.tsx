@@ -17,13 +17,13 @@ export default function profile(){
           <Nav.Link href = "/memberHome" > The-Platform</Nav.Link>
               </Nav> 
             <Nav className="mr-auto">
-            <Nav.Link href="#Reported articles">Free To Read</Nav.Link>
+            <Nav.Link href="/freetoread">Free To Read</Nav.Link>
               </Nav>    
               <Nav className="mr-auto">
-              <Nav.Link href="#Reported Reviews">Most recent</Nav.Link>
+              <Nav.Link href="/recentar">Most recent</Nav.Link>
               </Nav>
             <Nav>
-              <Navbar.Brand href="/ADProfile"> My Account</Navbar.Brand>
+              <Navbar.Brand href="/profile"> My Account</Navbar.Brand>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -43,7 +43,7 @@ export default function profile(){
    Q: What’s the best thing about Switzerland?
    A: I don’t know, but the flag is a big plus.
     </Card.Text>
-    <Nav.Link href = "#" >Edite Profile</Nav.Link>
+    <Nav.Link href = "/MEMupdateMyInfo" >Edite Profile</Nav.Link>
   </Card.Body>
 </Card>
 <br/>

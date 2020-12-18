@@ -1,14 +1,13 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
+import { Navbar, Nav, Card, CardGroup, CardDeck } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import cat from '../../images/cat.jpg'
-import Littlecat from '../../images/little.jpg'
+import Littlecat from '../images/little.jpg'
 
 
 
 
 
- export default function memberHome (porps: {}) {
+ export default function my_articles (porps: {}) {
      
 
 
@@ -16,24 +15,29 @@ import Littlecat from '../../images/little.jpg'
 
       return <>
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand href = "/memberHome" >The-Platform</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
+  <Nav className="mr-auto">
+      <Nav.Link href="/authorHome">The-Platform</Nav.Link>
+      </Nav> 
     <Nav className="mr-auto">
-      <Nav.Link href="/freetoread">Free To Read</Nav.Link>
+      <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
       </Nav>    
       <Nav className="mr-auto">
-      <Nav.Link href="/recentar">Most recent</Nav.Link>
+      <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
+      </Nav>
+      <Nav className="mr-auto">
+      <Navbar.Brand href="/authorArticles">My Articles</Navbar.Brand>
       </Nav>
     <Nav>
-      <Nav.Link href="/profile"> My Account</Nav.Link>
+      <Nav.Link href="/AUProfile"> My Account</Nav.Link>
     </Nav>
   </Navbar.Collapse>
 </Navbar>
 <br/>
 <Card className="text-center">
   <Card.Body>
-  <CardGroup>
+  <CardDeck>
   <Card>
     <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
@@ -67,7 +71,8 @@ import Littlecat from '../../images/little.jpg'
     </Card.Body>
 
   </Card>
-</CardGroup>
+</CardDeck>
+
 <br/>
   </Card.Body>
   <Card.Footer className="text-muted" />
@@ -76,7 +81,7 @@ import Littlecat from '../../images/little.jpg'
 <br/>
 <Card className="text-center">
   <Card.Body>
-  <CardGroup>
+  <CardDeck>
   <Card>
     <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
@@ -110,7 +115,7 @@ import Littlecat from '../../images/little.jpg'
     </Card.Body>
 
   </Card>
-</CardGroup>
+  </CardDeck>
 <br/>
   </Card.Body>
 </Card>

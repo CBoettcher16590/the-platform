@@ -62,7 +62,7 @@ export default class Organization_profile extends React.Component {
           Q: What’s the best thing about Switzerland?
           A: I don’t know, but the flag is a big plus.
         </Card.Text>
-        <Nav.Link href="#">Edite Profile</Nav.Link>
+        <Nav.Link href="/ORupdateMyInfo">Edite Profile</Nav.Link>
       </Card.Body>
     </Card>
     <br />

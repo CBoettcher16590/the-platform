@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import MainLayout from "../../layouts/MainLayout";
-
+import { useAuthentication } from '../../data/useAuthentication';
+import { Button } from "react-bootstrap";
 
 function randomRedirect():string{
 
@@ -28,14 +27,24 @@ function randomRedirect():string{
         return route3;
       }
   }
+
+// function compaireEmails(memberData():any, DB.dbSignIn():any){
+//   if(memberData === DB.dbSignIn){
+//     console.log("MATCH!")
+//   }
+// }
+
+// function memberData(email:string){
+
+//   return email;
+// }
+
+
 export default function Login() {
+    var mysql      = require('mysql');
+   
 
-    let history = useHistory();
-
- const redirect = () => {
-   history.push(randomRedirect())
- }
-    return (
+    return <>
 <MainLayout>
 
     <form>
@@ -43,7 +52,7 @@ export default function Login() {
 
                 <div className="form-group">
                     <label>Email </label>
-                    <input type="email"
+                    <input value="memberData()" id="emailInput" type="email"
                     className="form-control"
                     placeholder="Enter email" />
                 </div>
@@ -54,18 +63,17 @@ export default function Login() {
                     <input type="password" className="form-control" placeholder="Enter password" />
                 </div>
 
-                <Button onClick = {redirect}type="submit" className="btn btn-primary btn-block">
+                <Button onClick = {Login} type="submit" className="btn btn-primary btn-block">
                     Sign In
                 </Button>
                 <p className="forgot-password text-right">
                     Forgot your Password ? <a href="forms/signin">Help</a>
                 </p>
             </form>
-        );
+        
 
-</MainLayout>
+        </MainLayout>
+            
+       </>
+    }
 
-       
-    );
-
-}

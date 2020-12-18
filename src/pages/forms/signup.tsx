@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import MainLayout from "../../layouts/MainLayout";
+
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import Login from './signin'
-import MainLayout from "../../layouts/MainLayout";
-
 
 
 function randomRedirect():string{
@@ -38,11 +38,9 @@ export default function SignUp() {
  const redirect = () => {
    history.push(randomRedirect())
  }
-   
     return <>
-    <MainLayout>
-
-    <form>
+   <MainLayout>
+        <form>
             <h3>Sign Up</h3>
 
             <div className="form-group">
@@ -114,7 +112,7 @@ export default function SignUp() {
                 Sign Up
             </Button>
             <p className="forgot-password text-right">
-                Already registered <a href="/signin">sign in?</a>
+                Already registered <a href="./signin">sign in?</a>
             </p>
         </form>
 

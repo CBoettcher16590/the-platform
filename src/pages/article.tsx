@@ -5,6 +5,7 @@ import './pages.css';
 import Navbar from 'react-bootstrap/Navbar';
 import { Nav, Form, FormControl, Button, Col, Container, Row, NavbarBrand } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 
 
 
@@ -13,6 +14,8 @@ import Image from 'react-bootstrap/Image'
 
         return<>
         <MainLayout>
+
+        
 
         <section className="articleTop">
             <Row>
@@ -30,7 +33,8 @@ import Image from 'react-bootstrap/Image'
                 <p>Oct, 21 2020   <Button className="followButton" variant="outline-success">Follow   </Button></p>
                
               </Col>
-             
+              <Button variant="primary">Facebook</Button>{' '}
+              <Button variant="link">Twitter</Button>
             </Row>
             <hr/>
         </section>
@@ -83,6 +87,8 @@ import Image from 'react-bootstrap/Image'
       </body>
       </section> 
         </MainLayout>
+      
+     
       
     </>    
         }
