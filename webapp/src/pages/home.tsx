@@ -2,7 +2,7 @@ import React from 'react';
 import MainLayout from '../layouts/MainLayout';
 import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Container, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Button, Container, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { Divider } from '@material-ui/core';
 
@@ -25,6 +25,7 @@ return  <>
                          <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
                  </Nav>
             </Navbar>
+
                         <section className="homeWelcome">
                                 <img src="https://images.unsplash.com/photo-1589782182965-c6512208e2b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"></img>
                                 <div className="welcomeText">
@@ -35,7 +36,17 @@ return  <>
                                         </p>
                                 </div>                        
                         </section>
-
+                        <section className="homeSearch">
+                                <Form inline id="search">
+                                        <FormControl type="text" placeholder="Search" id="searchText" />
+                                        <Button variant="outline-success">Search</Button>
+                                </Form>
+                                <DropdownButton id="dropdown-basic-button" title="Filter By Category">
+                                        <Dropdown.Item href="#/action-1">Animals</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-2">Tech</Dropdown.Item>
+                                        <Dropdown.Item href="#/action-3">Holiday History</Dropdown.Item>
+                                </DropdownButton>
+                        </section>
                         <section className="homeStories">
                                 <div className="homeCard">
                                         <img className="cardImage" src="https://images.unsplash.com/photo-1553598837-21dd2303e506?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1036&q=80" />
