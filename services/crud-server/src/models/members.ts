@@ -1,7 +1,7 @@
 import { IsignUp } from "../interfaces";
 
 
-var mysql      = require('mysql');
+var mysql = require('mysql');
 export var connection = mysql.createConnection({
   host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
   user     : 'admin',
@@ -16,11 +16,13 @@ export const MemberModel = {
  
         const query = connection.query('SELECT * FROM member', function (error:any, results:any, fields:any) {
           if (error) throw error;
+          console.log(results);
           return results;
         });
          connection.end();
-        const stringQuery = JSON.parse(query)
-         return stringQuery;
+        const members = JSON.parse(query);
+
+         return members;
 
     },
     // setAll: ( users:IsignUp[] ) => {

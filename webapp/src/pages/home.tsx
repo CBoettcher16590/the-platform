@@ -57,6 +57,7 @@ return  <>
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
                                                 <a href="/article">Check Out the Articles</a>
+                                                {/* Pay Button */}
                                         </div>
                                 </div>
                                 <div className="homeCard">
@@ -68,6 +69,7 @@ return  <>
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
                                                 <a href="/article">Check Out the Articles</a>
+                                                
                                         </div>
                                 </div>
                                 <div className="homeCard">
