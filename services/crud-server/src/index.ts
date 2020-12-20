@@ -5,7 +5,7 @@ import cors from 'cors';
 import * as Members from './routes/members';
 
 const app = express();
-const port = 3307;
+const port = 4000;
 
 app.use(express.json());
 app.use(cors());
@@ -16,9 +16,9 @@ function loadEndpoints( endpoint:any ){
     if( typeof endpoint === "function" ){
         endpoint(app);
         return;
-    }
+ }
 
-    Object.values(endpoint).forEach(loadEndpoints);
+ Object.values(endpoint).forEach(loadEndpoints);
 
 }
 
