@@ -1,19 +1,15 @@
-import React from 'react';
-import MainLayout from '../layouts/MainLayout';
+import React, { useEffect, useState } from 'react';
 import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Container, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { useHistory } from 'react-router';
-import { Divider } from '@material-ui/core';
-
-
-
-
+import { render } from '@testing-library/react';
+import PayButton from '../components/PayButton';
 
 
 
 function HomePage(props:{}){
 
+              
        
 return  <>
               
@@ -57,7 +53,7 @@ return  <>
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
                                                 <a href="/article">Check Out the Articles</a>
-                                                {/* Pay Button */}
+                                                <PayButton/>
                                         </div>
                                 </div>
                                 <div className="homeCard">
@@ -69,7 +65,7 @@ return  <>
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
                                                 <a href="/article">Check Out the Articles</a>
-                                                
+                                                <PayButton/>
                                         </div>
                                 </div>
                                 <div className="homeCard">
@@ -81,6 +77,7 @@ return  <>
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
                                                 <a href="/article">Check Out the Articles</a>
+                                                <PayButton/>
                                         </div>
                                 </div>
                         </section> 

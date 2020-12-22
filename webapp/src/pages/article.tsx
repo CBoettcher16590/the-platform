@@ -12,29 +12,28 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 
     function Article(props:{}){
 
-        return<>
-        <MainLayout>
+return<>
+<MainLayout>
 
         
 
-        <section className="articleTop">
-            <Row>
-                <Col>
-                  <h1>Do These Things To Survive The Rest of The Pandemic</h1>
-                  <h4>Eat, Sleep, Study, Survive</h4>
-                </Col>  
-            </Row>
-            <Row>
-              <Col lg="2">
-              <Image  id="authorAvatar" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" roundedCircle  />
-              </Col>
-              <Col className="authorInfo" lg="10">
-                <h5>Kent Brockman </h5>
-                <p>Oct, 21 2020   <Button className="followButton" variant="outline-success">Follow   </Button></p>
-               
-              </Col>
-              <Button variant="primary">Facebook</Button>{' '}
-              <Button variant="link">Twitter</Button>
+<section className="articleTop">
+<Row>
+<Col>
+    <h1>Do These Things To Survive The Rest of The Pandemic</h1>
+    <h4>Eat, Sleep, Study, Survive</h4>
+</Col>  
+</Row>
+<Row>
+    <Col lg="2">
+    <Image  id="authorAvatar" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" roundedCircle  />
+</Col>
+    <Col className="authorInfo" lg="10">
+    <h5>Kent Brockman </h5>
+    <p>Oct, 21 2020   <Button className="followButton" variant="outline-success">Follow   </Button></p>
+</Col>
+    <Button variant="primary">Facebook</Button>{' '}
+    <Button variant="link">Twitter</Button>
             </Row>
             <hr/>
         </section>

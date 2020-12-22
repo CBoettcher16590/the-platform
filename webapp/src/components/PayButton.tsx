@@ -5,7 +5,7 @@ function simulateNetworkRequest() {
     return new Promise((resolve) => setTimeout(resolve, 2000));
     }
          
-export default function LoadingButton() {
+export default function PayButton() {
    const [isLoading, setLoading] = useState(false);
          
            useEffect(() => {
