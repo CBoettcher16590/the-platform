@@ -7,7 +7,7 @@ import './pages.css';
 
 
 
- export default function SubmitArticle (porps: {}) {
+ export default function SubmitArticle (props: {}) {
      
 
 
@@ -20,13 +20,13 @@ import './pages.css';
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
       <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
-      </Nav>    
-      <Nav className="mr-auto">
+    </Nav>    
+    <Nav className="mr-auto">
       <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
-      </Nav>
-      <Nav className="mr-auto">
+    </Nav>
+    <Nav className="mr-auto">
       <Nav.Link href="#Reported Reviews">My Articles</Nav.Link>
-      </Nav>
+    </Nav>
     <Nav>
       <Nav.Link href="/AUProfile"> My Account</Nav.Link>
     </Nav>
@@ -63,8 +63,8 @@ import './pages.css';
         </Col>
         </Form.Group >
         <Form.Group  id="imageInput">
-        <Form.File  label="Add an Image" />
-    </Form.Group>
+          <Form.Control type="link" placeholder="Enter a link to an Image" />
+        </Form.Group>
         </div>
       
     <Form.Group id="testAreaHeader" controlId="articleForm.Textarea">
