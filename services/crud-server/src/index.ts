@@ -3,6 +3,7 @@ import cors from 'cors';
 
 
 import * as Members from './routes/members';
+import * as Articles from './routes/articles'
 
 const app = express();
 const port = 4000;
@@ -23,6 +24,12 @@ function loadEndpoints( endpoint:any ){
 }
 
 [ Members ].forEach( ImportedObject => {
+    
+    Object.values( ImportedObject ).forEach( loadEndpoints );
+
+});
+
+[ Articles ].forEach( ImportedObject => {
     
     Object.values( ImportedObject ).forEach( loadEndpoints );
 
