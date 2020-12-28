@@ -1,4 +1,15 @@
-import {IArticle} from '../interfaces';
+
+export interface IArticle{
+    
+    articleId: number;
+    seriesId: number;
+    statusTypeId:number;
+    title:string;
+    preview:string;
+    contents:string;
+    imageLink:string;
+}
+
 
 var mysql = require('mysql');
 var connection = mysql.createConnection({
@@ -10,9 +21,9 @@ var connection = mysql.createConnection({
 
 export const ArticleModel = {
 
-    getAll: () => {
+    getAll: async ():Promise<IArticle[]>  => {
     connection.connect();
-        const query = connection.query('SELECT * FROM article', function (error:any, results:any, fields:any) {
+        const allArticles = connection.query('SELECT * FROM article', function (error:any, results:any, fields:any) {
             if (error) throw error;
             // Line below is an example of how to get content
             // console.log("results.contents: ", results[0].contents, " fields: ", fields)
@@ -20,16 +31,49 @@ export const ArticleModel = {
         });
     connection.end();
  
-        return query;
+        return allArticles;
     
  },
 
-    getById: ( id:number ):any => {
-        return ArticleModel.getAll().find( (article: { articleId: number; }) => {
-            console.log(article, id);
-            return article.articleId === id;
+    getById: async (articleId:string):Promise<IArticle[]> => {
+            connection.connect();
+
+            const foundArticle = connection.query(`SELECT * FROM article WHERE article.article_id = ${articleId}`, function (error:any, results:any, fields:any) {
+                if (error) throw error;
+                // Line below is an example of how to get content
+                return results;
+            });
+            connection.end();
+ 
+        return foundArticle;
+},
+
+    create: async( articleToCreate:IArticle)=> {
+        
+        connection.connect();
+
+        const newArticle:IArticle = connection.query(`INSERT INTO article(title, preview, contents, picture_link)
+        VALUES(${articleToCreate.title}, ${articleToCreate.preview}, ${articleToCreate.contents}, ${articleToCreate.imageLink})`, function (error:any, results:any, fields:any) {
+            if (error) throw error;
+            // Line below is an example of how to get content
         });
+        connection.end(); 
+        return newArticle;
+    },
+
+    publish: async ( article:IArticle)=> {
+
+        connection.connect();
+
+        const publishedArticle = connection.query(`UPDATE article SET statusTypeId='3' WHERE article.article_id = ${article.articleId} `, function (error:any, results:any, fields:any) {
+            if (error) throw error;
+            // Line below is an example of how to get content
+            return results;
+        });
+        connection.end();
+
+    return publishedArticle;
+         
+    }
 
 }
-
-} 

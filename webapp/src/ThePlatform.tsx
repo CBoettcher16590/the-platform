@@ -78,7 +78,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/recentar" component={mostRecentArcticles} />
                     <Route path="/AUprofile" component={author_profile} />
                     <Route path="/profile" component={profile} />
-                    <Route path="/article" component={Article} />
+                    <Route path="/article/:id" component={Article} />
                     <Route path="/newArticle" component={SubmitArticle} />
                     <Route path="/profileFavorite" component= {favorite} />
                     <Route path="/profilePurchased" component= {purchased} />
