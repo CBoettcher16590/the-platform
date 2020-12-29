@@ -19,10 +19,10 @@ function simulateNetworkRequest() {
  function LoadingButton() {
         const [isLoading, setLoading] = useState(false);
               
-                useEffect(() => {
-                  if (isLoading) {
-                    simulateNetworkRequest().then(() => {
-                      setLoading(false);
+         useEffect(() => {
+         if (isLoading) {
+         simulateNetworkRequest().then(() => {
+         setLoading(false);
  });
  }
  }, [isLoading]);
@@ -34,7 +34,7 @@ function simulateNetworkRequest() {
                   
                     variant="primary"
                     disabled={isLoading}
-                    onClick={!isLoading ? handleClick : null}
+                    onClick={handleClick}
                   >
                     {isLoading ? 'Loading…' : 'Pay Now'}
                   </Button>
@@ -47,23 +47,23 @@ function simulateNetworkRequest() {
 return  <>
               
         <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="/">The Platform</Navbar.Brand>
-                <Nav className="mr-auto">
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
-                 </Nav>
-        </Navbar>
+        <Navbar.Brand href="/">The Platform</Navbar.Brand>
+        <Nav className="mr-auto">
+</Nav>
+<Nav>
+        <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
+</Nav>
+</Navbar>
         <section className="homeWelcome">
                  <img src="https://images.unsplash.com/photo-1589782182965-c6512208e2b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"></img>
                  <div className="welcomeText">
-                        <h1>Welcome to "The Platform"</h1>
-                 <p>
+<h1>Welcome to "The Platform"</h1>
+<p>
                   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
                   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                         </p>
-                         </div>                        
-                         </section>
+</p>
+</div>                        
+</section>
 
          <section className="homeStories">
                  <div className="homeCard">
