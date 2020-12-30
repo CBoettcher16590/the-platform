@@ -45,45 +45,54 @@ export default function ThePlatform( props:{} ){
             <div>
             <BrowserRouter>
                 <Switch>
-                    {/* <Route path="/editorPending" component={EditorPending} /> */}
-                    <Route path="/editors" component={Editor} />
-                    <Route path="/users" component={users} />
-                    <Route path="/reportedReviews" component={reported_reviews} />
-                    <Route path="/reportedArticles" component={reported_articles} />
+                    {/* Editor Routes */}
+                    <Route path="/editor" component={Editor} />
                     <Route path="/editorProfile" component={EditorProfile} />
-                    <Route path="/adminHome" component={adminHome} />
-                    <Route path="/memberHome" component={memberHome} />
-                    <Route path="/authorHome" component={authorHome} />
-                    <Route path="/OrgHome" component={OrganizationHome} />
-                    <Route path="/signin" component={Login} />
-                    <Route path="/signup" component={SignUp} />
                     <Route path="/pendingArticles" component={pending} />
-                    <Route path="/AUupdateMyInfo" component={AU_edit_profile} />
-                    <Route path="/AUupdatePersInfo" component={AU_personal_info} />
+                    <Route path="/reportedArticles" component={reported_articles} />
+
                     <Route path="/EDupdateMyInfo" component={ED_edit_profile} />
                     <Route path="/EDupdatePersInfo" component={ED_personal_info} />
-                    <Route path="/ORupdateMyInfo" component={OR_edit_profile} />
-                    <Route path="/ORupdatePersInfo" component={OR_personal_info} />
-                    <Route path="/MEMupdateMyInfo" component={MEM_edit_profile} />
-                    <Route path="/MEMupdatePersInfo" component={MEM_personal_info} />
+
+                    {/* Admin Routes */}
+                    <Route path="/ADProfile" component={Admin_profile} />
+                    <Route path="/adminHome" component={adminHome} />
                     <Route path="/ADupdateMyInfo" component={AD_edit_profile} />
                     <Route path="/ADupdatePersInfo" component={AD_personal_info} />
-                    <Route path="/authorArticles" component={my_articles} />
-                    <Route path="/rejectedArticles" component={Rejected} />
-                    <Route path="/RepArticles" component={reported_articles} />
-                    <Route path="/AUprofile" component={author_profile} />
+
+                    {/* Member Routes */}
+                    <Route path="/memberHome" component={memberHome} />
                     <Route path="/profile" component={profile} />
+                    <Route path="/MEMupdateMyInfo" component={MEM_edit_profile} />
+                    <Route path="/MEMupdatePersInfo" component={MEM_personal_info} />
+
+                    {/* Article/Author Routes */}
                     <Route path="/article" component={Article} />
-                    <Route path="/freetoread" component={freeToRead} />
-                    <Route path="/recentar" component={mostRecentArcticles} />
+                    <Route path="/authorHome" component={authorHome} />
                     <Route path="/AUprofile" component={author_profile} />
-                    <Route path="/profile" component={profile} />
-                    <Route path="/article/:id" component={Article} />
+                    <Route path="/AUupdateMyInfo" component={AU_edit_profile} />
+                    <Route path="/AUupdatePersInfo" component={AU_personal_info} />
                     <Route path="/newArticle" component={SubmitArticle} />
+                    <Route path="/authorArticles" component={my_articles} />
+
+
+                    {/* ORG Routes */}
+                    <Route path="/OrgHome" component={OrganizationHome} />
+                    <Route path="/ORupdateMyInfo" component={OR_edit_profile} />
+                    <Route path="/ORupdatePersInfo" component={OR_personal_info} />
+                    <Route path="/orgProfile" component={Organization_profile} />
+
+                    {/* Misc */}
+                    <Route path="/users" component={users} /> 
+
+                    <Route path="/signin" component={Login} />
+                    <Route path="/signup" component={SignUp} />
+
+
+                    <Route path="/recentar" component={mostRecentArcticles} />
                     <Route path="/profileFavorite" component= {favorite} />
                     <Route path="/profilePurchased" component= {purchased} />
-                    <Route path="/ADProfile" component={Admin_profile} />
-                    <Route path="/orgProfile" component={Organization_profile} />
+
                     <Route path="/" component={HomePage} />
 
                 </Switch>
