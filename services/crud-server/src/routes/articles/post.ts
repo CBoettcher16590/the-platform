@@ -9,10 +9,10 @@ export function post( app:any ){
         // read payload from post body
         const payload:IArticle = request.body;
 
-        const articles = ArticleModel.getAll();
+        const articleList = ArticleModel.getAll();
 
-        articles.push(payload);
-        ArticleModel.setAll(members);
+        // articleList.push(payload);
+        // ArticleModel.setAll(members);
 
         // send successful response
         response.status(201).send();
