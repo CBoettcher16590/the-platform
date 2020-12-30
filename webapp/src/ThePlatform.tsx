@@ -4,35 +4,34 @@ import HomePage from './pages/home';
 import SignUp from './pages/forms/signup';
 import Login from './pages/forms/signin';
 import profile from './pages/members/member-profile';
-import adminHome from './systemAdmin/homepage'
+import adminHome from './pages/systemAdmin/homepage'
 import SubmitArticle from './pages/submitArticle'
 import Article from './pages/article';
 import favorite from './pages/members/favorite';
 import purchased from './pages/members/purchased';
-import Admin_profile from './systemAdmin/profile';
+import Admin_profile from './pages/systemAdmin/profile';
 import memberHome from './pages/members/homepage';
-import authorHome from './author/homepage';
-import author_profile from './author/profile';
-import pending from './editor/pending'
-import my_articles from './author/myArticles';
-import AU_personal_info from './author/personalInfo';
-import AU_edit_profile from './author/editprofile';
-import ED_edit_profile from './editor/editprofile';
-import ED_personal_info from './editor/personalInfo';
-import OR_edit_profile from './organization/editprofile';
-import OR_personal_info from './organization/personalInfo';
+import authorHome from './pages/author/homepage';
+import author_profile from './pages/author/profile';
+import pending from './pages/editor/pending'
+import my_articles from './pages/author/myArticles';
+import AU_personal_info from './pages/author/personalInfo';
+import AU_edit_profile from './pages/author/editprofile';
+import ED_edit_profile from './pages/editor/editprofile';
+import ED_personal_info from './pages/editor/personalInfo';
+import OR_edit_profile from './pages/organization/editprofile';
+import OR_personal_info from './pages/organization/personalInfo';
 import MEM_edit_profile from './pages/members/editprofile';
 import MEM_personal_info from './pages/members/personalInfo';
-import AD_edit_profile from './systemAdmin/editprofile';
-import AD_personal_info from './systemAdmin/personalInfo';
+import AD_edit_profile from './pages/systemAdmin/editprofile';
+import AD_personal_info from './pages/systemAdmin/personalInfo';
 import mostRecentArcticles from './pages/members/mostRecentArcticles';
-import EditorProfile from './editor/editorProfile';
-import Editor from './editor/editors';
-import reported_articles from './systemAdmin/reportedArticles';
-import users from './systemAdmin/users';
-import OrganizationHome from './organization/homepage';
-import Organization_profile from './organization/profile';
-
+import EditorProfile from './pages/editor/editorProfile';
+import Editor from './pages/editor/editors';
+import reported_articles from './pages/systemAdmin/reportedArticles';
+import users from './pages/systemAdmin/users';
+import OrganizationHome from './pages/organization/homepage';
+import Organization_profile from './pages/organization/profile';
 
 export default function ThePlatform( props:{} ){
 
