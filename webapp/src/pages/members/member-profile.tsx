@@ -10,41 +10,41 @@ import favorite from './favorite';
 export default function profile(){
 
   return<>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-          <Nav.Link href = "/memberHome" > The-Platform</Nav.Link>
-              </Nav> 
-            <Nav className="mr-auto">
-            <Nav.Link href="/freetoread">Free To Read</Nav.Link>
-              </Nav>    
-              <Nav className="mr-auto">
-              <Nav.Link href="/recentar">Most recent</Nav.Link>
-              </Nav>
-            <Nav>
-              <Navbar.Brand href="/profile"> My Account</Navbar.Brand>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-        <br/>
+  <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+      <Nav className="mr-auto">
+      <Nav.Link href = "/memberHome" > The-Platform</Nav.Link>
+</Nav> 
+      <Nav className="mr-auto">
+      <Nav.Link href="/freetoread">Free To Read</Nav.Link>
+</Nav>    
+      <Nav className="mr-auto">
+      <Nav.Link href="/recentar">Most recent</Nav.Link>
+</Nav>
+<Nav>
+      <Navbar.Brand href="/profile"> My Account</Navbar.Brand>
+</Nav>
+</Navbar.Collapse>
+</Navbar>
+<br/>
 
 <Card style={{ width: '20rem' }}>
-  <Card.Img variant="top" src= {cat} />
-  <br/>
+      <Card.Img variant="top" src= {cat} />
+<br/>
 
-  <Card.Body>
-    <Card.Title><h2>Donald Trump</h2></Card.Title>
-    <br/>
-    <br/>
-    <Card.Title><h5>Bio</h5></Card.Title>
+<Card.Body>
+<Card.Title><h2>Donald Trump</h2></Card.Title>
+<br/>
+<br/>
+<Card.Title><h5>Bio</h5></Card.Title>
 
-    <Card.Text>
+<Card.Text>
    Q: What’s the best thing about Switzerland?
    A: I don’t know, but the flag is a big plus.
-    </Card.Text>
-    <Nav.Link href = "/MEMupdateMyInfo" >Edite Profile</Nav.Link>
-  </Card.Body>
+</Card.Text>
+  <Nav.Link href = "/MEMupdateMyInfo" >Edite Profile</Nav.Link>
+</Card.Body>
 </Card>
 <br/>
 <Card className="text-center">
@@ -55,28 +55,28 @@ export default function profile(){
     <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
+    <Card.Text>
         This is a wider card with supporting text below as a natural lead-in to
         additional content. This content is a little bit longer.
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
+</Card.Text>
+</Card.Body>
+</Card>
+<Card>
     <Card.Img variant="top" src={Littlecat}/>
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
+    <Card.Text>
         This card has supporting text below as a natural lead-in to additional
         content.{' '}
-      </Card.Text>
-    </Card.Body>
+</Card.Text>
+</Card.Body>
 
-  </Card>
-  <Card>
+</Card>
+<Card>
     <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
+    <Card.Text>
         This is a wider card with supporting text below as a natural lead-in to
         additional content. This card has even longer content than the first to
         show that equal height action.
@@ -98,42 +98,42 @@ export default function profile(){
   <Card.Body>
   <CardGroup>
   <Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
+  <Card.Img variant="top" src={Littlecat} />
+  <Card.Body>
+  <Card.Title><h4>Article title</h4></Card.Title>
+  <Card.Text>
         This is a wider card with supporting text below as a natural lead-in to
         additional content. This content is a little bit longer.
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
+</Card.Text>
+</Card.Body>
+</Card>
+<Card>
     <Card.Img variant="top" src={Littlecat} />
     <Card.Body>
     <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
+    <Card.Text>
         This card has supporting text below as a natural lead-in to additional
         content.{' '}
-      </Card.Text>
-    </Card.Body>
+</Card.Text>
+</Card.Body>
 
-  </Card>
+</Card>
   <Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-      <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
+  <Card.Img variant="top" src={Littlecat} />
+  <Card.Body>
+  <Card.Title><h4>Article title</h4></Card.Title>
+  <Card.Text>
         This is a wider card with supporting text below as a natural lead-in to
         additional content. This card has even longer content than the first to
         show that equal height action.
-      </Card.Text>
-    </Card.Body>
+</Card.Text>
+</Card.Body>
 
-  </Card>
+</Card>
 </CardGroup>
 <br/>
-    <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
-  </Card.Body>
+  <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
+</Card.Body>
   <Card.Footer className="text-muted" />
 </Card>
 <br/>
