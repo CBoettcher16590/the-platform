@@ -1,20 +1,10 @@
-# TypeScript Boilerplate
+CRUD SERVER 
 
-This boilerplate comes installed with the following packages:
 
-- ESLint (Linting)
-  - .eslintrc
-  - .eslintignore
 
-- Prettier (Code Formatting)
-  - .prettierrc.json
-  - .prettierignore
 
-- Typescript Compiler
-  - tsconfig.json
 
-- Git Repository
-  - .gitignore
+
 
 
 ## Installation Instructions
