@@ -7,7 +7,7 @@ import './pages.css';
 
 
 
- export default function SubmitArticle (porps: {}) {
+ export default function SubmitArticle (props: {}) {
      
 
 
@@ -18,19 +18,19 @@ return <>
   <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
-  <Nav className="mr-auto">
-  <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
-</Nav>    
-  <Nav className="mr-auto">
-  <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
-</Nav>
-  <Nav className="mr-auto">
-  <Nav.Link href="#Reported Reviews">My Articles</Nav.Link>
-</Nav>
-  <Nav>
-  <Nav.Link href="/AUProfile"> My Account</Nav.Link>
-</Nav>
-</Navbar.Collapse>
+    <Nav className="mr-auto">
+      <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
+    </Nav>    
+    <Nav className="mr-auto">
+      <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
+    </Nav>
+    <Nav className="mr-auto">
+      <Nav.Link href="#Reported Reviews">My Articles</Nav.Link>
+    </Nav>
+    <Nav>
+      <Nav.Link href="/AUProfile"> My Account</Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
 </Navbar>
 <br/>
 <h1 id="newArticleHeader">Create a New Article</h1>

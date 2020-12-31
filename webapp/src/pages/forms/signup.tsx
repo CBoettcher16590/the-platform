@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MainLayout from "../../layouts/MainLayout";
-
+import './style.css'
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import Login from './signin'
@@ -40,8 +40,8 @@ export default function SignUp() {
  }
     return <>
    <MainLayout>
-        <form>
-            <h3>Sign Up</h3>
+        <form id="signForm">
+            <h2>Sign Up</h2>
 
             <div className="form-group">
                 <label>First name </label>

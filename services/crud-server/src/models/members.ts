@@ -1,7 +1,7 @@
 import { IsignUp } from "../interfaces";
 
 
-var mysql      = require('mysql');
+var mysql = require('mysql');
 export var connection = mysql.createConnection({
      host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
      user     : 'admin',
@@ -24,8 +24,7 @@ export const MemberModel = {
 
  },
   
- 
- // setAll: ( users:IsignUp[] ) => {
+    // setAll: ( users:IsignUp[] ) => {
     //     fs.writeFileSync(file, JSON.stringify(users, null, 4), { encoding: 'utf-8' });
     // },
 

@@ -1,4 +1,3 @@
-CRUD SERVER 
 
 
 
@@ -7,7 +6,8 @@ CRUD SERVER
 
 
 
-## Installation Instructions
+
+## Installation Instructions for Crud Server
 
 To install this package, please run: `npm install`
 
