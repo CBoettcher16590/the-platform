@@ -2,7 +2,7 @@ import axios from 'axios';
 import { HOSTNAME } from '../config';
 
 interface ITokenPostRequest {
-    username: string;
+    email: string;
     password: string;
 }
 

@@ -1,25 +1,23 @@
+  
+import { authenticateToken } from '../../middleware/authenticator';
+import {MemberModel} from '../../models/members'
+import { PasswordModel } from '../../models/password';
+import { IsignUp } from "../../interfaces";
 
-// import { MemberModel } from '../../models/members';
-// import { IsignUp } from '../../interfaces';
+export function post( app:any ){
 
-// export function post( app:any ){
+    app.post("/signup", ( request:any, response:any ) => {
+        // read payload from post body
+        const payload:IsignUp = request.body;
 
-//     app.post("/users", ( request:any, response:any ) => {
+        // hash password so we don't know what it is
+        payload.password = PasswordModel.hash(payload.password);
 
-//         // read payload from post body
-//         const payload:IUser = request.body;
+        const newUser = MemberModel.create(payload);
 
-//         // hash password so we don't know what it is
-//         // HASH PASSWORD WORK WITH SQL??
-//         // payload.password = PasswordModel.hash(payload.password);
+        // send successful response
+        response.status(201).send(newUser);
 
-//         const members = MemberModel.getAll();
-//         members.push(payload);
-//         MemberModel.setAll(members);
+    });
 
-//         // send successful response
-//         response.status(201).send();
-
-//     });
-
-// }
+}

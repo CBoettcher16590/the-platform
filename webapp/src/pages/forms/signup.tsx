@@ -77,7 +77,7 @@ export default function SignUp() {
             </div>
             <br />
 
-            <Button  onClick= {} type="submit" className="btn btn-primary btn-block">
+            <Button type="submit" className="btn btn-primary btn-block">
                 Sign Up
             </Button>
             <p className="forgot-password text-right">
