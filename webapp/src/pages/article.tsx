@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MainLayout from '../layouts/MainLayout';
-import Card from 'react-bootstrap/Card'
 import './pages.css';
-import Navbar from 'react-bootstrap/Navbar';
 import { Nav, Form, FormControl, Button, Col, Container, Row, NavbarBrand } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
 
+import api from '../api';
+import {IArticle} from '../../../services/crud-server/src/interfaces';
 
 
 
     function Article(props:{}){
 
-return<>
-<MainLayout>
+      const [articles, setArticles] = useState<any>([]);
 
-        
+      useEffect(() => {
+        api.articles.get().then(_articles => {
+        setArticles(_articles);
+        })
+        }, []) ;
+
+return<>
+<MainLayout>s
+
+{/* <div>
+ <h3>test</h3> 
+{articles.map((article: IArticle) => {
+   return JSON.stringify(article) 
+ })}
+</div> */}
 
 <section className="articleTop">
 <Row>
 <Col>
-    <h1>Do These Things To Survive The Rest of The Pandemic</h1>
+    <h1></h1>
     <h4>Eat, Sleep, Study, Survive</h4>
 </Col>  
 </Row>
@@ -77,14 +89,6 @@ return<>
               amet ipsum dignissim nunc vestibulum placerat. Vestibulum vel blandit ipsum, vitae cursus orci. Nulla fermentum imperdiet molestie.
           </p>
 
-          <section>
-      <body>
-        <p>
-
-        </p>
-
-      </body>
-      </section> 
         </MainLayout>
       
      

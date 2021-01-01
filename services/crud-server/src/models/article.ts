@@ -23,7 +23,7 @@ export const ArticleModel = {
 
     getAll: async ():Promise<IArticle[]>  => {
     connection.connect();
-        const allArticles = connection.query('SELECT * FROM article', function (error:any, results:any, fields:any) {
+        const allArticles:IArticle[] = connection.query('SELECT * FROM article', function (error:any, results:any, fields:any) {
             if (error) throw error;
             // Line below is an example of how to get content
             // console.log("results.contents: ", results[0].contents, " fields: ", fields)

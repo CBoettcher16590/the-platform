@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, Button, Card } from 'react-bootstrap';
-import cat from '../images/cat.jpg'
+import cat from '../../images/cat.jpg'
 
 
 export default class Organization_profile extends React.Component {

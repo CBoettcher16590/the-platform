@@ -4,7 +4,7 @@ import { HOSTNAME } from '../config';
 export default {
     
     get: async () => {
-        return axios.get(`${HOSTNAME}/article`);
+        return axios.get(`${HOSTNAME}/article/:articleId`);
     },
 
     post: async ( body:any ) => {

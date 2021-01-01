@@ -1,8 +1,7 @@
 import { disconnect } from 'process';
 import React from 'react';
-import MainLayout from '../layouts/MainLayout';
-import cat from '../images/cat.jpg'
-import little from '../images/little.jpg'
+import cat from '../../images/cat.jpg'
+import little from '../../images/little.jpg'
 import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
 
  export default function Admin_profile(){

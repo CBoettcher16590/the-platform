@@ -4,8 +4,8 @@ import reported_articles from '../systemAdmin/reportedArticles'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import cat from '../images/cat.jpg';
-import little from '../images/little.jpg';
+import cat from '../../images/cat.jpg';
+import little from '../../images/little.jpg';
 
     
     

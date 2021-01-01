@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import MainLayout from '../layouts/MainLayout';
+
 
 
  export default function reported_articles(){
