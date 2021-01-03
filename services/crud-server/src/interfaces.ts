@@ -20,3 +20,5 @@ export interface IArticle{
     contents:string;
     imageLink:string;
 }
+
+

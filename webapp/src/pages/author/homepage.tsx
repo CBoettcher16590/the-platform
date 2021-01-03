@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Card, CardGroup, CardDeck } from 'react-bootstrap';
+import { Navbar, Nav, Card, CardDeck } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Littlecat from '../../images/little.jpg'
 

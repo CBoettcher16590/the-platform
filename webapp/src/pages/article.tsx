@@ -20,7 +20,7 @@ import {IArticle} from '../../../services/crud-server/src/interfaces';
         }, []) ;
 
 return<>
-<MainLayout>s
+<MainLayout>
 
 {/* <div>
  <h3>test</h3> 

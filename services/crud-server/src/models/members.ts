@@ -1,6 +1,5 @@
 import { IsignUp } from "../interfaces";
 
-
 var mysql = require('mysql');
 export var connection = mysql.createConnection({
      host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
@@ -23,7 +22,7 @@ export const MemberModel = {
     return stringQuery;
 
  },
- getById:(user:IsignUp):IsignUp => {
+ getByEmail:(user:IsignUp):IsignUp => {
     connection.connect();
         const userEmail = JSON.stringify(user.email);
         const foundUser = connection.query(`SELECT * FROM member WHERE email = "${userEmail}" `, function (error:any, results:any, fields:any) {

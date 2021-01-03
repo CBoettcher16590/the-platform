@@ -1,8 +1,7 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown, Card, CardGroup, Button, Col, Form, Row } from 'react-bootstrap';
+import { Navbar, Nav, Button, Col, Form, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Box } from '@material-ui/core';
-import { faAlignCenter } from '@fortawesome/free-solid-svg-icons';
+
 
 export default function AU_edit_profile() {
 

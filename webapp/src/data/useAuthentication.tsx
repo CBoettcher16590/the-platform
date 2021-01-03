@@ -2,7 +2,7 @@ import { useHistory } from 'react-router';
 import api from '../api';
 
 
-export function useAuthentication(){
+export default function useAuthentication(){
 
     const history = useHistory();    
     
