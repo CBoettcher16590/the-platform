@@ -15,7 +15,7 @@ import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
           <Nav.Link href = "/adminHome" > The-Platform</Nav.Link>
               </Nav> 
             <Nav className="mr-auto">
-              <Nav.Link href="#Reported articles">Reported-Articles</Nav.Link>
+              <Nav.Link href="editorProfile">Reported-Articles</Nav.Link>
               </Nav>    
               <Nav className="mr-auto">
               <Nav.Link href="#Reported Reviews">Reported-Reviews</Nav.Link>
@@ -33,14 +33,15 @@ import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
   <br/>
 
   <Card.Body>
-    <Card.Title><h2>Donald Trump</h2></Card.Title>
+    <Card.Title><h2>Donald Trump System Admin</h2></Card.Title>
     <br/>
     <br/>
     <Card.Title><h5>Bio</h5></Card.Title>
 
     <Card.Text>
-   Q: What’s the best thing about Switzerland?
-   A: I don’t know, but the flag is a big plus.
+   This Is where I will write a little about me, the things that I like. This 
+   info will appear public to those who check out your profile
+   
     </Card.Text>
     <Nav.Link href = "/ADupdateMyInfo" >Edite Profile</Nav.Link>
   </Card.Body>
