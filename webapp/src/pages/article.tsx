@@ -22,12 +22,12 @@ import {IArticle} from '../../../services/crud-server/src/interfaces';
 return<>
 <MainLayout>
 
-{/* <div>
- <h3>test</h3> 
-{articles.map((article: IArticle) => {
-   return JSON.stringify(article) 
- })}
-</div> */}
+    <div>
+    <h3>test</h3> 
+    <p>{articles.map((article: IArticle) => {
+    return article;
+    })}</p>
+    </div>
 
 <section className="articleTop">
 <Row>
@@ -53,7 +53,7 @@ return<>
 
 <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id feugiat risus. Quisque scelerisque non metus sit amet interdum. 
-            Ut porta vitae ligula sed hendrerit. Maecenas aliquet lectus quam. Curabitur auctor dui ultricies ligula dapibus, vitae imperdiet 
+            Ut porta vi ligula sed hendrerit. Maecenas aliquet lectus quam. Curabitur auctor dui ultricies ligula dapibus, vitae imperdiet 
             nunc eleifend. Duis nec turpis malesuada, tincidunt mi cursus, ultrices lorem. Vestibulum finibus mattis nisi, ut ornare sapien tincidunt
             eu. Integer egestas hendrerit leo, eget blandit est efficitur id. Nam risus magna, euismod non viverra id, iaculis vel lorem. 
             Fusce eleifend urna rutrum, consequat neque ac, malesuada sem.
