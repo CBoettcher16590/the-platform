@@ -22,12 +22,12 @@ import {IArticle} from '../../../services/crud-server/src/interfaces';
 return<>
 <MainLayout>
 
-{/* <div>
- <h3>test</h3> 
-{articles.map((article: IArticle) => {
-   return JSON.stringify(article) 
- })}
-</div> */}
+    <div>
+    <h3>test</h3> 
+    <p>{articles.map((article: IArticle) => {
+    return article;
+    })}</p>
+    </div>
 
 <section className="articleTop">
 <Row>

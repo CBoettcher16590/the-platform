@@ -1,3 +1,7 @@
+import { rejects } from "assert";
+import e from "cors";
+import { query } from "express";
+import { resolve } from "path";
 
 export interface IArticle{
     
@@ -8,6 +12,8 @@ export interface IArticle{
     preview:string;
     contents:string;
     imageLink:string;
+    price:number;
+    authorId:number;
 }
 
 
@@ -22,31 +28,39 @@ var connection = mysql.createConnection({
 export const ArticleModel = {
 
     getAll: async ():Promise<IArticle[]>  => {
+
     connection.connect();
-        const allArticles:IArticle[] = connection.query('SELECT * FROM article', function (error:any, results:any, fields:any) {
-            if (error) throw error;
-            // Line below is an example of how to get content
-            // console.log("results.contents: ", results[0].contents, " fields: ", fields)
-            return results;
+        const articleList:IArticle[] = [];
+        const allArticles:IArticle[] = connection.query('SELECT * FROM article', function (error:any, results:any) {
+            if(error) throw error;
+            results.forEach((element:IArticle) => {
+                articleList.push(element);
+            });
+            // console.log(articleList);
+            return articleList;
+        
         });
+
     connection.end();
- 
-        return allArticles;
+        return articleList;
     
  },
 
-    getById: async (articleId:string):Promise<IArticle[]> => {
-            connection.connect();
+    getById: async (articleId:string):Promise<IArticle> => {
 
-            const foundArticle = connection.query(`SELECT * FROM article WHERE article.article_id = ${articleId}`, function (error:any, results:any, fields:any) {
-                if (error) throw error;
-                // Line below is an example of how to get content
-                return results;
+        return new Promise((resolve,reject)=>{
+            connection.connect();
+            connection.query(`SELECT * FROM article WHERE article.article_id = ${articleId}`, function (error:any, results:IArticle) {
+                if(error){
+                    reject(error);
+                } else {
+                    resolve(results)
+                }
+                connection.end();
             });
-            connection.end();
- 
-        return foundArticle;
-},
+        });          
+    },
+
 
     create: async( articleToCreate:IArticle)=> {
         

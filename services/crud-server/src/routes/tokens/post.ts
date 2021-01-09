@@ -9,7 +9,7 @@ app.post('/tokens', async (request:any, response:any) => {
     const password = request.body.password;
 
     const foundUser = await MemberModel.getByEmail(email);
-    const foundUserString = JSON.parse(JSON.stringify(foundUser));
+    const foundUserString = JSON.parse(JSON.stringify(foundUser)); //CHECK STRINGIFY
 
     if(!foundUser){
         response.status(404).send({
