@@ -22,7 +22,7 @@ var connection = mysql.createConnection({
      host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
      user     : 'admin',
      password : 'stargazer2020',
-    database : 'theplatform'
+    database : 'theplatformV2'
 });
 
 export const ArticleModel = {
@@ -46,11 +46,11 @@ export const ArticleModel = {
     
  },
 
-    getById: async (articleId:string):Promise<IArticle> => {
+    getById: async (articleId:number):Promise<IArticle> => {
 
         return new Promise((resolve,reject)=>{
             connection.connect();
-            connection.query(`SELECT * FROM article WHERE article.article_id = ${articleId}`, function (error:any, results:IArticle) {
+            connection.query(`SELECT * FROM article WHERE article_id = ${articleId}`, function (error:any, results:IArticle) {
                 if(error){
                     reject(error);
                 } else {
