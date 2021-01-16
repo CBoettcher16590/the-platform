@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, Button, Col, Form, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import PhoneInput from 'react-phone-number-input';
 import { useState } from 'react';
 
 

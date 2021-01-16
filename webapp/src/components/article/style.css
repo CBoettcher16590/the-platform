@@ -51,9 +51,8 @@
     flex-direction: column;
 }
 .homeWelcome{
-    padding-top:50px;
-    display: flex;  
-    height: 500px;
+    display: flex;
+    height: auto;
     background-color: rgb(208, 242, 255) ;
 }
 .homeWelcome img {
@@ -65,7 +64,6 @@
 }
 .welcomeText{
     display: flex;
-    font-size: larger;
     flex-direction: column;
     padding-left: 30px;
 }

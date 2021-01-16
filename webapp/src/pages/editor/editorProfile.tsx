@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
+import { Navbar, Nav, Card, CardGroup, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import cat from '../../images/cat.jpg';
 import little from '../../images/little.jpg';
@@ -15,14 +15,9 @@ import little from '../../images/little.jpg';
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
-              <Nav.Link href = "/homepage" > The-Platform</Nav.Link>
-                  </Nav> 
-                   
-                  
-                  <Nav className="mr-auto">
-                  <Nav.Link href="#users">Users</Nav.Link>
-                  </Nav>
-                <Nav>
+                <Nav.Link href = "/" > The-Platform</Nav.Link>
+              </Nav> 
+              <Nav>
                   <Navbar.Brand href="/ADProfile"> My Account</Navbar.Brand>
                 </Nav>
               </Navbar.Collapse>
@@ -41,18 +36,18 @@ import little from '../../images/little.jpg';
        Q: What’s the best thing about Switzerland?
        A: I don’t know, but the flag is a big plus.
         </Card.Text>
-        <Nav.Link href = "/EDupdateMyInfo" >Edite Profile</Nav.Link>
+        <Nav.Link href = "/EDupdateInfo" >Edite Profile</Nav.Link>
       </Card.Body>
     </Card>
     <br/>
     <Card style={{ width: '70%' }}>
   <Card.Img variant="top" src="" />
   <Card.Body>
-    <Card.Title>Pending articles</Card.Title>
+    <Card.Title>Pending Articles</Card.Title>
     <Card.Text>
       Do not forget about these pending articles.
     </Card.Text>
-    <Nav.Link href="/editorPending">Review Articles</Nav.Link>
+    <Nav.Link href="#">Review Articles</Nav.Link>
   </Card.Body>
 </Card>
 
@@ -60,11 +55,11 @@ import little from '../../images/little.jpg';
 <Card style={{ width: '70%' }}>
   <Card.Img variant="top" src="" />
   <Card.Body>
-    <Card.Title>reported Articles</Card.Title>
+    <Card.Title>Reported Articles</Card.Title>
     <Card.Text>
       Do not forget about these pending articles.
     </Card.Text>
-    <Nav.Link href ="primary">Review Articles</Nav.Link>
+    <Nav.Link href ="#">Review Articles</Nav.Link>
   </Card.Body>
 </Card>
 
@@ -111,7 +106,7 @@ import little from '../../images/little.jpg';
     </CardGroup>
     <br/>
     
-    <Nav.Link href= "/profilePurchased" >See All </Nav.Link>
+    <Nav.Link href= "#" >See All </Nav.Link>
       </Card.Body>
       <Card.Footer className="text-muted" />
     </Card>
@@ -156,7 +151,7 @@ import little from '../../images/little.jpg';
       </Card>
     </CardGroup>
     <br/>
-        <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
+        <Nav.Link href= "#" >See All </Nav.Link>
       </Card.Body>
       <Card.Footer className="text-muted" />
     </Card>

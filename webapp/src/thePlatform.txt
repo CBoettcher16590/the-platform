@@ -1,0 +1,21 @@
+                Editor Routes
+                        path=   /editorProfile
+
+                Admin Routes
+                        path=   /ADProfile
+                        path=   /adminHome
+
+
+                Member Routes
+                        path=   /memberHome
+                        path=   /profile
+                        path=   /MEMupdateMyInfo
+                        path=   /MEMupdatePersInfo
+
+                Article/Author Routes
+                        path=   /article/:id/>
+                        path=   /authorHome
+                        path=   /AUprofile
+                        path=   /AUupdateMyInfo
+                        path=   /AUupdatePersInfo
+                        path=   /newArticle

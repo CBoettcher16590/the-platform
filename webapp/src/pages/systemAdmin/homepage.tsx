@@ -1,8 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, useHistory } from 'react-router-dom';
-import { stringify } from 'querystring';
-import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
-import reported_articles from '../systemAdmin/reportedArticles'
+import { Navbar, Nav, Card, CardGroup } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
