@@ -1,19 +1,17 @@
-import { rejects } from "assert";
-import e from "cors";
-import { query } from "express";
-import { resolve } from "path";
 
 export interface IArticle{
     
     articleId: number;
     seriesId: number;
-    statusTypeId:number;
+    userId:number;
     title:string;
     preview:string;
     contents:string;
     imageLink:string;
     price:number;
-    authorId:number;
+    createdOn:string;
+    articleStatus:number;
+    rating:number[];
 }
 
 
@@ -29,20 +27,17 @@ export const ArticleModel = {
 
     getAll: async ():Promise<IArticle[]>  => {
 
-    connection.connect();
-        const articleList:IArticle[] = [];
-        const allArticles:IArticle[] = connection.query('SELECT * FROM article', function (error:any, results:any) {
-            if(error) throw error;
-            results.forEach((element:IArticle) => {
-                articleList.push(element);
+        return new Promise((resolve,reject)=>{
+            connection.connect();
+            connection.query(`SELECT * FROM article`, function (error:any, results:IArticle[]) {
+                if(error){
+                    reject(error);
+                } else {
+                    resolve(results)
+                }
+                connection.end();
             });
-            // console.log(articleList);
-            return articleList;
-        
-        });
-
-    connection.end();
-        return articleList;
+        });          
     
  },
 
@@ -67,7 +62,8 @@ export const ArticleModel = {
         connection.connect();
 
         const newArticle:IArticle = connection.query(`INSERT INTO article(title, preview, contents, picture_link)
-        VALUES(${articleToCreate.title}, ${articleToCreate.preview}, ${articleToCreate.contents}, ${articleToCreate.imageLink})`, function (error:any, results:any, fields:any) {
+        VALUES(article_id, ${articleToCreate.seriesId}, ${articleToCreate.userId}, ${articleToCreate.title}, ${articleToCreate.preview}, 
+            ${articleToCreate.contents}, ${articleToCreate.imageLink}, CURDATE(), ${articleToCreate.price}, ${articleToCreate.articleStatus})`, function (error:any, results:any, fields:any) {
             if (error) throw error;
             // Line below is an example of how to get content
         });

@@ -1,6 +1,6 @@
 
 import { ArticleModel } from '../../models/article';
-import { IArticle } from '../../interfaces';
+import { IArticle } from '../../models/article';
 
 export function post( app:any ){
 

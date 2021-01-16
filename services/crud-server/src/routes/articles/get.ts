@@ -1,6 +1,6 @@
 
-import { IArticle } from '../../interfaces';
-import {ArticleModel } from '../../models/article';
+
+import {ArticleModel, IArticle } from '../../models/article';
 
 
 export function get( app:any ){
