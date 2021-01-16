@@ -3,12 +3,6 @@ import { Navbar, Nav, Card, CardGroup, CardDeck, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Littlecat from '../../images/little.jpg';
 import cat from '../../images/cat.jpg';
-import { render } from '@testing-library/react';
-
-
-
-
-
 
 
 

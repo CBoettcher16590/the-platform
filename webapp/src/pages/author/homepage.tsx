@@ -4,9 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Littlecat from '../../images/little.jpg'
 
 
-
-
-
 export default function authorHome(porps: {}) {
 
 

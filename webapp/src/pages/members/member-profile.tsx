@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-import { Card, Button, CardGroup, Nav, Navbar } from 'react-bootstrap'
+import React from 'react'
+import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import cat from '../../images/cat.jpg'
-import Littlecat from '../../images/little.jpg'
-import favorite from './favorite';
+import cat from '../../images/cat.jpg';
+import Littlecat from '../../images/little.jpg';
 
 
 
@@ -43,7 +42,7 @@ export default function profile(){
    Q: What’s the best thing about Switzerland?
    A: I don’t know, but the flag is a big plus.
 </Card.Text>
-  <Nav.Link href = "/MEMupdateMyInfo" >Edite Profile</Nav.Link>
+  <Nav.Link href = "/MEMupdateMyInfo" >Edit Profile</Nav.Link>
 </Card.Body>
 </Card>
 <br/>

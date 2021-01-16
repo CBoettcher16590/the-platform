@@ -10,15 +10,3 @@ export interface IsignUp{
 }
 
 
-export interface IArticle{
-    
-    articleId: number;
-    seriesId: number;
-    statusTypeId:number;
-    title:string;
-    preview:string;
-    contents:string;
-    imageLink:string;
-}
-
-

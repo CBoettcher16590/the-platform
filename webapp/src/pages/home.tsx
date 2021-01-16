@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Container, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { render } from '@testing-library/react';
+import { Button, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import PayButton from '../components/PayButton';
 import Footer from '../components/footer';
 
@@ -28,8 +27,13 @@ return  <>
                                 <div className="welcomeText">
                                         <h1>Welcome to "The Platform"</h1>
                                         <p>
-                                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                                        It is a long established fact that a reader will be distracted by the readable content of a
+                                        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
+                                        normal distribution of letters, as opposed to using 'Content here, content here', making it
+                                        look like readable English. Many desktop publishing packages and web page editors now use Lorem
+                                        Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still
+                                        in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on
+                                        purpose (injected humour and the like).
                                         </p>
                                 </div>                        
                         </section>
@@ -53,7 +57,7 @@ return  <>
                                                         Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
-                                                <a href="/article">Check Out the Articles</a>
+                                                <a href="/article/1">Check Out the Articles</a>
                                                 <PayButton/>
                                         </div>
                                 </div>
@@ -65,7 +69,7 @@ return  <>
                                                         Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
-                                                <a href="/article">Check Out the Articles</a>
+                                                <a href="/article/1">Check Out the Articles</a>
                                                 <PayButton/>
                                         </div>
                                 </div>
@@ -77,7 +81,7 @@ return  <>
                                                         Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
-                                                <a href="/article">Check Out the Articles</a>
+                                                <a href="/article/1">Check Out the Articles</a>
                                                 <PayButton/>
                                         </div>
                                 </div>

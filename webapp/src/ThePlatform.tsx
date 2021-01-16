@@ -6,30 +6,22 @@ import Login from './pages/forms/signin';
 import profile from './pages/members/member-profile';
 import adminHome from './pages/systemAdmin/homepage'
 import SubmitArticle from './pages/submitArticle'
-import Article from './pages/article';
-import favorite from './pages/members/favorite';
-import purchased from './pages/members/purchased';
+import IndvArticlePage from './pages/indvArticle';
 import Admin_profile from './pages/systemAdmin/profile';
 import memberHome from './pages/members/homepage';
 import authorHome from './pages/author/homepage';
 import author_profile from './pages/author/profile';
-import pending from './pages/editor/pending'
 import my_articles from './pages/author/myArticles';
 import AU_personal_info from './pages/author/personalInfo';
 import AU_edit_profile from './pages/author/editprofile';
 import ED_edit_profile from './pages/editor/editprofile';
-import ED_personal_info from './pages/editor/personalInfo';
 import OR_edit_profile from './pages/organization/editprofile';
 import OR_personal_info from './pages/organization/personalInfo';
 import MEM_edit_profile from './pages/members/editprofile';
 import MEM_personal_info from './pages/members/personalInfo';
 import AD_edit_profile from './pages/systemAdmin/editprofile';
 import AD_personal_info from './pages/systemAdmin/personalInfo';
-import mostRecentArcticles from './pages/members/mostRecentArcticles';
 import EditorProfile from './pages/editor/editorProfile';
-import Editor from './pages/editor/editors';
-import reported_articles from './pages/systemAdmin/reportedArticles';
-import users from './pages/systemAdmin/users';
 import OrganizationHome from './pages/organization/homepage';
 import Organization_profile from './pages/organization/profile';
 
@@ -40,14 +32,9 @@ export default function ThePlatform( props:{} ){
             <BrowserRouter>
                 <Switch>
                     {/* Editor Routes */}
-                    <Route path="/editor" component={Editor} />
                     <Route path="/editorProfile" component={EditorProfile} />
-                    <Route path="/pendingArticles" component={pending} />
-                    <Route path="/reportedArticles" component={reported_articles} />
 
-                    <Route path="/EDupdateMyInfo" component={ED_edit_profile} />
-                    <Route path="/EDupdatePersInfo" component={ED_personal_info} />
-
+                    <Route path="/EDupdateInfo" component={ED_edit_profile} />
                     {/* Admin Routes */}
                     <Route path="/ADProfile" component={Admin_profile} />
                     <Route path="/adminHome" component={adminHome} />
@@ -61,14 +48,12 @@ export default function ThePlatform( props:{} ){
                     <Route path="/MEMupdatePersInfo" component={MEM_personal_info} />
 
                     {/* Article/Author Routes */}
-                    <Route path="/article" component={Article} />
+                    <Route path="/article/:id" exact component={IndvArticlePage} />
                     <Route path="/authorHome" component={authorHome} />
                     <Route path="/AUprofile" component={author_profile} />
                     <Route path="/AUupdateMyInfo" component={AU_edit_profile} />
                     <Route path="/AUupdatePersInfo" component={AU_personal_info} />
                     <Route path="/newArticle" component={SubmitArticle} />
-                    <Route path="/authorArticles" component={my_articles} />
-
 
                     {/* ORG Routes */}
                     <Route path="/OrgHome" component={OrganizationHome} />
@@ -77,15 +62,8 @@ export default function ThePlatform( props:{} ){
                     <Route path="/orgProfile" component={Organization_profile} />
 
                     {/* Misc */}
-                    <Route path="/users" component={users} /> 
-
                     <Route path="/signin" component={Login} />
                     <Route path="/signup" component={SignUp} />
-
-
-                    <Route path="/recentar" component={mostRecentArcticles} />
-                    <Route path="/profileFavorite" component= {favorite} />
-                    <Route path="/profilePurchased" component= {purchased} />
 
                     <Route path="/" component={HomePage} />
 

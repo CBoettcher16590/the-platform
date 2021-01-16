@@ -57,7 +57,6 @@ import Littlecat from '../../images/little.jpg'
         content.{' '}
       </Card.Text>
     </Card.Body>
-
   </Card>
   <Card>
     <Card.Img variant="top" src={Littlecat} />
