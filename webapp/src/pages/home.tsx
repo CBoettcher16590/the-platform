@@ -88,7 +88,7 @@ return  <>
                         </section> 
                        
 <Footer/>
-
+<Nav.Link href= '/signin'>Sign In!</Nav.Link>
 
          </>    
 
