@@ -26,16 +26,10 @@ render(){
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/authorHome"> The-Platform</Nav.Link>
+          <Nav.Link href="/"> The-Platform</Nav.Link>
         </Nav>
         <Nav className="mr-auto">
-          <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
-        </Nav>
-        <Nav className="mr-auto">
-          <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
-        </Nav>
-        <Nav className="mr-auto">
-          <Nav.Link href="/authorArticles">My Articles</Nav.Link>
+          <Nav.Link href="/newArticle">Submit An Article</Nav.Link>
         </Nav>
         <Nav>
           <Navbar.Brand> My Account</Navbar.Brand>
@@ -57,7 +51,7 @@ render(){
           Q: What’s the best thing about Switzerland?
           A: I don’t know, but the flag is a big plus.
         </Card.Text>
-        <Nav.Link href="/AUupdateMyInfo">Edite Profile</Nav.Link>
+        <Nav.Link href="/AUupdateMyInfo">Edit Profile</Nav.Link>
       </Card.Body>
     </Card>
     <br />

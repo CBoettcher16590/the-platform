@@ -17,6 +17,15 @@ return  <>
                 <Nav className="mr-auto">
                  </Nav>
                  <Nav>
+                         <Nav.Link href= '/profile'>Member Page</Nav.Link>
+                 </Nav>
+                 <Nav>
+                         <Nav.Link href= '/editorProfile'>Editor Page</Nav.Link>
+                 </Nav>
+                 <Nav>
+                         <Nav.Link href= '/ADProfile'>Admin Page</Nav.Link>
+                 </Nav>
+                 <Nav>
                          <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
                  </Nav>
             </Navbar>
