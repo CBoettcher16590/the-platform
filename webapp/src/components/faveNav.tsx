@@ -1,6 +1,6 @@
 
 import { Button, Carousel, Col, Container, Row } from 'react-bootstrap';
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
 
 

@@ -3,7 +3,7 @@ import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import PayButton from '../components/PayButton';
-
+import Footer from '../components/footer';
 
 
 function HomePage(props:{}){
@@ -28,6 +28,7 @@ return  <>
                  <Nav>
                          <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
                  </Nav>
+                        <Nav.Link href= '/signin'>Sign In!</Nav.Link>
             </Navbar>
 
                         <section className="homeWelcome">
@@ -95,10 +96,15 @@ return  <>
                                 </div>
                         </section> 
                        
+<Footer/>
+<Nav.Link href= '/signin'>Sign In!</Nav.Link>
 
          </>    
 
-  
 }
+
+
+
+
 
 export default HomePage;
