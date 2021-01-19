@@ -3,14 +3,13 @@
                         path=  /EDupdateInfo
                 Admin Routes
                         path=   /ADProfile
-                        path=   /adminHome
+                        path=   /ADupdateMyInfo
 
 
                 Member Routes
-               
-                        path=   / 
+
                         path=   /MEMupdateMyInfo
-                        path=   /MEMupdatePersInfo
+                        path=   /MEMPersInfo
 
                 Article/Author Routes
                         path=   /article/:id/>

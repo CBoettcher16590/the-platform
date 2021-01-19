@@ -9,20 +9,11 @@ import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
  
         return <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-          <Nav.Link href = "/adminHome" > The-Platform</Nav.Link>
-              </Nav> 
-            <Nav className="mr-auto">
-              <Nav.Link href="editorProfile">Reported-Articles</Nav.Link>
-              </Nav>    
-              <Nav className="mr-auto">
-              <Nav.Link href="#Reported Reviews">Reported-Reviews</Nav.Link>
-              </Nav>
-              <Nav className="mr-auto">
-              <Nav.Link href="#users">Users</Nav.Link>
-              </Nav>
+            <Nav.Link href = "/" > The-Platform</Nav.Link>
+          </Nav> 
             <Nav>
               <Navbar.Brand href="/ADProfile"> My Account</Navbar.Brand>
             </Nav>
@@ -43,7 +34,7 @@ import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
    info will appear public to those who check out your profile
    
     </Card.Text>
-    <Nav.Link href = "/ADupdateMyInfo" >Edite Profile</Nav.Link>
+    <Nav.Link href = "/ADupdateMyInfo" >Edit Profile</Nav.Link>
   </Card.Body>
 </Card>
 <br/>
