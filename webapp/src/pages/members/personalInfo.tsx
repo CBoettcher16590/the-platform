@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Button, Col, Form, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PhoneInput from 'react-phone-number-input'
+import './style.css'
 import { useState } from 'react';
 
 
@@ -17,46 +17,52 @@ export default function MEM_personal_info() {
 </Nav>
 </Navbar>
 </div>
-<Form>
-    <Form.Group as={Row} >
-    <Form.Label column sm={2}>
-    Email
-</Form.Label>
-    <Col sm={10}>
-    <Form.Control type="email" placeholder="New Email" />
-</Col>
-</Form.Group>
-    <Form.Group as={Row} >
-    <Form.Label column sm={2}>
-    Phone
-</Form.Label>
-<Col sm={10}>
-    <Form.Control type="Number" maxLength= {10} placeholder="New Phone Number" />
-</Col>
-</Form.Group>
-    <Form.Group as={Row} >
-    <Form.Label column sm={2}>
-      Gender
-</Form.Label>
-    <Col sm={10}>
-    <Form.Control type="text" maxLength= {1} placeholder="Enter Only F or M" />
-</Col>
-</Form.Group>
-    <Form.Group as={Row} >
-    <Form.Label column sm={2}>
-    BirthDate
-</Form.Label>
-<Col sm={10}>
-    <Form.Control type="date"  placeholder="BirthDate" />
-</Col>
-</Form.Group>
 
-<Form.Group as={Row}>
-  <Col sm={{ span: 10, offset: 2 }}>
-  <Button type="submit">Done</Button>
-</Col>
-</Form.Group>
-</Form>
+{/* LOAD CURRENT DATA MVP */}
+
+<Form className="profileInfo">
+    <Form.Group as={Row} >      
+        <Form.Label column sm={10}>
+            Profile Picture
+        </Form.Label>
+        <Col sm={10}>
+            <Form.Control type="Number"placeholder="Enter New Image URL" />  
+        </Col>
+    </Form.Group>
+    
+    <Form.Group as={Row} >      
+        <Form.Label column sm={10}>
+            Email
+        </Form.Label>
+        <Col sm={10}>
+            <Form.Control type="Number"  placeholder="New Email" />  
+        </Col>
+    </Form.Group>
+
+    <Form.Group as={Row} >
+        <Form.Label column sm={10}>
+            Phone
+        </Form.Label>
+        <Col sm={10}>
+            <Form.Control type="Number"  placeholder="New Phone Number" />
+        </Col>
+    </Form.Group>
+
+    <Form.Group as={Row} >
+        <Form.Label column sm={10}>
+            Birthdate
+        </Form.Label>
+        <Col sm={10}>
+            <Form.Control type="date" placeholder="BirthDate" />
+        </Col>
+    </Form.Group>   
+
+    <Form.Group as={Row}>
+    <Col sm={{ span: 10, offset: 2 }}>
+    <Button type="submit">Done</Button>
+    </Col>
+    </Form.Group>
+    </Form>
 
 
 </>

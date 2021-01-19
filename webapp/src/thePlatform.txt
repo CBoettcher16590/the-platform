@@ -1,14 +1,14 @@
                 Editor Routes
                         path=   /editorProfile
-
+                        path=  /EDupdateInfo
                 Admin Routes
                         path=   /ADProfile
                         path=   /adminHome
 
 
                 Member Routes
-                        path=   /memberHome
-                        path=   /profile
+               
+                        path=   / 
                         path=   /MEMupdateMyInfo
                         path=   /MEMupdatePersInfo
 

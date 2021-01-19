@@ -8,7 +8,6 @@ import adminHome from './pages/systemAdmin/homepage'
 import SubmitArticle from './pages/submitArticle'
 import IndvArticlePage from './pages/indvArticle';
 import Admin_profile from './pages/systemAdmin/profile';
-import memberHome from './pages/members/homepage';
 import authorHome from './pages/author/homepage';
 import author_profile from './pages/author/profile';
 import my_articles from './pages/author/myArticles';
@@ -42,7 +41,6 @@ export default function ThePlatform( props:{} ){
                     <Route path="/ADupdatePersInfo" component={AD_personal_info} />
 
                     {/* Member Routes */}
-                    <Route path="/memberHome" component={memberHome} />
                     <Route path="/profile" component={profile} />
                     <Route path="/MEMupdateMyInfo" component={MEM_edit_profile} />
                     <Route path="/MEMupdatePersInfo" component={MEM_personal_info} />

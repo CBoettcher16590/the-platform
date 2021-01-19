@@ -13,14 +13,9 @@ export default function profile(){
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mr-auto">
-      <Nav.Link href = "/memberHome" > The-Platform</Nav.Link>
+      <Nav.Link href = "/" > The-Platform</Nav.Link>
 </Nav> 
-      <Nav className="mr-auto">
-      <Nav.Link href="/freetoread">Free To Read</Nav.Link>
-</Nav>    
-      <Nav className="mr-auto">
-      <Nav.Link href="/recentar">Most recent</Nav.Link>
-</Nav>
+
 <Nav>
       <Navbar.Brand href="/profile"> My Account</Navbar.Brand>
 </Nav>

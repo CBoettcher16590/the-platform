@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Card, CardGroup, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.css'
 import cat from '../../images/cat.jpg';
 import little from '../../images/little.jpg';
 
@@ -10,7 +11,7 @@ import little from '../../images/little.jpg';
      export default function EditorProfile(){
     
      
-            return <>
+     return <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
@@ -22,21 +23,20 @@ import little from '../../images/little.jpg';
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
-            <Card style={{ width: '30rem' }}>
-      <Card.Img variant="top" src= {cat} />
-      <br/>
-    
-      <Card.Body>
+
+      <Card style={{ width: '30rem' }}>
+        <Card.Img variant="top" src= {cat} />
+        <Card.Body className="editorInfo">
         <Card.Title><h2>Donald Trump</h2></Card.Title>
-        <br/>
-        <br/>
+          <br/>
+          <br/>
         <Card.Title><h5>Bio</h5></Card.Title>
     
         <Card.Text>
-       Q: What’s the best thing about Switzerland?
-       A: I don’t know, but the flag is a big plus.
+            Q: What’s the best thing about Switzerland?
+            A: I don’t know, but the flag is a big plus.
         </Card.Text>
-        <Nav.Link href = "/EDupdateInfo" >Edite Profile</Nav.Link>
+        <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
       </Card.Body>
     </Card>
     <br/>
@@ -45,7 +45,7 @@ import little from '../../images/little.jpg';
   <Card.Body>
     <Card.Title>Pending Articles</Card.Title>
     <Card.Text>
-      Do not forget about these pending articles.
+      Review these articlces before they are Published to ensure they comply with our Code of Conduct.
     </Card.Text>
     <Nav.Link href="#">Review Articles</Nav.Link>
   </Card.Body>
@@ -57,7 +57,7 @@ import little from '../../images/little.jpg';
   <Card.Body>
     <Card.Title>Reported Articles</Card.Title>
     <Card.Text>
-      Do not forget about these pending articles.
+      A user has reported these articles, please review the Article to comfirm that it does not comply with our Code of Conduct.  
     </Card.Text>
     <Nav.Link href ="#">Review Articles</Nav.Link>
   </Card.Body>
