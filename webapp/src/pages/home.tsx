@@ -17,7 +17,7 @@ return  <>
                 <Nav className="mr-auto">
                  </Nav>
                  <Nav>
-                         <Nav.Link href= '/profile'>Member Page</Nav.Link>
+                         <Nav.Link href= '/editprofile'>Member Page</Nav.Link>
                  </Nav>
                  <Nav>
                          <Nav.Link href= '/editorProfile'>Editor Page</Nav.Link>
@@ -78,7 +78,7 @@ return  <>
                                                         Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
-                                                <a href="/article/1">Check Out the Articles</a>
+                        
                                                 <PayButton/>
                                         </div>
                                 </div>
