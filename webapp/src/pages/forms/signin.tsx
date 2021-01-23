@@ -20,19 +20,19 @@ export default function Login() {
     }
 
 //This maybe bad code (but maybe a start)
-function SignInDirect(_logInID: any){
-  const [author, editor ] = useState(null);
+// function SignInDirect(_logInID: any){
+//   const [author, editor ] = useState(null);
   
-  useEffect(() => {
-    function logInStatus(status){
-      directUser(status.logIn);
-    }
-UserDirectAPI.logInHomepage(id,directProfile);
-return () =>{
+//   useEffect(() => {
+//     function logInStatus(status){
+//       directUser(status.logIn);
+//     }
+// UserDirectAPI.logInHomepage(id,directProfile);
+// return () =>{
 
-};
+// };
 
 
-  });
-  return EditorProfile;
-}
+//   });
+//   return EditorProfile;
+// }

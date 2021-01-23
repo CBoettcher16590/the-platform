@@ -10,14 +10,16 @@ export function get( app:any ){
         const articleId = request.params.articleId;
         const foundArticle:IArticle = await ArticleModel.getById(articleId);
 
-        if(!foundArticle){
+        if(foundArticle){
+             response.status(200).send(foundArticle); 
+        } else{
             response.status(404).send({
                 error: 404,
                 message: `There is no Article with id = ${articleId}`
             });
-            
         }
-        response.status(200).send(foundArticle);
+   
+      
     });
 
 }

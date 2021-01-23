@@ -28,14 +28,14 @@ export const ArticleModel = {
     getAll: async ():Promise<IArticle[]>  => {
 
         return new Promise((resolve,reject)=>{
-            connection.connect();
+           
             connection.query(`SELECT * FROM article`, function (error:any, results:IArticle[]) {
                 if(error){
                     reject(error);
                 } else {
                     resolve(results)
                 }
-                connection.end();
+
             });
         });          
     
@@ -44,15 +44,16 @@ export const ArticleModel = {
     getById: async (articleId:number):Promise<IArticle> => {
 
         return new Promise((resolve,reject)=>{
-            connection.connect();
-            connection.query(`SELECT * FROM article WHERE article_id = ${articleId}`, function (error:any, results:IArticle) {
+            
+            connection.query(`SELECT * FROM article WHERE article_id = ${articleId}`, function (error:any, results:IArticle[]) {
                 if(error){
                     reject(error);
                 } else {
-                    resolve(results)
+                    resolve(results[0])
                 }
-                connection.end();
+           
             });
+
         });          
     },
 

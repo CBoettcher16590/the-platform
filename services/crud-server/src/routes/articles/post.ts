@@ -9,29 +9,22 @@ export function post( app:any ){
         // read payload from post body
         const payload:IArticle = request.body;
 
-        const articleList = ArticleModel.getAll();
+        const articleToCreate = await ArticleModel.create({
+            userId:1,
+            title: payload.title,
+            articleId: payload.articleId,
+            price: payload.price,
+            preview: payload.preview,
+            createdOn: payload.createdOn,
+            contents: payload.contents,
+            imageLink: payload.imageLink,
+            rating: payload.rating,
+            seriesId: 1,
+            articleStatus:1
+        });
 
-        // articleList.push(payload);
-        // ArticleModel.setAll(members);
-
-        // send successful response
-        response.status(201).send();
+        response.status(201).send(articleToCreate);
 
     });
 
 }
-
-// export function post( app:any ){
-
-//     app.post("/tasks", authenticateToken, async (request:any, response:any) => {
-    
-//         const task = await TaskModel.create({
-//             done: false,
-//             description: request.body.description
-//         });
-    
-//         response.status(201).send( task );
-    
-//     });
-
-// }

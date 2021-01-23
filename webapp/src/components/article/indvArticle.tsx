@@ -5,28 +5,33 @@ import {Button, Col, Row } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import {IArticle} from '../../../../services/crud-server/src/models/article';
 import { useParams } from 'react-router';
-import { useRecoilValue, useResetRecoilState } from 'recoil';
-import { articleListState } from './articleList';
+import api from '../../api'
 
 
     const IndvArticle = () => {
         const params = useParams<{id:string}>(); //number doesnt work?
         const numId = parseInt(params.id);
-        const recoilArticle = useRecoilValue<IArticle[]>(articleListState);
         const [article, setArticle] = useState<IArticle>();
+        
 
         useEffect(() => {
-            setArticle(recoilArticle.find(element => element.articleId = numId))
-        }, []); //runs any time the params.id is changed
-        console.log(recoilArticle, "articleS");
+            api.articles.getIndv(numId).then((responce) => {
+                console.log(responce);
+                    setArticle(responce.data);
+                }).catch((error) => console.error(`Error: ${error}`)); 
+        },[]);
+
+
         return (
+        
             <MainLayout>
-            <p>ARTICLE: {params.id} {article?.articleId}</p>
+            <p></p>
+            <p>ARTICLE:{article?.price}</p>
             <section className="articleTop">
             <Row>
             <Col>
                 <h1></h1>
-                <h4>{article?.title}Eat, Sleep, Study, Survive</h4>
+                <h4>Eat, Sleep, Study, Survive{article?.title}</h4>
             </Col>  
             </Row>
             <Row>
@@ -34,17 +39,16 @@ import { articleListState } from './articleList';
                 <Image  id="authorAvatar" src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80" roundedCircle  />
             </Col>
                 <Col className="authorInfo" lg="10">
-                <h5>Kent Brockman </h5>
-                <p>Oct, 21 2020   <Button className="followButton" variant="outline-success">Follow   </Button></p>
+                <h5>Kent Brockman{article?.userId}</h5>
+                <p>Oct, 21 2020{article?.createdOn} <Button className="followButton" variant="outline-success">Follow   </Button></p>
             </Col>
                 <Button variant="primary">Facebook</Button>{' '}
                 <Button variant="link">Twitter</Button>
             </Row>
             <hr/>
             </section>
-                <Image className="mx-auto articleImage" src="https://images.unsplash.com/photo-1606304073564-d87d47bb4b7c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" rounded />
-            
-            <p>
+                <Image className="mx-auto articleImage" src={article?.imageLink}/>
+            <p> {article?.contents}
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id feugiat risus. Quisque scelerisque non metus sit amet interdum. 
                         Ut porta vi ligula sed hendrerit. Maecenas aliquet lectus quam. Curabitur auctor dui ultricies ligula dapibus, vitae imperdiet 
                         nunc eleifend. Duis nec turpis malesuada, tincidunt mi cursus, ultrices lorem. Vestibulum finibus mattis nisi, ut ornare sapien tincidunt
@@ -82,9 +86,9 @@ import { articleListState } from './articleList';
                           amet ipsum dignissim nunc vestibulum placerat. Vestibulum vel blandit ipsum, vitae cursus orci. Nulla fermentum imperdiet molestie.
             </p>
             
-                    </MainLayout>
+                   
                   
-                 
+            </MainLayout>
                   
             )
 
