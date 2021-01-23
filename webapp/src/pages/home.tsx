@@ -78,7 +78,7 @@ return  <>
                                                         Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
                                                         Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
                                                 </p>
-                                                <a href="/article/1">Check Out the Articles</a>
+                        
                                                 <PayButton/>
                                         </div>
                                 </div>
