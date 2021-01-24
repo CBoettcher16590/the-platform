@@ -2,7 +2,7 @@ import express from "express";
 import cors from 'cors';
 
 
-import * as Members from './routes/members';
+import * as Users from './routes/users';
 import * as Articles from './routes/articles'
 
 const app = express();
@@ -23,7 +23,7 @@ function loadEndpoints( endpoint:any ){
 
 }
 
-[ Members ].forEach( ImportedObject => {
+[ Users ].forEach( ImportedObject => {
     
     Object.values( ImportedObject ).forEach( loadEndpoints );
 
