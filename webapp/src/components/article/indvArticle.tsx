@@ -16,22 +16,25 @@ import api from '../../api'
 
         useEffect(() => {
             api.articles.getIndv(numId).then((responce) => {
+                //this console.log shows what information we have coming in(All of it is there)
                 console.log(responce);
                     setArticle(responce.data);
                 }).catch((error) => console.error(`Error: ${error}`)); 
         },[]);
 
+            //tried to create variables, but for some reason these specific values dont show up
+        const imageLink = article?.imageLink;
+        const dateCreated = article?.createdOn;
 
         return (
         
             <MainLayout>
-            <p></p>
-            <p>ARTICLE:{article?.price}</p>
             <section className="articleTop">
             <Row>
             <Col>
                 <h1></h1>
-                <h4>Eat, Sleep, Study, Survive{article?.title}</h4>
+                <h4>{article?.title}</h4>
+
             </Col>  
             </Row>
             <Row>
@@ -44,50 +47,13 @@ import api from '../../api'
             </Col>
                 <Button variant="primary">Facebook</Button>{' '}
                 <Button variant="link">Twitter</Button>
+                <h5>${article?.price}</h5>
             </Row>
             <hr/>
             </section>
-                <Image className="mx-auto articleImage" src={article?.imageLink}/>
-            <p> {article?.contents}
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id feugiat risus. Quisque scelerisque non metus sit amet interdum. 
-                        Ut porta vi ligula sed hendrerit. Maecenas aliquet lectus quam. Curabitur auctor dui ultricies ligula dapibus, vitae imperdiet 
-                        nunc eleifend. Duis nec turpis malesuada, tincidunt mi cursus, ultrices lorem. Vestibulum finibus mattis nisi, ut ornare sapien tincidunt
-                        eu. Integer egestas hendrerit leo, eget blandit est efficitur id. Nam risus magna, euismod non viverra id, iaculis vel lorem. 
-                        Fusce eleifend urna rutrum, consequat neque ac, malesuada sem.
-            </p>
-            <p>
-                        Quisque feugiat pellentesque justo, eu scelerisque tellus malesuada at. Duis et risus sapien. Donec tincidunt pharetra turpis et hendrerit. 
-                        Proin posuere tellus non auctor varius. Ut id mattis nunc. Nulla at dapibus purus, vitae tempor massa. Vestibulum ante ipsum primis in 
-                        faucibus orci luctus et ultrices posuere cubilia curae; Quisque nisi nunc, posuere vitae feugiat eget, condimentum eu nunc. Vivamus quis 
-                        cursus libero. Etiam et dui ac ligula tincidunt ultricies vel vitae neque. Sed lectus justo, rhoncus ut scelerisque tempor, imperdiet vel 
-                        mauris. Vivamus mattis, purus eu vestibulum viverra, enim ex cursus mauris, non condimentum nibh tellus ac risus.
-            </p>
-            <p>
-                        Aliquam orci magna, sagittis nec dolor non, pretium porttitor ipsum. Proin scelerisque risus a purus porta, sit amet rhoncus 
-                        libero aliquam. Quisque maximus porttitor est, sit amet vehicula nibh. Pellentesque eget lectus lorem. Vivamus rhoncus quam 
-                        id elit ullamcorper malesuada. Vestibulum a pharetra dui, a pellentesque augue. Phasellus aliquet metus at sagittis cursus. Duis 
-                        efficitur hendrerit arcu, ut varius justo lacinia non. Fusce nunc urna, fermentum eu tristique nec, condimentum ut nibh. 
-                        Suspendisse potenti. Nullam tempor ex vel leo tempus gravida. Donec at dignissim ex. Vestibulum sagittis lectus eget quam rhoncus 
-                        blandit. Donec imperdiet diam id efficitur vehicula.
-            </p>
-            <p>
-                        In sagittis tincidunt purus et mollis. Vestibulum dapibus urna in ullamcorper porta. Vivamus auctor ultrices convallis. Morbi luctus,
-                         mauris non porta elementum, sem sem placerat elit, sed blandit leo orci vel felis. Vestibulum suscipit metus molestie eros blandit, 
-                         ut tincidunt neque malesuada. Fusce dignissim justo eget diam bibendum iaculis. Fusce convallis consequat ante, eget commodo metus 
-                         dictum quis. Curabitur elementum, neque vel mattis lacinia, urna turpis pharetra risus, nec ultricies risus felis nec leo. Morbi 
-                         ultricies massa sed erat accumsan accumsan. Maecenas rutrum ligula non urna varius, nec congue nisl semper. Donec quis diam lobortis,
-                         vida diam et, imperdiet metus. Praesent lacinia viverra quam, non aliquam lorem feugiat et. Morbi finibus imperdiet ex ac condimentum. 
-                         Mauris feugiat lorem ac sapien blandit, sit amet efficitur mi dictum. Pellentesque leo nisi, volutpat quis dapibus et, sagittis 
-                         quis sem. Etiam eleifend ex id nibh tristique efficitur. Sed posuere mattis venenatis. Integer libero lacus, pulvinar sed feugiat 
-                         id, tincidunt sed felis. Quisque et augue convallis, pharetra dolor ullamcorper, posuere mi. Nunc sagittis, elit vitae pharetra 
-                         pellentesque, ex diam volutpat risus, at ornare diam turpis id orci. pretium lacus. Aenean fringilla, dui vitae pulvinar commodo, 
-                         lacus justo aliquam est, sed bibendum lectus risus et odio. Proin sed nibh non ante molestie fringilla in vitae ligula. Praesent
-                          sem libero, suscipit vel justo sed, tempor ornare nulla. Donec ullamcorper finibus est, in condimentum risus ornare a. Nam sit 
-                          amet ipsum dignissim nunc vestibulum placerat. Vestibulum vel blandit ipsum, vitae cursus orci. Nulla fermentum imperdiet molestie.
-            </p>
-            
-                   
-                  
+            <p>IMG{imageLink}</p>
+                <Image className="mx-auto articleImage" src={article?.imageLink} />
+            <p> {article?.contents}</p>
             </MainLayout>
                   
             )
