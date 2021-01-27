@@ -1,4 +1,5 @@
 import { IUser, UserModel } from '../../models/user';
+import {PasswordModel} from '../../models/password'
 
 
 export function post( app:any ){
@@ -8,7 +9,10 @@ export function post( app:any ){
         // read payload from post body
         const payload:IUser = request.body;
 
+        payload.password = PasswordModel.hash(payload.password);
+
         UserModel.createUser(payload);
+
 
         // send successful response
         response.status(200).send();

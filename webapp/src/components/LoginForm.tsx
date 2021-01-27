@@ -1,16 +1,34 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 import  useAuthentication  from '../data/useAuthentication';
+import  api from '../api';
+import apiLogin from '../api/login';
+
 
 export default function LoginForm(){
 
-    const authModel = useAuthentication();
+    const history = useHistory();
+    
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
 
     function handleLogin(e:any){
+
         e.preventDefault();
-        authModel.login( email, password );
+
+       const loginRequest = {
+           email: email,
+           password: password
+       };
+
+       api.tokens.post(loginRequest);
+       apiLogin.post({email:email});
+
+       history.push("/")
+       
+    
+
     }
 
     return <>
