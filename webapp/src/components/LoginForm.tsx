@@ -3,35 +3,26 @@ import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import  useAuthentication  from '../data/useAuthentication';
 import  api from '../api';
-import apiLogin from '../api/login';
 
 
 export default function LoginForm(){
 
     const history = useHistory();
+    const authModel = useAuthentication();
     
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
 
     function handleLogin(e:any){
-
         e.preventDefault();
-
-       const loginRequest = {
-           email: email,
-           password: password
+        authModel.login(email, password)
        };
 
-       api.tokens.post(loginRequest);
-       apiLogin.post({email:email});
-
-       history.push("/")
        
     
 
-    }
-
-    return <>
+    return (
+        <>
         <form id="signForm">
         <h2>Sign In</h2>
 
@@ -55,6 +46,6 @@ export default function LoginForm(){
             Forgot your Password ? <a href="forms/signin">Help</a>
         </p>
     </form>
-
-    </>
+        </>
+    )
 }

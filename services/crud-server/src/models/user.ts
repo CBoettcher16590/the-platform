@@ -13,6 +13,13 @@ export interface IUser {
     disableLogin:number
 }
 
+interface IUserSignup {
+    fName:string,
+    lName:string,
+    email:string,
+    password:string
+}
+
 var mysql = require('mysql');
 export var connection = mysql.createConnection({
      host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
@@ -55,7 +62,7 @@ export  const UserModel = {
 
 },
 
-createUser: async (user:IUser) => {
+createUser: async (user:IUserSignup) => {
     
     const hashedPassword = PasswordModel.hash(user.password);
 
