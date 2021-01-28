@@ -66,7 +66,8 @@ createUser: async (user:IUserSignup) => {
     
     const hashedPassword = PasswordModel.hash(user.password);
 
-    connection.query(`INSERT INTO theplatformV2.user VALUES (user_id, ${4}, ${user.fName}, ${user.lName}, ${user.email}, ${hashedPassword}, CURDATE(), ${1}, diable_login )`
+    connection.query(`INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
+                      VALUES                  (${4}, '${user.fName}', '${user.lName}', '${user.email}', '${hashedPassword}', curdate());`
         , function (error:any, results:IUser) {
         if(error){
             console.log(error);

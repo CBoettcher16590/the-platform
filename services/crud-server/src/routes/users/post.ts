@@ -9,13 +9,15 @@ export function post( app:any ){
         // read payload from post body
         const payload:IUser = request.body;
 
+        console.log("payload", payload);
         payload.password = PasswordModel.hash(payload.password);
 
-        UserModel.createUser(payload);
+        const newUser = UserModel.createUser(payload);
+      
 
 
         // send successful response
-        response.status(200).send();
+        response.status(200).send("TEST",newUser);
 
     });
 
