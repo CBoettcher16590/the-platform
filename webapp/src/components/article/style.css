@@ -3,7 +3,7 @@
     border-radius: 5px;
     background-color: rgb(167, 230, 255) ;
     padding: 15px;
-    width: '18rem';
+    width: 85em;
     margin-left:"30px";
     display: flex;
     margin-bottom: 15px;
@@ -45,6 +45,7 @@
 }
 
 .homeStories{
+    width:100%;
     margin-top: 20px;
     align-items: center;
     display: flex;

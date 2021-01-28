@@ -58,9 +58,18 @@ return  <>
                                         <Dropdown.Item href="#/action-3">Holiday History</Dropdown.Item>
                                 </DropdownButton>
                         </section>
+<<<<<<< HEAD
                         <section className="homeStories">
                        
                         <ul id="horizontalDisplay">
+=======
+                        
+                        <HorazontalDisplay/>
+
+
+                        <section className="homeStories">
+                        
+>>>>>>> 6ebe2c27a9fa8483e9948a861152e99f3022e601
                                 <div className="homeCard">
                                         <img className="cardImage" src="https://images.unsplash.com/photo-1553598837-21dd2303e506?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1036&q=80" />
                                         <div className="article">
@@ -76,7 +85,7 @@ return  <>
                                  </ul> 
                  </section> 
                        
-<Footer/>
+
 <Nav.Link href= '/signin'>Sign In!</Nav.Link>
 
          </>    

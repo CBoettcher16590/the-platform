@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 import  useAuthentication  from '../data/useAuthentication';
+import  api from '../api';
+
 
 export default function LoginForm(){
 
+    const history = useHistory();
     const authModel = useAuthentication();
+    
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
 
     function handleLogin(e:any){
         e.preventDefault();
-        authModel.login( email, password );
-    }
+        authModel.login(email, password)
+       };
 
-    return <>
+       
+    
+
+    return (
+        <>
         <form id="signForm">
         <h2>Sign In</h2>
 
@@ -37,6 +46,6 @@ export default function LoginForm(){
             Forgot your Password ? <a href="forms/signin">Help</a>
         </p>
     </form>
-
-    </>
+        </>
+    )
 }
