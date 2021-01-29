@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { IsignUp } from "../interfaces";
 import { PasswordModel } from "./password";
 
@@ -62,20 +63,28 @@ export  const UserModel = {
 
 },
 
-createUser: async (user:IUserSignup) => {
+createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
-    const hashedPassword = PasswordModel.hash(user.password);
+    return new Promise((resolve,reject) => {
+        connection.connect(function (err:any){
 
-    connection.query(`INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
-                      VALUES                  (${4}, '${user.fName}', '${user.lName}', '${user.email}', '${hashedPassword}', curdate());`
-        , function (error:any, results:IUser) {
-        if(error){
-            console.log(error);
-        } else {
-            return results;
-        }
-
-    });      
+            if(err) throw err;
+            const hashedPassword = PasswordModel.hash(user.password);
+            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
+                        VALUES (${4}, '${user.fName}', '${user.lName}', '${user.email}', '${hashedPassword}', CURDATE());`;
+                        
+            connection.query(sql , function (error:any, results:IUserSignup) {
+                if(error){
+                    console.log("Error:", error);
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+                    
+            }); 
+        });
+           
+    });
 }
 
 
