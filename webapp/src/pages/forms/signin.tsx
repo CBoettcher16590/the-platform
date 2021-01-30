@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import MainLayout from "../../layouts/MainLayout";
 // import { useAuthentication } from '../../data/useAuthentication';
 import LoginForm from '../../components/LoginForm'
-import { useState } from "react";
-import EditorProfile from "../editor/editorProfile";
-//import {useState, useEffect } from 'react';
+
 
 
 export default function Login() {

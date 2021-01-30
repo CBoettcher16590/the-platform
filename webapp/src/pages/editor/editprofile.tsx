@@ -5,6 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function ED_edit_profile() {
 
+    
+
+
     return <>
         <div>
             <Navbar bg="dark" variant="dark">

@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { IsignUp } from "../interfaces";
 import { PasswordModel } from "./password";
 
@@ -13,12 +14,19 @@ export interface IUser {
     disableLogin:number
 }
 
+interface IUserSignup {
+    fName?:string,
+    lName?:string,
+    email?:string,
+    password?:string
+}
+
 var mysql = require('mysql');
 export var connection = mysql.createConnection({
      host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
      user     : 'admin',
      password : 'stargazer2020',
-    database : 'theplatform'
+    database : 'theplatformV2'
 });
 
 export  const UserModel = {
@@ -55,19 +63,31 @@ export  const UserModel = {
 
 },
 
-createUser: async (user:IUser) => {
+createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
-    const hashedPassword = PasswordModel.hash(user.password);
+    return new Promise((resolve,reject) => {
 
-    connection.query(`INSERT INTO theplatformV2.user VALUES (user_id, ${4}, ${user.fName}, ${user.lName}, ${user.email}, ${hashedPassword}, CURDATE(), ${1}, diable_login )`
-        , function (error:any, results:IUser) {
-        if(error){
-            console.log(error);
-        } else {
-            return results;
-        }
+        connection.connect(function (err:any){
 
-    });      
+            if(err) throw err;
+            const hashedPassword:string = PasswordModel.hash(user.password);
+            
+            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
+                        VALUES (${4}, '${user.fName}', '${user.lName}', '${user.email}', '${hashedPassword}', curdate());`;
+            
+                        
+            connection.query(sql , function (error:any, results:IUserSignup) {
+                if(error){
+                    console.log("Error:", error);
+                    reject(error);
+                } else {
+                    resolve(results);
+                }
+                    
+            }); 
+        });
+           
+    });
 }
 
 

@@ -1,4 +1,5 @@
 import { IUser, UserModel } from '../../models/user';
+import {PasswordModel} from '../../models/password'
 
 
 export function post( app:any ){
@@ -8,10 +9,14 @@ export function post( app:any ){
         // read payload from post body
         const payload:IUser = request.body;
 
-        UserModel.createUser(payload);
+        console.log("payload", payload);
+
+        const newUser = await UserModel.createUser(payload);
+      
+        console.log("New User: ",newUser);
 
         // send successful response
-        response.status(200).send();
+        response.status(200).send(newUser);
 
     });
 
