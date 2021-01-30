@@ -1,5 +1,5 @@
 
-import {authenticateToken} from '../../middleware/authenticator'
+import {authenticateToken} from '../../middleware/authenticator';
 import {ArticleModel, IArticle } from '../../models/article';
 
 

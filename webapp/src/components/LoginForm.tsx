@@ -15,7 +15,8 @@ export default function LoginForm(){
 
     function handleLogin(e:any){
         e.preventDefault();
-        authModel.login(email, password)
+        authModel.login(email, password);
+        history.push('/');
        };
 
        

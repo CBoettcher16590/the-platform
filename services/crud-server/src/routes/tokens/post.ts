@@ -5,11 +5,14 @@ import { UserModel, IUser } from '../../models/user';
 export  function post(app:any){
 
 app.post('/tokens', async (request:any, response:any) => {
+
     const email = request.body.email;
     const password = request.body.password;
 
     const foundUser:IUser[] = await UserModel.getByEmail(email);
-    const foundUserString = JSON.parse(JSON.stringify(foundUser[0])); //CHECK STRINGIFY
+    const foundUserString = foundUser[0];
+
+    console.log(foundUser);
 
     if(!foundUserString){
         response.status(404).send({
@@ -17,6 +20,7 @@ app.post('/tokens', async (request:any, response:any) => {
         });
         return;
     }
+
     const hashedPassword = PasswordModel.hash(`${password}`);
 
     if(!(hashedPassword === PasswordModel.hash(password) ) ){
@@ -27,8 +31,7 @@ app.post('/tokens', async (request:any, response:any) => {
     }
     response.status(201).send({
         token: TokenModel.generateAccessToken({
-            email,
-            firstName: foundUser
+            email
         })
     });
 });

@@ -15,10 +15,10 @@ export interface IUser {
 }
 
 interface IUserSignup {
-    fName:string,
-    lName:string,
-    email:string,
-    password:string
+    fName?:string,
+    lName?:string,
+    email?:string,
+    password?:string
 }
 
 var mysql = require('mysql');
@@ -26,7 +26,7 @@ export var connection = mysql.createConnection({
      host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
      user     : 'admin',
      password : 'stargazer2020',
-    database : 'theplatform'
+    database : 'theplatformV2'
 });
 
 export  const UserModel = {
@@ -66,12 +66,15 @@ export  const UserModel = {
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
     return new Promise((resolve,reject) => {
+
         connection.connect(function (err:any){
 
             if(err) throw err;
-            const hashedPassword = PasswordModel.hash(user.password);
+            const hashedPassword:string = PasswordModel.hash(user.password);
+            
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
-                        VALUES (${4}, '${user.fName}', '${user.lName}', '${user.email}', '${hashedPassword}', CURDATE());`;
+                        VALUES (${4}, '${user.fName}', '${user.lName}', '${user.email}', '${hashedPassword}', curdate());`;
+            
                         
             connection.query(sql , function (error:any, results:IUserSignup) {
                 if(error){

@@ -3,7 +3,6 @@ import MainLayout from "../../layouts/MainLayout";
 // import { useAuthentication } from '../../data/useAuthentication';
 import LoginForm from '../../components/LoginForm'
 
-//import {useState, useEffect } from 'react';
 
 
 export default function Login() {
