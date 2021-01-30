@@ -5,93 +5,96 @@ import { Button, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDr
 import PayButton from '../components/PayButton';
 import Footer from '../components/footer';
 import HorazontalDisplay from '../components/article/horazontalDisplay';
-
-
+import { article } from '../../../services/crud-server/src/routes/articles';
+import rating from '../components/article/rating';
 function HomePage(props:{}){
 
-              
+        
+        const [rating1, setRating1] = useState(0);
+                      
        
-return  <>
-              
+return <>
+
         <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="/">The Platform</Navbar.Brand>
                 <Nav className="mr-auto">
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/profile'>Member Page</Nav.Link>
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/editorProfile'>Editor Page</Nav.Link>
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/ADProfile'>Admin Page</Nav.Link>
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
-                 </Nav>
-                        <Nav.Link href= '/signin'>Sign In!</Nav.Link>
-            </Navbar>
+                </Nav>
+                <Nav>
+                        <Nav.Link href='/profile'>Member Page</Nav.Link>
+                </Nav>
+                <Nav>
+                        <Nav.Link href='/editorProfile'>Editor Page</Nav.Link>
+                </Nav>
+                <Nav>
+                        <Nav.Link href='/ADProfile'>Admin Page</Nav.Link>
+                </Nav>
+                <Nav>
+                        <Nav.Link href='/signup'> Sign Up!</Nav.Link>
+                </Nav>
+                <Nav.Link href='/signin'>Sign In!</Nav.Link>
+        </Navbar>
 
-                        <section className="homeWelcome">
-                                <img src="https://images.unsplash.com/photo-1589782182965-c6512208e2b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"></img>
-                                <div className="welcomeText">
-                                        <h1>Welcome to "The Platform"</h1>
-                                        <p>
-                                        It is a long established fact that a reader will be distracted by the readable content of a
-                                        page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less
-                                        normal distribution of letters, as opposed to using 'Content here, content here', making it
-                                        look like readable English. Many desktop publishing packages and web page editors now use Lorem
-                                        Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still
-                                        in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on
-                                        purpose (injected humour and the like).
-                                        </p>
-                                </div>                        
-                        </section>
-                        <section className="homeSearch">
-                                <Form inline id="search">
-                                        <FormControl type="text" placeholder="Search" id="searchText" />
-                                        <Button variant="outline-success">Search</Button>
-                                </Form>
-                                <DropdownButton id="dropdown-basic-button" title="Filter By Category">
-                                        <Dropdown.Item href="#/action-1">Animals</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Tech</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">Holiday History</Dropdown.Item>
-                                </DropdownButton>
-                        </section>
-<<<<<<< HEAD
-                        <section className="homeStories">
-                       
-                        <ul id="horizontalDisplay">
-=======
-                        
-                        <HorazontalDisplay/>
+        <section className="homeWelcome">
+                <img src="https://images.unsplash.com/photo-1589782182965-c6512208e2b4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80"></img>
+                <div className="welcomeText">
+                        <h1>Welcome to "The Platform"</h1>
+                        <p>
+                                                      It is a long established fact that a reader will be distracted by the readable content of a
+                                        g at its layout.The point of using Lorem Ipsum is that it has a more-or-less
+                                                 tters, as opposed to using 'Content here, content here', making it
+                                                         esktop publishing packages and web page editors now use Lorem
+                                Ip                                earch for 'lorem ipsum' will uncover many web sites still
+                                in their i                                r the years, sometimes by accident, sometimes on
+                                purpose (injected humour and the like).
+                        </p>
+                </div>
+        </section>
+        <section className="homeSearch">
+                <Form inline id="search">
+                        <FormControl type="text" placeholder="Search" id="searchText" />
+                        <Button variant="outline-success">Search</Button>
+                </Form>
+                <DropdownButton id="dropdown-basic-button" title="Filter By Category">
+                        <Dropdown.Item href="#/action-1">Animals</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">Tech</Dropdown.Item>
+                        <Dropdown.Item href="#/action-3">Holiday History</Dropdown.Item>
+                </DropdownButton>
+        </section>
+
+        <HorazontalDisplay />
+
+        <div className="Rating">
+           {rating}
+           <p>this is a test</p>
+        </div>
+          
+
+        <section className="homeStories">
+
+                <div className="homeCard">
+                        <img className="cardImage" src="https://images.unsplash.com/photo-1553598837-21dd2303e506?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1036&q=80" />
+                        <div className="article">
+                                <h2>Article Title</h2>
+                                <p>
+                                                        Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at.
+                                        Duis rhoncus eleifend lacinia.Nulla gravida molestie augue non mollis.*
+                                </p>
+                                <a href="/article/1">Check Out the Articles</a>
+                                <PayButton />
+                        </div>
+                </div>
+                
+                </section>
 
 
-                        <section className="homeStories">
-                        
->>>>>>> 6ebe2c27a9fa8483e9948a861152e99f3022e601
-                                <div className="homeCard">
-                                        <img className="cardImage" src="https://images.unsplash.com/photo-1553598837-21dd2303e506?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1036&q=80" />
-                                        <div className="article">
-                                                <h2>Article Title</h2>
-                                                <p>
-                                                        Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
-                                                        Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
-                                                </p>
-                                                <a href="/article/1">Check Out the Articles</a>
-                                 <PayButton/>  
-                                 </div>
-                                 </div>   
-                                 </ul> 
-                 </section> 
-                       
 
-<Nav.Link href= '/signin'>Sign In!</Nav.Link>
 
-         </>    
+
+        <Nav.Link href='/signin'>Sign In!</Nav.Link>
+
+           </>
 
 }
-
 
 
 
