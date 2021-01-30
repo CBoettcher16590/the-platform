@@ -11,17 +11,16 @@ const [article1, setArticle1] = useState<IArticle>();
 const [article2, setArticle2] = useState<IArticle>();
 const [article3, setArticle3] = useState<IArticle>();
 
-const [articleList, setArticleList] = useState<IArticle[]>();
+// const [articleList, setArticleList] = useState<IArticle[]>();
 
 const [user, setUser] = useState<IUserLogin>();
 
   useEffect(() => {
     api.articles.get().then((responce) => {
-      //this console.log shows what information we have coming in(All of it is there)
-      console.log(responce);
-      setArticle1(responce.data[0]);
-      setArticle2(responce.data[1]);
-      setArticle3(responce.data[2]);
+      
+      setArticle1(responce?.data[0]);
+      setArticle2(responce?.data[1]);
+      setArticle3(responce?.data[2]);
     }).catch((error: any) => console.error(`Error: ${error}`)); 
         },[]);
     
@@ -38,7 +37,7 @@ return <>
 <section className="homeStories">
                         
   <div className="homeCard">
-    <img className="cardImage" src={article1?.imageLink}/>
+    <img className="cardImage" src={article1?.imageLink} />
     <div className="article">
       <h2>{article1?.title}</h2>
       <p>

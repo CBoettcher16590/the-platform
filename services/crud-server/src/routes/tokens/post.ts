@@ -9,6 +9,8 @@ app.post('/tokens', async (request:any, response:any) => {
     const email = request.body.email;
     const password = request.body.password;
 
+    console.log("tokens-POST: ",email, password);
+
     const foundUser:IUser[] = await UserModel.getByEmail(email);
     const foundUserString = foundUser[0];
 
