@@ -10,11 +10,12 @@ app.post('/tokens', async (request:any, response:any) => {
     const password = request.body.password;
 
     console.log("tokens-POST: ",email, password);
+    //the above does happen
 
-    const foundUser:IUser[] = await UserModel.getByEmail(email);
+    const foundUser:IUser[] = await UserModel.getByEmail(email);//this latter half
     const foundUserString = foundUser[0];
 
-    console.log(foundUser);
+    console.log(foundUser); //this doesn't happen
 
     if(!foundUserString){
         response.status(404).send({

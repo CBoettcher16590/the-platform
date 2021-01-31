@@ -46,7 +46,7 @@ export  const UserModel = {
         });          
     
  },
- getByEmail: async (userEmail:number):Promise<IUser[]>  => {
+ getByEmail: async (userEmail:string):Promise<IUser[]>  => { //changed type to string
 
     return new Promise((resolve,reject)=>{
 
