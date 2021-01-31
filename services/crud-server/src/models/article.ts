@@ -31,7 +31,9 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
            
-            connection.query(`SELECT * FROM article`, function (error:any, results:IArticle[]) {
+            var sql = `SELECT * FROM article`;
+
+            connection.query(sql , function (error:any, results:IArticle[]) {
                 if(error){
                     reject(error);
                 } else {
@@ -47,7 +49,9 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
             
-            connection.query(`SELECT * FROM article WHERE article_id = ${articleId}`, function (error:any, results:IArticle[]) {
+            var sql = `SELECT * FROM article WHERE article_id = ${articleId}`;
+            
+            connection.query(sql , function (error:any, results:IArticle[]) {
                 if(error){
                     reject(error);
                 } else {
@@ -60,10 +64,12 @@ export const ArticleModel = {
     },
 
     addToPurchased:  async (article:IArticle, user:IUser) => {
+
         return new Promise((resolve,reject)=>{
             
-            connection.query(`INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES(${article.articleId}, ${user.userId});`,
-                function (error:any, results:IArticle[]) {
+            var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES(${article.articleId}, ${user.userId});`;
+            
+            connection.query(sql , function (error:any, results:IArticle[]) {
                 if(error){
                     reject(error);
                 } else {
@@ -75,17 +81,25 @@ export const ArticleModel = {
 
     create: async( articleToCreate:IArticle)=> {
         
-        // connection.connect();
+        return new Promise((resolve,reject)=>{
 
-        // const newArticle:IArticle = connection.query(`INSERT INTO article(title, preview, contents, picture_link)
-        // VALUES(article_id, ${articleToCreate.seriesId}, ${articleToCreate.userId}, ${articleToCreate.title}, ${articleToCreate.preview}, 
-        //     ${articleToCreate.contents}, ${articleToCreate.imageLink}, CURDATE(), ${articleToCreate.price}, ${articleToCreate.articleStatus})`, function (error:any, results:any, fields:any) {
-        //     if (error) throw error;
-        //     // Line below is an example of how to get content
-        // });
-        // connection.end(); 
-        // return newArticle;
-    },
+            connection.connect(function (err:any){
+
+                if(err) throw err;
+
+            var sql = `INSERT INTO article VALUES (article_id, ${articleToCreate.seriesId}, ${articleToCreate.userId}, ${articleToCreate.title}, ${articleToCreate.preview}, 
+                ${articleToCreate.contents}, ${articleToCreate.imageLink}, CURDATE(), ${articleToCreate.price}, ${articleToCreate.articleStatus}, ${articleToCreate.rating})`;
+            
+            connection.query(sql , function (error:any, results:IArticle[]) {
+                if(error){
+                    reject(error);
+                } else {
+                    resolve(results[0])
+                }
+            });
+        });
+    });          
+},
 
     publish: async ( article:IArticle)=> {
 

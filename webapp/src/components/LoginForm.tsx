@@ -19,7 +19,6 @@ export default function LoginForm(){
         history.push('/');
        };
 
-       console.log(email, password);
     
 
     return (

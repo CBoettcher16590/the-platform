@@ -2,7 +2,7 @@ import axios from 'axios';
 import { HOSTNAME } from '../config';
 
 
-export interface IUserLogin {
+interface IUserLogin {
     userId:string,
     userType:string,
     fName:string,
@@ -15,13 +15,18 @@ export interface IUserLogin {
 }
 
 export default {
+
     post: async (body:any) => {
+        return axios.post(`${HOSTNAME}/articles`, body);
+    },
+        
+    get: async (body:any) => {
         //lets us see what is coming in
         console.log("BODY:  ", body);
         
-        axios.post(`${HOSTNAME}/users`, body).then(responce => {
+        axios.get(`${HOSTNAME}/users`, body).then(responce => {
             let data:IUserLogin = JSON.parse(JSON.stringify(responce.data[0]));
-
+                console.log(data);
             localStorage.setItem("firstName", data.fName);
             localStorage.setItem("lastName", data.lName);
             localStorage.setItem("userType", data.userType);

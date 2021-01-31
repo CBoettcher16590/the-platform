@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav, Col, Form, Row, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages.css';
+import api from '../api';
+import { useHistory } from 'react-router';
+import ArticleSubmission from '../data/submitArticle';
 
 
 
 
 
  export default function SubmitArticle (props: {}) {
-     
-
-
   
+  const history = useHistory();
+
+  const [title, setTitle] = useState<string>();
+  const [preview, setPreview] = useState<string>();
+  const [imageLink, setImageLink] = useState<string>();
+  const [contents, setContents] = useState<string>();
+  const [price, setPrice] = useState<string>();
+
+  const submit = ArticleSubmission();
+
+  function handelSubmit(e:any){
+    e.preventDefault();
+    submit.ArticleSubmission(title!, preview!, imageLink!, contents!, price!);
+    console.log("Success!");
+    history.push('/');
+  }
+
 
 return <>
+
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -32,46 +50,80 @@ return <>
     </Nav>
   </Navbar.Collapse>
 </Navbar>
-<br/>
-<h1 id="newArticleHeader">Create a New Article</h1>
-<div className="newArticleBody">
-    <fieldset>
-    <Form>
-    <Form.Row>
-    <Form.Group as={Col} controlId="formGridTitle">
-    <Form.Label>Title</Form.Label>
-    <Form.Control type="text" placeholder="Enter an Article Title" />
-</Form.Group>
 
-  <Form.Group as={Col} controlId="formGridPassword">
-    <Form.Label>Tags ~ Separte Each Tag with a comma</Form.Label>
-    <Form.Control type="text" placeholder="Enter Tag words for Artile" />
-</Form.Group>
-</Form.Row>
+
+<br/>
+
+
+<h1 id="newArticleHeader">Create a New Article</h1>
+
+<div className="newArticleBody">
+
+    <fieldset>
+<Form>
+  <Form.Row>
+
+    <Form.Group as={Col} controlId="formGridTitle">
+      <Form.Label>Title</Form.Label>
+      <Form.Control
+      value={title}
+      onChange={(e)=>setTitle(e.target.value)}
+      type="text"
+      placeholder="Enter an Article Title" />
+    </Form.Group>
+
+    <Form.Group as={Col} controlId="formGridPassword">
+      <Form.Label>Article Price</Form.Label>
+      <Form.Control
+        value={price}
+        onChange={(e)=>setPrice(e.target.value)}
+        type="text"
+        placeholder="Set the Article Price"/>
+    </Form.Group>
+
+  </Form.Row>
+
     <Form.Group controlId="articleForm.Textarea">
-    <Form.Label>Preview</Form.Label>
-    <Form.Control as="textarea" id="newArticlePreview" rows={2}  placeholder="Write a short preview that summarizes your article"/>
-</Form.Group>
+      <Form.Label>Preview</Form.Label>
+      <Form.Control 
+      value={preview}
+      onChange={(e)=>setPreview(e.target.value)}
+      as="textarea" 
+      id="newArticlePreview" 
+      rows={2}  
+      placeholder="Write a short preview that summarizes your article"/>
+    </Form.Group>
+
+
     <div className="checkboxes">
-    <Form.Group as={Row}>
-    <Form.Label as="legend" column sm={2}>
-Optional Tags
-</Form.Label>
-<Col> 
-    <Form.Check type="checkbox" label="Include as part of Series" name="seriesRadio" id="seriesRadio" />
-    <Form.Check type="checkbox" label="Set as Free To Read" name="freeToReadRadio"/>
-</Col>
-</Form.Group >
-    <Form.Group  id="imageInput">
-    <Form.File  label="Add an Image" />
-</Form.Group>
-</div>
+      <Form.Group as={Row}>
+        <Form.Label as="legend" column sm={2}>Optional Tags</Form.Label>
+          <Col> 
+              <Form.Check type="checkbox" label="Include as part of Series" name="seriesRadio" id="seriesRadio" />
+              <Form.Check type="checkbox" label="Set as Free To Read" name="freeToReadRadio"/>
+          </Col>
+      </Form.Group >
+
+      <Form.Group  id="imageInput">
+        <Form.Control
+        value={imageLink}
+        onChange={(e)=>setImageLink(e.target.value)}
+        type="text"
+        placeholder="Enter an Image URL to use for the article" />
+      </Form.Group>
+    </div>
       
     <Form.Group id="testAreaHeader" controlId="articleForm.Textarea">
-    <Form.Label>Whats on your Mind?</Form.Label>
-    <Form.Control as="textarea" id="newArticleTextArea" rows={3} />
-</Form.Group>
-    <Button variant="success">Submit</Button>
+      <Form.Label>Whats on your Mind?</Form.Label>
+      <Form.Control 
+      value={contents}
+      onChange={(e)=>setContents(e.target.value)}
+      as="textarea" 
+      id="newArticleTextArea"
+       rows={3} />
+    </Form.Group>
+
+    <Button variant="success" onClick={handelSubmit}>Submit</Button>
 </Form>
 </fieldset>
 </div>

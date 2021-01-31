@@ -33,7 +33,7 @@ app.post('/tokens', async (request:any, response:any) => {
     }
     response.status(201).send({
         token: TokenModel.generateAccessToken({
-            email
+            email: foundUserString.email
         })
     });
 });

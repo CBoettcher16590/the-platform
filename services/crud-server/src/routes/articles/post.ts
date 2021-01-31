@@ -11,7 +11,7 @@ export function post( app:any ){
         const payload:IArticle = request.body;
 
         const articleToCreate = await ArticleModel.create({
-            userId:1,
+            userId:2,
             title: payload.title,
             articleId: payload.articleId,
             price: payload.price,
