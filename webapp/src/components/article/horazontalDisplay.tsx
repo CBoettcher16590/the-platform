@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';      
 import { CardDeck, Card } from 'react-bootstrap';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
-import  {IUserLogin} from '../../api/login/index';
+
+// import  {IUserLogin} from '../../api/login/index';
 import api from '../../api';
 import PayButton from '../PayButton';
 
@@ -13,7 +14,7 @@ const [article3, setArticle3] = useState<IArticle>();
 
 // const [articleList, setArticleList] = useState<IArticle[]>();
 
-const [user, setUser] = useState<IUserLogin>();
+// const [user, setUser] = useState<IUserLogin>();
 
   useEffect(() => {
     api.articles.get().then((responce) => {
@@ -25,12 +26,12 @@ const [user, setUser] = useState<IUserLogin>();
         },[]);
     
 
-    useEffect(()=> {
+    // useEffect(()=> {
     
-      let userId = localStorage.getItem(user?.userId!);
-      console.log(userId);
+    //   let userId = localStorage.getItem(user?.userId!);
+    //   console.log(userId);
 
-    }, []);
+    // }, []);
 
 return <>
 

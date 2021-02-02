@@ -19,12 +19,17 @@ import ArticleSubmission from '../data/submitArticle';
   const [imageLink, setImageLink] = useState<string>();
   const [contents, setContents] = useState<string>();
   const [price, setPrice] = useState<string>();
+  const [userId, setuserId] = useState<number>();
 
   const submit = ArticleSubmission();
 
+  //Set a default user for now till login works, then we can get user Id from localstorage
+  setuserId(2);
+
+
   function handelSubmit(e:any){
     e.preventDefault();
-    submit.ArticleSubmission(title!, preview!, imageLink!, contents!, price!);
+    submit.ArticleSubmission(title!, preview!, imageLink!, contents!, price!, userId!);
     console.log("Success!");
     history.push('/');
   }
@@ -87,7 +92,6 @@ return <>
       value={preview}
       onChange={(e)=>setPreview(e.target.value)}
       as="textarea" 
-      id="newArticlePreview" 
       rows={2}  
       placeholder="Write a short preview that summarizes your article"/>
     </Form.Group>

@@ -1,6 +1,19 @@
 import { article } from "../routes/articles";
 import { IUser } from "./user";
 
+
+export interface ISubmittedArticle{
+    
+    seriesId: number;
+    userId:number;
+    title:string;
+    preview:string;
+    contents:string;
+    imageLink:string;
+    price:number;
+    articleStatus:number;
+}
+
 export interface IArticle{
     
     articleId: number;
@@ -79,7 +92,7 @@ export const ArticleModel = {
         });          
     },
 
-    create: async( articleToCreate:IArticle)=> {
+    create: async( articleToCreate:ISubmittedArticle)=> {
         
         return new Promise((resolve,reject)=>{
 
@@ -88,13 +101,15 @@ export const ArticleModel = {
                 if(err) throw err;
 
             var sql = `INSERT INTO article VALUES (article_id, ${articleToCreate.seriesId}, ${articleToCreate.userId}, ${articleToCreate.title}, ${articleToCreate.preview}, 
-                ${articleToCreate.contents}, ${articleToCreate.imageLink}, CURDATE(), ${articleToCreate.price}, ${articleToCreate.articleStatus}, ${articleToCreate.rating})`;
+                ${articleToCreate.contents}, ${articleToCreate.imageLink}, CURDATE(), ${articleToCreate.price}, ${articleToCreate.articleStatus}, 0)`;
             
             connection.query(sql , function (error:any, results:IArticle[]) {
                 if(error){
                     reject(error);
+                    console.log("Error in Create Article Model: ", error);
                 } else {
                     resolve(results[0])
+                    console.log("results in Article Create Model: ", results)
                 }
             });
         });
