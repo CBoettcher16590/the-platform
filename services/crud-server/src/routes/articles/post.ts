@@ -3,12 +3,19 @@ import { ArticleModel } from '../../models/article';
 import {authenticateToken} from '../../middleware/authenticator'
 import { IArticle } from '../../models/article';
 
+
+interface ISubmittedArticle {
+
+}
+
 export function post( app:any ){
 
     app.post("/article",authenticateToken, async ( request:any, response:any ) => {
 
         // read payload from post body
-        const payload:IArticle = request.body;
+        const payload = request.body;
+
+        console.log(payload);
 
         const articleToCreate = await ArticleModel.create({
             userId:2,

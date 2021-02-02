@@ -58,8 +58,6 @@ return <>
 <h1 id="newArticleHeader">Create a New Article</h1>
 
 <div className="newArticleBody">
-
-    <fieldset>
 <Form>
   <Form.Row>
 
@@ -125,9 +123,6 @@ return <>
 
     <Button variant="success" onClick={handelSubmit}>Submit</Button>
 </Form>
-</fieldset>
 </div>
-
-
 </>
  }

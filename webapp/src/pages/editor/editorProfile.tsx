@@ -19,7 +19,7 @@ import little from '../../images/little.jpg';
                 <Nav.Link href = "/" > The-Platform</Nav.Link>
               </Nav> 
               <Nav>
-                  <Navbar.Brand href="/ADProfile"> My Account</Navbar.Brand>
+                  <Navbar.Brand href="/editorProfile"> My Account</Navbar.Brand>
                 </Nav>
               </Navbar.Collapse>
             </Navbar>
