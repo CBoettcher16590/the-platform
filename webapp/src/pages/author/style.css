@@ -1,16 +1,17 @@
-.raw {
-    list-style: radial-gradient(18 rem)
-}
-.adminInfo{
+.authorInfo{
     align-content: center;
 }
 
-.adminInfoCard{
+.authorInfoCard{
     width: 30em;
     margin-right: auto;
     margin-left: auto;
 }
 
-.adminCardBG{
+.authorCardBG{
     background-color: rgb(167, 230, 255) ;
+}
+.likeCounter{
+    margin-left: 3em;
+    align-content: center;
 }

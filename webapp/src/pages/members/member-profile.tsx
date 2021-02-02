@@ -23,23 +23,22 @@ export default function profile(){
 </Navbar>
 <br/>
 
-<Card style={{ width: '20rem' }}>
+<div className="editorCardBG">
+    <Card className="editorInfoCard">
       <Card.Img variant="top" src= {cat} />
-<br/>
-
-<Card.Body>
-<Card.Title><h2>Donald Trump</h2></Card.Title>
-<br/>
-<br/>
-<Card.Title><h5>Bio</h5></Card.Title>
-
-<Card.Text>
-   Q: What’s the best thing about Switzerland?
-   A: I don’t know, but the flag is a big plus.
-</Card.Text>
-  <Nav.Link href = "/MEMupdateMyInfo" >Edit Profile</Nav.Link>
-</Card.Body>
-</Card>
+      <Card.Body className="editorInfo">
+        <Card.Title><h2>User Profile</h2></Card.Title>
+              <br/>
+              <br/>
+        <Card.Title><h5>Bio</h5></Card.Title>
+        <Card.Text>
+          Q: What’s the best thing about Switzerland?
+          A: I don’t know, but the flag is a big plus.
+        </Card.Text>
+        <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+      </Card.Body>
+  </Card>
+  </div>
 <br/>
 <Card className="text-center">
   <Card.Header><h3>Purchased Articles</h3></Card.Header>

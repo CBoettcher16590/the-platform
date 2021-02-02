@@ -31,6 +31,7 @@ export interface IArticle{
 
 
 var mysql = require('mysql');
+
 var connection = mysql.createConnection({
      host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
      user     : 'admin',
@@ -44,7 +45,7 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
            
-            var sql = `SELECT * FROM article`;
+            var sql = `SELECT * FROM theplatformV2.article`;
 
             connection.query(sql , function (error:any, results:IArticle[]) {
                 if(error){
@@ -62,7 +63,7 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
             
-            var sql = `SELECT * FROM article WHERE article_id = ${articleId}`;
+            var sql = `SELECT * FROM theplatformV2.article WHERE article_id = ${articleId}`;
             
             connection.query(sql , function (error:any, results:IArticle[]) {
                 if(error){
@@ -96,12 +97,9 @@ export const ArticleModel = {
         
         return new Promise((resolve,reject)=>{
 
-            connection.connect(function (err:any){
+    
 
-                if(err) throw err;
-
-            var sql = `INSERT INTO article VALUES (article_id, ${articleToCreate.seriesId}, ${articleToCreate.userId}, ${articleToCreate.title}, ${articleToCreate.preview}, 
-                ${articleToCreate.contents}, ${articleToCreate.imageLink}, CURDATE(), ${articleToCreate.price}, ${articleToCreate.articleStatus}, 0)`;
+            var sql = `INSERT INTO article VALUES (article_id, 1, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.imageLink}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.articleStatus}, 0)`;
             
             connection.query(sql , function (error:any, results:IArticle[]) {
                 if(error){
@@ -112,9 +110,8 @@ export const ArticleModel = {
                     console.log("results in Article Create Model: ", results)
                 }
             });
-        });
-    });          
-},
+        });      
+    },
 
     publish: async ( article:IArticle)=> {
 

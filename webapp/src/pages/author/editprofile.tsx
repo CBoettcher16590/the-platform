@@ -11,6 +11,7 @@ export default function AU_edit_profile() {
                 <Nav.Link href= '/editorProfile'>My Account</Nav.Link>
             </Nav>
         </Navbar>
+        
         <h2> Change Profile Information</h2>
         <Form style= {{alignContent: "normal"}}>
     <Form.Group as={Row} >      

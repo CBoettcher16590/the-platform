@@ -51,7 +51,7 @@ export  const UserModel = {
     return new Promise((resolve,reject)=>{
 
        
-        connection.query(`SELECT * FROM theplatformV2.user WHERE email = ${userEmail}`, function (error:any, results:IUser[]) {
+        connection.query(`SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`, function (error:any, results:IUser[]) {
             if(error){
                 reject(error);
             } else {
@@ -73,7 +73,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const hashedPassword:string = PasswordModel.hash(user.password);
             
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
-                        VALUES (${4}, '${user.fName}', '${user.lName}', '${user.email}', '${hashedPassword}', curdate());`;
+                        VALUES (${4}, "${user.fName}", "${user.lName}", "${user.email}", "${hashedPassword}", curdate());`;
             
                         
             connection.query(sql , function (error:any, results:IUserSignup) {

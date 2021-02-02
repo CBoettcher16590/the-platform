@@ -1,3 +1,19 @@
 .editorInfo{
     align-content: center;
 }
+
+.editorInfoCard{
+    width: 30em;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.editorCardBG{
+    background-color: rgb(167, 230, 255) ;
+}
+.reviewArticles{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    width: 95em;
+}

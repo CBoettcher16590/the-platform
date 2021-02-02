@@ -12,47 +12,49 @@ import little from '../../images/little.jpg';
     
      
      return <>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto">
-                <Nav.Link href = "/" > The-Platform</Nav.Link>
-              </Nav> 
-              <Nav>
-                  <Navbar.Brand href="/editorProfile"> My Account</Navbar.Brand>
-                </Nav>
-              </Navbar.Collapse>
-            </Navbar>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href = "/" > The-Platform</Nav.Link>
+        </Nav> 
+        <Nav>
+          <Navbar.Brand href="/editorProfile"> My Account</Navbar.Brand>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
 
-      <Card style={{ width: '30rem' }}>
-        <Card.Img variant="top" src= {cat} />
-        <Card.Body className="editorInfo">
-        <Card.Title><h2>Donald Trump</h2></Card.Title>
-          <br/>
-          <br/>
-        <Card.Title><h5>Bio</h5></Card.Title>
-    
-        <Card.Text>
-            Q: What’s the best thing about Switzerland?
-            A: I don’t know, but the flag is a big plus.
-        </Card.Text>
-        <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
-      </Card.Body>
-    </Card>
+      <div className="editorCardBG">
+        <Card className="editorInfoCard">
+          <Card.Img variant="top" src= {cat} />
+          <Card.Body className="editorInfo">
+          <Card.Title><h2>Editor Profile</h2></Card.Title>
+            <br/>
+            <br/>
+          <Card.Title><h5>Bio</h5></Card.Title>
+      
+          <Card.Text>
+              Q: What’s the best thing about Switzerland?
+              A: I don’t know, but the flag is a big plus.
+          </Card.Text>
+          <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+        </Card.Body>
+        </Card>
+     
+      
     <br/>
-    <Card style={{ width: '70%' }}>
-  <Card.Img variant="top" src="" />
-  <Card.Body>
-    <Card.Title>Pending Articles</Card.Title>
-    <Card.Text>
+  <Card className="reviewArticles">
+    <Card.Body>
+      <Card.Title>Pending Articles</Card.Title>
+      <Card.Text>
       Review these articlces before they are Published to ensure they comply with our Code of Conduct.
-    </Card.Text>
-    <Nav.Link href="#">Review Articles</Nav.Link>
-  </Card.Body>
-</Card>
+      </Card.Text>
+      <Nav.Link href="#">Review Articles</Nav.Link>
+    </Card.Body>
+  </Card>
 
 
-<Card style={{ width: '70%' }}>
+<Card className="reviewArticles">
   <Card.Img variant="top" src="" />
   <Card.Body>
     <Card.Title>Reported Articles</Card.Title>
@@ -62,7 +64,7 @@ import little from '../../images/little.jpg';
     <Nav.Link href ="#">Review Articles</Nav.Link>
   </Card.Body>
 </Card>
-
+ </div>
  <div className= "raw">
     <Card className="text-center" style={{ width: '100rem' }}>
       <Card.Header><h3>Purchased Articles</h3></Card.Header>

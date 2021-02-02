@@ -14,17 +14,17 @@ import ArticleSubmission from '../data/submitArticle';
   
   const history = useHistory();
 
-  const [title, setTitle] = useState<string>();
-  const [preview, setPreview] = useState<string>();
-  const [imageLink, setImageLink] = useState<string>();
-  const [contents, setContents] = useState<string>();
-  const [price, setPrice] = useState<string>();
-  const [userId, setuserId] = useState<number>();
-
+  const [title, setTitle] = useState<string>("");
+  const [preview, setPreview] = useState<string>("");
+  const [imageLink, setImageLink] = useState<string>("");
+  const [contents, setContents] = useState<string>("");
+  const [price, setPrice] = useState<string>("");
+  // const [userId, setuserId] = useState<number>();
+  
   const submit = ArticleSubmission();
 
   //Set a default user for now till login works, then we can get user Id from localstorage
-  setuserId(2);
+ const userId:number = 2;
 
 
   function handelSubmit(e:any){
@@ -63,10 +63,11 @@ return <>
 <h1 id="newArticleHeader">Create a New Article</h1>
 
 <div className="newArticleBody">
+
 <Form>
   <Form.Row>
 
-    <Form.Group as={Col} controlId="formGridTitle">
+    <Form.Group as={Col}>
       <Form.Label>Title</Form.Label>
       <Form.Control
       value={title}
@@ -75,7 +76,7 @@ return <>
       placeholder="Enter an Article Title" />
     </Form.Group>
 
-    <Form.Group as={Col} controlId="formGridPassword">
+    <Form.Group as={Col}>
       <Form.Label>Article Price</Form.Label>
       <Form.Control
         value={price}
@@ -86,7 +87,7 @@ return <>
 
   </Form.Row>
 
-    <Form.Group controlId="articleForm.Textarea">
+    <Form.Group>
       <Form.Label>Preview</Form.Label>
       <Form.Control 
       value={preview}
@@ -115,7 +116,7 @@ return <>
       </Form.Group>
     </div>
       
-    <Form.Group id="testAreaHeader" controlId="articleForm.Textarea">
+    <Form.Group id="testAreaHeader">
       <Form.Label>Whats on your Mind?</Form.Label>
       <Form.Control 
       value={contents}

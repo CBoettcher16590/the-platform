@@ -3,6 +3,7 @@ import React from 'react';
 import cat from '../../images/cat.jpg'
 import little from '../../images/little.jpg'
 import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
+import './styling.css'
 
  export default function Admin_profile(){
 
@@ -19,25 +20,30 @@ import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Card style={{ width: '30rem' }}>
-  <Card.Img variant="top" src= {cat} />
-  <br/>
-
-  <Card.Body>
-    <Card.Title><h2>Donald Trump System Admin</h2></Card.Title>
-    <br/>
-    <br/>
-    <Card.Title><h5>Bio</h5></Card.Title>
-
-    <Card.Text>
-   This Is where I will write a little about me, the things that I like. This 
-   info will appear public to those who check out your profile
-   
-    </Card.Text>
-    <Nav.Link href = "/ADupdateMyInfo" >Edit Profile</Nav.Link>
-  </Card.Body>
-</Card>
+        <div className="adminCardBG">
+        <Card className="adminInfoCard">
+          <Card.Img variant="top" src= {cat} />
+          <Card.Body className="adminInfo">
+          <Card.Title><h2>Author Profile</h2></Card.Title>
+            <br/>
+            <br/>
+          <Card.Title><h5>Bio</h5></Card.Title>
+      
+          <Card.Text>
+              Q: What’s the best thing about Switzerland?
+              A: I don’t know, but the flag is a big plus.
+          </Card.Text>
+          <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+        </Card.Body>
+        </Card>
+      </div>
 <br/>
+<Card className="reviewArticles">
+    <Card.Body>
+      <Card.Title>Manage User Permissions</Card.Title>
+        {/* Here we need to display all users with abliity to disable login */}
+    </Card.Body>
+  </Card>
 <div className= "raw">
 <Card className="text-center" style={{ width: '100rem' }}>
   <Card.Header><h3>Purchased Articles</h3></Card.Header>
