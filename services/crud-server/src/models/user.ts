@@ -46,22 +46,53 @@ export  const UserModel = {
         });          
     
  },
- getByEmail: async (userEmail:string):Promise<IUser[]>  => { //changed type to string
 
-    return new Promise((resolve,reject)=>{
+ getByEmail: async (userEmail: any):Promise<IUser[]>  => { //changed type to string from number
 
-       
-        connection.query(`SELECT * FROM theplatformV2.user WHERE email = ${userEmail}`, function (error:any, results:IUser[]) {
+    return new Promise((resolve,reject) => { //returns a new promise called resolve?
+
+
+
+        connection.query(`SELECT * FROM theplatformV2.user WHERE email = '${userEmail}'`, function (error:any, results:IUser[]) {
             if(error){
                 reject(error);
             } else {
                 resolve(results)
+                console.log(`${results}`, "are we even getting anything for results")
             }
+            
 
-        });
+        }, );
     });          
 
 },
+
+
+// getByEmailTest: async (userEmail: any):Promise<IUser[]>  => {
+    
+//     return new Promise((resolve,reject) => {
+
+//         connection.connect(function (err:any){
+
+//             if(err) throw err;
+                        
+                        
+//             const sql = (`SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`);
+
+//             connection.query(sql , function (error:any, results:IUser[]) {
+//                 if(error){
+//                     reject(error);
+//                 } else {
+//                     resolve(results)
+//                     console.log(`${results}`, "are we even getting anything for results")
+//                 }
+//             }, connection.close);
+//         });
+           
+//     });
+// },
+
+
 
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
@@ -73,7 +104,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const hashedPassword:string = PasswordModel.hash(user.password);
             
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
-                        VALUES (${4}, '${user.fName}', '${user.lName}', '${user.email}', '${hashedPassword}', curdate());`;
+                        VALUES (${4}, "${user.fName}", "${user.lName}", "${user.email}", "${hashedPassword}", curdate());`;
             
                         
             connection.query(sql , function (error:any, results:IUserSignup) {

@@ -6,12 +6,12 @@ export default function useAuthentication(){
 
     const history = useHistory();    
     
-    function login( email:string, password:string ){
-            api.tokens.post({ email, password }).then(response => {
+    function login( email:string, password:string ){ 
+            api.tokens.post({ email, password }).then(response => { 
             history.push('/');
             console.log("Logged In");
         });
-    }
+    } 
 
     return {
         login

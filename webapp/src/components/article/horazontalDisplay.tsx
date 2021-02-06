@@ -28,7 +28,7 @@ const [user, setUser] = useState<IUserLogin>();
     useEffect(()=> {
     
       let userId = localStorage.getItem(user?.userId!);
-      console.log(userId);
+      console.log(userId); //this is hitting as null
 
     }, []);
 

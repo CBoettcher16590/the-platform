@@ -5,6 +5,7 @@ dotenv.config();
 export const TokenModel = {
 
     generateAccessToken: ( payload:any ) => {
+        const x = process.env.ACCESS_TOKEN_SECRET; 
         return jwt.sign( payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1 day' });
     },
 
