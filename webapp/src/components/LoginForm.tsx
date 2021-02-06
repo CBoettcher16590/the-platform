@@ -8,15 +8,15 @@ import  api from '../api';
 export default function LoginForm(){
 
     const history = useHistory();
-    const authModel = useAuthentication();
+    const authModel = useAuthentication(); //we never get something back here or rather never a logged in
     
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
 
     function handleLogin(e:any){
         e.preventDefault();
-        authModel.login(email, password);
-        history.push('/');
+        authModel.login(email, password); //we never get a login is this typed correctly
+        history.push('/'); //I think the above is fine. 
        };
 
     

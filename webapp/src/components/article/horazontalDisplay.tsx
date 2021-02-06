@@ -27,9 +27,9 @@ const [article3, setArticle3] = useState<IArticle>();
     
 
     // useEffect(()=> {
-    
-    //   let userId = localStorage.getItem(user?.userId!);
-    //   console.log(userId);
+   
+      // let userId = localStorage.getItem(user?.userId!);
+      // console.log(userId);      this is hitting as null
 
     // }, []);
 

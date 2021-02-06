@@ -46,22 +46,51 @@ export  const UserModel = {
         });          
     
  },
- getByEmail: async (userEmail:number):Promise<IUser[]>  => {
+
+ getByEmail: async (userEmail: any):Promise<IUser[]>  => { //changed type to string from number
 
     return new Promise((resolve,reject)=>{
+        
+        connection.query(`SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`, function (error: any, results: IUser[]) {
+         if (error) {
+             reject(error);
+         } else {
+             resolve(results);
+             console.log(`${results}`, "are we even getting anything for results");
+         }
 
-       
-        connection.query(`SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`, function (error:any, results:IUser[]) {
-            if(error){
-                reject(error);
-            } else {
-                resolve(results)
-            }
 
-        });
+     });
     });          
 
 },
+
+
+// getByEmailTest: async (userEmail: any):Promise<IUser[]>  => {
+    
+//     return new Promise((resolve,reject) => {
+
+//         connection.connect(function (err:any){
+
+//             if(err) throw err;
+                        
+                        
+//             const sql = (`SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`);
+
+//             connection.query(sql , function (error:any, results:IUser[]) {
+//                 if(error){
+//                     reject(error);
+//                 } else {
+//                     resolve(results)
+//                     console.log(`${results}`, "are we even getting anything for results")
+//                 }
+//             }, connection.close);
+//         });
+           
+//     });
+// },
+
+
 
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
