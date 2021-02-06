@@ -1,16 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Card, CardGroup, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css'
 import cat from '../../images/cat.jpg';
 import little from '../../images/little.jpg';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
+import api from '../../api';
+import { useEffect } from 'react';
+import FindPendingAricles from '../../components/editor/pending';
 
-    
-    
-     export default function EditorProfile(){
-    
-     
+
+export default function EditorProfile(){
+
+  const [pendingAtricles, setPendingAtricles] = useState<IArticle[]>();
+
+  useEffect(() => {
+
+    setPendingAtricles(FindPendingAricles());
+    },[]);
+
+    console.log("Pending2: ", pendingAtricles);  
+    // let foundArticles:IArticle[] = [];
+
+    //   api.articles.get().then((res) => {
+    //   foundArticles = res.data;
+    //   }).catch((error) => console.error(`Error: ${error}`));
+       
+    //   console.log("FoundArticles",foundArticles);
+
+    //   const pendingArticles:IArticle[] = foundArticles?.filter(item => item.articleStatus === 1);
+
+    //   console.log("PendingArticles",pendingArticles);
+  
      return <>
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -24,6 +46,8 @@ import little from '../../images/little.jpg';
       </Navbar.Collapse>
     </Navbar>
 
+      {/* <p>TEST:{pending[0]}</p> */}
+      s
       <div className="editorCardBG">
         <Card className="editorInfoCard">
           <Card.Img variant="top" src= {cat} />

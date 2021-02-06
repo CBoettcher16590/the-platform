@@ -25,7 +25,7 @@ export interface IArticle{
     imageLink:string;
     price:number;
     createdOn:string;
-    articleStatus:number;
+    articleStatus:string;
     rating:number[];
 }
 
