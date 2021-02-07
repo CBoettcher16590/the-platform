@@ -1,6 +1,6 @@
 import {authenticateToken} from '../../../middleware/authenticator'
 import {ArticleModel, IArticle } from '../../../models/article';
-//removed authtoken from middle ware authenticateToken
+
 
 export function get( app:any ){
 

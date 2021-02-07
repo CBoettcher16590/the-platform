@@ -5,8 +5,6 @@ dotenv.config();
 export const TokenModel = {
 
     generateAccessToken: ( payload:any ) => {
-        const x = process.env.ACCESS_TOKEN_SECRET;
-        console.log("ModelsTokens Generate Token: ", x); 
         return jwt.sign( payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '120s' }); //Made this really short just for testing purposes
     },
 

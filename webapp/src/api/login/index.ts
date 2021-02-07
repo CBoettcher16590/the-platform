@@ -26,8 +26,8 @@ export default {
     
         axios.post(`${HOSTNAME}/user`, body).then(responce => {
             let data:IUserInfo = responce.data;
-            console.log(' Setting localstorage Data: ', data);
-
+            
+            //the data._____ needs to match the names coming from the database
             window.localStorage.setItem("firstName", data.first_name);            
             window.localStorage.setItem("lastName", data.last_name);
             window.localStorage.setItem("userType", data.user_type_type_id);
