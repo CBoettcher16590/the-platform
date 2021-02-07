@@ -11,8 +11,8 @@ app.post('/tokens', async (request:any, response:any) => {
     //Here we hash the password coming in to see if it matches the hased password in the system
     const password =  PasswordModel.hash(request.body.password);
 
-    const foundUser:IUser[] = await UserModel.getByEmail(email);
-    const foundUserString = foundUser[0]; //alright, now getting raw datapacket  // can use foundUserString.email ect for values
+    const foundUser:IUser = await UserModel.getByEmail(email);
+    const foundUserString = foundUser; //alright, now getting raw datapacket  // can use foundUserString.email ect for values
 
 
     //the below is vital to proper funs.

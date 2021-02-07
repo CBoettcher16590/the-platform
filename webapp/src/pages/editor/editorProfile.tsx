@@ -15,12 +15,12 @@ export default function EditorProfile(){
 
   const [pendingAtricles, setPendingAtricles] = useState<IArticle[]>();
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    setPendingAtricles(FindPendingAricles());
-    },[]);
+  //   setPendingAtricles(FindPendingAricles());
+  //   },[]);
 
-    console.log("Pending2: ", pendingAtricles);  
+  //   console.log("Pending2: ", pendingAtricles);  
     // let foundArticles:IArticle[] = [];
 
     //   api.articles.get().then((res) => {

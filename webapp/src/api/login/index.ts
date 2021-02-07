@@ -15,12 +15,11 @@ interface IUserLogin {
 }
 
 export default {
-    post: async (body:IUserLogin) => { //possible a get instead of a post? //where does it post too.
-        console.log("BODY:  ", body.email); // we aren't even getting here.
-        
-
-        axios.post(`${HOSTNAME}/users`, body).then(responce => {
-            let data:IUserLogin = JSON.parse(JSON.stringify(responce.data[0]));
+    get: async (body:any) => { //possible a get instead of a post? //where does it post too.
+        console.log(body);
+    
+        axios.get(`${HOSTNAME}/user`, body).then(responce => {
+            let data:IUserLogin = JSON.parse(JSON.stringify(responce.data));
             console.log(`${data} this is the data `)
 
             localStorage.setItem("firstName", data.fName);            

@@ -9,7 +9,7 @@ export function post( app:any ){
         // read payload from post body
         const payload:IUser = request.body;
 
-        console.log("payload", payload);
+        console.log("payload Test?", payload);
 
         const newUser = await UserModel.createUser(payload);
       
