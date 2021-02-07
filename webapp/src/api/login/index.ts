@@ -2,31 +2,37 @@ import axios from 'axios';
 import { HOSTNAME } from '../config';
 
 
-interface IUserLogin {
-    userId:string,
-    userType:string,
-    fName:string,
-    lName:string,
+interface IUserInfo {
+    user_id:string,
+    user_type_type_id:string,
+    first_name:string,
+    last_name:string,
     email:string,
     password:string,
-    dateCreated:string,
-    orgId:string,
-    disableLogin:number;
+    date_created:string,
+    disable_login:number
 }
 
-export default {
-    get: async (body:any) => { //possible a get instead of a post? //where does it post too.
-        console.log(body);
-    
-        axios.get(`${HOSTNAME}/user`, body).then(responce => {
-            let data:IUserLogin = JSON.parse(JSON.stringify(responce.data));
-            console.log(`${data} this is the data `)
+interface IUserLogin {
+    email:string,
+    password:string
+}
 
-            localStorage.setItem("firstName", data.fName);            
-            localStorage.setItem("lastName", data.lName);
-            localStorage.setItem("userType", data.userType);
-            localStorage.setItem("userID", data.userId);
-            localStorage.setItem("email", data.email);
+
+
+export default {
+    post: async (body:any) => { 
+        console.log(body.email);
+    
+        axios.post(`${HOSTNAME}/user`, body).then(responce => {
+            let data:IUserInfo = responce.data;
+            console.log(' Setting localstorage Data: ', data);
+
+            window.localStorage.setItem("firstName", data.first_name);            
+            window.localStorage.setItem("lastName", data.last_name);
+            window.localStorage.setItem("userType", data.user_type_type_id);
+            window.localStorage.setItem("userID", data.user_id);
+            window.localStorage.setItem("email", data.email);
 
         console.log("Has the data local storage been filled out.")
     

@@ -2,8 +2,8 @@ import axios from 'axios';
 import { HOSTNAME } from '../config';
 
 interface ITokenPostRequest {
-    email: string;
-    password: string;
+    _email: string;
+    _password: string;
 }
 
 export default { //we are using this post? to set the token? I am not sure the other window local storage is being run

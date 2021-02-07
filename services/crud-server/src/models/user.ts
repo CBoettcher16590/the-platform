@@ -47,19 +47,19 @@ export  const UserModel = {
     
  },
 
-getByEmail: async (userEmail:string):Promise<IUser> => {
+getByEmail: async (userEmail:string):Promise<IUser[]> => {
        
     return new Promise((resolve,reject) => {
 
         var sql = `SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`;
 
-        connection.query(sql , function (error:any, results:IUser) {
+        connection.query(sql , function (error:any, results:IUser[]) {
             if(error){
                 console.log("Error:", error);
                 reject(error);
             } else {
                  resolve(results);
-            }           
+            }              
         }); 
     });
 },

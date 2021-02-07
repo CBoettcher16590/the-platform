@@ -14,8 +14,8 @@ export default function LoginForm(){
 
     function handleLogin(e:any){
         e.preventDefault();
-        api.tokens.post({email , password});
-        api.login.get({email})
+        api.tokens.post({_email:email , _password:password});
+        api.login.post({email})
         history.push('/'); //I think the above is fine. 
        };
 
