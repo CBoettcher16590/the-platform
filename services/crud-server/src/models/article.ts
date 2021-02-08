@@ -16,16 +16,15 @@ export interface ISubmittedArticle{
 
 export interface IArticle{
     
-    articleId: number;
-    seriesId: number;
+    article_id: number;
     userId:number;
     title:string;
     preview:string;
     contents:string;
-    imageLink:string;
+    image_link:string;
     price:number;
-    createdOn:string;
-    articleStatus:string;
+    created_on:string;
+    article_status:number;
     rating:number[];
 }
 
@@ -43,52 +42,54 @@ export const ArticleModel = {
 
     getAll: async ():Promise<IArticle[]>  => {
 
-        return new Promise((resolve,reject)=>{
-           
-            var sql = `SELECT * FROM theplatformV2.article`;
-
-            connection.query(sql , function (error:any, results:IArticle[]) {
-                if(error){
-                    reject(error);
-                } else {
-                    resolve(results)
-                }
-
-            });
-        });          
-    
- },
+        return new Promise((resolve,reject) => {
+        
+                var sql = `SELECT * FROM theplatformV2.article`;
+                            
+                connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                    } else {
+                        resolve(results)
+                    }  
+            }); 
+        });
+     },
 
     getById: async (articleId:number):Promise<IArticle> => {
 
         return new Promise((resolve,reject)=>{
-            
+            connection.connect(function (err:any){
+    
+                if(err) throw err;
             var sql = `SELECT * FROM theplatformV2.article WHERE article_id = ${articleId}`;
             
-            connection.query(sql , function (error:any, results:IArticle[]) {
-                if(error){
-                    reject(error);
-                } else {
-                    resolve(results[0])
-                }
+                    connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                    } else {
+                        resolve(results[0])
+                    }
            
+                });
             });
-
         });          
     },
 
-    addToPurchased:  async (article:IArticle, user:IUser) => {
+    addToPurchased:  async (article:IArticle, user:IUser) => { //needs to be double checked
 
         return new Promise((resolve,reject)=>{
-            
-            var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES(${article.articleId}, ${user.userId});`;
-            
-            connection.query(sql , function (error:any, results:IArticle[]) {
-                if(error){
-                    reject(error);
-                } else {
-                    resolve(results[0])
-                }
+            connection.connect(function (err:any){
+    
+            if(err) throw err;
+            var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES(${article.article_id}, ${user.userId});`;
+                connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                    } else {
+                        resolve(results[0])
+                    }
+                });
             });
         });          
     },
@@ -96,36 +97,40 @@ export const ArticleModel = {
     create: async( articleToCreate:ISubmittedArticle)=> {
         
         return new Promise((resolve,reject)=>{
-
+            connection.connect(function (err:any){
     
-
-            var sql = `INSERT INTO article VALUES (article_id, 1, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.imageLink}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.articleStatus}, 0)`;
-            
-            connection.query(sql , function (error:any, results:IArticle[]) {
-                if(error){
-                    reject(error);
-                    console.log("Error in Create Article Model: ", error);
-                } else {
-                    resolve(results[0])
-                    console.log("results in Article Create Model: ", results)
-                }
+            if(err) throw err;
+            var sql = `INSERT INTO article VALUES (article_id, 2, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.imageLink}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.articleStatus}, 0)`;
+                connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                        console.log("Error in Create Article Model: ", error);
+                    } else {
+                        resolve(results[0])
+                        console.log("results in Article Create Model: ", results)
+                    }
+                });
             });
         });      
     },
 
-    publish: async ( article:IArticle)=> {
+    approveArticle: async ( article:IArticle)=> {
 
-    //     connection.connect();
-
-    //     const publishedArticle = connection.query(`UPDATE article SET statusTypeId='3' WHERE article.article_id = ${article.articleId} `, function (error:any, results:any, fields:any) {
-    //         if (error) throw error;
-    //         // Line below is an example of how to get content
-    //         return results;
-    //     });
-    //     connection.end();
-
-    // return publishedArticle;
-         
+        return new Promise((resolve,reject)=>{
+            connection.connect(function (err:any){
+    
+            if(err) throw err;
+            var sql = `UPDATE article SET article_status = 3 WHERE article_id = ${article.article_id};`;
+                connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                        console.log("Error in Create Article Model: ", error);
+                    } else {
+                        resolve(results[0])
+                        console.log("approved Article worked")
+                    }
+                });
+            });
+        });         
     }
-
 }

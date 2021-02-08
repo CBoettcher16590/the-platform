@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Card, CardGroup, Button } from 'react-bootstrap';
+import { Navbar, Nav, Card, CardGroup, Button, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css'
 import cat from '../../images/cat.jpg';
@@ -9,30 +9,42 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
 import { useEffect } from 'react';
 import FindPendingAricles from '../../components/editor/pending';
+import { useHistory } from 'react-router';
 
 
 export default function EditorProfile(){
 
-  const [pendingAtricles, setPendingAtricles] = useState<IArticle[]>();
-
-  // useEffect(() => {
-
-  //   setPendingAtricles(FindPendingAricles());
-  //   },[]);
-
-  //   console.log("Pending2: ", pendingAtricles);  
-    // let foundArticles:IArticle[] = [];
-
-    //   api.articles.get().then((res) => {
-    //   foundArticles = res.data;
-    //   }).catch((error) => console.error(`Error: ${error}`));
-       
-    //   console.log("FoundArticles",foundArticles);
-
-    //   const pendingArticles:IArticle[] = foundArticles?.filter(item => item.articleStatus === 1);
-
-    //   console.log("PendingArticles",pendingArticles);
+  const history = useHistory();
+  const [pendingArticles, setPendingArticles] = useState<IArticle[]>();
   
+//inside this useEffect is where we find all the pending articles, and assign it to pendingArtiles
+  useEffect(() => {
+      //First we get ALL the articles
+    api.articles.get().then((res) => {
+      const articleList:IArticle[] = res.data;
+      
+      //Then we filter through our array of Articles to get ALL of our articles that match our if statement
+      let pendArticles = articleList.filter(function(_article){
+      
+        if(_article.article_status === 2 ){
+          return _article;
+        }
+      });
+      console.log("test", pendArticles)
+      setPendingArticles(pendArticles);
+    
+    }).catch((error) => console.log("Error: ", error));
+
+  }, []);
+
+
+  const clickMe = (article:IArticle) => (event:any) => {
+    console.log("ApproveButton")
+   return api.editor.patch(article);
+  
+}
+
+
      return <>
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -46,8 +58,7 @@ export default function EditorProfile(){
       </Navbar.Collapse>
     </Navbar>
 
-      {/* <p>TEST:{pending[0]}</p> */}
-      s
+  
       <div className="editorCardBG">
         <Card className="editorInfoCard">
           <Card.Img variant="top" src= {cat} />
@@ -67,13 +78,42 @@ export default function EditorProfile(){
      
       
     <br/>
+
+
   <Card className="reviewArticles">
     <Card.Body>
       <Card.Title>Pending Articles</Card.Title>
-      <Card.Text>
-      Review these articlces before they are Published to ensure they comply with our Code of Conduct.
-      </Card.Text>
-      <Nav.Link href="#">Review Articles</Nav.Link>
+      <br/>
+
+        {pendingArticles?.map(function(articleLoop, index){
+        
+        let title = articleLoop.title;
+        let contents = articleLoop.contents;
+
+        console.log(title, contents);
+          return  (
+          <Accordion defaultActiveKey="1">
+            <Card>
+              <Accordion.Toggle as={Card.Header} eventKey="0">
+                <h4>{title}</h4>
+             <hr/>
+                <p> <strong>Click Here to See Article Contents</strong></p>
+              </Accordion.Toggle>
+
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  <p>{contents}</p>
+                  <Button onClick={clickMe(articleLoop)} className="btn-info">Approve</Button>
+                  <Button className="btn-danger">Reject </Button>
+                </Card.Body>
+              </Accordion.Collapse>
+
+            </Card>
+
+          </Accordion>
+
+          )
+        })}
     </Card.Body>
   </Card>
 
