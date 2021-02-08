@@ -29,9 +29,7 @@ app.post('/tokens', async (request:any, response:any) => {
         });
         return;
     }
-
-    console.log("Password Check: ", password, foundUserString.password);
-
+    
     if( !(password === foundUserString.password) ){ 
         
         response.status(401).send({

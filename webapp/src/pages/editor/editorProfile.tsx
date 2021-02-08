@@ -8,7 +8,6 @@ import little from '../../images/little.jpg';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
 import { useEffect } from 'react';
-import FindPendingAricles from '../../components/editor/pending';
 import { useHistory } from 'react-router';
 
 
@@ -30,7 +29,6 @@ export default function EditorProfile(){
           return _article;
         }
       });
-      console.log("test", pendArticles)
       setPendingArticles(pendArticles);
     
     }).catch((error) => console.log("Error: ", error));
@@ -38,10 +36,20 @@ export default function EditorProfile(){
   }, []);
 
 
-  const clickMe = (article:IArticle) => (event:any) => {
-    console.log("ApproveButton")
-   return api.editor.patch(article);
-  
+  const Publish = (article:IArticle) => (event:any) => {
+    //Here we are changing the article status so we can know what to do in the patch route
+    article.article_status = 3;
+    api.articles.patch(article);
+    //this is just a refresh
+    history.go(0);
+}
+
+const Reject = (article:IArticle) => (event:any) => {
+  //Here we are changing the article status so we can know what to do in the patch route
+  article.article_status = 4;
+  api.articles.patch(article);
+  //this is just a refresh
+  history.go(0);
 }
 
 
@@ -89,11 +97,9 @@ export default function EditorProfile(){
         
         let title = articleLoop.title;
         let contents = articleLoop.contents;
-
-        console.log(title, contents);
           return  (
           <Accordion defaultActiveKey="1">
-            <Card className="pendingArticles">
+            <Card key={index} className="pendingArticles">
               <Accordion.Toggle as={Card.Header} eventKey="0">
                 <h4>{title}</h4>
              <hr/>
@@ -103,8 +109,8 @@ export default function EditorProfile(){
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
                   <p>{contents}</p>
-                  <Button onClick={clickMe(articleLoop)} className="btn-info editButtons">Approve</Button>
-                  <Button className="btn-danger editButtons">Reject </Button>
+                  <Button onClick={Publish(articleLoop)} className="btn-info editButtons">Approve</Button>
+                  <Button onClick={Reject(articleLoop)} className="btn-danger editButtons">Reject </Button>
                 </Card.Body>
               </Accordion.Collapse>
 

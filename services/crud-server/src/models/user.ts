@@ -94,10 +94,6 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
     return new Promise((resolve,reject) => {
-
-        connection.connect(function (err:any){
-
-            if(err) throw err;
             const hashedPassword:string = PasswordModel.hash(user.password);
             
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
@@ -113,8 +109,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
                 }
                     
             }); 
-        });
-    });
+
 }
 
 

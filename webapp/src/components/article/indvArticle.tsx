@@ -24,9 +24,9 @@ import api from '../../api'
                 //this console.log shows what information we have coming in(All of it is there)
                     const article:IArticle = responce.data;
                     setArticle(article);
-                    setCreateDate(article.createdOn);
+                    setCreateDate(article.created_on);
                     setPrice(article.price);
-                    setImageLink(article.imageLink);
+                    setImageLink(article.image_link);
                     setContents(article.contents);
                 }).catch((error) => console.error(`Error: ${error}`));
                 
@@ -50,7 +50,7 @@ import api from '../../api'
             </Col>
                 <Col className="authorInfo" lg="10">
                 <h5>Kent Brockman{article?.userId}</h5>
-                <p>Oct, 21 2020{article?.createdOn} <Button className="followButton" variant="outline-success">Follow   </Button></p>
+                <p>Oct, 21 2020{article?.created_on} <Button className="followButton" variant="outline-success">Follow   </Button></p>
             </Col>
                 <Button variant="primary">Facebook</Button>{' '}
                 <Button variant="link">Twitter</Button>
@@ -59,7 +59,7 @@ import api from '../../api'
             <hr/>             
             </section>
             <p>IMG{imageLink}</p>
-                <Image className="mx-auto articleImage" src={article?.imageLink} />
+                <Image className="mx-auto articleImage" src={article?.image_link} />
             <p> {article?.contents}</p>
             </MainLayout>
                   
