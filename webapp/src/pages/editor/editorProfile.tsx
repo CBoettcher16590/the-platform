@@ -82,7 +82,7 @@ export default function EditorProfile(){
 
   <Card className="reviewArticles">
     <Card.Body>
-      <Card.Title>Pending Articles</Card.Title>
+      <Card.Title id="pendingBoxTitle">Pending Articles</Card.Title>
       <br/>
 
         {pendingArticles?.map(function(articleLoop, index){
@@ -93,7 +93,7 @@ export default function EditorProfile(){
         console.log(title, contents);
           return  (
           <Accordion defaultActiveKey="1">
-            <Card>
+            <Card className="pendingArticles">
               <Accordion.Toggle as={Card.Header} eventKey="0">
                 <h4>{title}</h4>
              <hr/>
@@ -103,8 +103,8 @@ export default function EditorProfile(){
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
                   <p>{contents}</p>
-                  <Button onClick={clickMe(articleLoop)} className="btn-info">Approve</Button>
-                  <Button className="btn-danger">Reject </Button>
+                  <Button onClick={clickMe(articleLoop)} className="btn-info editButtons">Approve</Button>
+                  <Button className="btn-danger editButtons">Reject </Button>
                 </Card.Body>
               </Accordion.Collapse>
 
