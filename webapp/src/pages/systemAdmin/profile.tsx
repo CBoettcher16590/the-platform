@@ -1,13 +1,48 @@
 import { disconnect } from 'process';
-import React from 'react';
+import React, { useEffect } from 'react';
 import cat from '../../images/cat.jpg'
 import little from '../../images/little.jpg'
-import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
+import { Button, Card, CardGroup, Dropdown, Nav, Navbar } from 'react-bootstrap';
 import './styling.css'
+import { IUser } from '../../../../services/crud-server/src/models/user'
+import { useState } from 'react';
+import api from '../../api'
+import { useHistory } from 'react-router';
+
 
  export default function Admin_profile(){
+  const history = useHistory();
+  const [userList, setUserList] = useState<IUser[]>();
+  //variables for the userList
+  const disableLogin = ["False", "True"];
+  const varient = ["info","danger"];
+  const buttonText = ["Disable User Login","Enable User Login"];
+  const userType = ["Admin","Author","Editor","Member"];
 
- 
+  useEffect(() => {
+    api.users.get().then((responce) => {
+      const allUsers:IUser[] = responce.data;
+      setUserList(allUsers);
+    }).catch(err => console.log("Error: ", err));
+  }, [userList]);
+  
+
+  const ChangeLoginPermission = (user:IUser) => (event:any) =>{
+
+    event.preventDefault();
+    //Here we change the user that is being sent to the CRUD server partch so we know what to do
+    if(user.disable_login === 0){
+      user.disable_login = 1;
+    } else {
+      user.disable_login = 0;
+    }
+    api.users.patch(user);
+    //refresh
+    history.go(0);
+
+  }
+
+
         return <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -20,6 +55,9 @@ import './styling.css'
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+
+
+
         <div className="adminCardBG">
         <Card className="adminInfoCard">
           <Card.Img variant="top" src= {cat} />
@@ -36,14 +74,42 @@ import './styling.css'
           <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
         </Card.Body>
         </Card>
-      </div>
-<br/>
-<Card className="reviewArticles">
+
+  {/* still need to style below properly */}
+
+  <Card className="reviewArticles">
+    
+  <Card.Header><h3>Manage User Login Permissions</h3></Card.Header>
     <Card.Body>
-      <Card.Title>Manage User Permissions</Card.Title>
-        {/* Here we need to display all users with abliity to disable login */}
+
+    {/* Bug with managing permissions.. 
+    The first request goes through right away, but the second takes a while (up to 20 seconds), It still works but you need 
+    to manually refresh page.  Maybe use a setTimeout function or something for the refresh?*/}
+
+
+      {userList?.map(function(user, index){
+        let name = user.first_name + " " + user.last_name;
+        let userDisableLogin = disableLogin[user.disable_login]
+        return(
+          <Card>
+            <Card.Title>{name + "  -  " + userType[user.user_type_type_id - 1]} </Card.Title>
+            <div>
+              {/* you can ignore this error for now, it works */}
+              <Button onClick={ChangeLoginPermission(user)} variant={varient[user.disable_login]}>{buttonText[user.disable_login]}</Button>
+            </div>
+          </Card>
+        )
+      })} 
+
+      
     </Card.Body>
   </Card>
+    
+  <Card className="reviewArticles">
+    <Card.Header><h3>s</h3></Card.Header>
+
+  </Card>
+
 <div className= "raw">
 <Card className="text-center" style={{ width: '100rem' }}>
   <Card.Header><h3>Purchased Articles</h3></Card.Header>
@@ -135,6 +201,7 @@ import './styling.css'
   <Card.Footer className="text-muted" />
 </Card>
 <br/>
+</div>
 </div>
      </>
  }

@@ -25,9 +25,9 @@ export function post( app:any ){
             price: payload.price,
             preview: payload.preview,         
             contents: payload.contents,
-            imageLink: payload.imageLink,
+            image_link: payload.imageLink,
             seriesId: 1,
-            articleStatus:1
+            article_status:1
         });
 
         response.status(201).send();

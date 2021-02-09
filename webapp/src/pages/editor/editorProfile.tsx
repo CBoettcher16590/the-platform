@@ -17,10 +17,11 @@ export default function EditorProfile(){
   const [pendingArticles, setPendingArticles] = useState<IArticle[]>();
   
 //inside this useEffect is where we find all the pending articles, and assign it to pendingArtiles
+
   useEffect(() => {
       //First we get ALL the articles
-    api.articles.get().then((res) => {
-      const articleList:IArticle[] = res.data;
+    api.articles.get().then((responce) => {
+      const articleList:IArticle[] = responce.data;
       
       //Then we filter through our array of Articles to get ALL of our articles that match our if statement
       let pendArticles = articleList.filter(function(_article){

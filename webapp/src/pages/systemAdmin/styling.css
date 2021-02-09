@@ -9,8 +9,11 @@
     width: 30em;
     margin-right: auto;
     margin-left: auto;
+    box-shadow:  0 0 5px #120129;
+
 }
 
 .adminCardBG{
+    padding-top: 25px;
     background-color: rgb(167, 230, 255) ;
 }

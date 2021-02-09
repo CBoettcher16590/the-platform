@@ -1,3 +1,4 @@
+  
 import { article } from "../routes/articles";
 import { IUser } from "./user";
 
@@ -9,9 +10,9 @@ export interface ISubmittedArticle{
     title:string;
     preview:string;
     contents:string;
-    imageLink:string;
+    image_link:string;
     price:number;
-    articleStatus:number;
+    article_status:number;
 }
 
 export interface IArticle{
@@ -50,7 +51,7 @@ export const ArticleModel = {
                     if(error){
                         reject(error);
                     } else {
-                        resolve(results)
+                        resolve(results);
                     }  
             }); 
         });
@@ -66,7 +67,7 @@ export const ArticleModel = {
                     if(error){
                         reject(error);
                     } else {
-                        resolve(results[0])
+                        resolve(results[0]);
                     }
            
                 });
@@ -77,12 +78,12 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
 
-            var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES(${article.article_id}, ${user.userId});`;
+            var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES("${article.article_id}", "${user.user_id}");`;
                 connection.query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
-                        resolve(results[0])
+                        resolve(results[0]);
                     }
                 });
             });         
@@ -91,13 +92,13 @@ export const ArticleModel = {
     create: async( articleToCreate:ISubmittedArticle)=> {
         
         return new Promise((resolve,reject)=>{;
-            var sql = `INSERT INTO article VALUES (article_id, 2, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.imageLink}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.articleStatus}, 0)`;
+            var sql = `INSERT INTO article VALUES (article_id, 2, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.image_link}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.article_status}, 0)`;
                 connection.query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
                     } else {
-                        resolve(results[0])
+                        resolve(results[0]);
                         console.log("results in Article Create Model: ", results)
                     }
                 });
@@ -113,7 +114,7 @@ export const ArticleModel = {
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
                     } else {
-                        resolve(results[0])
+                        resolve(results[0]);
                         console.log("approved Article worked")
                     }
                 });

@@ -3,20 +3,19 @@ import { IsignUp } from "../interfaces";
 import { PasswordModel } from "./password";
 
 export interface IUser {
-    userId:number,
-    userType:number,
-    fName:string,
-    lName:string,
+    user_id:number,
+    user_type_type_id:number,
+    first_name:string,
+    last_name:string,
     email:string,
     password:string,
-    dateCreated:string,
-    orgId:number,
-    disableLogin:number
+    date_created:string,
+    disable_login:number
 }
 
 interface IUserSignup {
-    fName?:string,
-    lName?:string,
+    first_name?:string,
+    last_name?:string,
     email?:string,
     password?:string
 }
@@ -64,40 +63,13 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
     });
 },
 
-
-// getByEmailTest: async (userEmail: any):Promise<IUser[]>  => {
-    
-//     return new Promise((resolve,reject) => {
-
-//         connection.connect(function (err:any){
-
-//             if(err) throw err;
-                        
-                        
-//             const sql = (`SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`);
-
-//             connection.query(sql , function (error:any, results:IUser[]) {
-//                 if(error){
-//                     reject(error);
-//                 } else {
-//                     resolve(results)
-//                     console.log(`${results}`, "are we even getting anything for results")
-//                 }
-//             }, connection.close);
-//         });
-           
-//     });
-// },
-
-
-
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
     return new Promise((resolve,reject) => {
             const hashedPassword:string = PasswordModel.hash(user.password);
             
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
-                        VALUES (${4}, "${user.fName}", "${user.lName}", "${user.email}", "${hashedPassword}", curdate());`;
+                        VALUES (${4}, "${user.first_name}", "${user.last_name}", "${user.email}", "${hashedPassword}", curdate());`;
             
                         
             connection.query(sql , function (error:any, results:IUserSignup) {
@@ -110,63 +82,42 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
                     
             }); 
 
-}
-
-
-
-
-
-
-
-
-//     getAll: ():IsignUp => {
-//     connection.connect();
+        });
+    },
+    disableLogin: async (user:IUser) => {
+       
+        return new Promise((resolve,reject) => {
     
-//         const query = connection.query('SELECT * FROM member', function (error:any, results:any, fields:any) {
-//             if (error) throw error;
-//             return results;
-//         });
-//     connection.end();
-//     const stringQuery = JSON.parse(query)
-//     return stringQuery;
+            console.log("DISABLE: ", user.user_id);
 
-//  },
-//  getByEmail:(user:IsignUp):IsignUp => {
-//     connection.connect();
-//         const userEmail = JSON.stringify(user.email);
-//         const foundUser = connection.query(`SELECT * FROM member WHERE email = "${userEmail}" `, function (error:any, results:any, fields:any) {
-//             if (error) throw error;
-//             return results;
-//         });
-//     connection.end();
-//     return foundUser;
-
-//  },
-//  create: (newUser:IsignUp):IsignUp => {
-//     connection.connect();
+            var sql = `UPDATE user SET disable_login = "${1}" WHERE user_id="${user.user_id}"`;
     
-//         const CreatedMember = connection.query(`INSERT INTO member VALUES(idmember, ${newUser.Fname},${newUser.Lname},
-//                 ${newUser.email},${newUser.phoneNumber},${newUser.password})`, function (error:any, results:any, fields:any) {
-//             if (error) throw error;
-//             return results;
-//         });
-//     connection.end();
+            connection.query(sql , function (error:any, results:IUser[]) {
+                if(error){
+                    console.log("Error:", error);
+                    reject(error);
+                } else {
+                     resolve(results);
+                }              
+            }); 
+        });
+    },
+    enableLogin: async (user:IUser) => {
     
-//     return CreatedMember;
-//     }
+        return new Promise((resolve,reject) => {
 
-  
-    // setAll: ( users:IsignUp[] ) => {
-    //     fs.writeFileSync(file, JSON.stringify(users, null, 4), { encoding: 'utf-8' });
-    // },
+            console.log("ENABLE: ", user.user_id);
 
-    // getByEmail: ( email:string ): IsignUp|undefined => {
-
-    //     return MemberModel.getAll().find( user => {
-    //         console.log(user, email);
-    //         return user.email === email;
-    //     });
-
-    // }
-
+            var sql = `UPDATE user SET disable_login = "${0}" WHERE user_id= "${user.user_id}"`;
+    
+            connection.query(sql , function (error:any, results:IUser[]) {
+                if(error){
+                    console.log("Error:", error);
+                    reject(error);
+                } else {
+                    resolve(results);
+                }              
+            }); 
+        });
+    },  
 }
