@@ -14,10 +14,10 @@ export interface IUser {
 }
 
 interface IUserSignup {
-    first_name?:string,
-    last_name?:string,
-    email?:string,
-    password?:string
+    first_name:string,
+    last_name:string,
+    email:string,
+    password:string
 }
 
 var mysql = require('mysql');
@@ -69,9 +69,9 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const hashedPassword:string = PasswordModel.hash(user.password);
             
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
-                        VALUES (${4}, "${user.first_name}", "${user.last_name}", "${user.email}", "${hashedPassword}", curdate());`;
+                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate());`;
             
-                        
+            console.log(user)     
             connection.query(sql , function (error:any, results:IUserSignup) {
                 if(error){
                     console.log("Error:", error);

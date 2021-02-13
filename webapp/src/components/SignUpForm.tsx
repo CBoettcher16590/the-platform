@@ -4,12 +4,11 @@ import { Button } from "react-bootstrap";
 import _SignUp from '../data/signUpHandeler';
 import { useHistory } from "react-router";
 
-
 interface IUserSignup {
-    fName:string,
-    lName:string,
-    email:string,
-    password:string
+    first_name?:string,
+    last_name?:string,
+    email?:string,
+    password?:string
 }
 
 export default function SignUp() {
@@ -18,15 +17,15 @@ export default function SignUp() {
 
     const signUpHandle = _SignUp();
 
-    const [fName, setfName] = useState<string>();
-    const [lName, setlName] = useState<string>();
+    const [first_name, setFirst_name] = useState<string>();
+    const [last_name, setLast_name] = useState<string>();
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
 
     function handelSignUp(e:any){
         e.preventDefault();
         // the ! will allow us to handel the "undefined error"
-        signUpHandle._SignUp(fName!, lName!, email!, password!);
+        signUpHandle._SignUp(first_name!, last_name!, email!, password!);
         history.push('/');
     }
 
@@ -38,8 +37,8 @@ export default function SignUp() {
             <div className="form-group">
                 <label>First name </label>
                 <input
-                    value={fName}
-                    onChange={(e)=>setfName(e.target.value)}
+                    value={first_name}
+                    onChange={(e)=>setFirst_name(e.target.value)}
                     type="text"
                     className="form-control"
                     placeholder="First name"
@@ -50,8 +49,8 @@ export default function SignUp() {
             <div className="form-group">
                 <label>Last name </label>
                 <input
-                    value={lName}
-                    onChange={(e)=>setlName(e.target.value)}
+                    value={last_name}
+                    onChange={(e)=>setLast_name(e.target.value)}
                     type="text" 
                     className="form-control" 
                     placeholder="Last name" />

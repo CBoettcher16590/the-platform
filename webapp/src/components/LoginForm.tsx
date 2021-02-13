@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-import  api from '../api';
+import api from '../api';
 
 
 export default function LoginForm(){
@@ -15,7 +15,7 @@ export default function LoginForm(){
     function handleLogin(e:any){
         e.preventDefault();
         api.tokens.post({_email:email , _password:password});
-        api.login.post({email})
+        api.user.post({email, password});
         history.push('/'); //I think the above is fine. 
        };
 

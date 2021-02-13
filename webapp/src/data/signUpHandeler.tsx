@@ -1,13 +1,12 @@
+import { last } from 'lodash';
 import api from '../api';
 
 
 export default function signUpHandeler(){   
     
-    function _SignUp( fName:string, lName:string, email:string, password:string){
-        console.log("SignInHandeler Before api.users: ", fName, lName, email, password)
+    function _SignUp( first_name:string, last_name:string, email:string, password:string){
 
-       api.users.post({fName, lName, email, password }).then(responce => {
-           console.log("SignInHandeler After api.users : ", fName, lName, email, password)
+       api.users.post({first_name, last_name, email, password }).then(responce => {
        });
     }
 
