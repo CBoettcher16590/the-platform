@@ -25,7 +25,6 @@ export default function SignUp() {
 
     function handelSignUp(e:any){
         e.preventDefault();
-        console.log("FNAME: ", fName,"LNAME: ", lName, " EMAIL: ", email," pass: ", password);
         // the ! will allow us to handel the "undefined error"
         signUpHandle._SignUp(fName!, lName!, email!, password!);
         history.push('/');

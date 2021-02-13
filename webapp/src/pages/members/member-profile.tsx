@@ -1,12 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import cat from '../../images/cat.jpg';
 import Littlecat from '../../images/little.jpg';
+import { useHistory } from 'react-router';
+import { IUser } from '../../../../services/crud-server/src/models/user';
+import api from '../../api'
+import { useState } from 'react';
 
 
+export default function Profile(){
 
-export default function profile(){
+  const history = useHistory();
+  const [LoggedInUser, setLoggedInUser] = useState<IUser>();
+
+  let windowUserId = localStorage.getItem("userID");
+
+  useEffect(()=>{
+    api.users.get().then((responce) => {
+      const userList:IUser[] = responce.data
+      const foundUser = userList.find((_user) => {
+        let _id = _user.user_id.toString();
+        windowUserId = _id;
+      });
+      
+      console.log(foundUser);
+
+    }).catch(error =>{ throw error})
+  },[]);
 
   return<>
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,7 +42,7 @@ export default function profile(){
 </Nav>
 </Navbar.Collapse>
 </Navbar>
-<br/>
+  
 
 <div className="editorCardBG">
     <Card className="editorInfoCard">

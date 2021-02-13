@@ -1,24 +1,31 @@
-import { disconnect } from 'process';
+import { disconnect, title } from 'process';
 import React, { useEffect } from 'react';
 import cat from '../../images/cat.jpg'
 import little from '../../images/little.jpg'
-import { Button, Card, CardGroup, Dropdown, Nav, Navbar } from 'react-bootstrap';
+import { Accordion, Button, Card, CardGroup, Dropdown, Nav, Navbar } from 'react-bootstrap';
 import './styling.css'
 import { IUser } from '../../../../services/crud-server/src/models/user'
 import { useState } from 'react';
 import api from '../../api'
 import { useHistory } from 'react-router';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
 
 
  export default function Admin_profile(){
+
   const history = useHistory();
+
   const [userList, setUserList] = useState<IUser[]>();
+  const [publishedArticleList, setPublishedArticleList] =useState<IArticle[]>();
+
   //variables for the userList
   const disableLogin = ["False", "True"];
-  const varient = ["info","danger"];
+  const varient = ["danger","success"];
   const buttonText = ["Disable User Login","Enable User Login"];
   const userType = ["Admin","Author","Editor","Member"];
 
+
+  // Inside the .catch I wanted to show that both these useEffects do the same thing even though they are written differently
   useEffect(() => {
     api.users.get().then((responce) => {
       const allUsers:IUser[] = responce.data;
@@ -26,6 +33,13 @@ import { useHistory } from 'react-router';
     }).catch(err => console.log("Error: ", err));
   }, [userList]);
   
+  useEffect(()=>{
+    api.articles.get().then((responce) => {
+      const allArticles:IArticle[] = responce.data;
+      const publishedArticles:IArticle[] = allArticles.filter(_art => _art.article_status === 3);
+      setPublishedArticleList(publishedArticles);
+    }).catch((err) => { console.log(`Error: ${err}`); })
+  },[]);
 
   const ChangeLoginPermission = (user:IUser) => (event:any) =>{
 
@@ -41,7 +55,6 @@ import { useHistory } from 'react-router';
     history.go(0);
 
   }
-
 
         return <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -77,7 +90,7 @@ import { useHistory } from 'react-router';
 
   {/* still need to style below properly */}
 
-  <Card className="reviewArticles">
+  <Card className="bodyContainer">
     
   <Card.Header><h3>Manage User Login Permissions</h3></Card.Header>
     <Card.Body>
@@ -87,24 +100,58 @@ import { useHistory } from 'react-router';
     to manually refresh page.  Maybe use a setTimeout function or something for the refresh?*/}
 
 
+    {/* This way to list users will have to be refined as we get more users */}
+
       {userList?.map(function(user, index){
         let name = user.first_name + " " + user.last_name;
         let userDisableLogin = disableLogin[user.disable_login]
         return(
-          <Card>
-            <Card.Title>{name + "  -  " + userType[user.user_type_type_id - 1]} </Card.Title>
-            <div>
-              {/* you can ignore this error for now, it works */}
-              <Button onClick={ChangeLoginPermission(user)} variant={varient[user.disable_login]}>{buttonText[user.disable_login]}</Button>
-            </div>
-          </Card>
-        )
-      })} 
-
+          <Accordion defaultActiveKey="1">
+          <Card className="userCard">
+            <Accordion.Toggle as={Card.Header} eventKey="0">
+              <Card.Title className="userCardTitle">{name + "  -  " + userType[user.user_type_type_id - 1]} </Card.Title>
+              Disable User Login Status: {userDisableLogin}
+            </Accordion.Toggle>
       
+            <Accordion.Collapse eventKey="0">
+              <div>
+                {/* you can ignore this error for now, it works */}
+                <Button onClick={ChangeLoginPermission(user)} variant={varient[user.disable_login]}>{buttonText[user.disable_login]}</Button>
+            </div>
+            </Accordion.Collapse>
+            
+          </Card>
+      
+        </Accordion>
+        )
+      })}  
     </Card.Body>
   </Card>
     
+  <Card className="bodyContainer">
+    <Card.Header>
+    {<h3>Set Home Page Featured Articles</h3>}
+    </Card.Header>
+    <Card.Body>
+    
+      {publishedArticleList?.map(function(article,index){
+        return(
+          <Card>
+            <Card.Header>
+                <Card.Title className="">{article.title} ${article.price} </Card.Title>
+              {<input onChange={(e)=>console.log(e.target.value)} type="checkbox" name="featuredCheckbox" value="0" id="featureCheck"/>}
+                {<label for="featuredCheckbox">Featured Articles</label>}
+                
+            </Card.Header>
+            
+          </Card>
+        )
+      })}
+
+    </Card.Body>
+  </Card>
+
+
   <Card className="reviewArticles">
     <Card.Header><h3>s</h3></Card.Header>
 

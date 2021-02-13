@@ -7,6 +7,10 @@ export default {
         return axios.get(`${HOSTNAME}/users`);
     },
 
+    post: async (body:any) => {
+        return axios.post(`${HOSTNAME}/users`, body);
+    },
+    
     patch: async (body:any) => {
         return axios.patch( `${HOSTNAME}/users`, body).then(responce => {
             console.log(responce.data);

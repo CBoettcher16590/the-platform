@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/home';
 import SignUp from './pages/forms/signup';
 import Login from './pages/forms/signin';
-import profile from './pages/members/member-profile';
+import Profile from './pages/members/member-profile';
 import SubmitArticle from './pages/submitArticle'
 import IndvArticlePage from './pages/indvArticle';
 import Admin_profile from './pages/systemAdmin/profile';
@@ -34,7 +34,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/ADupdateMyInfo" component={AD_edit_profile} />
 
                     {/* Member Routes */}
-                    <Route path="/profile" component={profile} />
+                    <Route path="/profile" component={Profile} />
                     <Route path="/MEMupdateMyInfo" component={MEM_edit_profile} />
                     <Route path="/MEMPersInfo" component={MEM_personal_info} />
 

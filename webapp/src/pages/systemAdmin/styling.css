@@ -13,6 +13,20 @@
 
 }
 
+.bodyContainer{
+    box-shadow:  0 0 3px #120129;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    width: 85em;
+    padding: 10px;
+}
+.userCard{
+    margin-bottom: 15px;
+}
+.userCardTitle{
+    font-size: 22px;
+}
 .adminCardBG{
     padding-top: 25px;
     background-color: rgb(167, 230, 255) ;
