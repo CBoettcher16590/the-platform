@@ -1,0 +1,17 @@
+.authorInfo{
+    align-content: center;
+}
+
+.authorInfoCard{
+    width: 30em;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.authorCardBG{
+    background-color: rgb(167, 230, 255) ;
+}
+.likeCounter{
+    margin-left: 3em;
+    align-content: center;
+}

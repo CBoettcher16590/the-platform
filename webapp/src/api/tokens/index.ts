@@ -1,18 +1,18 @@
 import axios from 'axios';
 import { HOSTNAME } from '../config';
 
-interface ITokenPostRequest {
-    email: string;
-    password: string;
-}
+export default { //we are using this post? to set the token? I am not sure the other window local storage is being run
 
-export default {
+//we hit this 
 
-    post: async ( body:ITokenPostRequest ) => {
+    post: async ( body:any ) => {
         return axios.post( `${HOSTNAME}/tokens`, body).then( response => {
-            window.localStorage.setItem("token", response.data.token);
+
+            window.localStorage.setItem("token", response.data.token); //here we set the localstorage 
+            
             return response.data;
         });
     }
 
 }
+

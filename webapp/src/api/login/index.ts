@@ -2,31 +2,40 @@ import axios from 'axios';
 import { HOSTNAME } from '../config';
 
 
-export interface IUserLogin {
-    userId:string,
-    userType:string,
-    fName:string,
-    lName:string,
+interface IUserInfo {
+    user_id:string,
+    user_type_type_id:string,
+    first_name:string,
+    last_name:string,
     email:string,
     password:string,
-    dateCreated:string,
-    orgId:string,
-    disableLogin:number;
+    date_created:string,
+    disable_login:number
 }
 
-export default {
-    post: async (body:any) => {
-        //lets us see what is coming in
-        console.log("BODY:  ", body);
-        
-        axios.post(`${HOSTNAME}/users`, body).then(responce => {
-            let data:IUserLogin = JSON.parse(JSON.stringify(responce.data[0]));
+interface IUserLogin {
+    email:string,
+    password:string
+}
 
-            localStorage.setItem("firstName", data.fName);
-            localStorage.setItem("lastName", data.lName);
-            localStorage.setItem("userType", data.userType);
-            localStorage.setItem("userID", data.userId);
-            localStorage.setItem("email", data.email);
+
+
+export default {
+    post: async (body:any) => { 
+        console.log(body.email);
+    
+        axios.post(`${HOSTNAME}/user`, body).then(responce => {
+            let data:IUserInfo = responce.data;
+            
+            //the data._____ needs to match the names coming from the database
+            window.localStorage.setItem("firstName", data.first_name);            
+            window.localStorage.setItem("lastName", data.last_name);
+            window.localStorage.setItem("userType", data.user_type_type_id);
+            window.localStorage.setItem("userID", data.user_id);
+            window.localStorage.setItem("email", data.email);
+
+        console.log("Has the data local storage been filled out.")
+    
         });
     }
 

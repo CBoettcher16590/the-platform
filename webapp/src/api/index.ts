@@ -11,5 +11,5 @@ export default {
     articles,
     signup,
     login, 
-    users
+    users,
 }

@@ -3,6 +3,7 @@ import { Navbar, Nav, Card, CardGroup, CardDeck, Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Littlecat from '../../images/little.jpg';
 import cat from '../../images/cat.jpg';
+import './style.css'
 
 
 
@@ -12,11 +13,17 @@ export default class author_profile extends React.Component {
     likes: 0
   };
   addLike = () => {
-    let newCount = this.state.likes + 1;
+    let addCount = this.state.likes + 1;
     this.setState({
-      likes: newCount
+      likes: addCount
     });
   };
+  removeLike = () =>{
+    let minusCount = this.state.likes -1;
+    this.setState({
+      likes: minusCount
+    })
+  }
 
 
 render(){
@@ -37,25 +44,33 @@ render(){
       </Navbar.Collapse>
     </Navbar>
     <br />
-    <Card style={{ width: '20rem' }}>
-      <Card.Img variant="top" src={cat} />
-      <br />
-
-      <Card.Body>
-        <Card.Title><h2>Donald Trump</h2></Card.Title>
-        <br />
-        <br />
-        <Card.Title><h5>Bio</h5></Card.Title>
-
-        <Card.Text>
-          Q: What’s the best thing about Switzerland?
-          A: I don’t know, but the flag is a big plus.
-        </Card.Text>
-        <Nav.Link href="/AUupdateMyInfo">Edit Profile</Nav.Link>
-      </Card.Body>
-    </Card>
+    <div className="authorCardBG">
+        <Card className="authorInfoCard">
+          <Card.Img variant="top" src= {cat} />
+          <Card.Body className="authorInfo">
+          <Card.Title><h2>Author Profile</h2></Card.Title>
+            <br/>
+            <br/>
+          <Card.Title><h5>Bio</h5></Card.Title>
+      
+          <Card.Text>
+              Q: What’s the best thing about Switzerland?
+              A: I don’t know, but the flag is a big plus.
+          </Card.Text>
+          <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+        </Card.Body>
+        </Card>
+        </div>
     <br />
-    <Button onClick={this.addLike}>Likes: {this.state.likes} </Button>
+    <div className="likeCounter">
+      <Button onClick={this.addLike}> + </Button>
+      <br/>
+      <span>Likes: {this.state.likes}</span>
+      <br/>
+      <Button onClick={this.removeLike}> - </Button>
+    </div>
+    
+
     <br/>
     <br/>
         <Card.Header><h3>Purchased Articles</h3></Card.Header>

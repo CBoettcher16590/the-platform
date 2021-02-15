@@ -2,14 +2,24 @@ import axios from 'axios';
 import { HOSTNAME } from '../config';
 
 export default {
-    delete: async (body:any) => {
-        return axios.delete(`${HOSTNAME}/users`, body).then( responce => {
+
+    get: async () => {
+        return axios.get(`${HOSTNAME}/users`);
+    },
+
+    post: async (body:any) => {
+        return axios.post(`${HOSTNAME}/users`, body);
+    },
+    
+    patch: async (body:any) => {
+        return axios.patch( `${HOSTNAME}/users`, body).then(responce => {
+            console.log(responce.data);
             return responce.data;
         });
     },
 
-    patch: async (body:any) => {
-        return axios.patch( `${HOSTNAME}/users`, body).then(responce => {
+    delete: async (body:any) => {
+        return axios.delete(`${HOSTNAME}/users`, body).then( responce => {
             return responce.data;
         });
     }

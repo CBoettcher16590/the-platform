@@ -1,12 +1,61 @@
-import { disconnect } from 'process';
-import React from 'react';
+import { disconnect, title } from 'process';
+import React, { useEffect } from 'react';
 import cat from '../../images/cat.jpg'
 import little from '../../images/little.jpg'
-import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
+import { Accordion, Button, Card, CardGroup, Dropdown, Nav, Navbar } from 'react-bootstrap';
+import './styling.css'
+import { IUser } from '../../../../services/crud-server/src/models/user'
+import { useState } from 'react';
+import api from '../../api'
+import { useHistory } from 'react-router';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
+
 
  export default function Admin_profile(){
 
- 
+  const history = useHistory();
+
+  const [userList, setUserList] = useState<IUser[]>();
+  const [publishedArticleList, setPublishedArticleList] =useState<IArticle[]>();
+
+  //variables for the userList
+  const disableLogin = ["False", "True"];
+  const varient = ["danger","success"];
+  const buttonText = ["Disable User Login","Enable User Login"];
+  const userType = ["Admin","Author","Editor","Member"];
+
+
+  // Inside the .catch I wanted to show that both these useEffects do the same thing even though they are written differently
+  useEffect(() => {
+    api.users.get().then((responce) => {
+      const allUsers:IUser[] = responce.data;
+      setUserList(allUsers);
+    }).catch(err => console.log("Error: ", err));
+  }, [userList]);
+  
+  useEffect(()=>{
+    api.articles.get().then((responce) => {
+      const allArticles:IArticle[] = responce.data;
+      const publishedArticles:IArticle[] = allArticles.filter(_art => _art.article_status === 3);
+      setPublishedArticleList(publishedArticles);
+    }).catch((err) => { console.log(`Error: ${err}`); })
+  },[]);
+
+  const ChangeLoginPermission = (user:IUser) => (event:any) =>{
+
+    event.preventDefault();
+    //Here we change the user that is being sent to the CRUD server partch so we know what to do
+    if(user.disable_login === 0){
+      user.disable_login = 1;
+    } else {
+      user.disable_login = 0;
+    }
+    api.users.patch(user);
+    //refresh
+    history.go(0);
+
+  }
+
         return <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -19,25 +68,95 @@ import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        <Card style={{ width: '30rem' }}>
-  <Card.Img variant="top" src= {cat} />
-  <br/>
 
-  <Card.Body>
-    <Card.Title><h2>Donald Trump System Admin</h2></Card.Title>
-    <br/>
-    <br/>
-    <Card.Title><h5>Bio</h5></Card.Title>
 
-    <Card.Text>
-   This Is where I will write a little about me, the things that I like. This 
-   info will appear public to those who check out your profile
-   
-    </Card.Text>
-    <Nav.Link href = "/ADupdateMyInfo" >Edit Profile</Nav.Link>
-  </Card.Body>
-</Card>
-<br/>
+
+        <div className="adminCardBG">
+        <Card className="adminInfoCard">
+          <Card.Img variant="top" src= {cat} />
+          <Card.Body className="adminInfo">
+          <Card.Title><h2>Author Profile</h2></Card.Title>
+            <br/>
+            <br/>
+          <Card.Title><h5>Bio</h5></Card.Title>
+      
+          <Card.Text>
+              Q: What’s the best thing about Switzerland?
+              A: I don’t know, but the flag is a big plus.
+          </Card.Text>
+          <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+        </Card.Body>
+        </Card>
+
+  {/* still need to style below properly */}
+
+  <Card className="bodyContainer">
+    
+  <Card.Header><h3>Manage User Login Permissions</h3></Card.Header>
+    <Card.Body>
+
+    {/* Bug with managing permissions.. 
+    The first request goes through right away, but the second takes a while (up to 20 seconds), It still works but you need 
+    to manually refresh page.  Maybe use a setTimeout function or something for the refresh?*/}
+
+
+    {/* This way to list users will have to be refined as we get more users */}
+
+      {userList?.map(function(user, index){
+        let name = user.first_name + " " + user.last_name;
+        let userDisableLogin = disableLogin[user.disable_login]
+        return(
+          <Accordion defaultActiveKey="1">
+          <Card className="userCard">
+            <Accordion.Toggle as={Card.Header} eventKey="0">
+              <Card.Title className="userCardTitle">{name + "  -  " + userType[user.user_type_type_id - 1]} </Card.Title>
+              Disable User Login Status: {userDisableLogin}
+            </Accordion.Toggle>
+      
+            <Accordion.Collapse eventKey="0">
+              <div>
+                {/* you can ignore this error for now, it works */}
+                <Button onClick={ChangeLoginPermission(user)} variant={varient[user.disable_login]}>{buttonText[user.disable_login]}</Button>
+            </div>
+            </Accordion.Collapse>
+            
+          </Card>
+      
+        </Accordion>
+        )
+      })}  
+    </Card.Body>
+  </Card>
+    
+  <Card className="bodyContainer">
+    <Card.Header>
+    {<h3>Set Home Page Featured Articles</h3>}
+    </Card.Header>
+    <Card.Body>
+    
+      {publishedArticleList?.map(function(article,index){
+        return(
+          <Card>
+            <Card.Header>
+                <Card.Title className="">{article.title} ${article.price} </Card.Title>
+              {<input onChange={(e)=>console.log(e.target.value)} type="checkbox" name="featuredCheckbox" value="0" id="featureCheck"/>}
+                {<label for="featuredCheckbox">Featured Articles</label>}
+                
+            </Card.Header>
+            
+          </Card>
+        )
+      })}
+
+    </Card.Body>
+  </Card>
+
+
+  <Card className="reviewArticles">
+    <Card.Header><h3>s</h3></Card.Header>
+
+  </Card>
+
 <div className= "raw">
 <Card className="text-center" style={{ width: '100rem' }}>
   <Card.Header><h3>Purchased Articles</h3></Card.Header>
@@ -129,6 +248,7 @@ import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap';
   <Card.Footer className="text-muted" />
 </Card>
 <br/>
+</div>
 </div>
      </>
  }

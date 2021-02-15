@@ -9,31 +9,38 @@ import api from '../../api'
 
 
     const IndvArticle = () => {
-        const params = useParams<{id:string}>(); //number doesnt work?
+        const params = useParams<{id:string}>();
         const numId = parseInt(params.id);
+
         const [article, setArticle] = useState<IArticle>();
-        
+
+        const [createdDate, setCreateDate] = useState<string>();
+        const [price, setPrice] = useState<number>();
+        const [imageLink, setImageLink] = useState<string>();
+        const [contents, setContents] = useState<string>();
 
         useEffect(() => {
             api.articles.getIndv(numId).then((responce) => {
                 //this console.log shows what information we have coming in(All of it is there)
-                console.log(responce);
-                    setArticle(responce.data);
-                }).catch((error) => console.error(`Error: ${error}`)); 
+                    const article:IArticle = responce.data;
+                    setArticle(article);
+                    setCreateDate(article.created_on);
+                    setPrice(article.price);
+                    setImageLink(article.image_link);
+                    setContents(article.contents);
+                }).catch((error) => console.error(`Error: ${error}`));
+                
         },[]);
+      
 
-            //tried to create variables, but for some reason these specific values dont show up
-        const imageLink = article?.imageLink;
-        const dateCreated = article?.createdOn;
 
         return (
-        
+            
             <MainLayout>
             <section className="articleTop">
             <Row>
             <Col>
-                <h1></h1>
-                <h4>{article?.title}</h4>
+                <h1>{article?.title}</h1>
 
             </Col>  
             </Row>
@@ -43,16 +50,16 @@ import api from '../../api'
             </Col>
                 <Col className="authorInfo" lg="10">
                 <h5>Kent Brockman{article?.userId}</h5>
-                <p>Oct, 21 2020{article?.createdOn} <Button className="followButton" variant="outline-success">Follow   </Button></p>
+                <p>Oct, 21 2020{article?.created_on} <Button className="followButton" variant="outline-success">Follow   </Button></p>
             </Col>
                 <Button variant="primary">Facebook</Button>{' '}
                 <Button variant="link">Twitter</Button>
                 <h5>${article?.price}</h5>
             </Row>
-            <hr/>
+            <hr/>             
             </section>
             <p>IMG{imageLink}</p>
-                <Image className="mx-auto articleImage" src={article?.imageLink} />
+                <Image className="mx-auto articleImage" src={article?.image_link} />
             <p> {article?.contents}</p>
             </MainLayout>
                   

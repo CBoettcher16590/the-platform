@@ -1,23 +1,37 @@
+  
 import { article } from "../routes/articles";
 import { IUser } from "./user";
 
-export interface IArticle{
+
+export interface ISubmittedArticle{
     
-    articleId: number;
     seriesId: number;
     userId:number;
     title:string;
     preview:string;
     contents:string;
-    imageLink:string;
+    image_link:string;
     price:number;
-    createdOn:string;
-    articleStatus:number;
+    article_status:number;
+}
+
+export interface IArticle{
+    
+    article_id: number;
+    userId:number;
+    title:string;
+    preview:string;
+    contents:string;
+    image_link:string;
+    price:number;
+    created_on:string;
+    article_status:number;
     rating:number[];
 }
 
 
 var mysql = require('mysql');
+
 var connection = mysql.createConnection({
      host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
      user     : 'admin',
@@ -29,77 +43,98 @@ export const ArticleModel = {
 
     getAll: async ():Promise<IArticle[]>  => {
 
-        return new Promise((resolve,reject)=>{
-           
-            connection.query(`SELECT * FROM article`, function (error:any, results:IArticle[]) {
-                if(error){
-                    reject(error);
-                } else {
-                    resolve(results)
-                }
-
-            });
-        });          
-    
- },
+        return new Promise((resolve,reject) => {
+        
+                var sql = `SELECT * FROM theplatformV2.article`;
+                            
+                connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                    } else {
+                        resolve(results);
+                    }  
+            }); 
+        });
+     },
 
     getById: async (articleId:number):Promise<IArticle> => {
 
         return new Promise((resolve,reject)=>{
             
-            connection.query(`SELECT * FROM article WHERE article_id = ${articleId}`, function (error:any, results:IArticle[]) {
-                if(error){
-                    reject(error);
-                } else {
-                    resolve(results[0])
-                }
-           
-            });
-
-        });          
-    },
-
-    addToPurchased:  async (article:IArticle, user:IUser) => {
-        return new Promise((resolve,reject)=>{
+            var sql = `SELECT * FROM theplatformV2.article WHERE article_id = ${articleId}`;
             
-            connection.query(`INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES(${article.articleId}, ${user.userId});`,
-                function (error:any, results:IArticle[]) {
-                if(error){
-                    reject(error);
-                } else {
-                    resolve(results[0])
-                }
-            });
-        });          
+                    connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                    } else {
+                        resolve(results[0]);
+                    }
+           
+                });
+            });        
     },
 
-    create: async( articleToCreate:IArticle)=> {
+    addToPurchased:  async (article:IArticle, user:IUser) => { //needs to be double checked
+
+        return new Promise((resolve,reject)=>{
+
+            var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES("${article.article_id}", "${user.user_id}");`;
+                connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });         
+    },
+
+    create: async( articleToCreate:ISubmittedArticle)=> {
         
-        // connection.connect();
-
-        // const newArticle:IArticle = connection.query(`INSERT INTO article(title, preview, contents, picture_link)
-        // VALUES(article_id, ${articleToCreate.seriesId}, ${articleToCreate.userId}, ${articleToCreate.title}, ${articleToCreate.preview}, 
-        //     ${articleToCreate.contents}, ${articleToCreate.imageLink}, CURDATE(), ${articleToCreate.price}, ${articleToCreate.articleStatus})`, function (error:any, results:any, fields:any) {
-        //     if (error) throw error;
-        //     // Line below is an example of how to get content
-        // });
-        // connection.end(); 
-        // return newArticle;
+        return new Promise((resolve,reject)=>{;
+            var sql = `INSERT INTO article VALUES (article_id, 2, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.image_link}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.article_status}, 0)`;
+                connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                        console.log("Error in Create Article Model: ", error);
+                    } else {
+                        resolve(results[0]);
+                        console.log("results in Article Create Model: ", results)
+                    }
+                });
+            });      
     },
 
-    publish: async ( article:IArticle)=> {
+    approveArticle: async ( article:IArticle)=> {
 
-    //     connection.connect();
+        return new Promise((resolve,reject)=>{
+            var sql = `UPDATE article SET article_status = 3 WHERE article_id = ${article.article_id};`;
+                connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                        console.log("Error in Create Article Model: ", error);
+                    } else {
+                        resolve(results[0]);
+                        console.log("approved Article worked")
+                    }
+                });
+            });    
+    },
 
-    //     const publishedArticle = connection.query(`UPDATE article SET statusTypeId='3' WHERE article.article_id = ${article.articleId} `, function (error:any, results:any, fields:any) {
-    //         if (error) throw error;
-    //         // Line below is an example of how to get content
-    //         return results;
-    //     });
-    //     connection.end();
+    rejectArticle: async ( article:IArticle)=> {
 
-    // return publishedArticle;
-         
+        return new Promise((resolve,reject)=>{
+
+            var sql = `UPDATE article SET article_status = 4 WHERE article_id = ${article.article_id};`;
+                connection.query(sql , function (error:any, results:IArticle[]) {
+                    if(error){
+                        reject(error);
+                        console.log("Error in Create Article Model: ", error);
+                    } else {
+                        resolve(results[0])
+                        console.log("Rejected Article worked")
+                    }
+                });
+            });        
     }
-
 }
