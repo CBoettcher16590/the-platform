@@ -9,10 +9,10 @@ import HorazontalDisplay from '../components/article/horazontalDisplay';
 
 function HomePage(props:{}){
 
-              
-       
+        
+
 return  <>
-              
+
         <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="/">The Platform</Navbar.Brand>
                 <Nav className="mr-auto">
@@ -29,7 +29,8 @@ return  <>
                  <Nav>
                          <Nav.Link href= '/AUProfile'>Author Page</Nav.Link>
                  </Nav>
-                 <Nav>
+        
+                 <Nav>  
                          <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
                  </Nav>
                         <Nav.Link href= '/signin'>Sign In!</Nav.Link>

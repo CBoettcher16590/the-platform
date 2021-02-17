@@ -31,8 +31,6 @@ import api from '../../api'
                 }).catch((error) => console.error(`Error: ${error}`));
                 
         },[]);
-      
-
 
         return (
             
@@ -50,7 +48,7 @@ import api from '../../api'
             </Col>
                 <Col className="authorInfo" lg="10">
                 <h5>Kent Brockman{article?.userId}</h5>
-                <p>Oct, 21 2020{article?.created_on} <Button className="followButton" variant="outline-success">Follow   </Button></p>
+                <p>{article?.created_on} <Button className="followButton" variant="outline-success">Follow   </Button></p>
             </Col>
                 <Button variant="primary">Facebook</Button>{' '}
                 <Button variant="link">Twitter</Button>
@@ -58,7 +56,6 @@ import api from '../../api'
             </Row>
             <hr/>             
             </section>
-            <p>IMG{imageLink}</p>
                 <Image className="mx-auto articleImage" src={article?.image_link} />
             <p> {article?.contents}</p>
             </MainLayout>

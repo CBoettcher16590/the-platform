@@ -2,21 +2,20 @@ import { TokenModel } from '../models/token';
 
     export function authenticateToken( request:any, response:any, next:()=>any ){
     
-    const userToken = window.localStorage.getItem("token");
-    console.log(userToken, "  AUTHE  ")
+    const authHeader = request.headers['authorization'];
     
-    
-    if(!userToken){
+    if(!authHeader){
         response.status(401).send({
-            message: "This is a protected resource. Please login first.<if(!authHeader)>"
+            message: "This is a protected resource. Please login first."
           });
         return;
     }
     
-    TokenModel.validateToken( userToken, (err)=>{ 
+    const token = authHeader.split(" ").pop();
+    TokenModel.validateToken( token, (err)=>{ 
     
     response.status(401).send({
-    message: "This is a protected resource. Please login first.<TokenModel.Validate>"
+    message: "This is a protected resource. Please login first"
 });
 
 }, (payload)=>{
