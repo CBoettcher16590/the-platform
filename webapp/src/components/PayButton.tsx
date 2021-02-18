@@ -20,7 +20,7 @@ export default function PayButton() {
          
     return (
              <Button
-             
+             className = "paynow"
                variant="primary"
                disabled={isLoading}
                onClick={handleClick}

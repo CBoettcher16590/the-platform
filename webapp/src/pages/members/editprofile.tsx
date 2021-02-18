@@ -60,13 +60,13 @@ return <>
         <Form.Label>About Me: </Form.Label>
         <Form.Control 
         maxLength = {100}
-        as="textarea" rows={3} />
+        as="textarea" rows={3} 
+        placeholder= "maximum of 100"/>
     </Form.Group>
 <Button>Update</Button>
 
 </Form>
 <br/>
-    <Nav.Link href= '/MEMupdatePersInfo' > Personal Information Settings</Nav.Link>
 </div>
 
 </>

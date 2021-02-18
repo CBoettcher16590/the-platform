@@ -8,12 +8,16 @@
     display: flex;
     margin-bottom: 15px;
 }
-
+.article {
+    height: 150px;
+    width: 250px;
+    border: 2px;
+}
 .cardImage{
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
     height:150px;
-    width:auto;
+    width:240px;
     object-fit: cover;
     margin-right: 20px;
 }
