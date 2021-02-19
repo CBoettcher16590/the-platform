@@ -140,8 +140,8 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
             <Card.Header>
                 <Card.Title className="">{article.title} ${article.price} </Card.Title>
               {<input onChange={(e)=>console.log(e.target.value)} type="checkbox" name="featuredCheckbox" value="0" id="featureCheck"/>}
-                {<label for="featuredCheckbox">Featured Articles</label>}
-                
+                {<label htmlFor="featuredCheckbox">Featured Articles</label>}
+                  //there was an error here originally.
             </Card.Header>
             
           </Card>

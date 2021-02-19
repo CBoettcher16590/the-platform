@@ -37,6 +37,6 @@ export default {
         console.log("Has the data local storage been filled out.")
     
         });
-    }
+    }   //probably mirror this command in the future instead of extracting from local storage, for privacy reasons
 
 }

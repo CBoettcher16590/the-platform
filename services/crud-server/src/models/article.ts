@@ -1,6 +1,7 @@
   
 import { article } from "../routes/articles";
 import { IUser } from "./user";
+import {singletonCONNECTION } from "../classes/class.singleton.connection"
 
 
 export interface ISubmittedArticle{
@@ -32,22 +33,21 @@ export interface IArticle{
 
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-     host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
-     user     : 'admin',
-     password : 'stargazer2020',
-    database : 'theplatformV2'
-});
+
+
+
 
 export const ArticleModel = {
 
     getAll: async ():Promise<IArticle[]>  => {
 
         return new Promise((resolve,reject) => {
-        
+
+                const db:any = singletonCONNECTION.getInstance();
+
                 var sql = `SELECT * FROM theplatformV2.article`;
                             
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                db.connection.query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
@@ -61,9 +61,11 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
             
+            const db:any = singletonCONNECTION.getInstance();
+            
             var sql = `SELECT * FROM theplatformV2.article WHERE article_id = ${articleId}`;
             
-                    connection.query(sql , function (error:any, results:IArticle[]) {
+                db.connection.query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
@@ -78,8 +80,10 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
 
+            const db:any = singletonCONNECTION.getInstance();
+
             var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES("${article.article_id}", "${user.user_id}");`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                db.connection.query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
@@ -92,8 +96,11 @@ export const ArticleModel = {
     create: async( articleToCreate:ISubmittedArticle)=> {
         
         return new Promise((resolve,reject)=>{;
+            
+            const db:any = singletonCONNECTION.getInstance();
+            
             var sql = `INSERT INTO article VALUES (article_id, 2, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.image_link}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.article_status}, 0)`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                db.connection.query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
@@ -108,8 +115,11 @@ export const ArticleModel = {
     approveArticle: async ( article:IArticle)=> {
 
         return new Promise((resolve,reject)=>{
+            
+            const db:any = singletonCONNECTION.getInstance();
+            
             var sql = `UPDATE article SET article_status = 3 WHERE article_id = ${article.article_id};`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                db.connection.query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
@@ -125,8 +135,10 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
 
+            const db:any = singletonCONNECTION.getInstance();
+
             var sql = `UPDATE article SET article_status = 4 WHERE article_id = ${article.article_id};`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                db.connection.query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);

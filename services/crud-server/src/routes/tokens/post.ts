@@ -7,7 +7,7 @@ interface ITokenPostRequest{
     _password: string;
 }
 
-export  function post(app:any){
+export function post(app:any){
 
 app.post('/tokens', async (request:any, response:any) => {
 
