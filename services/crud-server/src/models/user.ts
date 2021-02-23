@@ -1,5 +1,4 @@
-import { resolve } from "path";
-import { IsignUp } from "../interfaces";
+import DatabaseCONNECTION from '../classes/index'
 import { PasswordModel } from "./password";
 
 export interface IUser {
@@ -20,13 +19,7 @@ interface IUserSignup {
     password:string
 }
 
-var mysql = require('mysql');
-export var connection = mysql.createConnection({
-     host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
-     user     : 'admin',
-     password : 'stargazer2020',
-    database : 'theplatformV2'
-});
+const connection = new DatabaseCONNECTION();
 
 export  const UserModel = {
 
@@ -34,7 +27,7 @@ export  const UserModel = {
 
         return new Promise((resolve,reject)=>{
            
-            connection.query(`SELECT * FROM theplatformV2.user`, function (error:any, results:IUser[]) {
+            connection.connect().query(`SELECT * FROM theplatformV2.user`, function (error:any, results:IUser[]) {
                 if(error){
                     reject(error);
                 } else {
@@ -52,7 +45,7 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
 
         var sql = `SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`;
 
-        connection.query(sql , function (error:any, results:IUser[]) {
+        connection.connect().query(sql , function (error:any, results:IUser[]) {
             if(error){
                 console.log("Error:", error);
                 reject(error);
@@ -72,7 +65,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
                         VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate());`;
             
             console.log(user)     
-            connection.query(sql , function (error:any, results:IUserSignup) {
+            connection.connect().query(sql , function (error:any, results:IUserSignup) {
                 if(error){
                     console.log("Error:", error);
                     reject(error);
@@ -92,7 +85,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
 
             var sql = `UPDATE user SET disable_login = "${1}" WHERE user_id="${user.user_id}"`;
     
-            connection.query(sql , function (error:any, results:IUser[]) {
+            connection.connect().query(sql , function (error:any, results:IUser[]) {
                 if(error){
                     console.log("Error:", error);
                     reject(error);
@@ -110,7 +103,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
 
             var sql = `UPDATE user SET disable_login = "${0}" WHERE user_id= "${user.user_id}"`;
     
-            connection.query(sql , function (error:any, results:IUser[]) {
+            connection.connect().query(sql , function (error:any, results:IUser[]) {
                 if(error){
                     console.log("Error:", error);
                     reject(error);

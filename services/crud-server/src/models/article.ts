@@ -1,7 +1,7 @@
   
 import { article } from "../routes/articles";
 import { IUser } from "./user";
-
+import DatabaseCONNECTION from '../classes/index'
 
 export interface ISubmittedArticle{
     
@@ -30,14 +30,7 @@ export interface IArticle{
 }
 
 
-var mysql = require('mysql');
-
-var connection = mysql.createConnection({
-     host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
-     user     : 'admin',
-     password : 'stargazer2020',
-    database : 'theplatformV2'
-});
+const connection = new DatabaseCONNECTION();
 
 export const ArticleModel = {
 
@@ -47,7 +40,7 @@ export const ArticleModel = {
         
                 var sql = `SELECT * FROM theplatformV2.article`;
                             
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                connection.connect().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
@@ -63,7 +56,7 @@ export const ArticleModel = {
             
             var sql = `SELECT * FROM theplatformV2.article WHERE article_id = ${articleId}`;
             
-                    connection.query(sql , function (error:any, results:IArticle[]) {
+                connection.connect().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
@@ -79,7 +72,7 @@ export const ArticleModel = {
         return new Promise((resolve,reject)=>{
 
             var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES("${article.article_id}", "${user.user_id}");`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                connection.connect().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
@@ -93,7 +86,7 @@ export const ArticleModel = {
         
         return new Promise((resolve,reject)=>{;
             var sql = `INSERT INTO article VALUES (article_id, 2, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.image_link}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.article_status}, 0)`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                connection.connect().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
@@ -109,7 +102,7 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
             var sql = `UPDATE article SET article_status = 3 WHERE article_id = ${article.article_id};`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                connection.connect().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
@@ -126,7 +119,7 @@ export const ArticleModel = {
         return new Promise((resolve,reject)=>{
 
             var sql = `UPDATE article SET article_status = 4 WHERE article_id = ${article.article_id};`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+                connection.connect().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
