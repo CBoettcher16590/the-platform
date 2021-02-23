@@ -14,7 +14,7 @@ export default class DatabaseCONNECTION{
 
     public connect(){
         var mysql = require('mysql');
-        return mysql.createConnections({
+        return mysql.createConnection({
             host: process.env.SQL_CONNECTION_HOST,
             user:process.env.SQL_CONNECTION_USER,
             password:process.env.SQL_CONNECTION_PASSWORD,

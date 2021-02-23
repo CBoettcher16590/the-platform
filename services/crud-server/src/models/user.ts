@@ -39,6 +39,7 @@ export  const UserModel = {
     
  },
 
+
 getByEmail: async (userEmail:string):Promise<IUser[]> => {
        
     return new Promise((resolve,reject) => {
@@ -55,6 +56,7 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
         }); 
     });
 },
+
 
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
@@ -77,6 +79,8 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
 
         });
     },
+
+
     disableLogin: async (user:IUser) => {
        
         return new Promise((resolve,reject) => {
@@ -95,6 +99,8 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             }); 
         });
     },
+
+    
     enableLogin: async (user:IUser) => {
     
         return new Promise((resolve,reject) => {
