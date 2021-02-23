@@ -1,6 +1,8 @@
   
 import { article } from "../routes/articles";
 import { IUser } from "./user";
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 export interface ISubmittedArticle{
@@ -31,12 +33,9 @@ export interface IArticle{
 
 
 var mysql = require('mysql');
-
+var connectionInfo = process.env.SQL_CONNECTION;
 var connection = mysql.createConnection({
-     host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
-     user     : 'admin',
-     password : 'stargazer2020',
-    database : 'theplatformV2'
+    connectionInfo
 });
 
 export const ArticleModel = {

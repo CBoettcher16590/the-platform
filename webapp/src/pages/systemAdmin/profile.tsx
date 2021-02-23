@@ -104,7 +104,8 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
       {userList?.map(function(user, index){
         let name = user.first_name + " " + user.last_name;
-        let userDisableLogin = disableLogin[user.disable_login]
+        let userDisableLogin = disableLogin[user.disable_login];
+        
         return(
           <Accordion defaultActiveKey="1">
           <Card className="userCard">
@@ -140,7 +141,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
             <Card.Header>
                 <Card.Title className="">{article.title} ${article.price} </Card.Title>
               {<input onChange={(e)=>console.log(e.target.value)} type="checkbox" name="featuredCheckbox" value="0" id="featureCheck"/>}
-                {<label for="featuredCheckbox">Featured Articles</label>}
+                {<label htmlFor="featuredCheckbox">Featured Articles</label>}
                 
             </Card.Header>
             
@@ -149,12 +150,6 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
       })}
 
     </Card.Body>
-  </Card>
-
-
-  <Card className="reviewArticles">
-    <Card.Header><h3>s</h3></Card.Header>
-
   </Card>
 
 <div className= "raw">
