@@ -23,7 +23,7 @@ app.post('/tokens', async (request:any, response:any) => {
     const foundUserString:IUser = JSON.parse(JSON.stringify(foundUser[0]));
    
 
-    if(!foundUserString){
+    if(!foundUser){
         response.status(404).send({ //current none functional because works (skip)
             message: `Cannot find user with email: ${email}`
         });

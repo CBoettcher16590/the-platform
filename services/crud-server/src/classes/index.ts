@@ -12,14 +12,16 @@ export default class DatabaseCONNECTION{
         return DatabaseCONNECTION.instance;
     }
 
-    public connect(){
+    public connection(){
         var mysql = require('mysql');
-        return mysql.createConnection({
+        var pool = mysql.createPool({
+            connectionLimit: 50,
             host: process.env.SQL_CONNECTION_HOST,
             user:process.env.SQL_CONNECTION_USER,
             password:process.env.SQL_CONNECTION_PASSWORD,
             database:process.env.SQL_CONNECTION_DATABASE
         });
+        return pool;
     }
 
 }
