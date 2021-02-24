@@ -9,8 +9,8 @@ export function post (app:any){
         const hashedPass = PasswordModel.hash(request.body.password);
 
         if(user[0].password = hashedPass){
-            console.log(user[0], request.body);
-           response.status(200).send(user[0]); 
+            console.log("crudside login, user password matches");
+           return response.status(200).send(user[0]); 
         }
          response.status(404).send("Incorrect Password or Email");
     })

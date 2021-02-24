@@ -12,7 +12,8 @@ interface IUserInfo {
     disable_login:number
 }
 
-export default {
+export default 
+{
     post: async (body:any) => { 
     
         axios.post(`${HOSTNAME}/user`, body).then(responce => {
@@ -32,7 +33,7 @@ export default {
 
     patch: async (body:any) => {
         return axios.patch( `${HOSTNAME}/user`, body).then(responce => {
-            console.log(responce.data);
+            console.log("UserPatch",responce.data);
             return responce.data;
         });
     }

@@ -1,9 +1,7 @@
   
 import { article } from "../routes/articles";
 import { IUser } from "./user";
-import dotenv from 'dotenv';
-dotenv.config();
-
+import DatabaseCONNECTION from '../classes/index'
 
 export interface ISubmittedArticle{
     
@@ -32,37 +30,36 @@ export interface IArticle{
 }
 
 
-var mysql = require('mysql');
-var connectionInfo = process.env.SQL_CONNECTION;
-var connection = mysql.createConnection({
-    connectionInfo
-});
-
 export const ArticleModel = {
 
     getAll: async ():Promise<IArticle[]>  => {
+    
+        const dbConnection = new DatabaseCONNECTION();
 
         return new Promise((resolve,reject) => {
         
                 var sql = `SELECT * FROM theplatformV2.article`;
-                            
-                connection.query(sql , function (error:any, results:IArticle[]) {
+            
+                dbConnection.connection().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
                         resolve(results);
                     }  
-            }); 
-        });
+                }); 
+                dbConnection.connection().end();
+            });
      },
 
     getById: async (articleId:number):Promise<IArticle> => {
 
-        return new Promise((resolve,reject)=>{
-            
+        return new Promise((resolve,reject)=>{ 
+
+            const dbConnection = new DatabaseCONNECTION();
+
             var sql = `SELECT * FROM theplatformV2.article WHERE article_id = ${articleId}`;
-            
-                    connection.query(sql , function (error:any, results:IArticle[]) {
+
+                dbConnection.connection().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
@@ -70,6 +67,7 @@ export const ArticleModel = {
                     }
            
                 });
+                dbConnection.connection().end();
             });        
     },
 
@@ -77,22 +75,30 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
 
+            const dbConnection = new DatabaseCONNECTION();
+
             var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES("${article.article_id}", "${user.user_id}");`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+
+                dbConnection.connection().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                     } else {
                         resolve(results[0]);
                     }
                 });
+                dbConnection.connection().end();
             });         
     },
 
     create: async( articleToCreate:ISubmittedArticle)=> {
         
         return new Promise((resolve,reject)=>{;
+
+            const dbConnection = new DatabaseCONNECTION();
+
             var sql = `INSERT INTO article VALUES (article_id, 2, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.image_link}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.article_status}, 0)`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+    
+                dbConnection.connection().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
@@ -101,14 +107,19 @@ export const ArticleModel = {
                         console.log("results in Article Create Model: ", results)
                     }
                 });
+                dbConnection.connection().end();
             });      
     },
 
     approveArticle: async ( article:IArticle)=> {
 
         return new Promise((resolve,reject)=>{
+            
+        const dbConnection = new DatabaseCONNECTION();
+
             var sql = `UPDATE article SET article_status = 3 WHERE article_id = ${article.article_id};`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+      
+                dbConnection.connection().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
@@ -117,6 +128,7 @@ export const ArticleModel = {
                         console.log("approved Article worked")
                     }
                 });
+                dbConnection.connection().end();
             });    
     },
 
@@ -124,8 +136,10 @@ export const ArticleModel = {
 
         return new Promise((resolve,reject)=>{
 
+        const dbConnection = new DatabaseCONNECTION();
+
             var sql = `UPDATE article SET article_status = 4 WHERE article_id = ${article.article_id};`;
-                connection.query(sql , function (error:any, results:IArticle[]) {
+            dbConnection.connection().query(sql , function (error:any, results:IArticle[]) {
                     if(error){
                         reject(error);
                         console.log("Error in Create Article Model: ", error);
@@ -134,6 +148,7 @@ export const ArticleModel = {
                         console.log("Rejected Article worked")
                     }
                 });
+                dbConnection.connection().end();
             });        
     }
 }

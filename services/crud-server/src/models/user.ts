@@ -1,5 +1,5 @@
-import { resolve } from "path";
-import { IsignUp } from "../interfaces";
+import { response } from 'express';
+import DatabaseCONNECTION from '../classes/index'
 import { PasswordModel } from "./password";
 
 export interface IUser {
@@ -20,104 +20,132 @@ interface IUserSignup {
     password:string
 }
 
-var mysql = require('mysql');
-export var connection = mysql.createConnection({
-     host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
-     user     : 'admin',
-     password : 'stargazer2020',
-    database : 'theplatformV2'
-});
-
 export  const UserModel = {
 
     getAll: async ():Promise<IUser[]>  => {
 
         return new Promise((resolve,reject)=>{
-           
-            connection.query(`SELECT * FROM theplatformV2.user`, function (error:any, results:IUser[]) {
-                if(error){
-                    reject(error);
-                } else {
-                    resolve(results)
-                }
 
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection();
+
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err; // not connected
+
+                const sql = `SELECT * FROM theplatformV2.user`;
+                connection.query(sql, function (error:any, results:IUser[]) {
+                    connection.release();
+
+                    if(error){
+                        reject(error);
+                    } else{
+                        resolve(results)
+                    }
+                });
             });
         });          
     
  },
 
+
 getByEmail: async (userEmail:string):Promise<IUser[]> => {
        
     return new Promise((resolve,reject) => {
 
+        const dbConnection = new DatabaseCONNECTION();
+        const pool = dbConnection.connection();
         var sql = `SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`;
 
-        connection.query(sql , function (error:any, results:IUser[]) {
-            if(error){
-                console.log("Error:", error);
-                reject(error);
-            } else {
-                 resolve(results);
-            }              
-        }); 
+        pool.getConnection(function(err:any, connection:any){
+            if(err) throw err; // not connected
+
+            connection.query(sql, function (error:any, results:IUser[]) {
+                connection.release();
+
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results)
+                }
+            });
+        });
     });
 },
+
 
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
     return new Promise((resolve,reject) => {
             const hashedPassword:string = PasswordModel.hash(user.password);
-            
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection();
+
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
                         VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate());`;
             
-            console.log(user)     
-            connection.query(sql , function (error:any, results:IUserSignup) {
-                if(error){
-                    console.log("Error:", error);
-                    reject(error);
-                } else {
-                    resolve(results);
-                }
-                    
-            }); 
-
-        });
+                 pool.getConnection(function(err:any, connection:any){
+                    if(err) throw err; // not connected
+                        connection.query(sql, function (error:any, results:IUser[]) {
+                            connection.release();
+                                if(error){
+                                    reject(error);
+                                } else{
+                                    resolve(results[0])
+                                }
+                            });
+                        });
+            });
     },
+
     disableLogin: async (user:IUser) => {
        
         return new Promise((resolve,reject) => {
-    
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection();
+
             console.log("DISABLE: ", user.user_id);
 
             var sql = `UPDATE user SET disable_login = "${1}" WHERE user_id="${user.user_id}"`;
     
-            connection.query(sql , function (error:any, results:IUser[]) {
-                if(error){
-                    console.log("Error:", error);
-                    reject(error);
-                } else {
-                     resolve(results);
-                }              
-            }); 
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err; // not connected
+                connection.query(sql, function (error:any, results:IUser[]) {
+                    connection.release();
+
+                    if(error){
+                        reject(error);
+                    } else{
+                        resolve(results[0])
+                    }
+                });         
+            });
         });
     },
+
+    
     enableLogin: async (user:IUser) => {
     
         return new Promise((resolve,reject) => {
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection();
 
             console.log("ENABLE: ", user.user_id);
 
             var sql = `UPDATE user SET disable_login = "${0}" WHERE user_id= "${user.user_id}"`;
     
-            connection.query(sql , function (error:any, results:IUser[]) {
-                if(error){
-                    console.log("Error:", error);
-                    reject(error);
-                } else {
-                    resolve(results);
-                }              
-            }); 
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err; // not connected
+
+                connection.query(sql, function (error:any, results:IUser[]) {
+                    connection.release();
+
+                    if(error){
+                        reject(error);
+                    } else{
+                        resolve(results[0])
+                    }
+                });
+            });
         });
     },  
 }
