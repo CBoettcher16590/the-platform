@@ -12,9 +12,13 @@ export interface IUser {
     dateCreated:string,
     orgId:number,
     disableLogin:number
+    userDB: string,
+    bio: string,
+    phoneNumber: number
+    imgLink: string
 }
 
-interface IUserSignup {
+export interface IUserSignup {
     fName?:string,
     lName?:string,
     email?:string,

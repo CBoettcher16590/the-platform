@@ -1,5 +1,6 @@
 import { authenticateToken } from '../../middleware/authenticator';
 import { IUser, UserModel } from '../../models/user';
+import {userProfile} from '../../models/editmember'
 
 export function get( app:any ){
 
@@ -11,3 +12,5 @@ export function get( app:any ){
     });
 
 }
+
+
