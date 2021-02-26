@@ -10,14 +10,14 @@ import Admin_profile from './pages/systemAdmin/profile';
 import author_profile from './pages/author/profile';
 import AU_edit_profile from './pages/author/editprofile';
 import ED_edit_profile from './pages/editor/editprofile';
-import OR_edit_profile from './pages/organization/editprofile';
-import OR_personal_info from './pages/organization/personalInfo';
+import OR_edit_profile from './pages/OrgAdmin/editprofile';
+import OR_personal_info from './pages/OrgAdmin/personalInfo';
 import MEM_edit_profile from './pages/members/editprofile';
 import MEM_personal_info from './pages/members/personalInfo';
 import AD_edit_profile from './pages/systemAdmin/editprofile';
 import EditorProfile from './pages/editor/editorProfile';
 import OrganizationHome from './pages/organization/homepage';
-import Organization_profile from './pages/organization/profile';
+import Organization_profile from './pages/OrgAdmin/profile';
 
 export default function ThePlatform( props:{} ){
 

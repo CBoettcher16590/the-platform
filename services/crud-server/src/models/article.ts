@@ -6,15 +6,16 @@ export interface IArticle{
     articleId: number;
     seriesId: number;
     userId:number;
-    title:string;
-    preview:string;
+    title:"article title";
+    preview:"article preview";
     contents:string;
-    imageLink:string;
+    imageLink:"img link";
     price:number;
     createdOn:string;
     articleStatus:number;
     rating:number[];
 }
+
 
 
 var mysql = require('mysql');
