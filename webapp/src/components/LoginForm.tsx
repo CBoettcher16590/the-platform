@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
-import  useAuthentication  from '../data/useAuthentication';
-import  api from '../api';
+import api from '../api';
 
 
 export default function LoginForm(){
 
     const history = useHistory();
-    const authModel = useAuthentication();
+    // const authModel = useAuthentication(); //we never get something back here or rather never a logged in
     
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
 
     function handleLogin(e:any){
         e.preventDefault();
-        authModel.login(email, password);
-        history.push('/');
+        api.tokens.post({_email:email , _password:password});
+        api.user.post({email, password});
+        history.push('/'); //I think the above is fine. 
        };
 
-       console.log(email, password);
     
 
     return (

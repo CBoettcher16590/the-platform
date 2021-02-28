@@ -1,12 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import cat from '../../images/cat.jpg';
 import Littlecat from '../../images/little.jpg';
+import { useHistory } from 'react-router';
+import { IUser } from '../../../../services/crud-server/src/models/user';
+import api from '../../api'
+import { useState } from 'react';
 
 
+export default function Profile(){
 
-export default function profile(){
+  const history = useHistory();
+  const [LoggedInUser, setLoggedInUser] = useState<IUser>();
+
+  let windowUserId = localStorage.getItem("userID");
+
+  useEffect(()=>{
+    api.users.get().then((responce) => {
+      const userList:IUser[] = responce.data
+      const foundUser = userList.find((_user) => {
+        let _id = _user.user_id.toString();
+        windowUserId = _id;
+      });
+      
+      console.log(foundUser);
+
+    }).catch(error =>{ throw error})
+  },[]);
 
   return<>
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,25 +42,24 @@ export default function profile(){
 </Nav>
 </Navbar.Collapse>
 </Navbar>
-<br/>
+  
 
-<Card style={{ width: '20rem' }}>
+<div className="editorCardBG">
+    <Card className="editorInfoCard">
       <Card.Img variant="top" src= {cat} />
-<br/>
-
-<Card.Body>
-<Card.Title><h2>Donald Trump</h2></Card.Title>
-<br/>
-<br/>
-<Card.Title><h5>Bio</h5></Card.Title>
-
-<Card.Text>
-   Q: What’s the best thing about Switzerland?
-   A: I don’t know, but the flag is a big plus.
-</Card.Text>
-  <Nav.Link href = "/MEMupdateMyInfo" >Edit Profile</Nav.Link>
-</Card.Body>
-</Card>
+      <Card.Body className="editorInfo">
+        <Card.Title><h2>User Profile</h2></Card.Title>
+              <br/>
+              <br/>
+        <Card.Title><h5>Bio</h5></Card.Title>
+        <Card.Text>
+          Q: What’s the best thing about Switzerland?
+          A: I don’t know, but the flag is a big plus.
+        </Card.Text>
+        <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+      </Card.Body>
+  </Card>
+  </div>
 <br/>
 <Card className="text-center">
   <Card.Header><h3>Purchased Articles</h3></Card.Header>

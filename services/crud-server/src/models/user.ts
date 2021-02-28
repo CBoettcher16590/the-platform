@@ -1,14 +1,15 @@
-import { resolve } from "path";
-import { IsignUp } from "../interfaces";
+import { response } from 'express';
+import DatabaseCONNECTION from '../classes/index'
 import { PasswordModel } from "./password";
 
 export interface IUser {
-    userId:number,
-    userType:number,
-    fName:string,
-    lName:string,
+    user_id:number,
+    user_type_type_id:number,
+    first_name:string,
+    last_name:string,
     email:string,
     password:string,
+<<<<<<< HEAD
     dateCreated:string,
     orgId:number,
     disableLogin:number
@@ -23,132 +24,145 @@ export interface IUserSignup {
     lName?:string,
     email?:string,
     password?:string
+=======
+    date_created:string,
+    disable_login:number
 }
 
-var mysql = require('mysql');
-export var connection = mysql.createConnection({
-     host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
-     user     : 'admin',
-     password : 'stargazer2020',
-    database : 'theplatformV2'
-});
+interface IUserSignup {
+    first_name:string,
+    last_name:string,
+    email:string,
+    password:string
+>>>>>>> d2c675859f0fcaaa2cef6bb4cba4696f0dbe07a0
+}
 
 export  const UserModel = {
 
     getAll: async ():Promise<IUser[]>  => {
 
         return new Promise((resolve,reject)=>{
-           
-            connection.query(`SELECT * FROM theplatformV2.user`, function (error:any, results:IUser[]) {
-                if(error){
-                    reject(error);
-                } else {
-                    resolve(results)
-                }
 
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection();
+
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err; // not connected
+
+                const sql = `SELECT * FROM theplatformV2.user`;
+                connection.query(sql, function (error:any, results:IUser[]) {
+                    connection.release();
+
+                    if(error){
+                        reject(error);
+                    } else{
+                        resolve(results)
+                    }
+                });
             });
         });          
     
  },
- getByEmail: async (userEmail:number):Promise<IUser[]>  => {
 
-    return new Promise((resolve,reject)=>{
 
+getByEmail: async (userEmail:string):Promise<IUser[]> => {
        
-        connection.query(`SELECT * FROM theplatformV2.user WHERE email = ${userEmail}`, function (error:any, results:IUser[]) {
-            if(error){
-                reject(error);
-            } else {
-                resolve(results)
-            }
+    return new Promise((resolve,reject) => {
 
+        const dbConnection = new DatabaseCONNECTION();
+        const pool = dbConnection.connection();
+        var sql = `SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`;
+
+        pool.getConnection(function(err:any, connection:any){
+            if(err) throw err; // not connected
+
+            connection.query(sql, function (error:any, results:IUser[]) {
+                connection.release();
+
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results)
+                }
+            });
         });
-    });          
-
+    });
 },
+
 
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
     return new Promise((resolve,reject) => {
-
-        connection.connect(function (err:any){
-
-            if(err) throw err;
             const hashedPassword:string = PasswordModel.hash(user.password);
-            
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection();
+
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
-                        VALUES (${4}, '${user.fName}', '${user.lName}', '${user.email}', '${hashedPassword}', curdate());`;
+                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate());`;
             
-                        
-            connection.query(sql , function (error:any, results:IUserSignup) {
-                if(error){
-                    console.log("Error:", error);
-                    reject(error);
-                } else {
-                    resolve(results);
-                }
-                    
-            }); 
+                 pool.getConnection(function(err:any, connection:any){
+                    if(err) throw err; // not connected
+                        connection.query(sql, function (error:any, results:IUser[]) {
+                            connection.release();
+                                if(error){
+                                    reject(error);
+                                } else{
+                                    resolve(results[0])
+                                }
+                            });
+                        });
+            });
+    },
+
+    disableLogin: async (user:IUser) => {
+       
+        return new Promise((resolve,reject) => {
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection();
+
+            console.log("DISABLE: ", user.user_id);
+
+            var sql = `UPDATE user SET disable_login = "${1}" WHERE user_id="${user.user_id}"`;
+    
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err; // not connected
+                connection.query(sql, function (error:any, results:IUser[]) {
+                    connection.release();
+
+                    if(error){
+                        reject(error);
+                    } else{
+                        resolve(results[0])
+                    }
+                });         
+            });
         });
-           
-    });
-}
+    },
 
-
-
-
-
-
-
-
-//     getAll: ():IsignUp => {
-//     connection.connect();
     
-//         const query = connection.query('SELECT * FROM member', function (error:any, results:any, fields:any) {
-//             if (error) throw error;
-//             return results;
-//         });
-//     connection.end();
-//     const stringQuery = JSON.parse(query)
-//     return stringQuery;
-
-//  },
-//  getByEmail:(user:IsignUp):IsignUp => {
-//     connection.connect();
-//         const userEmail = JSON.stringify(user.email);
-//         const foundUser = connection.query(`SELECT * FROM member WHERE email = "${userEmail}" `, function (error:any, results:any, fields:any) {
-//             if (error) throw error;
-//             return results;
-//         });
-//     connection.end();
-//     return foundUser;
-
-//  },
-//  create: (newUser:IsignUp):IsignUp => {
-//     connection.connect();
+    enableLogin: async (user:IUser) => {
     
-//         const CreatedMember = connection.query(`INSERT INTO member VALUES(idmember, ${newUser.Fname},${newUser.Lname},
-//                 ${newUser.email},${newUser.phoneNumber},${newUser.password})`, function (error:any, results:any, fields:any) {
-//             if (error) throw error;
-//             return results;
-//         });
-//     connection.end();
+        return new Promise((resolve,reject) => {
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection();
+
+            console.log("ENABLE: ", user.user_id);
+
+            var sql = `UPDATE user SET disable_login = "${0}" WHERE user_id= "${user.user_id}"`;
     
-//     return CreatedMember;
-//     }
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err; // not connected
 
-  
-    // setAll: ( users:IsignUp[] ) => {
-    //     fs.writeFileSync(file, JSON.stringify(users, null, 4), { encoding: 'utf-8' });
-    // },
+                connection.query(sql, function (error:any, results:IUser[]) {
+                    connection.release();
 
-    // getByEmail: ( email:string ): IsignUp|undefined => {
-
-    //     return MemberModel.getAll().find( user => {
-    //         console.log(user, email);
-    //         return user.email === email;
-    //     });
-
-    // }
-
+                    if(error){
+                        reject(error);
+                    } else{
+                        resolve(results[0])
+                    }
+                });
+            });
+        });
+    },  
 }

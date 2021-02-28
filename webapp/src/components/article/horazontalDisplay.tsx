@@ -1,94 +1,56 @@
 import React, { useEffect, useState } from 'react';      
 import { CardDeck, Card } from 'react-bootstrap';
+import { useHistory } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
-import  {IUserLogin} from '../../api/login/index';
 import api from '../../api';
 import PayButton from '../PayButton';
 
+export default function HorazontalDisplay(){
 
-
-
-export default function HorazontalDisplay(props:{}, article:IArticle){
-
-  var [article1, setArticle] = useState<IArticle>(); 
-
-// const [article1, setArticle1] = useState< IArticle >();
-// const [article2, setArticle2] = useState<IArticle>();
-// const [article3, setArticle3] = useState<IArticle>();
-
-// const [articleList, setArticleList] = useState<IArticle[]>();
-
-const [user, setUser] = useState<IUserLogin>();
+const [articles, setArticles] = useState<IArticle[]>();
+const history = useHistory();
 
   useEffect(() => {
     api.articles.get().then((responce) => {
-      
-     setArticle(responce.data[0]);
-
-      // setArticle1(responce.data[0]);
-      // setArticle2(responce.data[1]);
-      // setArticle3(responce.data[2]);
+    setArticles(responce.data);
     }).catch((error: any) => console.error(`Error: ${error}`)); 
         },[]);
-    
-
-    useEffect(()=> {
-    
-      let userId = localStorage.getItem(user?.userId!);
-      console.log(userId);
-
-    }, []);
+  
+    const GoToArticle = (article:IArticle) => (event:any) => {
+      //here we find the article id for our Title, Link
+      let articleId = article.article_id;
+      //then We use history.push to redirect to that page
+      history.push(`/article/${articleId}`)
+    }
 
 return <>
-
 <section className="homeStories">
+  {articles?.map(function(_art, index){
+    let image = _art.image_link;
+    let title = _art.title;
+    let preview = _art.preview;
+    let createdOn = _art.created_on.slice(0,10);
 
-                        
-  <div className="homeCard">
-    <img className="cardImage" src={article.imageLink} />
-    <div className="article">
-      <h2>{article.title}</h2>
-      <p> 
-      {article.preview}
-      </p>
-      <p>
-      {article.createdOn}
-      </p>
-      <PayButton />
+    return (
+      <div className="homeCard">
+
+      <img className="cardImage" src={image} />
+
+      <div className="article">
+
+        <h2 onClick={GoToArticle(_art)}>{title}</h2>
+
+        <p>{preview}</p>
+
+        <p>Date Posted: {createdOn}</p>
+
+        <PayButton/>
+
+      </div>
     </div>
-  </div>
-
-
-  <div className="homeCard">
-    <img className="cardImage" src={article.imageLink} />
-    <div className="article">
-      <h2>{article.title}</h2>
-      <p>
-      {article.preview}
-      </p>
-      <p>
-      {article.createdOn}
-      </p>
-      <PayButton/>
-    </div>
-  </div>
-
-
-  <div className="homeCard">
-    <img className="cardImage" src={article.imageLink} />
-    <div className="article">
-      <h2>{article.title}</h2>
-      <p>
-      {article.preview}
-      </p>
-      <p>
-      {article.createdOn}
-      </p>
-      <PayButton/>
-    </div>
-  </div>
-
+    )
+  })}
 </section> 
-
+      
 </>
  }

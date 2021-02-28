@@ -37,7 +37,7 @@ export default class Organization_profile extends React.Component {
                     <Nav.Link href="/OrgHome">The-Platform</Nav.Link>
                 </Nav>
                 <Nav className="mr-auto">
-                    <Nav.Link href="#OrganizationAuthors">Organization Authors</Nav.Link>
+                    <Nav.Link href="/ORgauthors">Organization Authors</Nav.Link>
                 </Nav>
                 <Nav className="mr-auto">
                     <Nav.Link href="#OrganizationArticles">Organization Articles</Nav.Link>

@@ -19,7 +19,7 @@
     "lodash": "^4.17.15",
     "mysql": "^2.18.1",
     "react": "^16.13.1",
-    "react-bootstrap": "^1.0.1",
+    "react-bootstrap": "^1.4.3",
     "react-dom": "^16.13.1",
     "react-phone-number-input": "^3.1.8",
     "react-router": "^5.2.0",
@@ -28,7 +28,7 @@
     "react-scripts": "3.4.1",
     "react-user-profile": "^1.0.3",
     "recoil": "^0.1.2",
-    "typescript": "^3.7.5"
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",

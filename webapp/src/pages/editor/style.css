@@ -1,3 +1,38 @@
 .editorInfo{
     align-content: center;
 }
+
+.editorInfoCard{
+    width: 30em;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow:  0 0 5px #120129;
+
+}
+
+.editorCardBG{
+    padding-top: 25px;
+    background-color: rgb(167, 230, 255) ;
+}
+.reviewArticles{
+    box-shadow:  0 0 3px #120129;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20px;
+    width: 85em;
+}
+
+.pendingArticles{
+    margin-bottom: 25px;
+    box-shadow:  0 0 5px #120129;
+}
+
+#pendingBoxTitle{
+    font-size: 40px;
+    text-decoration: underline;
+}
+
+.editButtons{
+    border: 1px solid black;
+    margin-right: 15px;
+}

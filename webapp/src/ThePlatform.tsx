@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from './pages/home';
 import SignUp from './pages/forms/signup';
 import Login from './pages/forms/signin';
-import profile from './pages/members/member-profile';
+import Profile from './pages/members/member-profile';
 import SubmitArticle from './pages/submitArticle'
 import IndvArticlePage from './pages/indvArticle';
 import Admin_profile from './pages/systemAdmin/profile';
@@ -19,6 +19,7 @@ import AD_edit_profile from './pages/systemAdmin/editprofile';
 import EditorProfile from './pages/editor/editorProfile';
 import OrganizationHome from './pages/organization/homepage';
 import Organization_profile from './pages/OrgAdmin/profile';
+import OrgArticles from './pages/organization/orgArticles';
 
 export default function ThePlatform( props:{} ){
 
@@ -35,7 +36,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/ADupdateMyInfo" component={AD_edit_profile} />
 
                     {/* Member Routes */}
-                    <Route path="/profile" component={profile} />
+                    <Route path="/profile" component={Profile} />
                     <Route path="/MEMupdateMyInfo" component={MEM_edit_profile} />
                     <Route path="/MEMPersInfo" component={MEM_personal_info} />
 
@@ -48,8 +49,9 @@ export default function ThePlatform( props:{} ){
                     {/* ORG Routes */}
                     <Route path="/OrgHome" component={OrganizationHome} />
                     <Route path="/ORupdateMyInfo" component={OR_edit_profile} />
+                    <Route path="/OrgArticles" component={OrgArticles} />
                     <Route path="/ORupdatePersInfo" component={OR_personal_info} />
-                    <Route path="/ORgauthors" component={Org_authors} />
+                    <Route path="/Orgauthors" component={Org_authors} />
                     <Route path="/orgProfile" component={Organization_profile} />
 
                     {/* Misc */}

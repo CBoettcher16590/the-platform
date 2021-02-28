@@ -3,9 +3,16 @@ import { Navbar, Nav, NavDropdown, Card, CardGroup, Button, Col, Form, Row } fro
 
 export default function Org_authors() {
     return <>
-    <div>
-
-    </div>
     
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">   
+    <Nav>
+      <Nav.Link href="/OrgProfile"> My Account</Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar>
+<br/>
     </>
     }
