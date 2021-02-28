@@ -11,6 +11,7 @@ import author_profile from './pages/author/profile';
 import AU_edit_profile from './pages/author/editprofile';
 import ED_edit_profile from './pages/editor/editprofile';
 import OR_edit_profile from './pages/OrgAdmin/editprofile';
+import Org_authors from './pages/OrgAdmin/editprofile';
 import OR_personal_info from './pages/OrgAdmin/personalInfo';
 import MEM_edit_profile from './pages/members/editprofile';
 import MEM_personal_info from './pages/members/personalInfo';
@@ -48,6 +49,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/OrgHome" component={OrganizationHome} />
                     <Route path="/ORupdateMyInfo" component={OR_edit_profile} />
                     <Route path="/ORupdatePersInfo" component={OR_personal_info} />
+                    <Route path="/ORgauthors" component={Org_authors} />
                     <Route path="/orgProfile" component={Organization_profile} />
 
                     {/* Misc */}
