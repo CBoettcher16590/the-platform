@@ -17,22 +17,17 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
   const [userList, setUserList] = useState<IUser[]>();
   const [publishedArticleList, setPublishedArticleList] =useState<IArticle[]>();
+  
 
   //variables for the userList
   const disableLogin = ["False", "True"];
   const varient = ["danger","success"];
-  const buttonText = ["Disable User Login","Enable User Login"];
+  const permissionButtonText = ["Disable User Login","Enable User Login"];
   const userType = ["Admin","Author","Editor","Member"];
+  
 
 
   // Inside the .catch I wanted to show that both these useEffects do the same thing even though they are written differently
-  useEffect(() => {
-    api.users.get().then((responce) => {
-      const allUsers:IUser[] = responce.data;
-      setUserList(allUsers);
-    }).catch(err => console.log("Error: ", err));
-  }, [userList]);
-  
   useEffect(()=>{
     api.articles.get().then((responce) => {
       const allArticles:IArticle[] = responce.data;
@@ -41,8 +36,25 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     }).catch((err) => { console.log(`Error: ${err}`); })
   },[]);
 
-  const ChangeLoginPermission = (user:IUser) => (event:any) =>{
+  useEffect(() => {
+    api.users.get().then((responce) => {
+      const allUsers:IUser[] = responce.data;
+      setUserList(allUsers);
+    }).catch(err => console.log("Error: ", err));
+  }, [userList]);
+  
 
+  const FeaturedArticle = (article:IArticle) => (event:any) => {
+
+    event.preventDefault();
+
+    api.articles.feature(article);
+
+    //refresh
+    history.go(0);
+  }
+
+  const ChangeLoginPermission = (user:IUser) => (event:any) =>{
     event.preventDefault();
     //Here we change the user that is being sent to the CRUD server partch so we know what to do
     if(user.disable_login === 0){
@@ -117,7 +129,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
             <Accordion.Collapse eventKey="0">
               <div>
                 {/* you can ignore this error for now, it works */}
-                <Button onClick={ChangeLoginPermission(user)} variant={varient[user.disable_login]}>{buttonText[user.disable_login]}</Button>
+                <Button onClick={ChangeLoginPermission(user)} variant={varient[user.disable_login]}>{permissionButtonText[user.disable_login]}</Button>
             </div>
             </Accordion.Collapse>
             
@@ -135,16 +147,15 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     </Card.Header>
     <Card.Body>
     
-      {publishedArticleList?.map(function(article,index){
+      {publishedArticleList?.map((article,index) =>{
         return(
           <Card>
             <Card.Header>
-                <Card.Title className="">{article.title} ${article.price} </Card.Title>
-              {<input onChange={(e)=>console.log(e.target.value)} type="checkbox" name="featuredCheckbox" value="0" id="featureCheck"/>}
-                {<label htmlFor="featuredCheckbox">Featured Articles</label>}
-                
+                <Card.Title className="">{article.title}</Card.Title>
             </Card.Header>
-            
+          {/* Here I reuse the user.disable varient to reuse code */}
+            <Button onClick={FeaturedArticle(this)} variant="dark">Test</Button>
+
           </Card>
         )
       })}

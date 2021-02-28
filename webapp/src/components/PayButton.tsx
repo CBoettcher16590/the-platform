@@ -14,7 +14,7 @@ export default function PayButton() {
                  setLoading(false);
 });
 }
-}, [isLoading]);
+}, [ ]);
          
     const handleClick = () => setLoading(true);
          
@@ -25,7 +25,7 @@ export default function PayButton() {
                disabled={isLoading}
                onClick={handleClick}
              >
-               {isLoading ? 'Loading…' : 'Pay Now'}
+               {isLoading ? 'Loading…' : 'Add To Favorites'}
              </Button>
 );
 }

@@ -31,6 +31,13 @@ export default {
                 },  
             });
         },
+    feature: async ( body:any ) => {
+        return axios.patch(`${HOSTNAME}/article`, body, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                },  
+        });
+    },
     delete: async ( articleId : number ) => {
         return axios.delete(`${HOSTNAME}/article/${articleId}`, {
             headers: {

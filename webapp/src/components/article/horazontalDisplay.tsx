@@ -42,7 +42,7 @@ return <>
 
         <p>{preview}</p>
 
-        <p>{createdOn}</p>
+        <p>Date Posted: {createdOn}</p>
 
         <PayButton/>
 
