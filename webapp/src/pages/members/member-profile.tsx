@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Card, CardGroup, Nav, Navbar } from 'react-bootstrap'
+import { Button, Card, CardGroup, Nav, Navbar } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import cat from '../../images/cat.jpg';
 import Littlecat from '../../images/little.jpg';
@@ -29,6 +29,12 @@ export default function Profile(){
     }).catch(error =>{ throw error})
   },[]);
 
+function onClickLogout(){
+  window.localStorage.clear()
+  history.push('/');
+  alert("Logged Out")
+}
+
   return<>
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -39,6 +45,9 @@ export default function Profile(){
 
 <Nav>
       <Navbar.Brand href="/profile"> My Account</Navbar.Brand>
+</Nav>
+<Nav>
+  <Button onClick={onClickLogout}>Logout</Button>
 </Nav>
 </Navbar.Collapse>
 </Navbar>

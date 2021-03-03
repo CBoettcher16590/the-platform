@@ -52,6 +52,11 @@ const Reject = (article:IArticle) => (event:any) => {
   //this is just a refresh
   history.go(0);
 }
+function onClickLogout(){
+  window.localStorage.clear()
+  history.push('/');
+  alert("Logged Out")
+}
 
 
      return <>
@@ -63,6 +68,9 @@ const Reject = (article:IArticle) => (event:any) => {
         </Nav> 
         <Nav>
           <Navbar.Brand href="/editorProfile"> My Account</Navbar.Brand>
+        </Nav>
+        <Nav>
+          <Button onClick={onClickLogout}>Logout</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

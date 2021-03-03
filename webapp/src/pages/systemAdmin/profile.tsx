@@ -65,7 +65,12 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     api.users.patch(user);
     //refresh
     history.go(0);
+  }
 
+  function onClickLogout(){
+    window.localStorage.clear()
+    history.push('/');
+    alert("Logged Out")
   }
 
         return <>
@@ -77,6 +82,9 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
           </Nav> 
             <Nav>
               <Navbar.Brand href="/ADProfile"> My Account</Navbar.Brand>
+            </Nav>
+            <Nav>
+              <Button onClick={onClickLogout}>Logout</Button>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

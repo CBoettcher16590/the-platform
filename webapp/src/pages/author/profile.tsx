@@ -8,7 +8,7 @@ import './style.css'
 
 
 export default class author_profile extends React.Component {
-
+//did not add logout to the author profile, as its a class, should we make this a regular function?
   state = {
     likes: 0
   };
@@ -25,6 +25,8 @@ export default class author_profile extends React.Component {
     })
   }
 
+
+  
 
 render(){
   return (

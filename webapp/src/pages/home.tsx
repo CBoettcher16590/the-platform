@@ -5,16 +5,28 @@ import { Button, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDr
 import PayButton from '../components/FavButton';
 import Footer from '../components/footer';
 import HorazontalDisplay from '../components/article/horazontalDisplay';
+import { IUser } from '../../../services/crud-server/src/models/user';
+import { useHistory } from 'react-router';
 
 
 function HomePage(props:{}){
 
+        const [loggedInUser, setLoggedInUser] = useState<string>();
+        const history = useHistory();
         
+        useEffect(() => {
+                const user = window.localStorage.getItem("firstName");
+                if(user){
+                 setLoggedInUser(user);       
+                }
+                history.push("/");
+                    },[]);
 
 return  <>
 
         <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="/">The Platform</Navbar.Brand>
+                <Nav className="navUser"> Logged In As: {loggedInUser} </Nav>
                 <Nav className="mr-auto">
                  </Nav>
                  <Nav>
@@ -29,7 +41,7 @@ return  <>
                  <Nav>
                          <Nav.Link href= '/AUProfile'>Author Page</Nav.Link>
                  </Nav>
-        
+
                  <Nav>  
                          <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
                  </Nav>
