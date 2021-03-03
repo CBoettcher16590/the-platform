@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import PayButton from '../components/PayButton';
+import PayButton from '../components/FavButton';
 import Footer from '../components/footer';
 import HorazontalDisplay from '../components/article/horazontalDisplay';
 

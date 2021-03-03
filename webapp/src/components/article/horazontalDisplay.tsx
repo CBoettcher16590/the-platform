@@ -3,7 +3,7 @@ import { CardDeck, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
-import PayButton from '../PayButton';
+import PayButton from '../FavButton';
 
 export default function HorazontalDisplay(){
 

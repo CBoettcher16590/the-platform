@@ -14,7 +14,7 @@ export default function PayButton() {
                  setLoading(false);
 });
 }
-}, [ ]);
+}, [ isLoading ]);
          
     const handleClick = () => setLoading(true);
          

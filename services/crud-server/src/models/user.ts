@@ -27,7 +27,7 @@ export  const UserModel = {
         return new Promise((resolve,reject)=>{
 
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
 
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
@@ -53,7 +53,7 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
     return new Promise((resolve,reject) => {
 
         const dbConnection = new DatabaseCONNECTION();
-        const pool = dbConnection.connection();
+        const pool = dbConnection.connection;
         var sql = `SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`;
 
         pool.getConnection(function(err:any, connection:any){
@@ -78,7 +78,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     return new Promise((resolve,reject) => {
             const hashedPassword:string = PasswordModel.hash(user.password);
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
 
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
                         VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate());`;
@@ -101,7 +101,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
        
         return new Promise((resolve,reject) => {
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
 
             console.log("DISABLE: ", user.user_id);
 
@@ -127,7 +127,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
         return new Promise((resolve,reject) => {
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
 
             console.log("ENABLE: ", user.user_id);
 

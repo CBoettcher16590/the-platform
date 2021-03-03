@@ -42,7 +42,7 @@ export const ArticleModel = {
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
             
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
@@ -66,7 +66,7 @@ export const ArticleModel = {
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
             
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
@@ -90,7 +90,7 @@ export const ArticleModel = {
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
             
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
@@ -114,7 +114,7 @@ export const ArticleModel = {
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
             
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
@@ -139,7 +139,7 @@ export const ArticleModel = {
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
             
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
@@ -164,7 +164,7 @@ export const ArticleModel = {
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
             
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
@@ -184,17 +184,17 @@ export const ArticleModel = {
     },
 
     addToFeatured: async ( article:IArticle)=> {
-
+        console.log("add to featured model")
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
             
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
 
                 var sql = `UPDATE article SET feature_tag = "${FeatureTypes.featured}" WHERE article_id = "${article.article_id}";`;
-
+                console.log(sql, "add to featured ARTICLE MODEL")
                 connection.query(sql, function (error:any, results:IArticle[]){
                     connection.release();
                     if(error){

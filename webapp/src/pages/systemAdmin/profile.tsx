@@ -51,7 +51,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     api.articles.feature(article);
 
     //refresh
-    history.go(0);
+   //history.go(0);
   }
 
   const ChangeLoginPermission = (user:IUser) => (event:any) =>{
@@ -147,14 +147,14 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     </Card.Header>
     <Card.Body>
     
-      {publishedArticleList?.map((article,index) =>{
+      {publishedArticleList?.map((_article,index) =>{
         return(
           <Card>
             <Card.Header>
-                <Card.Title className="">{article.title}</Card.Title>
+                <Card.Title className="">{_article.title}</Card.Title>
             </Card.Header>
           {/* Here I reuse the user.disable varient to reuse code */}
-            <Button onClick={FeaturedArticle(this)} variant="dark">Test</Button>
+            <Button onClick={FeaturedArticle(_article)} variant="dark">Test</Button>
 
           </Card>
         )
