@@ -11,6 +11,7 @@ export default function PayButton() {
            useEffect(() => {
              if (isLoading) {
                simulateNetworkRequest().then(() => {
+                
                  setLoading(false);
 });
 }

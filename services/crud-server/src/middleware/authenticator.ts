@@ -14,9 +14,11 @@ import { TokenModel } from '../models/token';
     const token = authHeader.split(" ").pop();
     TokenModel.validateToken( token, (err)=>{ 
     
-    response.status(401).send({
-    message: "This is a protected resource. Please login first"
-});
+    if(err){
+        return response.status(401).send({
+            message: "This is a protected resource. Please login first"
+        });
+    }
 
 }, (payload)=>{
 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
 import { HOSTNAME } from '../config';
 
 export default {
@@ -31,10 +32,23 @@ export default {
                 },  
             });
         },
-    feature: async ( body:any ) => {
+    approval: async ( body:any ) => {
+        console.log("approvalAPI")
         return axios.patch(`${HOSTNAME}/article`, body, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                //maybe I can use to identify the patch types?
+                Code:"Approval",
+                },  
+        });
+    },
+    feature: async ( body:any ) => {
+        console.log("featureAPI")
+        return axios.patch(`${HOSTNAME}/article`, body, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                //maybe I can use to identify the patch types?
+                Code:"Feature",
                 },  
         });
     },

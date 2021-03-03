@@ -40,7 +40,7 @@ export default function EditorProfile(){
   const Publish = (article:IArticle) => (event:any) => {
     //Here we are changing the article status so we can know what to do in the patch route
     article.article_status = 3;
-    api.articles.patch(article);
+    api.articles.approval(article);
     //this is just a refresh
     history.go(0);
 }
@@ -48,7 +48,7 @@ export default function EditorProfile(){
 const Reject = (article:IArticle) => (event:any) => {
   //Here we are changing the article status so we can know what to do in the patch route
   article.article_status = 4;
-  api.articles.patch(article);
+  api.articles.approval(article);
   //this is just a refresh
   history.go(0);
 }

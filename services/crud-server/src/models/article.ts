@@ -5,7 +5,7 @@ import DatabaseCONNECTION from '../classes/index'
 
 //right now we only have a "featured" section, but I made this an enum in case we want to expand in the future
 enum FeatureTypes {
-    featured
+    featured = "featured"
 }
 
 export interface ISubmittedArticle{
@@ -32,6 +32,7 @@ export interface IArticle{
     created_on:string;
     article_status:number;
     rating:number[];
+    feature_tag:string;
 }
 
 
@@ -71,7 +72,7 @@ export const ArticleModel = {
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
                 
-                var sql = `SELECT * FROM theplatformV2.article WHERE article_id = ${articleId}`;
+                var sql = `SELECT * FROM article WHERE article_id = '${articleId}'`;
                 connection.query(sql, function (error:any, results:IArticle[]){
                     connection.release();
 
@@ -134,6 +135,7 @@ export const ArticleModel = {
         });       
     },
 
+// for some reason, my feature patch is sending here
     approveArticle: async ( article:IArticle)=> {
 
         return new Promise((resolve,reject) => {
@@ -160,7 +162,6 @@ export const ArticleModel = {
     },
 
     rejectArticle: async ( article:IArticle)=> {
-        
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
@@ -184,7 +185,6 @@ export const ArticleModel = {
     },
 
     addToFeatured: async ( article:IArticle)=> {
-        console.log("add to featured model")
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
@@ -194,7 +194,6 @@ export const ArticleModel = {
                 if(err) throw err;
 
                 var sql = `UPDATE article SET feature_tag = "${FeatureTypes.featured}" WHERE article_id = "${article.article_id}";`;
-                console.log(sql, "add to featured ARTICLE MODEL")
                 connection.query(sql, function (error:any, results:IArticle[]){
                     connection.release();
                     if(error){

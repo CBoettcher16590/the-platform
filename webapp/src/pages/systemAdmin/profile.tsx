@@ -41,7 +41,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
       const allUsers:IUser[] = responce.data;
       setUserList(allUsers);
     }).catch(err => console.log("Error: ", err));
-  }, [userList]);
+  }, []);
   
 
   const FeaturedArticle = (article:IArticle) => (event:any) => {
@@ -162,7 +162,10 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
                 <Card.Title className="">{_article.title}</Card.Title>
             </Card.Header>
           {/* Here I reuse the user.disable varient to reuse code */}
-            <Button onClick={FeaturedArticle(_article)} variant="dark">Test</Button>
+          <div>
+            <Button onClick={FeaturedArticle(_article)} variant="info">Feature Article</Button>  
+          </div>
+            
 
           </Card>
         )

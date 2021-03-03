@@ -3,29 +3,30 @@ import { CardDeck, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
-import PayButton from '../FavButton';
+import FavButton from '../FavButton';
 
 export default function HorazontalDisplay(){
 
-const [articles, setArticles] = useState<IArticle[]>();
+const [featuredArticles, setFeaturedArticles] = useState<IArticle[]>();
 const history = useHistory();
-
+  //Here we use a useEffect to bring in ALL the articles
   useEffect(() => {
     api.articles.get().then((responce) => {
-    setArticles(responce.data);
+    const featuredArt:IArticle[] = responce.data.filter((_art: IArticle) => _art.feature_tag === "featured")
+    setFeaturedArticles(featuredArt);
     }).catch((error: any) => console.error(`Error: ${error}`)); 
         },[]);
-  
-    const GoToArticle = (article:IArticle) => (event:any) => {
-      //here we find the article id for our Title, Link
-      let articleId = article.article_id;
-      //then We use history.push to redirect to that page
-      history.push(`/article/${articleId}`)
+
+  const GoToArticle = (article:IArticle) => (event:any) => {
+    //here we find the article id for our Title, Link
+    let articleId = article.article_id;
+    //then We use history.push to redirect to that page
+    history.push(`/article/${articleId}`)
     }
 
 return <>
 <section className="homeStories">
-  {articles?.map(function(_art, index){
+  {featuredArticles?.map(function(_art, index){
     let image = _art.image_link;
     let title = _art.title;
     let preview = _art.preview;
@@ -44,7 +45,7 @@ return <>
 
         <p>Date Posted: {createdOn}</p>
 
-        <PayButton/>
+        <FavButton/>
 
       </div>
     </div>
