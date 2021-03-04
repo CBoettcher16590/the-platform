@@ -9,24 +9,13 @@ export interface IUser {
     last_name:string,
     email:string,
     password:string,
-<<<<<<< HEAD
-    dateCreated:string,
-    orgId:number,
-    disableLogin:number
-    userDB: string,
-    bio: string,
-    phoneNumber: number
-    imgLink: string
-}
-
-export interface IUserSignup {
-    fName?:string,
-    lName?:string,
-    email?:string,
-    password?:string
-=======
     date_created:string,
-    disable_login:number
+    disable_login:number,
+    phoneNumber: Date,
+    userDB: Date, 
+    imgLink:string
+    bio:string
+    
 }
 
 interface IUserSignup {
@@ -34,7 +23,6 @@ interface IUserSignup {
     last_name:string,
     email:string,
     password:string
->>>>>>> d2c675859f0fcaaa2cef6bb4cba4696f0dbe07a0
 }
 
 export  const UserModel = {

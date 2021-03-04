@@ -15,11 +15,7 @@ export interface ISubmittedArticle{
     title:"article title";
     preview:"article preview";
     contents:string;
-<<<<<<< HEAD
-    imageLink:"img link";
-=======
     image_link:string;
->>>>>>> d2c675859f0fcaaa2cef6bb4cba4696f0dbe07a0
     price:number;
     article_status:number;
 }
@@ -38,17 +34,6 @@ export interface IArticle{
     rating:number[];
 }
 
-<<<<<<< HEAD
-
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-     host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
-     user     : 'admin',
-     password : 'stargazer2020',
-    database : 'theplatformV2'
-});
-=======
->>>>>>> d2c675859f0fcaaa2cef6bb4cba4696f0dbe07a0
 
 export const ArticleModel = {
 

@@ -9,7 +9,7 @@ export default function Org_authors() {
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">   
     <Nav>
-      <Nav.Link href="/OrgProfile"> My Account</Nav.Link>
+      <Nav.Link href="/OrgProfile"> My</Nav.Link>
     </Nav>
   </Navbar.Collapse>
 </Navbar>

@@ -4,7 +4,23 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
 import { useHistory } from 'react-router';
 import  _Update  from '../../data/updateinfo';
+import api from '../../api';
 
+
+// export default function LoginForm(){
+
+//     const history = useHistory();
+//     // const authModel = useAuthentication(); //we never get something back here or rather never a logged in
+    
+//     const [ email, setEmail ] = useState<string>('');
+//     const [ password, setPassword ] = useState<string>('');
+
+//     function handleLogin(e:any){
+//         e.preventDefault();
+//         api.tokens.post({_email:email , _password:password});
+//         api.user.post({email, password});
+//         history.push('/'); //I think the above is fine. 
+//        };
 
 
 export default function MEM_edit_profile() {

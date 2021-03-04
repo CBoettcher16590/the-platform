@@ -1,4 +1,6 @@
 import {UserModel, IUser} from '../../models/user';
+import {UserProfile} from '../../models/editmember';
+
 
 export function patch(app:any){
 

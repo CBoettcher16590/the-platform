@@ -33,7 +33,11 @@ return  <>
                  <Nav>
                          <Nav.Link href= '/OrgHome'>Organization Page</Nav.Link>
                  </Nav>
-        
+
+                 <Nav>
+                         <Nav.Link href= '/Orgauthors'>Organization Authors</Nav.Link>
+                 </Nav>
+                
                  <Nav>  
                          <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
                  </Nav>
