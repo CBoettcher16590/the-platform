@@ -21,6 +21,8 @@ export class singletonCONNECTION {
         return singletonCONNECTION.instance
     }
 
+    //empty commit.
+
     private constructor( ){
         //removed the if clause. Because no reason to do a double check.
         //if it's null in the above get instance, it's likely going to be null on this check 😆
