@@ -37,7 +37,7 @@ export default {
         return axios.patch(`${HOSTNAME}/article`, body, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-                //maybe I can use to identify the patch types?
+                //Code is used to identify what we need to do in the patch req
                 Code:"Approval",
                 },  
         });
@@ -47,7 +47,7 @@ export default {
         return axios.patch(`${HOSTNAME}/article`, body, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-                //maybe I can use to identify the patch types?
+                //Code is used to identify what we need to do in the patch req
                 Code:"Feature",
                 },  
         });
