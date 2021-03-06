@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { HOSTNAME } from '../../config';
+import { HOSTNAME } from '../config';
+
 
 interface IUserInfo {
     user_id:string,
@@ -12,9 +13,16 @@ interface IUserInfo {
     disable_login:number
 }
 
-export default 
-{
+interface IUserLogin {
+    email:string,
+    password:string
+}
+
+
+
+export default {
     post: async (body:any) => { 
+        console.log(body.email);
     
         axios.post(`${HOSTNAME}/user`, body).then(responce => {
             let data:IUserInfo = responce.data;
@@ -26,20 +34,9 @@ export default
             window.localStorage.setItem("userID", data.user_id);
             window.localStorage.setItem("email", data.email);
 
-            console.log("Has the data localstorage been filled out.")
+        console.log("Has the data local storage been filled out.")
     
         });
-    },
+    }   //probably mirror this command in the future instead of extracting from local storage, for privacy reasons
 
-    patch: async (body:any) => {
-        return axios.patch( `${HOSTNAME}/user`, body).then(responce => {
-            console.log("UserPatch",responce.data);
-            return responce.data;
-        });
-    }
 }
-
-
-
-//we need a sole get.
-//we need a patch that works.

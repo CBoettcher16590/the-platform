@@ -1,6 +1,7 @@
 import express from "express";
 import cors from 'cors';
 
+import * as User from './routes/users/user';
 import * as Users from './routes/users';
 import * as Articles from './routes/articles';
 import * as Tokens from './routes/tokens';
@@ -24,6 +25,12 @@ function loadEndpoints( endpoint:any ){
 }
 
 [ Users ].forEach( ImportedObject => {
+    
+    Object.values( ImportedObject ).forEach( loadEndpoints );
+
+});
+
+[ User ].forEach( ImportedObject => {
     
     Object.values( ImportedObject ).forEach( loadEndpoints );
 

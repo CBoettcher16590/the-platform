@@ -9,6 +9,24 @@ import { useState } from 'react';
 
 export default function MEM_personal_info() {
 
+    //const fNameOriginal:string = window.localStorage.getItem("firstName");            
+    // const lnameOriginal:string = window.localStorage.getItem("lastName");
+    const emailOriginal = window.localStorage.getItem("email");
+    //birthday
+    //New Phone Number
+   
+    const [ firstName, setFirstName ] = useState<string>('');
+    const [ lastName, setLastName ] = useState<string>('');
+    const [ email, setNewEmail ] = useState<string>('');
+
+
+//ideally you'd want to call an apiget 
+
+// <Form.Control type="Number"  placeholder={`${emailOriginal}`} />
+
+
+
+
  return <>
 <div>
 <Navbar bg="dark" variant="dark">
@@ -19,6 +37,7 @@ export default function MEM_personal_info() {
 </div>
 
 {/* LOAD CURRENT DATA MVP */}
+
 
 <Form className="profileInfo">
     <Form.Group as={Row} >      
@@ -35,7 +54,7 @@ export default function MEM_personal_info() {
             Email
         </Form.Label>
         <Col sm={10}>
-            <Form.Control type="Number"  placeholder="New Email" />  
+            <Form.Control type="Number"  placeholder={`${emailOriginal}`} />
         </Col>
     </Form.Group>
 
