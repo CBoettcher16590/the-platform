@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button, Col, Form, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
+ 
 export default function OR_edit_profile() {
 return <>
 <div>

@@ -1,9 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button, Col, Form, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
+import { useHistory } from 'react-router';
+import  _Update  from '../../data/updateinfo';
+import api from '../../api';
+
+
+// export default function LoginForm(){
+
+//     const history = useHistory();
+//     // const authModel = useAuthentication(); //we never get something back here or rather never a logged in
+    
+//     const [ email, setEmail ] = useState<string>('');
+//     const [ password, setPassword ] = useState<string>('');
+
+//     function handleLogin(e:any){
+//         e.preventDefault();
+//         api.tokens.post({_email:email , _password:password});
+//         api.user.post({email, password});
+//         history.push('/'); //I think the above is fine. 
+//        };
 
 
 export default function MEM_edit_profile() {
+    const history = useHistory();
+
+    const UpdateInfoHandle = _Update();
+
+    const [fName, setfName] = useState<string>();
+    const [lName, setlName] = useState<string>();
+    const [email, setEmail] = useState<string>();
+    const [bio, setbio] = useState<string>();
+    const [imglink, setlimgLink] = useState<string>();
+    const [userBD, setUersBD] = useState<string>();
+    const [phoneNumber, setphoneNumber] = useState<number>();
+
+    function handelUpdate(e:any){
+        e.preventDefault();
+        console.log("FNAME: ", fName,"LNAME: ", lName, " EMAIL: ", email," BIO: ", bio, " ImgLink: ", imglink, " UserBD: ", userBD, "PhoneNumber:", phoneNumber );
+        // the ! will allow us to handel the "undefined error"
+        UpdateInfoHandle._Update(fName!, lName!, email!,phoneNumber!, imglink!, userBD!, bio! );
+        history.push('/');
+    }
 
 return <>
 <div>
@@ -14,13 +53,29 @@ return <>
 </Navbar>
 <br />
 <h6> Change profile Information</h6>
+<Form.Group as={Row} >      
+        <Form.Label column sm={10}>
+            First name
+        </Form.Label>
+        <Col sm={10}>
+            <Form.Control type="email"  placeholder="New Email" />  
+        </Col>
+    </Form.Group>
+    <Form.Group as={Row} >      
+        <Form.Label column sm={10}>
+            Last name
+        </Form.Label>
+        <Col sm={10}>
+            <Form.Control type="email"  placeholder="New Email" />  
+        </Col>
+    </Form.Group>
     <Form style= {{alignContent: "normal"}}>
     <Form.Group as={Row} >      
         <Form.Label column sm={10}>
             Profile Picture
         </Form.Label>
         <Col sm={10}>
-            <Form.Control type="Number"placeholder="Enter New Image URL" />  
+            <Form.Control type="url"placeholder="Enter New Image URL" />  
         </Col>
     </Form.Group>
     
@@ -29,7 +84,7 @@ return <>
             Email
         </Form.Label>
         <Col sm={10}>
-            <Form.Control type="Number"  placeholder="New Email" />  
+            <Form.Control type="email"  placeholder="New Email" />  
         </Col>
     </Form.Group>
 
@@ -38,7 +93,7 @@ return <>
             Phone
         </Form.Label>
         <Col sm={10}>
-            <Form.Control type="Number"  placeholder="New Phone Number" />
+            <Form.Control type="Phone number"  placeholder="New Phone Number" />
         </Col>
     </Form.Group>
 
@@ -51,22 +106,18 @@ return <>
         </Col>
     </Form.Group>   
 
-    <Form.Group as={Row}>
-    <Col sm={{ span: 10, offset: 2 }}>
-    <Button type="submit">Done</Button>
-    </Col>
-    </Form.Group>
     <Form.Group controlId="exampleForm.ControlTextarea1">
         <Form.Label>About Me: </Form.Label>
         <Form.Control 
-        maxLength = {100}
-        as="textarea" rows={3} />
+        maxLength = {150}
+        as="textarea" rows={3} 
+        placeholder= "Maximum of 100"/>
     </Form.Group>
-<Button>Update</Button>
-
+    <Button type="submit" onClick={handelUpdate}>
+                Update
+            </Button>
 </Form>
 <br/>
-    <Nav.Link href= '/MEMupdatePersInfo' > Personal Information Settings</Nav.Link>
 </div>
 
 </>

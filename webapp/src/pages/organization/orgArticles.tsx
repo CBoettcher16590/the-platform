@@ -7,7 +7,7 @@ import Littlecat from '../../images/little.jpg'
 
 
 
- export default function OrganizationHome (porps: {}) {
+ export default function OrgArticles (porps: {}) {
      
 
 
@@ -18,9 +18,6 @@ import Littlecat from '../../images/little.jpg'
   <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">   
-      <Nav className="mr-auto">
-      <Nav.Link href="#OrganizationArticles">Organization Articles</Nav.Link>
-      </Nav>
     <Nav>
       <Nav.Link href="/OrgProfile"> My Account</Nav.Link>
     </Nav>
@@ -115,7 +112,3 @@ import Littlecat from '../../images/little.jpg'
 
 </>
  }
-
-//  <Nav className="mr-auto">
-//  <Nav.Link href="#OrganizationAuthors">Organization Authors</Nav.Link>
-// </Nav>
