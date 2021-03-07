@@ -1,5 +1,7 @@
 .authorInfo{
     align-content: center;
+    
+        
 }
 
 .authorInfoCard{
@@ -9,6 +11,7 @@
 }
 
 .authorCardBG{
+    padding: 20px 0 20px 0;
     background-color: rgb(167, 230, 255) ;
 }
 .likeCounter{

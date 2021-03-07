@@ -45,7 +45,6 @@ render(){
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-    <br />
     <div className="authorCardBG">
         <Card className="authorInfoCard">
           <Card.Img variant="top" src= {cat} />
