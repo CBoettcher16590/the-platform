@@ -11,8 +11,7 @@ import author_profile from './pages/author/profile';
 import AU_edit_profile from './pages/author/editprofile';
 import ED_edit_profile from './pages/editor/editprofile';
 import OR_edit_profile from './pages/OrgAdmin/editprofile';
-import OrgAuthors from './pages/OrgAdmin/OrgAuthors';
-import OR_personal_info from './pages/OrgAdmin/personalInfo';
+import OrgAuthors from './pages/OrgAdmin/OrgAuthors'; 
 import MEM_edit_profile from './pages/members/editprofile';
 import MEM_personal_info from './pages/members/personalInfo';
 import AD_edit_profile from './pages/systemAdmin/editprofile';
@@ -20,6 +19,8 @@ import EditorProfile from './pages/editor/editorProfile';
 import OrganizationHome from './pages/organization/homepage';
 import Organization_profile from './pages/OrgAdmin/profile';
 import OrgArticles from './pages/organization/orgArticles';
+import OrganizationAdminHome from './pages/OrgAdmin/adminHome';
+import OrganizationAd_profile from './pages/OrgAdmin/profile';
 
 export default function ThePlatform( props:{} ){
 
@@ -50,10 +51,10 @@ export default function ThePlatform( props:{} ){
                     <Route path="/OrgHome" component={OrganizationHome} />
                     <Route path="/ORupdateMyInfo" component={OR_edit_profile} />
                     <Route path="/OrgArticles" component={OrgArticles} />
-                    <Route path="/ORupdatePersInfo" component={OR_personal_info} />
                     <Route path="/Orgauthors" component={OrgAuthors} />
-                    <Route path="/orgProfile" component={Organization_profile} />
-
+                    <Route path="/orgProfile" component={Organization_profile} /> 
+                    <Route path="/orgAdminProfile" component={OrganizationAd_profile} /> 
+                    <Route path="/orgAdminHome" component={OrganizationAdminHome} />
                     {/* Misc */}
                     <Route path="/signin" component={Login} />
                     <Route path="/signup" component={SignUp} />

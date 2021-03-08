@@ -8,7 +8,14 @@ return <>
 <div>
     <Navbar bg="dark" variant="dark">
     <Nav className="mr-auto">
-    <Nav.Link href= "/OrgHome">My Account</Nav.Link>
+    <Nav.Link href= "/orgAdminHome">The-PlatForm </Nav.Link>
+</Nav>
+
+<Nav className="mr-auto">
+      <Nav.Link href="/Orgauthors">Organization Authors</Nav.Link>
+      </Nav>
+    <Nav className="mr-auto">
+    <Navbar.Brand href= "/orgAdminProfile">My Account</Navbar.Brand>
 </Nav>
 </Navbar>
 <br />
@@ -26,6 +33,46 @@ return <>
 </Col>
 </Row>
 <br/>
+
+  <Form.Group as={Row} >
+    <Form.Label column sm={2}>
+      Email
+    </Form.Label>
+    <Col sm={10}>
+      <Form.Control type="email" placeholder="New Email" />
+    </Col>
+  </Form.Group>
+  <Form.Group as={Row} >
+    <Form.Label column sm={2}>
+      Phone
+    </Form.Label>
+    <Col sm={10}>
+      <Form.Control type="Number" maxLength= {10} placeholder="New Phone Number" />
+    </Col>
+  </Form.Group>
+  <Form.Group as={Row} >
+    <Form.Label column sm={2}>
+      Gender
+    </Form.Label>
+    <Col sm={10}>
+      <Form.Control type="text" maxLength= {1} placeholder="Enter Only F or M" />
+    </Col>
+  </Form.Group>
+  <Form.Group as={Row} >
+    <Form.Label column sm={2}>
+      BirthDate
+    </Form.Label>
+    <Col sm={10}>
+      <Form.Control type="date"  placeholder="BirthDate" />
+    </Col>
+  </Form.Group>
+
+  <Form.Group as={Row}>
+    <Col sm={{ span: 10, offset: 2 }}>
+      <Button type="submit">Done</Button>
+    </Col>
+  </Form.Group>
+
     <Form.Group controlId="exampleForm.ControlTextarea1">
     <Form.Label>About Me: </Form.Label>
     <Form.Control 
@@ -36,7 +83,6 @@ return <>
 
 </Form>
 <br/>
-    <Nav.Link href= '/ORupdatePersInfo' > Personal Information Settings</Nav.Link>
 </div>
 
 </>

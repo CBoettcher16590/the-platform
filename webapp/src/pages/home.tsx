@@ -47,7 +47,7 @@ return  <>
                  </Nav>
 
                  <Nav>
-                         <Nav.Link href= '/Orgauthors'>Organization Authors</Nav.Link>
+                         <Nav.Link href= '/orgAdminHome'>Organization Admin</Nav.Link>
                  </Nav>
                 
                  <Nav>  

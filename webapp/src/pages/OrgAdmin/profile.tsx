@@ -3,7 +3,7 @@ import { Navbar, Nav, Button, Card } from 'react-bootstrap';
 import cat from '../../images/cat.jpg'
 
 
-export default class Organization_profile extends React.Component {
+export default class OrganizationAd_profile extends React.Component {
 
     state = {
       likes: 0
@@ -34,16 +34,13 @@ export default class Organization_profile extends React.Component {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-                    <Nav.Link href="/OrgHome">The-Platform</Nav.Link>
+                    <Nav.Link href="/orgAdminHome">The-Platform</Nav.Link>
                 </Nav>
                 <Nav className="mr-auto">
-                    <Nav.Link href="/ORgauthors">Organization Authors</Nav.Link>
-                </Nav>
-                <Nav className="mr-auto">
-                    <Nav.Link href="#OrganizationArticles">Organization Articles</Nav.Link>
+                    <Nav.Link href="/Orgauthors">Organization Authors</Nav.Link>
                 </Nav>
                 <Nav>
-                    <Navbar.Brand href="/OrgProfile"> My Account</Navbar.Brand>
+                    <Navbar.Brand href="/orgAdminProfile"> My Account</Navbar.Brand>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
