@@ -86,7 +86,7 @@ export const ArticleModel = {
         });       
     },
 
-    addToPurchased:  async (article:IArticle, user:IUser) => { //needs to be double checked
+    addToFavorite:  async (article:IArticle, user:IUser) => { //needs to be double checked
 
         return new Promise((resolve,reject) => {
 
