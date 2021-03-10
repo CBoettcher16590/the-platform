@@ -76,6 +76,29 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
         });
     });
 },
+getByID: async (userID:string):Promise<IUser[]> => {
+       
+    return new Promise((resolve,reject) => {
+
+        const dbConnection = new DatabaseCONNECTION();
+        const pool = dbConnection.connection;
+        var sql = `SELECT * FROM theplatformV2.user WHERE user_id = "${userID}"`;
+
+        pool.getConnection(function(err:any, connection:any){
+            if(err) throw err; // not connected
+
+            connection.query(sql, function (error:any, results:IUser[]) {
+                connection.release();
+
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results)
+                }
+            });
+        });
+    });
+},
 
 
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {

@@ -7,34 +7,36 @@ import { useHistory } from 'react-router';
 import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api'
 import { useState } from 'react';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
 
 
 export default function Profile(){
 
   const history = useHistory();
-  const [LoggedInUser, setLoggedInUser] = useState<IUser>();
+  const [favoriteArticles, setFavoriteArticles] = useState<IArticle[]>();
+  const userID = localStorage.getItem("userID");
 
-  let windowUserId = localStorage.getItem("userID");
+  const GoToArticle = (article:IArticle) => (event:any) => {
+    //here we find the article id for our Title, Link
+    let articleId = article.article_id;
+    //then We use history.push to redirect to that page
+    history.push(`/article/${articleId}`)
+    }
 
-  useEffect(()=>{
-    api.users.get().then((responce) => {
-      const userList:IUser[] = responce.data
-      const foundUser = userList.find((_user) => {
-        let _id = _user.user_id.toString();
-        windowUserId = _id;
-      });
-      
-      console.log(foundUser);
+  useEffect(() => {
+  //get all the articles that this user has favorited... user_has_article
+  api.articles.getForFavList(userID).then((responce) => {
+    const favArticles:IArticle[] = responce.data;
+    return setFavoriteArticles(favArticles);
+  })
 
-    }).catch(error =>{ throw error})
-  },[]);
+}, []);
+
 
 function onClickLogout(){
   window.localStorage.clear()
   history.push('/');
-  alert("Logged Out")
 }
-
   return<>
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -52,7 +54,8 @@ function onClickLogout(){
 </Navbar.Collapse>
 </Navbar>
   
-
+{/* We need this to get the actual members information */}
+{/* As a note, these say editor, because they use the same styling */}
 <div className="editorCardBG">
     <Card className="editorInfoCard">
       <Card.Img variant="top" src= {cat} />
@@ -69,94 +72,39 @@ function onClickLogout(){
       </Card.Body>
   </Card>
   </div>
-<br/>
-<Card className="text-center">
+
+
+{/* ================= FAVORITED ARTICLES ================= */}
+
+<Card className="text-center purchasedArticles">
   <Card.Header><h3>Purchased Articles</h3></Card.Header>
   <Card.Body>
-  <CardGroup>
-  <Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-</Card.Text>
-</Card.Body>
-</Card>
-<Card>
-    <Card.Img variant="top" src={Littlecat}/>
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-</Card.Text>
-</Card.Body>
 
-</Card>
-<Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
+<section>
+  {favoriteArticles?.map(function(_art:IArticle){
+     let image = _art.image_link;
+     let title = _art.title;
+     let preview = _art.preview;
+     let createdOn = _art.created_on.slice(0,10);
+     return (
+      <div className="favCard">
 
-  </Card>
-</CardGroup>
-<br/>
+      <img className="favImage" src={image} />
 
-<Nav.Link href= "/profilePurchased" >See All </Nav.Link>
+      <div className="favArticle">
+
+      <h2 onClick={GoToArticle(_art)}>{title}</h2>
+
+        <p>{preview}</p>
+
+        <p>Date Posted: {createdOn}</p>
+  
+      </div>
+    </div>
+    )
+  })}
+</section> 
   </Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
-
-<br/>
-<Card className="text-center">
-  <Card.Header><h3>My Favorite List</h3></Card.Header>
-  <Card.Body>
-  <CardGroup>
-  <Card>
-  <Card.Img variant="top" src={Littlecat} />
-  <Card.Body>
-  <Card.Title><h4>Article title</h4></Card.Title>
-  <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-</Card.Text>
-</Card.Body>
-</Card>
-<Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-</Card.Text>
-</Card.Body>
-
-</Card>
-  <Card>
-  <Card.Img variant="top" src={Littlecat} />
-  <Card.Body>
-  <Card.Title><h4>Article title</h4></Card.Title>
-  <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-</Card.Text>
-</Card.Body>
-
-</Card>
-</CardGroup>
-<br/>
-  <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
-</Card.Body>
   <Card.Footer className="text-muted" />
 </Card>
 <br/>

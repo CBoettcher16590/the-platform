@@ -86,7 +86,7 @@ export const ArticleModel = {
         });       
     },
 
-    addToPurchased:  async (article:IArticle, user:IUser) => { //needs to be double checked
+    addToFavorite:  async (article:IArticle, userID:string) => { //needs to be double checked
 
         return new Promise((resolve,reject) => {
 
@@ -96,7 +96,7 @@ export const ArticleModel = {
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
                 
-                var sql = `INSERT INTO theplatformV2.article_has_user (articleID, userID) VALUES("${article.article_id}", "${user.user_id}");`;
+                var sql = `INSERT INTO user_has_article VALUES(${article.article_id}, ${userID});`;
                 connection.query(sql, function (error:any, results:IArticle[]){
                     connection.release();
 
@@ -104,6 +104,29 @@ export const ArticleModel = {
                         reject(error)
                     } else {
                         resolve(results[0]);
+                    }
+                });
+            });
+        });                
+    },
+
+    getFromFavorites:  async (userID:string) => {
+        
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+               var sql = `SELECT * FROM user_has_article a JOIN article b ON a.article_id = b.article_id WHERE a.user_id = ${userID};`;
+                connection.query(sql, function (error:any, results:IArticle[]){
+                    connection.release();
+
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results);
                     }
                 });
             });
@@ -119,7 +142,7 @@ export const ArticleModel = {
             
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
-
+                //need to update sql statemnet
                 var sql = `INSERT INTO article VALUES (article_id, 2, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.image_link}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.article_status}, 0)`;
 
                 connection.query(sql, function (error:any, results:IArticle[]){
@@ -135,7 +158,6 @@ export const ArticleModel = {
         });       
     },
 
-// for some reason, my feature patch is sending here
     approveArticle: async ( article:IArticle)=> {
 
         return new Promise((resolve,reject) => {
