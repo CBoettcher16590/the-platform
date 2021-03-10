@@ -6,7 +6,7 @@ import Image from 'react-bootstrap/Image'
 import {IArticle} from '../../../../services/crud-server/src/models/article';
 import { useParams } from 'react-router';
 import api from '../../api'
-
+ 
 
     const IndvArticle = () => {
         const params = useParams<{id:string}>();

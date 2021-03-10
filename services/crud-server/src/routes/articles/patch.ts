@@ -4,8 +4,8 @@ import {IArticle, ArticleModel} from '../../models/article';
 enum ArticleCode{
     Featured = 'Feature',
     Approval = "Approval"
-}
-
+} 
+ 
 export function patch(app:any){
 
     app.patch('/article', async(request:any, response:any) => {

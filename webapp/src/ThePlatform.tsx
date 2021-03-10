@@ -38,7 +38,7 @@ export default function ThePlatform( props:{} ){
 
                     {/* Member Routes */}
                     <Route path="/profile" component={Profile} />
-                    <Route path="/MEMupdateMyInfo" component={MEM_edit_profile} />
+                    <Route path="/MEMupdateMyInfo"  component={MEM_edit_profile} />
                     <Route path="/MEMPersInfo" component={MEM_personal_info} />
 
                     {/* Article/Author Routes */}
