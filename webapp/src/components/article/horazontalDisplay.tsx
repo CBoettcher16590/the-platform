@@ -18,7 +18,7 @@ const history = useHistory();
     }).catch((error: any) => console.error(`Error: ${error}`)); 
         },[]);
 
-  const GoToArticle = (article:IArticle) => (event:any) => {
+   const GoToArticle = (article:IArticle) => (event:any) => {
     //here we find the article id for our Title, Link
     let articleId = article.article_id;
     //then We use history.push to redirect to that page
@@ -45,7 +45,7 @@ const history = useHistory();
     
             <p>Date Posted: {createdOn}</p>
     
-            <FavButton/>
+            <FavButton{..._art}/>
     
           </div>
         </div>

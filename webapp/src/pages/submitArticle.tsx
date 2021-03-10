@@ -18,8 +18,7 @@ import ArticleSubmission from '../data/submitArticle';
   const [preview, setPreview] = useState<string>("");
   const [imageLink, setImageLink] = useState<string>("");
   const [contents, setContents] = useState<string>("");
-  const [price, setPrice] = useState<string>("");
-  // const [userId, setuserId] = useState<number>();
+    // const [userId, setuserId] = useState<number>();
   
   const submit = ArticleSubmission();
 
@@ -29,7 +28,7 @@ import ArticleSubmission from '../data/submitArticle';
 
   function handelSubmit(e:any){
     e.preventDefault();
-    submit.ArticleSubmission(title!, preview!, imageLink!, contents!, price!, userId!);
+    submit.ArticleSubmission(title!, preview!, imageLink!, contents!, userId!);
     console.log("Success!");
     history.push('/');
   }
@@ -75,16 +74,6 @@ return <>
       type="text"
       placeholder="Enter an Article Title" />
     </Form.Group>
-
-    <Form.Group as={Col}>
-      <Form.Label>Article Price</Form.Label>
-      <Form.Control
-        value={price}
-        onChange={(e)=>setPrice(e.target.value)}
-        type="text"
-        placeholder="Set the Article Price"/>
-    </Form.Group>
-
   </Form.Row>
 
     <Form.Group>

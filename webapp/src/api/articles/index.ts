@@ -25,6 +25,22 @@ export default {
                 },  
             });
         },
+    addToFav: async ( body:any ) => {
+        return axios.post(`${HOSTNAME}/favoriteArticle` , body, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                },  
+            });
+        },
+    getForFavList: async ( body:any ) => {
+        return axios.get(`${HOSTNAME}/favoriteArticle` , {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                //in this case, body is going to be a userID
+                Code:`${body}`
+                },  
+            });
+        },
     patch: async ( body:any ) => {
         return axios.patch(`${HOSTNAME}/article`, body, {
             headers: {
