@@ -2,8 +2,10 @@ import React from 'react';
 import { assert, expect } from 'chai';
 import ThePlatform from '../ThePlatform';
 import { mount } from 'enzyme';
+import sinon from 'sinon';
 
 
+//https://enzymejs.github.io/enzyme/docs/api/mount.html
 
 describe('Integration Testing', () => {
 
@@ -19,6 +21,18 @@ describe('Integration Testing', () => {
 
     })
 })
+
+
+//playing around with a default.
+describe('<Foo />', () => {
+    it('calls componentDidMount', () => {
+      sinon.spy(ThePlatform.prototype, 'componentDidMount');
+      const wrapper = mount(<ThePlatform />);
+      expect(ThePlatform.prototype.componentDidMount).to.have.property('callCount', 1);
+    });
+  
+});
+  
 
 
 
