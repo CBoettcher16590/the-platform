@@ -51,7 +51,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     api.articles.feature(article);
 
     //refresh
-   //history.go(0);
+   history.go(0);
   }
 
   const ChangeLoginPermission = (user:IUser) => (event:any) =>{
@@ -156,6 +156,14 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     <Card.Body>
     
       {publishedArticleList?.map((_article,index) =>{
+        var isFeatured:boolean;
+
+        if(_article.feature_tag === "featured"){
+          isFeatured = true;
+        }else{
+          isFeatured = false;
+        }
+
         return(
           <Card>
             <Card.Header>
@@ -163,7 +171,8 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
             </Card.Header>
           {/* Here I reuse the user.disable varient to reuse code */}
           <div>
-            <Button onClick={FeaturedArticle(_article)} variant="info">Feature Article</Button>  
+            <Button onClick={FeaturedArticle(_article)} variant="info">Article Featured : {isFeatured.toString().toUpperCase()}</Button>
+            
           </div>
             
 
@@ -175,50 +184,6 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   </Card>
 
 <div className= "raw">
-<Card className="text-center" style={{ width: '100rem' }}>
-  <Card.Header><h3>Purchased Articles</h3></Card.Header>
-  <Card.Body>
-  <CardGroup>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src={little}/>
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-      </Card.Text>
-    </Card.Body>
-
-  </Card>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
-
-  </Card>
-</CardGroup>
-<br/>
-
-<Nav.Link href= "/profilePurchased" >See All </Nav.Link>
-  </Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
 
 <br/>
 <Card className="text-center"  style={{ width: '100rem' }}>

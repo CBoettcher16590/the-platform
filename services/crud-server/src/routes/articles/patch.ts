@@ -17,8 +17,8 @@ export function patch(app:any){
         //Then Depending on the PatchCode we select the task to be completed
         switch(patchCode){
             case ArticleCode.Featured: {
-                console.log("switch, Feat")
-                ArticleModel.addToFeatured(foundArticle);
+
+                ArticleModel.toggleFeatured(foundArticle);
 
                 break;
             }

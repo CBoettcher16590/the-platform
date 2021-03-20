@@ -9,7 +9,11 @@ export function post( app:any ){
         const payloadArticle:IArticle = request.body[0];
         const userID = request.body[1];
 
-        //Adds article to fav
+
+        //need to add a way to check if a user has certain article first
+
+        
+        //Adds article to fav   
         await ArticleModel.addToFavorite(payloadArticle, userID).catch((err) => {throw err});
 
         console.log("Successfully Added to Favorites");

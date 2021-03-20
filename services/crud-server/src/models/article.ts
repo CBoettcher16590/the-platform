@@ -5,6 +5,7 @@ import DatabaseCONNECTION from '../classes/index'
 
 //right now we only have a "featured" section, but I made this an enum in case we want to expand in the future
 enum FeatureTypes {
+    none = "",
     featured = "featured"
 }
 
@@ -143,7 +144,7 @@ export const ArticleModel = {
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
                 //need to update sql statemnet
-                var sql = `INSERT INTO article VALUES (article_id, 2, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.image_link}", CURDATE(), "${articleToCreate.price}", ${articleToCreate.article_status}, 0)`;
+                var sql = `INSERT INTO article VALUES (article_id, null, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.image_link}", CURDATE(), 2, 0, null)`;
 
                 connection.query(sql, function (error:any, results:IArticle[]){
                     connection.release();
@@ -206,7 +207,41 @@ export const ArticleModel = {
         }); 
     },
 
-    addToFeatured: async ( article:IArticle)=> {
+    toggleFeatured: async ( article:IArticle)=> {
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            var sqlFeature =`UPDATE article SET feature_tag = "${FeatureTypes.featured}" WHERE article_id = "${article.article_id}";`;
+            var sqlClearFeature =`UPDATE article SET feature_tag = Null WHERE article_id = "${article.article_id}";`;
+            var sql = '';
+                        //here the switch assigns the sql appropriatly to toggle feature
+            switch(article.feature_tag){
+                case "featured": sql = sqlClearFeature;
+                console.log("switch feature", sql   );
+                    break;
+                    
+                default:
+                sql = sqlFeature;
+                console.log("switch default:", sql);
+
+            }
+
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+                
+                connection.query(sql, function (error:any, results:IArticle[]){
+                    connection.release();
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });
+        }); 
+    },
+    removeFromFeatured: async ( article:IArticle)=> {
         return new Promise((resolve,reject) => {
 
             const dbConnection = new DatabaseCONNECTION();
@@ -215,7 +250,7 @@ export const ArticleModel = {
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
 
-                var sql = `UPDATE article SET feature_tag = "${FeatureTypes.featured}" WHERE article_id = "${article.article_id}";`;
+                var sql = `UPDATE article SET feature_tag = null WHERE article_id = "${article.article_id}";`;
                 connection.query(sql, function (error:any, results:IArticle[]){
                     connection.release();
                     if(error){
