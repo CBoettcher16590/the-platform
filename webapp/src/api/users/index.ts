@@ -7,11 +7,7 @@ export default {
         return axios.get(`${HOSTNAME}/users`);
     },  
     getById: async ( userId:any ) => {
-        return axios.get(`${HOSTNAME}/users/${userId}`, {
-            headers: {
-                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-                },  
-            });
+        return axios.get(`${HOSTNAME}/users/${userId}`);
     },
 
     post: async (body:any) => {

@@ -76,7 +76,7 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
         });
     });
 },
-getByID: async (userID:string):Promise<IUser[]> => {
+getByID: async (userID:string|number):Promise<IUser[]> => {
        
     return new Promise((resolve,reject) => {
 
@@ -102,15 +102,17 @@ getByID: async (userID:string):Promise<IUser[]> => {
 
 
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
-    
+
+
     return new Promise((resolve,reject) => {
             const hashedPassword:string = PasswordModel.hash(user.password);
+            const defaultImg = "https://i0.wp.com/www.repol.copl.ulaval.ca/wp-content/uploads/2019/01/default-user-icon.jpg?w=415";
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
 
-            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
-                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate());`;
-            
+            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created, user_image_link)
+                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate(), "${defaultImg}");`;
+
                  pool.getConnection(function(err:any, connection:any){
                     if(err) throw err; // not connected
                         connection.query(sql, function (error:any, results:IUser[]) {
