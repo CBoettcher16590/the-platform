@@ -4,7 +4,7 @@ import { IUser, UserModel } from '../../../models/user';
 
 export function post( app:any ){
 
-    app.post("/favoriteArticle", async ( request:any, response:any ) => {
+    app.post("/favoriteArticle", authenticateToken, async ( request:any, response:any ) => {
         //declaire variables
         const payloadArticle:IArticle = request.body[0];
         const userID = request.body[1];

@@ -4,6 +4,8 @@ import { TokenModel } from '../models/token';
     
     const authHeader = request.headers['authorization'];
     
+    console.log("Auth Header",authHeader);
+
     if(!authHeader){
         response.status(401).send({
             message: "This is a protected resource. Please login first."
@@ -15,9 +17,7 @@ import { TokenModel } from '../models/token';
     TokenModel.validateToken( token, (err)=>{ 
     
     if(err){
-        return response.status(401).send({
-            message: "This is a protected resource. Please login first"
-        });
+        return response.status(401).send('<script>alert("Username and Password Combination do not match")</script>');
     }
 
 }, (payload)=>{
