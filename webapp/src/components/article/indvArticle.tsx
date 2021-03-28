@@ -39,12 +39,12 @@ import api from '../../api'
 
 
         //need to get a way to find article author.  I keep getting undeffined back because on Promises
-        useEffect(() => {
-            api.users.getById(authorId).then((responce) => {
-                console.log("page",responce);
-            }).catch((error) => console.error(`Error: ${error}`));
-            }
-        ,[]);
+        // useEffect(() => {
+        //     api.users.getById(authorId).then((responce) => {
+        //         console.log("page",responce);
+        //     }).catch((error) => console.error(`Error: ${error}`));
+        //     }
+        // ,[]);
             return (
             
             <MainLayout>
