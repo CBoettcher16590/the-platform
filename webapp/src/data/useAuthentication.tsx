@@ -1,5 +1,4 @@
 import { useHistory } from 'react-router';
-import { PasswordModel } from '../../../services/crud-server/src/models/password';
 import api from '../api';
 
 export default function useAuthentication(){
