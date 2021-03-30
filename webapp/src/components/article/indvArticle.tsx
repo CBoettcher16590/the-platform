@@ -62,7 +62,7 @@ import api from '../../api'
             </Col>
                 <Col className="authorInfo" lg="10">
                 <h5>Kent Brockman{article?.user_user_id}</h5>
-                <p>{article?.created_on} <Button className="followButton" variant="outline-success">Follow   </Button></p>
+                <p>{article?.created_on.slice(0,10)} <Button className="followButton" variant="outline-success">Follow   </Button></p>
             </Col>
                 <Button variant="primary">Facebook</Button>{' '}
                 <Button variant="link">Twitter</Button>

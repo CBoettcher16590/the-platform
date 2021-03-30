@@ -1,0 +1,23 @@
+#seriesHeader{
+    margin-top: 20px;
+    display: flex;
+    border: 1px solid black;
+    height: 50vh;
+    width: 100%;
+}
+.seriesImg{
+width: 40%;
+border: 1px solid blue;
+
+}
+
+.seriesInfo{
+padding: 25px 0 25px 15px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+width:60%;
+min-width: auto;
+border: 1px solid red;
+
+}
