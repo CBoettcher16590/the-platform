@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import api from '../api';
@@ -8,15 +8,29 @@ export default function LoginForm(){
 
     const history = useHistory();
     // const authModel = useAuthentication(); //we never get something back here or rather never a logged in
-    
+    const [isLoading, setLoading] = useState(false);
+
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
 
+    // This use effect is for the sign-in loading effect
+    useEffect(() => {
+        if (isLoading) {
+          setTimeout(function(){
+              setLoading(false);  
+          }, 2000)
+          };
+        
+  }, [ isLoading ]);
+    
     function handleLogin(e:any){
         e.preventDefault();
+        setLoading(true);
         api.tokens.post({_email:email , _password:password});
         api.user.post({email, password});
-        history.push('/'); //I think the above is fine. 
+        setTimeout(function(){
+            history.push('/');
+        }, 2000);
        };
 
     
@@ -38,8 +52,8 @@ export default function LoginForm(){
                 type="password" className="form-control" placeholder="Enter password" />
         </div>
 
-        <Button type="submit" className="btn btn-primary btn-block" onClick={handleLogin}>
-            Sign In
+        <Button type="submit" disabled={isLoading} className="btn btn-primary btn-block" onClick={handleLogin}>
+        {isLoading ? 'Loading…' : 'Sign In'}
         </Button>
 
         <p className="forgot-password text-right">

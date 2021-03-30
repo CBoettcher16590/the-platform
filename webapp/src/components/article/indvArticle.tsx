@@ -48,7 +48,8 @@ import api from '../../api'
             return (
             
             <MainLayout>
-            <section className="articleTop">
+              
+            <section className="indvArticle">
             <Row>
             <Col>
                 <h1>{article?.title}</h1>
@@ -65,12 +66,14 @@ import api from '../../api'
             </Col>
                 <Button variant="primary">Facebook</Button>{' '}
                 <Button variant="link">Twitter</Button>
-                <h5>${article?.price}</h5>
+                <h5>{article?.preview}</h5>
             </Row>
-            <hr/>             
-            </section>
+                <hr/>             
+           
                 <Image className="mx-auto articleImage" src={article?.image_link} />
+                <hr/>   
             <p> {article?.contents}</p>
+             </section>
             </MainLayout>
                   
             )

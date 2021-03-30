@@ -12,6 +12,7 @@ export const TokenModel = {
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, ( err:any, payload:any ) => {
             
             if( err ){
+                localStorage.clear();
                 onError(err);
                 console.log("Token Validation Error");
                 return;

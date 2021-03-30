@@ -8,30 +8,11 @@ import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api'
 import { useState } from 'react';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
-
+import  FavoriteArticles  from '../../components/article/favoriteArticle';
 
 export default function Profile(){
 
-  const history = useHistory();
-  const [favoriteArticles, setFavoriteArticles] = useState<IArticle[]>();
-  const userID = localStorage.getItem("userID");
-
-  const GoToArticle = (article:IArticle) => (event:any) => {
-    //here we find the article id for our Title, Link
-    let articleId = article.article_id;
-    //then We use history.push to redirect to that page
-    history.push(`/article/${articleId}`)
-    }
-
-  useEffect(() => {
-  //get all the articles that this user has favorited... user_has_article
-  api.articles.getForFavList(userID).then((responce) => {
-    const favArticles:IArticle[] = responce.data;
-    return setFavoriteArticles(favArticles);
-  })
-
-}, []);
-
+const history = useHistory();
 
 function onClickLogout(){
   window.localStorage.clear()
@@ -76,37 +57,8 @@ function onClickLogout(){
 
 {/* ================= FAVORITED ARTICLES ================= */}
 
-<Card className="text-center purchasedArticles">
-  <Card.Header><h3>Purchased Articles</h3></Card.Header>
-  <Card.Body>
+<FavoriteArticles></FavoriteArticles>
 
-<section>
-  {favoriteArticles?.map(function(_art:IArticle){
-     let image = _art.image_link;
-     let title = _art.title;
-     let preview = _art.preview;
-     let createdOn = _art.created_on.slice(0,10);
-     return (
-      <div className="favCard">
-
-      <img className="favImage" src={image} />
-
-      <div className="favArticle">
-
-      <h2 onClick={GoToArticle(_art)}>{title}</h2>
-
-        <p>{preview}</p>
-
-        <p>Date Posted: {createdOn}</p>
-  
-      </div>
-    </div>
-    )
-  })}
-</section> 
-  </Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
 <br/>
 
   </>

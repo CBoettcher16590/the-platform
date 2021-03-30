@@ -50,6 +50,20 @@
    height: 100px;
    object-fit: cover;
 }
+.indvArticle{
+    margin: 25px auto 50px auto;
+    padding: 25px;
+    width: 90%;
+    box-shadow: 5px 5px rgb(202, 200, 200);
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgba(167, 230, 255, 0.473) ;
+}
+.indvArticle img{
+    box-shadow: 5px 5px rgb(202, 200, 200);
+    border: .5px solid black;
+    border-radius: 5px;
+}
 
 .articleTop{
     margin: 30px 0 0 30px;
