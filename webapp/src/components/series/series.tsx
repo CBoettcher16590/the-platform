@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import MainLayout from '../../layouts/MainLayout';
 
-interface ISeries {
+export interface ISeries {
     series_id:string,
     series_title:string,
     series_image:string,

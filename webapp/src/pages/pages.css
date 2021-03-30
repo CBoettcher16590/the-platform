@@ -59,17 +59,24 @@ text-decoration: underline;
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 5px 10px lightgray;
+    background-color: rgb(208, 242, 255) ;
+
 }
 
 #imageInput{
-padding: 5px;
-   box-shadow: inset;
-   border-radius: 10px;
-}
-.checkboxes{
     padding: 5px;
+    box-shadow: inset;
+    border-radius: 10px;
+}
+.optionalTags{
+    padding: 20px;
+    background-color: rgb(208, 242, 255) ;
     border: 1px solid rgb(9, 77, 167);
     border-radius: 10px;
+}
+
+.bold{
+ font-weight: 600;
 }
 #newArticleTextArea{
     height: 400px;
@@ -87,8 +94,8 @@ padding: 5px;
     width: 70%
 
 }
-#dropdown-basic-button{
-    margin-top: 20px;
+#dropdown-basic{
+    margin: 10px 0 20px 0;
 }
 .homeSearch{
     display: flex;
