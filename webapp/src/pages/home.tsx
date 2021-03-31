@@ -11,7 +11,7 @@ import { useHistory } from 'react-router';
 
 function HomePage(props:{}){
 
-        const [loggedInUser, setLoggedInUser] = useState<string>();
+        const [loggedInUser, setLoggedInUser] = useState<string>("");
         const history = useHistory();
         
         useEffect(() => {

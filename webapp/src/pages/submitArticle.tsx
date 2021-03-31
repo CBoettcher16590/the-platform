@@ -5,9 +5,12 @@ import './pages.css';
 import api from '../api';
 import { useHistory } from 'react-router';
 import ArticleSubmission from '../data/submitArticle';
+import NewSeries from '../data/submitSeries';
 
 
 // NEED TO CREATE USESTATE AND USEEFFECT TO SET SEREIS 
+
+
 
 
  export default function SubmitArticle (props: {}) {
@@ -27,23 +30,31 @@ import ArticleSubmission from '../data/submitArticle';
   const [seriesContents, setSeriesContents] = useState<string>("");
   
 
-  const submit = ArticleSubmission();
+  const submitArt = ArticleSubmission();
+  const submitSeries = NewSeries();
 
-  //Set a default user for now till login works, then we can get user Id from localstorage
- const userId:number = 2;
+  const userId:string|null = localStorage.getItem("userID");
 
+    function handelSubmit(e:any){
+      e.preventDefault();
 
-  function handelSubmit(e:any){
-    e.preventDefault();
-    submit.ArticleSubmission(title!, preview!, imageLink!, contents!, userId!);
-    console.log("Success!");
-    history.push('/');
-  }
+      if(userId){
+        submitArt.ArticleSubmission(title!, preview!, imageLink!, contents!,userId!);
+        console.log("Article Success!");
+        if(seriesDropdown == "New Series"){
+          submitSeries.NewSeries(seriesTitle, seriesImage, seriesContents, userId);
+          console.log("New Series Created");
+        }
 
-  function seriesHandeler(e:any){
-    e.preventDefault();
-    setSeriesDropdown(e.target.value);
-  }
+        history.push('/');
+      }
+      console.log("Error: No User ID Found");
+    }
+
+    function seriesDropdownHandeler(e:any){
+      e.preventDefault();
+      setSeriesDropdown(e.target.value);
+    }
 
 
 return <>
@@ -103,8 +114,8 @@ return <>
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item as="button" value="Select Series" onClick={seriesHandeler}>Select Series</Dropdown.Item>
-              <Dropdown.Item as="button" value="New Series" onClick={seriesHandeler}>New Series</Dropdown.Item>
+              <Dropdown.Item as="button" value="Select Series" onClick={seriesDropdownHandeler}>Select Series</Dropdown.Item>
+              <Dropdown.Item as="button" value="New Series" onClick={seriesDropdownHandeler}>New Series</Dropdown.Item>
               {/* Look for Series and list them in here */}
             </Dropdown.Menu>
           </Dropdown>
