@@ -8,7 +8,8 @@ interface ISubmittedArticle {
     preview:string,
     imageLink:string,
     contents:string,
-    price:number
+    price:number,
+    userId:string
 }
 
 export function post( app:any ){
@@ -20,7 +21,7 @@ export function post( app:any ){
 
 
        await ArticleModel.create({
-            userId:2,
+            userId:parseInt(payload.userId),
             title: payload.title,  
             price: payload.price,
             preview: payload.preview,         
