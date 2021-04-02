@@ -22,7 +22,7 @@ const history = useHistory();
     //here we find the article id for our Title, Link
     let articleId = article.article_id;
     //then We use history.push to redirect to that page
-    history.push(`/article/${articleId}`)
+    history.push(`/article/${articleId}`) 
     }
     return <>
     <section className="homeStories">

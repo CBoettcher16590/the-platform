@@ -26,6 +26,9 @@ import { IUser } from '../../../../services/crud-server/src/models/user';
 
 
 export default function MEM_edit_profile() {
+
+    const history = useHistory();
+
     const params = useParams<{id:string}>();
     const numId = parseInt(params.id);
 
@@ -37,7 +40,7 @@ export default function MEM_edit_profile() {
     const [userBD, setUersBD] = useState<string>();
     const [phoneNumber, setphoneNumber] = useState<string>();
 
-    useEffect (() => {
+    function useEffect (() => {
 
         api.updates.patch(numId).then((responce) => {
             const user:IUser = responce.data;
@@ -51,6 +54,8 @@ export default function MEM_edit_profile() {
         }).catch((error) => console.error(`Error: ${error}`));
         
     },[]);
+
+
 
 return <>
 <form>
@@ -138,7 +143,7 @@ return <>
     />
 </div>
             <br />
-    <Button type="submit" onClick={useEffect.apply}>
+    <Button type="submit" onClick={}>
                 Update
             </Button>
 </form>
