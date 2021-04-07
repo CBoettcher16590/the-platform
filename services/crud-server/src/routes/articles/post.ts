@@ -23,7 +23,6 @@ export function post( app:any ){
        await ArticleModel.create({
             userId:parseInt(payload.userId),
             title: payload.title,  
-            price: payload.price,
             preview: payload.preview,         
             contents: payload.contents,
             image_link: payload.imageLink,

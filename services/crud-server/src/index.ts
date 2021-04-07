@@ -31,6 +31,6 @@ function loadEndpoints( endpoint:any ){
 });
 
 
-app.listen(port, () => {
+app.listen(port, () => {     
     console.log(`Web Server Started and listening on localhost:${port}`);
 });
