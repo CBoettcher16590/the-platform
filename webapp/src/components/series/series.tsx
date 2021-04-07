@@ -10,7 +10,7 @@ interface ISeries {
     series_perview:string,
     series_description:string,
     series_admin:string,
-    category:string  
+    category:string|null  
 }
 
 
@@ -62,11 +62,9 @@ const Series = () => {
     
           <div className="article">
     
-            <h2 onClick={GoToArticle(_art)}>{title}</h2>
+            <h2>{title}</h2>
     
             <p>{preview}</p>
-    
-            <p>Date Posted: {createdOn.splice(0,10)}</p>
     
     
           </div>
