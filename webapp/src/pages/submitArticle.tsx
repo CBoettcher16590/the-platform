@@ -48,6 +48,9 @@ return <>
     <Nav className="mr-auto">
       <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
     </Nav>
+    <Nav className="mr-auto">
+      <Nav.Link href="/newSeries"> Create a New Series</Nav.Link>
+    </Nav>
     <Nav>
       <Nav.Link href="/AUProfile"> My Account</Nav.Link>
     </Nav>
@@ -63,52 +66,6 @@ return <>
 <div className="newArticleBody">
 
 <Form>
-
-<Accordion className="series">
-      <Card>
-        <Card.Header>
-          <Accordion.Toggle as={Button} variant="info" eventKey="0">
-            New Series
-          </Accordion.Toggle>
-        </Card.Header>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body> 
-            <Form.Group>
-              <Form.Label>Title</Form.Label>
-              <Form.Control 
-                value={seriesTitle}
-                onChange={(e)=>setSeriesTitle(e.target.value)}  
-                placeholder="Give your Series a Title"/>
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Label>Preview</Form.Label>
-                <Form.Control 
-                value={seriesPreview}
-                onChange={(e)=>setSeriesPreview(e.target.value)} 
-                placeholder="Write a brief preview of your will Series be about"/>
-              </Form.Group>
-
-          <Form.Group>
-              <Form.Label>Image URL</Form.Label>
-              <Form.Control 
-              value={seriesImage}
-              onChange={(e)=>setSeriesImage(e.target.value)}
-              placeholder="Paste an image url here"/>
-          </Form.Group>
-          <Form.Group>
-              <Form.Label>Series Content</Form.Label>
-              <Form.Control 
-              value={seriesContent}
-              onChange={(e)=>setSeriesContent(e.target.value)}
-              as="textarea" 
-              rows={3}  
-              placeholder="What will your series be about?"/>
-          </Form.Group>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
 
   <Form.Row>
     <Form.Group as={Col}>

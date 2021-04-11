@@ -21,7 +21,8 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
   //variables for the userList
   const disableLogin = ["False", "True"];
-  const varient = ["danger","success"];
+  //error with button varient being a string[]
+  //const  varient = ["danger","success"];
   const permissionButtonText = ["Disable User Login","Enable User Login"];
   const userType = ["Admin","Author","Editor","Member"];
   
@@ -137,7 +138,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
             <Accordion.Collapse eventKey="0">
               <div>
                 {/* you can ignore this error for now, it works */}
-                <Button onClick={ChangeLoginPermission(user)} variant={varient[user.disable_login]}>{permissionButtonText[user.disable_login]}</Button>
+                <Button onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
             </div>
             </Accordion.Collapse>
             

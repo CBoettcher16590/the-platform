@@ -1,6 +1,3 @@
-  
-import { article } from "../routes/articles";
-import { IUser } from "./user";
 import DatabaseCONNECTION from '../classes/index'
 
 //right now we only have a "featured" section, but I made this an enum in case we want to expand in the future

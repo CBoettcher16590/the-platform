@@ -20,7 +20,8 @@ import EditorProfile from './pages/editor/editorProfile';
 import OrganizationHome from './pages/organization/homepage';
 import Organization_profile from './pages/OrgAdmin/profile';
 import OrgArticles from './pages/organization/orgArticles';
-import SeriesPage from './pages/series/seriesPage'
+import SeriesPage from './pages/series/seriesPage';
+import SubmitSeries from './pages/series/newSeries';
 
 export default function ThePlatform( props:{} ){
 
@@ -47,6 +48,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/AUupdateMyInfo" component={AU_edit_profile} />
                     <Route path="/newArticle" component={SubmitArticle} />
                     <Route path="/series/:id" component={SeriesPage} />
+                    <Route path="/newSeries" component={SubmitSeries} />
 
                     {/* ORG Routes */}
                     <Route path="/OrgHome" component={OrganizationHome} />

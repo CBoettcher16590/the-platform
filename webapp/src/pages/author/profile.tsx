@@ -31,7 +31,7 @@ export default class author_profile extends React.Component {
 render(){
   return (
     <div>
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar className="authorNav" collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
@@ -39,6 +39,9 @@ render(){
         </Nav>
         <Nav className="mr-auto">
           <Nav.Link href="/newArticle">Submit An Article</Nav.Link>
+        </Nav>
+        <Nav className="mr-auto">
+          <Nav.Link href="/newSeries">Create New Series</Nav.Link>
         </Nav>
         <Nav>
           <Navbar.Brand> My Account</Navbar.Brand>

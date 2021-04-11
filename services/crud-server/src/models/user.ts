@@ -1,4 +1,3 @@
-import { response } from 'express';
 import DatabaseCONNECTION from '../classes/index'
 import { PasswordModel } from "./password";
 
