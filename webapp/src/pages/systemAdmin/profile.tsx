@@ -1,7 +1,6 @@
 import { disconnect, title } from 'process';
 import React, { useEffect } from 'react';
-import cat from '../../images/cat.jpg'
-import little from '../../images/little.jpg'
+import  FavoriteArticles  from '../../components/article/favoriteArticle';
 import { Accordion, Button, Card, CardGroup, Dropdown, Nav, Navbar } from 'react-bootstrap';
 import './styling.css'
 import { IUser } from '../../../../services/crud-server/src/models/user'
@@ -94,7 +93,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
         <div className="adminCardBG">
         <Card className="adminInfoCard">
-          <Card.Img variant="top" src= {cat} />
+          <Card.Img variant="top" src= "#"/>
           <Card.Body className="adminInfo">
           <Card.Title><h2>Author Profile</h2></Card.Title>
             <br/>
@@ -183,55 +182,10 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
     </Card.Body>
   </Card>
+{/* ================= FAVORITED ARTICLES ================= */}
 
-<div className= "raw">
+<FavoriteArticles></FavoriteArticles>
 
-<br/>
-<Card className="text-center"  style={{ width: '100rem' }}>
-  <Card.Header><h3>My Favorite List</h3></Card.Header>
-  <Card.Body>
-  <CardGroup>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-      </Card.Text>
-    </Card.Body>
-
-  </Card>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-      <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
-
-  </Card>
-</CardGroup>
-<br/>
-    <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
-  </Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
-<br/>
-</div>
 </div>
      </>
  }

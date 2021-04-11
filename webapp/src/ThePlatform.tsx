@@ -7,7 +7,7 @@ import Profile from './pages/members/member-profile';
 import SubmitArticle from './pages/submitArticle'
 import IndvArticlePage from './pages/indvArticle';
 import Admin_profile from './pages/systemAdmin/profile';
-import author_profile from './pages/author/profile';
+import AuthorProfile from './pages/author/profile';
 import AU_edit_profile from './pages/author/editprofile';
 import ED_edit_profile from './pages/editor/editprofile';
 import OR_edit_profile from './pages/OrgAdmin/editprofile';
@@ -44,7 +44,7 @@ export default function ThePlatform( props:{} ){
 
                     {/* Article/Author Routes */}
                     <Route path="/article/:id" exact component={IndvArticlePage} />
-                    <Route path="/AUprofile" component={author_profile} />
+                    <Route path="/AUprofile" component={AuthorProfile} />
                     <Route path="/AUupdateMyInfo" component={AU_edit_profile} />
                     <Route path="/newArticle" component={SubmitArticle} />
                     <Route path="/series/:id" component={SeriesPage} />

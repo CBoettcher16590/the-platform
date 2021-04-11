@@ -9,7 +9,6 @@ import api from '../../api'
 import { useState } from 'react';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import  FavoriteArticles  from '../../components/article/favoriteArticle';
-
 export default function Profile(){
 
 const history = useHistory();
