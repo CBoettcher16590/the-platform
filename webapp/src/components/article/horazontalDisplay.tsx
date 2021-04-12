@@ -26,7 +26,7 @@ const history = useHistory();
     }
     return <>
     <section className="homeStories">
-      {featuredArticles?.map(function(_art, index, key){
+      {featuredArticles?.map(function(_art, index){
         let image = _art.image_link;
         let title = _art.title;
         let preview = _art.preview;

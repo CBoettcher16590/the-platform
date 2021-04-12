@@ -21,6 +21,7 @@ export interface ISubmittedArticle{
 export interface IArticle{
     
     article_id: number;
+    series_series_id:number;
     user_user_id:number;
     title:string;
     preview:string;

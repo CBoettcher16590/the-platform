@@ -12,7 +12,7 @@ export interface IUser {
     disable_login:number,
     phoneNumber: Date,
     userDB: Date, 
-    imgLink:string
+    user_image_link:string
     bio:string
     
 }
@@ -188,7 +188,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             var sql = `UPDATE theplatformV2.user ;
                 
             SET first_name = ${user.first_name}, last_name = ${user.last_name}, email = ${user.email}, bio = ${user.bio}, 
-            user_image_link = ${user.imgLink}, user_BD = ${user.userDB}, phone_number = ${user.phoneNumber} WHERE user_id = ${user.user_id}`;
+            user_image_link = ${user.user_image_link}, user_BD = ${user.userDB}, phone_number = ${user.phoneNumber} WHERE user_id = ${user.user_id}`;
     
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
