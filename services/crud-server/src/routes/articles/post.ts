@@ -18,7 +18,7 @@ export function post( app:any ){
         // read payload from post body
         const payload:ISubmittedArticle = request.body;
 
-
+    console.log("article Post:")
        await ArticleModel.create({
             userId:2,
             title: payload.title,  

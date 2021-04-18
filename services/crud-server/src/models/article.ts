@@ -142,7 +142,7 @@ export const ArticleModel = {
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
                 //need to update sql statemnet
-                var sql = `INSERT INTO article VALUES (article_id, null, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", "${articleToCreate.image_link}", CURDATE(), 2, 0, null)`;
+                var sql = `INSERT INTO article VALUES (article_id, null, ${articleToCreate.userId}, '${articleToCreate.title}', '${articleToCreate.preview}', '${articleToCreate.contents}', '${articleToCreate.image_link}', CURDATE(), 2, 0, null)`;
 
                 connection.query(sql, function (error:any, results:IArticle[]){
                     connection.release();
