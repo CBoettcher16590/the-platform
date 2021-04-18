@@ -28,13 +28,13 @@ import ArticleSubmission from '../data/submitArticle';
   const submit = ArticleSubmission();
 
   //Set a default user for now till login works, then we can get user Id from localstorage
- const userId:string = "2";
+  const userId:string = localStorage.getItem("userID") || "0";
 
 
   function handelSubmit(e:any){
     e.preventDefault();
     submit.ArticleSubmission(title!, preview!, imageLink!, contents!, userId!);
-    console.log("Success!");
+    console.log("Submit Success!");
     history.push('/');
   }
 
