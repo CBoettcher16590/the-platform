@@ -1,12 +1,13 @@
-import { authenticateToken } from "../../middleware/authenticator";
-import { SerieseModel } from "../../models/series";
+import { SeriesModel } from '../../models/series';
+import {authenticateToken} from '../../middleware/authenticator'
 
-interface ISubmittedSeries{
-    series_title:string,
-    series_image:string,
-    series_description:string,
+interface ISubmittedSeries {
+    title:string,
+    imageLink:string,
+    contents:string,
     userId:string
 }
+
 
 export function post( app:any ){
 
@@ -16,11 +17,12 @@ export function post( app:any ){
         const payload:ISubmittedSeries = request.body;
 
 
-       await SerieseModel.create({
-        series_title: payload.series_title,
-        series_image: payload.series_image,
-        series_description: payload.series_description,
-        userId: payload.userId
+       await SeriesModel.create({
+            userId:payload.userId,
+            title: payload.title,          
+            contents: payload.contents,
+            imageLink: payload.imageLink,
+
         });
 
         response.status(201).send();

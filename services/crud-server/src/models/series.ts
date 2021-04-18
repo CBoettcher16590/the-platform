@@ -1,69 +1,75 @@
-import { rejects } from 'assert';
-import { resolve } from 'path';
 import DatabaseCONNECTION from '../classes/index'
+import { PasswordModel } from "./password";
 
-export interface ISeries{
+export interface ISeries {
     series_id:string,
     series_title:string,
     series_image:string,
-    series_preview:string,
     series_description:string,
-    series_admin:string,
+    series_owner_id:string
 }
 
-interface ISeriesToCreate{
-    series_title:string,
-    series_image:string,
-    series_description:string,
+interface ISubmittedSeries {
+    title:string,
+    imageLink:string,
+    contents:string,
     userId:string
 }
 
 
-export const SerieseModel = {
+export  const SeriesModel = {
 
     getAll: async ():Promise<ISeries[]>  => {
+
+        return new Promise((resolve,reject)=>{
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err; // not connected
+
+                const sql = `SELECT * FROM theplatformV2.series`;
+                connection.query(sql, function (error:any, results:ISeries[]) {
+                    connection.release();
+
+                    if(error){
+                        reject(error);
+                    } else{
+                        resolve(results)
+                    }
+                });
+            });
+        });          
     
-        return new Promise((resolve,reject) => {
+ },
+ create: async (seriesToCreate:ISubmittedSeries):Promise<ISeries[]>  => {
 
-            const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection;
+    return new Promise((resolve,reject)=>{
+
+        const dbConnection = new DatabaseCONNECTION();
+        const pool = dbConnection.connection;
+
+        pool.getConnection(function(err:any, connection:any){
+            if(err) throw err; // not connected
+
+            const sql = `INSERT INTO series(series_title, series_image, series_description, series_owner_id)
+            VALUES("${seriesToCreate.title}", "${seriesToCreate.imageLink}", "${seriesToCreate.contents}", "${seriesToCreate.userId}");`;
             
-            pool.getConnection(function(err:any, connection:any){
-                if(err) throw err;
-                
-                var sql = `SELECT * FROM theplatformV2.series`;
-                connection.query(sql, function (error:any, results:ISeries[]){
-                    connection.release();
+            connection.query(sql, function (error:any, results:any) {
+                connection.release();
 
-                    if(error){
-                        reject(error)
-                    } else {
-                        resolve(results)
-                    }
-                });
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results)
+                }
             });
         });
-     },
+    });          
 
-     create: async (seriesToCreate:ISeriesToCreate):Promise<ISeries> => {
-        return new Promise((resolve, reject) => {
+},
 
-            const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection;
 
-            pool.getConnection(function(err:any, connection:any){
-                if(err) throw err;
-                var sql = `INSERT INTO series VALUES(series_id, "${seriesToCreate.series_title}", "${seriesToCreate.series_image}", "${seriesToCreate.series_description.substring(0,20)+"..."}", "${seriesToCreate.series_description}", "${seriesToCreate.userId}");`;
-                connection.query(sql, function (error:any, results:ISeries){
-                    connection.release();
 
-                    if(error){
-                        reject(error)
-                    } else {
-                        resolve(results)
-                    }
-                });
-            });
-        });
-     }
-    }
+}

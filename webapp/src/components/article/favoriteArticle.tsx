@@ -45,7 +45,7 @@ return(
             let preview = _art.preview;
             let createdOn = _art.created_on.slice(0,10);
             return (
-            <div className="favCard">
+            <div key={_art.article_id} className="favCard">
 
             <img className="favImage" src={image} />
 

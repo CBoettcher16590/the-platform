@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navbar, Nav, Col, Form, Row, Button } from 'react-bootstrap';
+import { Navbar, Nav, Col, Form, Row, Button, Accordion, Card, Dropdown, DropdownButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages.css';
 import api from '../api';
@@ -18,9 +18,13 @@ import ArticleSubmission from '../data/submitArticle';
   const [preview, setPreview] = useState<string>("");
   const [imageLink, setImageLink] = useState<string>("");
   const [contents, setContents] = useState<string>("");
-  const [price, setPrice] = useState<string>("");
   // const [userId, setuserId] = useState<number>();
   
+  const [seriesTitle, setSeriesTitle] = useState<string>();
+  const [seriesPreview, setSeriesPreview] = useState<string>();
+  const [seriesImage, setSeriesImage] = useState<string>();
+  const [seriesContent, setSeriesContent] = useState<string>();
+
   const submit = ArticleSubmission();
 
   //Set a default user for now till login works, then we can get user Id from localstorage
@@ -40,15 +44,12 @@ return <>
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
-    </Nav>    
+  <Navbar.Collapse id="responsive-navbar-nav">   
     <Nav className="mr-auto">
       <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
     </Nav>
     <Nav className="mr-auto">
-      <Nav.Link href="#Reported Reviews">My Articles</Nav.Link>
+      <Nav.Link href="/newSeries"> Create a New Series</Nav.Link>
     </Nav>
     <Nav>
       <Nav.Link href="/AUProfile"> My Account</Nav.Link>
@@ -65,8 +66,8 @@ return <>
 <div className="newArticleBody">
 
 <Form>
-  <Form.Row>
 
+  <Form.Row>
     <Form.Group as={Col}>
       <Form.Label>Title</Form.Label>
       <Form.Control
@@ -88,24 +89,14 @@ return <>
       placeholder="Write a short preview that summarizes your article"/>
     </Form.Group>
 
-
-    <div className="checkboxes">
-      <Form.Group as={Row}>
-        <Form.Label as="legend" column sm={2}>Optional Tags</Form.Label>
-          <Col> 
-              <Form.Check type="checkbox" label="Include as part of Series" name="seriesRadio" id="seriesRadio" />
-          </Col>
-      </Form.Group >
-
-      <Form.Group  id="imageInput">
+    <Form.Group  id="imageInput">
+    <Form.Label>Image URL</Form.Label>
         <Form.Control
         value={imageLink}
         onChange={(e)=>setImageLink(e.target.value)}
         type="text"
         placeholder="Enter an Image URL to use for the article" />
-      </Form.Group>
-    </div>
-      
+    </Form.Group> 
     <Form.Group id="testAreaHeader">
       <Form.Label>Whats on your Mind?</Form.Label>
       <Form.Control 

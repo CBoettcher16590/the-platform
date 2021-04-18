@@ -3,14 +3,12 @@ import { useParams } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import MainLayout from '../../layouts/MainLayout';
 
-export interface ISeries {
-    series_id:string,
-    series_title:string,
-    series_image:string,
-    series_perview:string,
-    series_description:string,
-    series_admin:string,
-    category:string  
+interface ISeries {
+  series_id:string,
+  series_title:string,
+  series_image:string,
+  series_description:string,
+  series_owner_id:string
 }
 
 
@@ -52,7 +50,6 @@ const Series = () => {
       {seriesArticles?.map(function(_art:IArticle, index){
         let image = _art.image_link;
         let title = _art.title;
-        let preview = _art.preview;
         let createdOn = _art.created_on.slice(0,10);
     
         return (
@@ -62,11 +59,8 @@ const Series = () => {
     
           <div className="article">
     
-            <h2 onClick={GoToArticle(_art)}>{title}</h2>
+            <h2>{title}</h2>
     
-            <p>{preview}</p>
-    
-            <p>Date Posted: {createdOn.splice(0,10)}</p>
     
     
           </div>

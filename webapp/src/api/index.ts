@@ -1,9 +1,9 @@
 
 import tokens from './tokens';
+import series from './series'
 import articles from './articles';
 import  users from './users';
 import user from './users/user';
-import series from './series';
 
 
 export default {

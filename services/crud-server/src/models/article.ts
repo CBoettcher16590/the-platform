@@ -1,6 +1,3 @@
-  
-import { article } from "../routes/articles";
-import { IUser } from "./user";
 import DatabaseCONNECTION from '../classes/index'
 
 //right now we only have a "featured" section, but I made this an enum in case we want to expand in the future
@@ -23,6 +20,7 @@ export interface ISubmittedArticle{
 export interface IArticle{
     
     article_id: number;
+    series_series_id:number;
     user_user_id:number;
     title:string;
     preview:string;
