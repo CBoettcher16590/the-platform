@@ -1,4 +1,3 @@
-import { response } from 'express';
 import DatabaseCONNECTION from '../classes/index'
 import { PasswordModel } from "./password";
 
@@ -11,9 +10,9 @@ export interface IUser {
     password:string,
     date_created:string,
     disable_login:number,
-    phoneNumber: string,
-    userDB: string, 
-    imgLink:string
+    phoneNumber: Date,
+    userDB: Date, 
+    user_image_link:string
     bio:string
     
 }
@@ -22,6 +21,16 @@ interface IUserSignup {
     first_name:string,
     last_name:string,
     email:string,
+    password:string
+}
+
+interface IUserUpdate{
+    imageLink:string,
+    email:string,
+    phone:string,
+    birthdate:string,
+    bio:string,
+    userID:string,
     password:string
 }
 
@@ -76,7 +85,7 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
         });
     });
 },
-getByID: async (userID:string):Promise<IUser[]> => {
+getByID: async (userID:string|number):Promise<IUser[]> => {
        
     return new Promise((resolve,reject) => {
 
@@ -102,15 +111,17 @@ getByID: async (userID:string):Promise<IUser[]> => {
 
 
 createUser: async (user:IUserSignup):Promise<IUserSignup> => {
-    
+
+
     return new Promise((resolve,reject) => {
             const hashedPassword:string = PasswordModel.hash(user.password);
+            const defaultImg = "https://i0.wp.com/www.repol.copl.ulaval.ca/wp-content/uploads/2019/01/default-user-icon.jpg?w=415";
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
 
-            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created)
-                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate());`;
-            
+            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created, user_image_link)
+                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate(), "${defaultImg}");`;
+
                  pool.getConnection(function(err:any, connection:any){
                     if(err) throw err; // not connected
                         connection.query(sql, function (error:any, results:IUser[]) {
@@ -176,32 +187,84 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             });
         });
     },
-    editProfile: async (user:IUser) => {
+
+    editUserProfile: async (userInfo:IUserUpdate) => {
     
         return new Promise((resolve,reject) => {
             const dbConnection = new DatabaseCONNECTION();
-            const pool = dbConnection.connection();
+            const pool = dbConnection.connection;
 
-            console.log("ENABLE: ", user.user_id);
+            //build parameters for sql query.
+            var sqlParameters:string ="";
+            //IMAGE
+            if(userInfo.imageLink){
+                sqlParameters += `user_image_link='${userInfo.imageLink}',`;
+            }
+            //EMAIL
+            if(userInfo.email){
+                sqlParameters += `email='${userInfo.email}',`;
+            }
+            //PHONE
+            if(userInfo.phone){
+                sqlParameters += `phone_number='${userInfo.phone}',`;
+            }
+            //BIRTHDATE
+            if(userInfo.birthdate){
+                sqlParameters += `user_BD ='${userInfo.birthdate}',`;
+            }
+            //BIO
+            if(userInfo.bio){
+                sqlParameters += `bio='${userInfo.bio}',`;
+            }
+             //Password
+            if(userInfo.password){
+                const hashedPass:string = PasswordModel.hash(userInfo.password);
+                sqlParameters += `password='${hashedPass}',`;
+            }
+      
+//add password
 
-            var sql = `UPDATE theplatformV2.user ;
-                
-            SET first_name = ${user.first_name}, last_name = ${user.last_name}, email = ${user.email}, bio = ${user.bio}, 
-            user_image_link = ${user.imgLink}, user_BD = ${user.userDB}, phone_number = ${user.phoneNumber} WHERE user_id = ${user.user_id}`;
-    
+            var sql = `UPDATE user SET ${sqlParameters.slice(0, -1)} WHERE user_id=${userInfo.userID};`
+        
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
-
-                connection.query(sql, function (error:any, results:IUser[]) {
+                connection.query(sql, function (error:any, results:any) {
                     connection.release();
-
                     if(error){
                         reject(error);
                     } else{
-                        resolve(results[0])
+                        resolve(results)
                     }
                 });
             });
         });
-    } 
+    },
+    // editProfile: async (user:IUser) => {
+    
+    //     return new Promise((resolve,reject) => {
+    //         const dbConnection = new DatabaseCONNECTION();
+    //         const pool = dbConnection.connection();
+
+    //         console.log("ENABLE: ", user.user_id);
+
+    //         var sql = `UPDATE theplatformV2.user ;
+                
+    //         SET first_name = ${user.first_name}, last_name = ${user.last_name}, email = ${user.email}, bio = ${user.bio}, 
+    //         user_image_link = ${user.user_image_link}, user_BD = ${user.userDB}, phone_number = ${user.phoneNumber} WHERE user_id = ${user.user_id}`;
+    
+    //         pool.getConnection(function(err:any, connection:any){
+    //             if(err) throw err; // not connected
+
+    //             connection.query(sql, function (error:any, results:IUser[]) {
+    //                 connection.release();
+
+    //                 if(error){
+    //                     reject(error);
+    //                 } else{
+    //                     resolve(results[0])
+    //                 }
+    //             });
+    //         });
+    //     });
+    // } 
 }

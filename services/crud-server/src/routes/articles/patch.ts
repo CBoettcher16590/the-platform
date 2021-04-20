@@ -1,4 +1,5 @@
 import { response } from 'express';
+import { authenticateToken } from '../../middleware/authenticator';
 import {IArticle, ArticleModel} from '../../models/article';
 
 enum ArticleCode{
@@ -8,7 +9,7 @@ enum ArticleCode{
  
 export function patch(app:any){
 
-    app.patch('/article', async(request:any, response:any) => {
+    app.patch('/article', authenticateToken, async(request:any, response:any) => {
         //First we get our Patch Code, and Found Article.  PatchCode is sent in under code in the headers in the api
         const foundArticle = await ArticleModel.getById(request.body.article_id);
         const patchCode = request.headers.code;
@@ -17,8 +18,8 @@ export function patch(app:any){
         //Then Depending on the PatchCode we select the task to be completed
         switch(patchCode){
             case ArticleCode.Featured: {
-                console.log("switch, Feat")
-                ArticleModel.addToFeatured(foundArticle);
+
+                ArticleModel.toggleFeatured(foundArticle);
 
                 break;
             }

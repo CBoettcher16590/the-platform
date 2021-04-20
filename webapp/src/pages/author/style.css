@@ -1,15 +1,18 @@
 .authorInfo{
     align-content: center;
-    
-        
 }
-
+.authorNav{
+    display: flex;
+    justify-content: space-between;
+}
 .authorInfoCard{
     width: 30em;
     margin-right: auto;
     margin-left: auto;
 }
-
+#editAuthorBG{
+    background-color: rgb(167, 230, 255) ;
+}
 .authorCardBG{
     padding: 20px 0 20px 0  ;
     background-color: rgb(167, 230, 255) ;
@@ -17,4 +20,40 @@
 .likeCounter{
     margin-left: 3em;
     align-content: center;
+}
+#updateHeader{
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    text-decoration: underline;
+    font-size: 40px;
+}
+.UpdateForm{
+    margin-top: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow:10px 10px lightgrey ;
+    width: 85vw;
+    background-color:white ;
+}
+.updateInfo{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-left: 10vw;
+}
+.updateInfo .label{
+    padding-top: 15px;
+    font-size: 20px;
+    font-weight: 500;
+}
+#updateButton{
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    width: 30vw;
 }

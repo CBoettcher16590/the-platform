@@ -11,18 +11,53 @@ import { useHistory } from 'react-router';
 
 function HomePage(props:{}){
 
-        const [loggedInUser, setLoggedInUser] = useState<string>();
+        const [loggedInUser, setLoggedInUser] = useState<string>("");
         const history = useHistory();
+        const userType = window.localStorage.getItem("userType");
+        const [navProfileLink, setNavProfileLink] = useState<string>();
+
         
+
         useEffect(() => {
+                //First We make sure that a user is signed in by checking localstorage for information
                 const user = window.localStorage.getItem("firstName");
                 if(user){
-                 setLoggedInUser(user);       
+                        setLoggedInUser(user); 
+                        history.push("/");       
+                }else{
+                        history.push("/signin")
                 }
-                history.push("/");
+
+                switch(userType) { 
+                        case "1": { 
+                                setNavProfileLink("/ADProfile"); 
+                                break; 
+                        } 
+                        case "2": { 
+                                //author
+                                setNavProfileLink("/AUProfile"); 
+                                break; 
+                        } 
+                        case "3": { 
+                                //editor
+                                setNavProfileLink("/editorProfile");
+                                break; 
+                             } 
+                        case "4": { 
+                                //member
+                                setNavProfileLink("/profile"); 
+                                break; 
+                             } 
+                        default: { 
+                           console.error("No User Type by that ID");
+                           break; 
+                        } 
+                     } 
+               
                     },[]);
 
 return  <>
+
 
         <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="/">The Platform</Navbar.Brand>
@@ -30,18 +65,9 @@ return  <>
                 <Nav className="mr-auto">
                  </Nav>
                  <Nav>
-                         <Nav.Link href= '/profile'>Member Page</Nav.Link>
+                         <Nav.Link href= {navProfileLink}>My Account</Nav.Link>
                  </Nav>
-                 <Nav>
-                         <Nav.Link href= '/editorProfile'>Editor Page</Nav.Link>
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/ADProfile'>Admin Page</Nav.Link>
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/AUProfile'>Author Page</Nav.Link>
-                 </Nav>
-
+                 
                  <Nav>
                          <Nav.Link href= '/OrgHome'>Organization Page</Nav.Link>
                  </Nav>

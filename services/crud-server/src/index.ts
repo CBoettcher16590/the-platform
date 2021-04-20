@@ -4,6 +4,7 @@ import cors from 'cors';
 import * as Users from './routes/users';
 import * as Articles from './routes/articles';
 import * as Tokens from './routes/tokens';
+import * as Series from './routes/series';
 
 const app = express();
 const port = 4000;
@@ -23,24 +24,13 @@ function loadEndpoints( endpoint:any ){
 
 }
 
-[ Users ].forEach( ImportedObject => {
+[ Users, Tokens, Articles, Series ].forEach( ImportedObject => {
     
     Object.values( ImportedObject ).forEach( loadEndpoints );
 
 });
 
-[ Tokens ].forEach( ImportedObject => {
-    
-    Object.values( ImportedObject ).forEach( loadEndpoints );
 
-});
-
-[ Articles ].forEach( ImportedObject => {
-    
-    Object.values( ImportedObject ).forEach( loadEndpoints );
-
-});
-
-app.listen(port, () => {
+app.listen(port, () => {     
     console.log(`Web Server Started and listening on localhost:${port}`);
 });

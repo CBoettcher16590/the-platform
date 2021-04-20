@@ -31,9 +31,8 @@ const history = useHistory();
         let title = _art.title;
         let preview = _art.preview;
         let createdOn = _art.created_on.slice(0,10);
-    
         return (
-          <div className="homeCard">
+          <div key={_art.article_id} className="homeCard">
     
           <img className="cardImage" src={image} />
     

@@ -1,7 +1,6 @@
 import { disconnect, title } from 'process';
 import React, { useEffect } from 'react';
-import cat from '../../images/cat.jpg'
-import little from '../../images/little.jpg'
+import  FavoriteArticles  from '../../components/article/favoriteArticle';
 import { Accordion, Button, Card, CardGroup, Dropdown, Nav, Navbar } from 'react-bootstrap';
 import './styling.css'
 import { IUser } from '../../../../services/crud-server/src/models/user'
@@ -21,7 +20,8 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
   //variables for the userList
   const disableLogin = ["False", "True"];
-  const varient = ["danger","success"];
+  //error with button varient being a string[]
+  //const  varient = ["danger","success"];
   const permissionButtonText = ["Disable User Login","Enable User Login"];
   const userType = ["Admin","Author","Editor","Member"];
   
@@ -51,7 +51,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     api.articles.feature(article);
 
     //refresh
-   //history.go(0);
+   history.go(0);
   }
 
   const ChangeLoginPermission = (user:IUser) => (event:any) =>{
@@ -62,7 +62,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     } else {
       user.disable_login = 0;
     }
-    api.users.patch(user);
+    api.users.changePermission(user);
     //refresh
     history.go(0);
   }
@@ -93,7 +93,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
         <div className="adminCardBG">
         <Card className="adminInfoCard">
-          <Card.Img variant="top" src= {cat} />
+          <Card.Img variant="top" src= "#"/>
           <Card.Body className="adminInfo">
           <Card.Title><h2>Author Profile</h2></Card.Title>
             <br/>
@@ -137,7 +137,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
             <Accordion.Collapse eventKey="0">
               <div>
                 {/* you can ignore this error for now, it works */}
-                <Button onClick={ChangeLoginPermission(user)} variant={varient[user.disable_login]}>{permissionButtonText[user.disable_login]}</Button>
+                <Button onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
             </div>
             </Accordion.Collapse>
             
@@ -156,6 +156,14 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     <Card.Body>
     
       {publishedArticleList?.map((_article,index) =>{
+        var isFeatured:boolean;
+
+        if(_article.feature_tag === "featured"){
+          isFeatured = true;
+        }else{
+          isFeatured = false;
+        }
+
         return(
           <Card>
             <Card.Header>
@@ -163,7 +171,8 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
             </Card.Header>
           {/* Here I reuse the user.disable varient to reuse code */}
           <div>
-            <Button onClick={FeaturedArticle(_article)} variant="info">Feature Article</Button>  
+            <Button onClick={FeaturedArticle(_article)} variant="info">Article Featured : {isFeatured.toString().toUpperCase()}</Button>
+            
           </div>
             
 
@@ -173,99 +182,10 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
     </Card.Body>
   </Card>
+{/* ================= FAVORITED ARTICLES ================= */}
 
-<div className= "raw">
-<Card className="text-center" style={{ width: '100rem' }}>
-  <Card.Header><h3>Purchased Articles</h3></Card.Header>
-  <Card.Body>
-  <CardGroup>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src={little}/>
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-      </Card.Text>
-    </Card.Body>
+<FavoriteArticles></FavoriteArticles>
 
-  </Card>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
-
-  </Card>
-</CardGroup>
-<br/>
-
-<Nav.Link href= "/profilePurchased" >See All </Nav.Link>
-  </Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
-
-<br/>
-<Card className="text-center"  style={{ width: '100rem' }}>
-  <Card.Header><h3>My Favorite List</h3></Card.Header>
-  <Card.Body>
-  <CardGroup>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-      </Card.Text>
-    </Card.Body>
-
-  </Card>
-  <Card>
-    <Card.Img variant="top" src={little} />
-    <Card.Body>
-      <Card.Title><h4>Article title</h4></Card.Title>
-      <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
-
-  </Card>
-</CardGroup>
-<br/>
-    <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
-  </Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
-<br/>
-</div>
 </div>
      </>
  }

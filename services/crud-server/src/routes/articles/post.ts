@@ -8,21 +8,21 @@ interface ISubmittedArticle {
     preview:string,
     imageLink:string,
     contents:string,
-    price:number
+    price:number,
+    userId:string
 }
 
 export function post( app:any ){
 
-    app.post("/article", async ( request:any, response:any ) => {
+    app.post("/article",authenticateToken, async ( request:any, response:any ) => {
 
         // read payload from post body
         const payload:ISubmittedArticle = request.body;
 
-
+    console.log("article Post:")
        await ArticleModel.create({
-            userId:2,
+            userId:parseInt(payload.userId),
             title: payload.title,  
-            price: payload.price,
             preview: payload.preview,         
             contents: payload.contents,
             image_link: payload.imageLink,
