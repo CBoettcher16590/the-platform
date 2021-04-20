@@ -1,4 +1,4 @@
-import {UserModel, IUser} from '../../models/user';
+import { IUser, UserModel} from '../../models/user';
 
 
 export function patch(app:any){

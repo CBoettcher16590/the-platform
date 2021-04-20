@@ -11,8 +11,8 @@ export interface IUser {
     password:string,
     date_created:string,
     disable_login:number,
-    phoneNumber: Date,
-    userDB: Date, 
+    phoneNumber: string,
+    userDB: string, 
     imgLink:string
     bio:string
     

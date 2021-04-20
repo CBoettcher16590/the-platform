@@ -22,7 +22,7 @@ export default function ED_edit_profile() {
             Profile Picture
         </Form.Label>
         <Col sm={10}>
-            <Form.Control type="Number"placeholder="Enter New Image URL" />  
+            <Form.Control type="url"placeholder="Enter New Image URL" />  
         </Col>
     </Form.Group>
     
@@ -31,7 +31,7 @@ export default function ED_edit_profile() {
             Email
         </Form.Label>
         <Col sm={10}>
-            <Form.Control type="Number"  placeholder="New Email" />  
+            <Form.Control type="email"  placeholder="New Email" />  
         </Col>
     </Form.Group>
 
@@ -40,7 +40,7 @@ export default function ED_edit_profile() {
             Phone
         </Form.Label>
         <Col sm={10}>
-            <Form.Control type="Number"  placeholder="New Phone Number" />
+            <Form.Control type="phoneNumber"  placeholder="New Phone Number" />
         </Col>
     </Form.Group>
 

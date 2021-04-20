@@ -11,24 +11,15 @@ export default {
                 },  
             });
         },
-    // Update: async ( body:any ) => { 
-    //     console.log("approvalAPI")
-    //     return axios.patch(`${HOSTNAME}/MEMupdateMyInfo`, body, {
-    //         headers: {
-    //             Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-    //             //Code is used to identify what we need to do in the patch req
-    //             Code:"Approval",
-    //             },  
-    //     });
-    // },
-    // feature: async ( body:any ) => {
-    //     console.log("featureAPI")
-    //     return axios.patch(`${HOSTNAME}/MEMupdateMyInfo`, body, {
-    //         headers: {
-    //             Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-    //             //Code is used to identify what we need to do in the patch req
-    //             Code:"Feature",
-    //             },  
-    //     });
-    // },
+    Update: async ( body:any ) => { 
+        console.log("approvalAPI")
+        return axios.patch(`${HOSTNAME}/MEMupdateMyInfo`, body, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                //Code is used to identify what we need to do in the patch req
+                Code:"Approval",
+                },  
+        });
+    },
+
     }

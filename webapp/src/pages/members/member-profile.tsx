@@ -68,7 +68,7 @@ function onClickLogout(){
           Q: What’s the best thing about Switzerland?
           A: I don’t know, but the flag is a big plus.
         </Card.Text>
-        <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+        <Nav.Link href = "/MEMupdateMyInfo" >Edit Profile</Nav.Link>
       </Card.Body>
   </Card>
   </div>
