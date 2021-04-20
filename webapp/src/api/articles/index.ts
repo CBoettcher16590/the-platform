@@ -49,7 +49,6 @@ export default {
             });
         },
     approval: async ( body:any ) => {
-        console.log("approvalAPI")
         return axios.patch(`${HOSTNAME}/article`, body, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("token")}`,
@@ -59,7 +58,6 @@ export default {
         });
     },
     feature: async ( body:any ) => {
-        console.log("featureAPI")
         return axios.patch(`${HOSTNAME}/article`, body, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("token")}`,

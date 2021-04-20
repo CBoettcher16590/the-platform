@@ -7,7 +7,6 @@ export function getIndv( app:any ){
         const userID = request.params.userid;
     
         const foundUser = await UserModel.getByID(userID);
-        console.log("user:id  ", foundUser[0])
 
         response.status(200).send(foundUser);
 

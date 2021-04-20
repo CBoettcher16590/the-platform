@@ -74,7 +74,7 @@ console.log(userArticles);
             <br/>
             <br/>
           <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-          <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+          <Nav.Link href = "/AUupdateMyInfo" >Edit Profile</Nav.Link>
         </Card.Body>
         </Card>
         </div>

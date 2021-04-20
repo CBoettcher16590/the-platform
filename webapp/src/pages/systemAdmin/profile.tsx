@@ -62,7 +62,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     } else {
       user.disable_login = 0;
     }
-    api.users.patch(user);
+    api.users.changePermission(user);
     //refresh
     history.go(0);
   }
