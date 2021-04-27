@@ -1,5 +1,35 @@
 {
   "name": "praetorian",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts",
+      "!src/reportWebVitals.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "./src/*/*.types.{ts,tsx}",
+      "./src/index.tsx",
+      "./src/serviceWorker.ts"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text-summary",
+      "html",
+      "clover"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 95,
+        "branches": 95,
+        "lines": 95,
+        "functions": 95
+      }
+    }
+  },
+
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -36,6 +66,7 @@
   },
   "scripts": {
     "test-enzyme": "mocha -r ts-node/register -r jsdom-global/register -r unitTestSetup.ts **/test/**/*.ts test/**/*.tsx --recursive --timeout 5000",
+    "test:coverage": "react-scripts test --coverage --runInBand --watchAll=false",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

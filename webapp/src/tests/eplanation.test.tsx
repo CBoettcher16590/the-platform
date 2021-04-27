@@ -9,6 +9,14 @@ import SignUp from "../components/SignUpForm"; //i have no clue how I accidently
 
 //each of these will be targetted by means of setupfile.
 //crucially each test needs to be named name.test.tsx
+//it prints coverage. 2nd wave is make sure to grab all visuals render pages, +- searches and component counts
+//also to render out components via shallow or the react test libary 🦀
+
+
+//on visual components, you can check if they render correctly
+//then search to make sure any text is correct
+//this is for purely the visual pages...
+//otherwise simulate functionality lets you trigger buttons
 
 describe('Any Page or Compponent', () => {
 

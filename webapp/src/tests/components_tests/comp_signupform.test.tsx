@@ -4,7 +4,7 @@ import Enzyme, { shallow } from 'enzyme';
 // import sinon, {spy} from 'sinon'; //don't understand why broken and don't care. later.
 //sinon lets you see if function was called or not, with the spy function 
 import Adapter from 'enzyme-adapter-react-16';
-import SignUp from "../components/SignUpForm";
+import SignUp from "../../components/SignUpForm";
 // so we need enzyme, enzyme adatper to test rendering :I
 // should be done in the test set up file.
 
