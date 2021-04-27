@@ -78,10 +78,9 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href = "/" > The-Platform</Nav.Link>
-          </Nav> 
-            <Nav>
-              <Navbar.Brand href="/ADProfile"> My Account</Navbar.Brand>
+            <Navbar.Brand href="/">The Platform</Navbar.Brand>          </Nav> 
+          <Nav>
+              <Nav.Link href="/ADProfile"> My Account</Nav.Link>
             </Nav>
             <Nav>
               <Button onClick={onClickLogout}>Logout</Button>

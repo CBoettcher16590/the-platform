@@ -38,7 +38,7 @@ const history = useHistory();
     
           <div className="article">
     
-            <h2 onClick={GoToArticle(_art)}>{title}</h2>
+            <h2 className="articleTitle"onClick={GoToArticle(_art)}>{title}</h2>
     
             <p>{preview}</p>
     

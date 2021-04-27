@@ -1,10 +1,7 @@
 .authorInfo{
     align-content: center;
 }
-.authorNav{
-    display: flex;
-    justify-content: space-between;
-}
+
 .authorInfoCard{
     width: 30em;
     margin-right: auto;

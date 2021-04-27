@@ -61,26 +61,20 @@ useEffect(() => {
 
   return (
     <div>
-    <Navbar className="authorNav" collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/"> The-Platform</Nav.Link>
+          <Navbar.Brand href="/">The Platform</Navbar.Brand>
         </Nav>
-        <Nav className="mr-auto">
+        <Nav>
           <Nav.Link href="/newArticle">Submit An Article</Nav.Link>
-        </Nav>
-        <Nav className="mr-auto">
           <Nav.Link href="/newSeries">Create New Series</Nav.Link>
-        </Nav>
-        <Nav>
-          <Navbar.Brand> My Account</Navbar.Brand>
-        </Nav>
-        <Nav>
           <Button onClick={onClickLogout}>Logout</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
+
     <div className="authorCardBG">
         <Card className="authorInfoCard">
           <Card.Img variant="top" src={loggedInUser?.user_image_link} />

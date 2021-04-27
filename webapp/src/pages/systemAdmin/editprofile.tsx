@@ -12,8 +12,8 @@ return <>
     <Navbar bg="dark" variant="dark">
     <Nav className="mr-auto">
     <Nav.Link href= '/ADProfile'>My Account</Nav.Link>
-</Nav>
-</Navbar>
+    </Nav>
+    </Navbar>
 <br />
 <h2> Change profile Information</h2>
     <Form style= {{alignContent: "normal"}}>

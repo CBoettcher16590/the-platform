@@ -16,7 +16,11 @@ function HomePage(props:{  }){
         const userType = window.localStorage.getItem("userType");
         const [navProfileLink, setNavProfileLink] = useState<string>();
 
-        
+        function onClickLogout(){
+                window.localStorage.clear();
+                history.go(0);
+                alert("Logged Out");
+              }
 
         useEffect(() => {
                 //First We make sure that a user is signed in by checking localstorage for information
@@ -27,7 +31,7 @@ function HomePage(props:{  }){
                 }else{
                         history.push("/signin")
                 }
-
+                //THEN we check the user type
                 switch(userType) { 
                         case "1": { 
                                 setNavProfileLink("/ADProfile"); 
@@ -66,20 +70,12 @@ return  <>
                  </Nav>
                  <Nav>
                          <Nav.Link href= {navProfileLink}>My Account</Nav.Link>
-                 </Nav>
-                 
-                 <Nav>
+     
                          <Nav.Link href= '/OrgHome'>Organization Page</Nav.Link>
-                 </Nav>
 
-                 <Nav>
                          <Nav.Link href= '/Orgauthors'>Organization Authors</Nav.Link>
-                 </Nav>
-                
-                 <Nav>  
-                         <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
-                 </Nav>
-                        <Nav.Link href= '/signin'>Sign In!</Nav.Link>
+                  </Nav>
+                        <Button id="logoutButton" onClick={onClickLogout}>Logout</Button>
             </Navbar>
 
                         <section className="homeWelcome">

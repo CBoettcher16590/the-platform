@@ -63,8 +63,7 @@ function onClickLogout(){
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href = "/" > The-Platform</Nav.Link>
-        </Nav> 
+          <Navbar.Brand href="/">The Platform</Navbar.Brand>        </Nav> 
         <Nav>
           <Navbar.Brand href="/editorProfile"> My Account</Navbar.Brand>
         </Nav>

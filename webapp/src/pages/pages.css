@@ -2,7 +2,9 @@
 .navUser{
     color:white;
 }
-
+#logoutButton{
+    margin-left:15px;
+}
 .articleImage{
     display: flex;
     justify-content: center;
@@ -11,7 +13,6 @@
     width: 700px;
     height: 500px;
     object-fit: cover;
-
 }
 #authorAvatar{
    margin: 40px 0 20px 0;
@@ -83,15 +84,7 @@ padding: 5px;
 #TextAreaHeader{
     margin-top: 10px;
 }
-#search{
-    width: 70%;
-    margin-top: 20px;
-}
-#searchText{
-    margin-right: 10px;
-    width: 70%
 
-}
 #dropdown-basic{
     margin: 10px 0 20px 0;
 }

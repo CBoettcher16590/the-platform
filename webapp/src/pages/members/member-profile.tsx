@@ -22,11 +22,10 @@ function onClickLogout(){
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mr-auto">
-      <Nav.Link href = "/" > The-Platform</Nav.Link>
-</Nav> 
+      <Navbar.Brand href="/">The Platform</Navbar.Brand></Nav> 
 
 <Nav>
-      <Navbar.Brand href="/profile"> My Account</Navbar.Brand>
+      <Nav.Link href="/profile"> My Account</Nav.Link>
 </Nav>
 <Nav>
   <Button onClick={onClickLogout}>Logout</Button>
