@@ -9,7 +9,7 @@ import { IUser } from '../../../services/crud-server/src/models/user';
 import { useHistory } from 'react-router';
 
 
-function HomePage(props:{}){
+function HomePage(props:{  }){
 
         const [loggedInUser, setLoggedInUser] = useState<string>("");
         const history = useHistory();
@@ -96,17 +96,6 @@ return  <>
                                         purpose (injected humour and the like).
                                         </p>
                                 </div>                        
-                        </section>
-                        <section className="homeSearch">
-                                <Form inline id="search">
-                                        <FormControl type="text" placeholder="Search" id="searchText" />
-                                        <Button variant="outline-success">Search</Button>
-                                </Form>
-                                <DropdownButton id="dropdown-basic-button" title="Filter By Category">
-                                        <Dropdown.Item href="#/action-1">Animals</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Tech</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">Holiday History</Dropdown.Item>
-                                </DropdownButton>
                         </section>
                         
                         <HorazontalDisplay/>

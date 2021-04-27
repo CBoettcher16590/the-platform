@@ -95,7 +95,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
         <Card className="adminInfoCard">
           <Card.Img variant="top" src= "#"/>
           <Card.Body className="adminInfo">
-          <Card.Title><h2>Author Profile</h2></Card.Title>
+          <Card.Title><h2>Admin Profile</h2></Card.Title>
             <br/>
             <br/>
           <Card.Title><h5>Bio</h5></Card.Title>

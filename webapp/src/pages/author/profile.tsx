@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Nav, Card, Button, Table } from 'react-bootstrap';
+import { Navbar, Nav, Card, Button, Table, Dropdown, DropdownButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import  FavoriteArticles  from '../../components/article/favoriteArticle';
 import './style.css';
@@ -7,6 +7,7 @@ import { useHistory } from 'react-router';
 import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
+import { ISeries } from '../../../../services/crud-server/src/models/series';
 
 
 export default function AuthorProfile() {
@@ -14,12 +15,20 @@ export default function AuthorProfile() {
 const history = useHistory();
 const [loggedInUser, setLoggedInUser] = useState<IUser>();
 const [userArticles, setUserArticles] = useState<IArticle[]>();
+const [userSeries , setUserSeries] = useState<ISeries[]>();
 
 function onClickLogout(){
-  window.localStorage.clear()
+  window.localStorage.clear();
   history.push('/');
-  alert("Logged Out")
+  alert("Logged Out");
 }
+const handelAddToSeries = (seriesID:string, artID:string) => {
+  return (event: React.MouseEvent) => {
+    api.series.addArticleToSeries(seriesID, artID);
+    event.preventDefault();
+  }
+}
+// x
 
 useEffect(() => {
   //find logged in user
@@ -34,16 +43,22 @@ useEffect(() => {
 useEffect(() => {
   const userID = Number(localStorage.getItem("userID"));
   //find articles that belong to logged in user
+
   api.articles.get().then((responce) => {
     const allArticles:IArticle[] = responce.data;
-    console.log("allArticlesTest",allArticles);
     const userArt = allArticles.filter(_art => _art.user_user_id == userID);
-
     setUserArticles(userArt);
   }).catch((err) => { console.log(`Error: ${err}`); });
+  
+    //find series that belong to logged in user
+  api.series.get().then((responce) => {
+    const allSeries:ISeries[] = responce.data;
+    const uSeries = allSeries.filter(series => parseInt(series.series_owner_id) == userID);
+    setUserSeries(uSeries);
+  })
+
 }, []);
 
-console.log(userArticles);
   return (
     <div>
     <Navbar className="authorNav" collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -87,6 +102,10 @@ console.log(userArticles);
 
 <FavoriteArticles></FavoriteArticles>
 
+
+{/* ================= My ARTICLES ================= */}
+
+
 <h2>My Articles</h2>
 <Table >
     <thead>
@@ -94,6 +113,7 @@ console.log(userArticles);
       <th>#</th>
       <th>Article Name</th>
       <th>Series ID</th>
+      <th>Add To Series</th>
     </tr>
   </thead>
   <tbody>
@@ -101,11 +121,27 @@ console.log(userArticles);
       let number = index + 1;
       let articleTitle = _art.title;
       let series = _art.series_series_id;
+      
       return(
         <tr key={_art.article_id}>
           <td>{number}</td>
           <td>{articleTitle}</td>
           <td>{series}</td>
+          <td>
+            <DropdownButton id="dropdown-basic-button" title="Add Article To Series">
+              {userSeries?.map(function(serie, index){
+                let seriesTitle = serie.series_title;
+                return(
+                  <Dropdown.Item
+                  value={serie.series_title}
+                  seriesid={serie.series_id}
+                  key={index}
+                  onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
+                  >{serie.series_title}</Dropdown.Item>
+                )
+              })}
+              
+            </DropdownButton></td>
         </tr>
       )
     })}
@@ -114,4 +150,3 @@ console.log(userArticles);
     </div>
     )
 }
- 

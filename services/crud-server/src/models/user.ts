@@ -221,8 +221,6 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
                 const hashedPass:string = PasswordModel.hash(userInfo.password);
                 sqlParameters += `password='${hashedPass}',`;
             }
-      
-//add password
 
             var sql = `UPDATE user SET ${sqlParameters.slice(0, -1)} WHERE user_id=${userInfo.userID};`
         
