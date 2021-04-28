@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Nav, Card, Button, Table, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Navbar, Nav, Card, Button, Table, Dropdown, DropdownButton, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import  FavoriteArticles  from '../../components/article/favoriteArticle';
 import './style.css';
@@ -61,6 +61,7 @@ useEffect(() => {
 
   return (
     <div>
+      
     <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -75,23 +76,73 @@ useEffect(() => {
       </Navbar.Collapse>
     </Navbar>
 
-    <div className="authorCardBG">
-        <Card className="authorInfoCard">
-          <Card.Img variant="top" src={loggedInUser?.user_image_link} />
-          <Card.Body className="authorInfo">
-          <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
-            <br/>
-            <br/>
-          <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-          <Nav.Link href = "/AUupdateMyInfo" >Edit Profile</Nav.Link>
-        </Card.Body>
-        </Card>
+    <div >
+      <Row className="AuthorHeader">
+      <Col className="authorCardBG"  sm={12} lg={6}>
+        <div >
+          <Card className="authorInfoCard">
+            <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+            <Card.Body className="authorInfo">
+            <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+              <br/>
+              <br/>
+            <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+            <Nav.Link href = "/AUupdateMyInfo" >Edit Profile</Nav.Link>
+          </Card.Body>
+          </Card>
         </div>
-    <br />
+      </Col>
+      
+      <Col className="articleCol" sm={12} lg={6}>
+        <div id="myArticles"></div>
+        <div id="articleInfo">
+            <h2>My Articles</h2> <Table > 
+            <thead>
+            <tr className="articleHeaders">
+              <th></th>
+              <th>Article Name</th>
+              <th>Series ID</th>
+              <th>Add To Series</th>
+            </tr>
+          </thead>
+          <tbody>
+            {userArticles?.map(function(_art, index){
+              let number = index + 1;
+              let articleTitle = _art.title;
+              let series = _art.series_series_id;
+              
+              return(
+                <tr key={_art.article_id}>
+                  <td>{number}</td>
+                  <td>{articleTitle}</td>
+                  <td>{series}</td>
+                  <td>
+                    <DropdownButton id="dropdownSeries" title="Add Article To Series">
+                      {userSeries?.map(function(serie, index){
+                        let seriesTitle = serie.series_title;
+                        return(
+                          <Dropdown.Item
+                          value={serie.series_title}
+                          seriesid={serie.series_id}
+                          key={index}
+                          onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
+                          >{serie.series_title}</Dropdown.Item>
+                        )
+                      })}
+                      
+                    </DropdownButton></td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </Table>
+      </div>
+     
+      </Col>
+      </Row>
+      
+    </div>
 
-    
-
-    <br/>
 {/* ================= FAVORITED ARTICLES ================= */}
 
 <FavoriteArticles></FavoriteArticles>
@@ -100,47 +151,7 @@ useEffect(() => {
 {/* ================= My ARTICLES ================= */}
 
 
-<h2>My Articles</h2>
-<Table >
-    <thead>
-    <tr>
-      <th>#</th>
-      <th>Article Name</th>
-      <th>Series ID</th>
-      <th>Add To Series</th>
-    </tr>
-  </thead>
-  <tbody>
-    {userArticles?.map(function(_art, index){
-      let number = index + 1;
-      let articleTitle = _art.title;
-      let series = _art.series_series_id;
-      
-      return(
-        <tr key={_art.article_id}>
-          <td>{number}</td>
-          <td>{articleTitle}</td>
-          <td>{series}</td>
-          <td>
-            <DropdownButton id="dropdown-basic-button" title="Add Article To Series">
-              {userSeries?.map(function(serie, index){
-                let seriesTitle = serie.series_title;
-                return(
-                  <Dropdown.Item
-                  value={serie.series_title}
-                  seriesid={serie.series_id}
-                  key={index}
-                  onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
-                  >{serie.series_title}</Dropdown.Item>
-                )
-              })}
-              
-            </DropdownButton></td>
-        </tr>
-      )
-    })}
-  </tbody>
-</Table>
+
     </div>
     )
 }
