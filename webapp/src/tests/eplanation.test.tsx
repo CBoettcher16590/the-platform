@@ -18,6 +18,8 @@ import SignUp from "../components/SignUpForm"; //i have no clue how I accidently
 //this is for purely the visual pages...
 //otherwise simulate functionality lets you trigger buttons
 
+
+//The explanation
 describe('Any Page or Compponent', () => {
 
 
@@ -34,8 +36,6 @@ describe('Any Page or Compponent', () => {
 
 
 //on click it should simulate handle... signup....
-
-
 // it("calls the original function", function () {
 //     var callback = sinon.fake();
 //     var proxy = once(callback);
