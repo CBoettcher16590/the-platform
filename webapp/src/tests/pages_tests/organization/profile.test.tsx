@@ -4,10 +4,11 @@ import React from 'react';
 describe('Any Page or Compponent', () => {
 
 
-    it('should test some part of the component or page', ()=>{
+    xit('should test some part of the component or page', ()=>{
 
 
-
+        //another class uncertain how to deal with it. Standard render methods don't seem to work
+        //something about jsx elements not operating.
 
     })
 

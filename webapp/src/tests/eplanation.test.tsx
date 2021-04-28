@@ -19,20 +19,90 @@ import SignUp from "../components/SignUpForm"; //i have no clue how I accidently
 //otherwise simulate functionality lets you trigger buttons
 
 
+//https://devhints.io/enzyme
+
 //The explanation
 describe('Any Page or Compponent', () => {
 
 
     it('should test some part of the component or page', ()=>{
 
-
-
-
     })
-
-
-
 })
+
+
+// __tests__/hello_world.test.js
+
+
+
+/*
+describe('<AU_edit_profile />', () => {
+
+//renders
+    it('AU_edit_profile renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<AU_edit_profile />, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
+
+//mounts
+    it('AU_edit_profile mounts component without crashing', () => {
+
+        const wrapper = mount(<AU_edit_profile />);
+        expect(wrapper.find(AU_edit_profile)).to.have.lengthOf(1);
+    });
+
+//exists
+    it('Au edito profile renders', () => {
+        const wrapper = shallow(<AU_edit_profile />);
+        expect(wrapper).to.exist;
+
+        // https://enzymejs.github.io/enzyme/docs/api/shallow.html
+    });
+
+//important text.
+    it('renders three <AU_edit_profile /> components', () => {
+        const wrapper = shallow(<AU_edit_profile />);
+        expect(wrapper.find('h2')).to.have.lengthOf(1)
+
+        expect(
+            wrapper.containsMatchingElement(
+                <h2> Change Profile Information</h2>
+            )
+          ).to.be.true
+
+    });
+
+//grabbing the core <div out.>
+    it('renders five <AU_edit_profile /> form group components', () => {
+        const wrapper = shallow(<AU_edit_profile />);
+        expect(wrapper.find('div')).to.have.lengthOf(1) //multiple attempts made via mount to get to lower level components, not functional
+        // console.log(wrapper.debug())
+
+    });
+})
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //on click it should simulate handle... signup....

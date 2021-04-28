@@ -1,20 +1,38 @@
 import React from 'react';
-
-//article testing
-//some of this is still not completly sure.
-//Do I query the databse for this or not?
-
-//unsure if I'll break apart. 
-
-describe('Any Page or Compponent', () => {
-
-
-    it('should test some part of the component or page', ()=>{
+import { mount, shallow } from 'enzyme';
+import sinon, { spy } from 'sinon';
+import Profile from '../../../pages/members/member-profile';
+import { assert, expect } from 'chai';
+import ReactDOM from 'react-dom';
+import {render} from 'enzyme'
+//the amount of libaries and toolkits interacting is something else.... 
+        // console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
 
 
 
+describe('<Profile />', () => {
 
-    })
+//renders
+    it('Profile renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<Profile />, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
+
+//mounts
+    it('Profile mounts component without crashing', () => {
+
+        const wrapper = mount(<Profile />);
+        expect(wrapper.find(Profile)).to.have.lengthOf(1);
+    });
+
+//exists
+    it('Au Profile profile renders', () => {
+        const wrapper = shallow(<Profile />);
+        expect(wrapper).to.exist;
+
+        // https://enzymejs.github.io/enzyme/docs/api/shallow.html
+    });
 
 })
 

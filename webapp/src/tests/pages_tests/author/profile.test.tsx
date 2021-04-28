@@ -1,4 +1,27 @@
 import React from 'react';
+import { mount, shallow } from 'enzyme';
+import sinon, { spy } from 'sinon';
+import author_profile from '../../../pages/author/profile';
+import { assert, expect } from 'chai';
+import ReactDOM from 'react-dom';
+import {render} from 'enzyme'
+
+
+
+describe('Any Page or Compponent', () => {
+
+
+  xit('should test some part of the component or page', ()=>{
+        //another class uncertain how to deal with it. Standard render methods don't seem to work
+        //something about jsx elements not operating.
+
+
+  })
+
+})
+
+
+
 
 //article testing
 //some of this is still not completly sure.
@@ -6,18 +29,71 @@ import React from 'react';
 
 //unsure if I'll break apart. 
 
-describe('Any Page or Compponent', () => {
+/*
+
+DOA
 
 
-    it('should test some part of the component or page', ()=>{
+describe('Hello', () => {
+  it('should render text', () => {
+    const wrapper = render(<author_profile />)
 
-
-
-
-    })
-
+    expect(wrapper).to.have.text('Hello world.')
+  })
 })
 
+
+
+
+
+describe('<author_profile />', () => {
+
+  //renders
+      it('author_profile renders without crashing', () => {
+          const div = document.createElement('div');
+          ReactDOM.render(<author_profile />, div);
+          ReactDOM.unmountComponentAtNode(div);
+      });
+  
+  //mounts
+      it('AU_edit_profile mounts component without crashing', () => {
+  
+          const wrapper = mount(<author_profile />);
+          expect(wrapper.find(AU_edit_profile)).to.have.lengthOf(1);
+      });
+  
+  //exists
+      it('Au edito profile renders', () => {
+          const wrapper = shallow(<author_profile />);
+          expect(wrapper).to.exist;
+  
+          // https://enzymejs.github.io/enzyme/docs/api/shallow.html
+      });
+  
+  //important text.
+      it('renders three <AU_edit_profile /> components', () => {
+          const wrapper = shallow(<author_profile />);
+          expect(wrapper.find('h2')).to.have.lengthOf(1)
+  
+          expect(
+              wrapper.containsMatchingElement(
+                  <h2> Change Profile Information</h2>
+              )
+            ).to.be.true
+  
+      });
+  
+  //grabbing the core <div out.>
+      it('renders five <AU_edit_profile /> form group components', () => {
+          const wrapper = shallow(<author_profile />);
+          expect(wrapper.find('div')).to.have.lengthOf(1) //multiple attempts made via mount to get to lower level components, not functional
+          // console.log(wrapper.debug())
+  
+      });
+  })
+
+*/
+  
 
 
 /*

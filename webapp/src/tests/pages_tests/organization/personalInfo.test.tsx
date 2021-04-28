@@ -1,15 +1,38 @@
 import React from 'react';
+import { mount, shallow } from 'enzyme';
+import sinon, { spy } from 'sinon';
+import OR_personal_info from '../../../pages/organization/personalInfo';
+import { assert, expect } from 'chai';
+import ReactDOM from 'react-dom';
+import {render} from 'enzyme'
+//the amount of libaries and toolkits interacting is something else.... 
+        // console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
 
 
-describe('Any Page or Compponent', () => {
 
+describe('<OR_personal_info />', () => {
 
-    it('should test some part of the component or page', ()=>{
+//renders
+    it('OR_personal_info renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<OR_personal_info />, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
 
+//mounts
+    it('OR_personal_info mounts component without crashing', () => {
 
+        const wrapper = mount(<OR_personal_info />);
+        expect(wrapper.find(OR_personal_info)).to.have.lengthOf(1);
+    });
 
+//exists
+    it('OR_personal_info profile renders', () => {
+        const wrapper = shallow(<OR_personal_info />);
+        expect(wrapper).to.exist;
 
-    })
+        // https://enzymejs.github.io/enzyme/docs/api/shallow.html
+    });
 
 })
 

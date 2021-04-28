@@ -1,15 +1,38 @@
 import React from 'react';
+import { mount, shallow } from 'enzyme';
+import sinon, { spy } from 'sinon';
+import Admin_profile from '../../../pages/systemAdmin/profile';
+import { assert, expect } from 'chai';
+import ReactDOM from 'react-dom';
+import {render} from 'enzyme'
+//the amount of libaries and toolkits interacting is something else.... 
+        // console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
 
 
-describe('Any Page or Compponent', () => {
 
+describe('<Admin_profile />', () => {
 
-    it('should test some part of the component or page', ()=>{
+//renders
+    it('Admin_profile renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<Admin_profile />, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
 
+//mounts
+    it('Admin_profile mounts component without crashing', () => {
 
+        const wrapper = mount(<Admin_profile />);
+        expect(wrapper.find(Admin_profile)).to.have.lengthOf(1);
+    });
 
+//exists
+    it('Admin_profile profile renders', () => {
+        const wrapper = shallow(<Admin_profile />);
+        expect(wrapper).to.exist;
 
-    })
+        // https://enzymejs.github.io/enzyme/docs/api/shallow.html
+    });
 
 })
 

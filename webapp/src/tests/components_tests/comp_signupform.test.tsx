@@ -1,10 +1,11 @@
 import React from 'react';
 import { assert, expect } from 'chai';
-import Enzyme, { shallow } from 'enzyme';
+import Enzyme, { mount, shallow } from 'enzyme';
 // import sinon, {spy} from 'sinon'; //don't understand why broken and don't care. later.
 //sinon lets you see if function was called or not, with the spy function 
 import Adapter from 'enzyme-adapter-react-16';
 import SignUp from "../../components/SignUpForm";
+import ReactDOM from 'react-dom';
 // so we need enzyme, enzyme adatper to test rendering :I
 // should be done in the test set up file.
 
@@ -99,9 +100,33 @@ describe('Signup', ()=>{
       expect(wrapper.length).to.be.eq(1);
   
     })
+
+    it('TopNavbar renders without crashing', () => {
+      const div = document.createElement('div');
+      ReactDOM.render(<SignUp />, div);
+      ReactDOM.unmountComponentAtNode(div);
+  });
+
+//mounts
+  it('TopNavbar mounts component without crashing', () => {
+
+      const wrapper = mount(<SignUp />);
+      expect(wrapper.find(SignUp)).to.have.lengthOf(1);
+  });
+
+//exists
+  it(' Footer profile renders', () => {
+      const wrapper = shallow(<SignUp />);
+      expect(wrapper).to.exist;
+
+      // https://enzymejs.github.io/enzyme/docs/api/shallow.html
+  });
+
+})
+
   
   
-  })
+
 
 
 

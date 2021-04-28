@@ -14,11 +14,6 @@ export default function MEM_edit_profile() {
 
 
 //then I'd need to specify the email in the patch etc.
-    useEffect(() => {
-        api.user.get().then((responce) => { //I don't specify the amil in this get.
-            setingUser(responce.data[0]);
-            }).catch((error: any) => console.error(`Error User Extract: ${error}`)); 
-    },[0]); //probably this zero?
 
 
 
