@@ -9,6 +9,13 @@ export default {
                 },  
             });
         },
+    getById: async (id:string) => {
+        return axios.get(`${HOSTNAME}/series/:id`, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                },  
+            });
+        },
     post: async ( body:any ) => {
         return axios.post(`${HOSTNAME}/series` , body, {
             headers: {

@@ -19,7 +19,7 @@ app.post('/tokens', async (request:any, response:any) => {
 
     const foundUser:IUser[] = await UserModel.getByEmail(email);
 
-    //foundUser[0] IS a row data packet, I used JSON parse and stringift to make into a more usable object
+    //foundUser[0] IS a row data packet, I used JSON parse and stringify to make into a more usable object
     const foundUserString:IUser = JSON.parse(JSON.stringify(foundUser[0]));
    
 

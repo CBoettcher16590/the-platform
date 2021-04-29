@@ -12,8 +12,8 @@ function simulateNetworkRequest() {
 
 //finds a user by a userID
 function getUser(userID:string){
-  const user = api.users.getById(userID)
-  console.log(user)
+  const user = api.users.getById(userID);
+  console.log(user);
   return user;
 }
          
