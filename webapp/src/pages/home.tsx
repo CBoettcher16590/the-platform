@@ -9,20 +9,59 @@ import { IUser } from '../../../services/crud-server/src/models/user';
 import { useHistory } from 'react-router';
 
 
-function HomePage(props:{}){
+function HomePage(props:{  }){
 
-        const [loggedInUser, setLoggedInUser] = useState<string>();
+        const [loggedInUser, setLoggedInUser] = useState<string>("");
         const history = useHistory();
-        
+        const userType = window.localStorage.getItem("userType");
+        const [navProfileLink, setNavProfileLink] = useState<string>();
+
+        function onClickLogout(){
+                window.localStorage.clear();
+                history.go(0);
+                alert("Logged Out");
+              }
+
         useEffect(() => {
+                //First We make sure that a user is signed in by checking localstorage for information
                 const user = window.localStorage.getItem("firstName");
                 if(user){
-                 setLoggedInUser(user);       
+                        setLoggedInUser(user); 
+                        history.push("/");       
+                }else{
+                        history.push("/signin")
                 }
-                history.push("/");
+                //THEN we check the user type
+                switch(userType) { 
+                        case "1": { 
+                                setNavProfileLink("/ADProfile"); 
+                                break; 
+                        } 
+                        case "2": { 
+                                //author
+                                setNavProfileLink("/AUProfile"); 
+                                break; 
+                        } 
+                        case "3": { 
+                                //editor
+                                setNavProfileLink("/editorProfile");
+                                break; 
+                             } 
+                        case "4": { 
+                                //member
+                                setNavProfileLink("/profile"); 
+                                break; 
+                             } 
+                        default: { 
+                           console.error("No User Type by that ID");
+                           break; 
+                        } 
+                     } 
+               
                     },[]);
 
 return  <>
+
 
         <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="/">The Platform</Navbar.Brand>
@@ -30,22 +69,13 @@ return  <>
                 <Nav className="mr-auto">
                  </Nav>
                  <Nav>
-                         <Nav.Link href= '/profile'>Member Page</Nav.Link>
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/editorProfile'>Editor Page</Nav.Link>
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/ADProfile'>Admin Page</Nav.Link>
-                 </Nav>
-                 <Nav>
-                         <Nav.Link href= '/AUProfile'>Author Page</Nav.Link>
-                 </Nav>
+                         <Nav.Link href= {navProfileLink}>My Account</Nav.Link>
+     
+                         <Nav.Link href= '/OrgHome'>Organization Page</Nav.Link>
 
-                 <Nav>  
-                         <Nav.Link href= '/signup'> Sign Up!</Nav.Link>
-                 </Nav>
-                        <Nav.Link href= '/signin'>Sign In!</Nav.Link>
+                         <Nav.Link href= '/Orgauthors'>Organization Authors</Nav.Link>
+                  </Nav>
+                        <Button id="logoutButton" onClick={onClickLogout}>Logout</Button>
             </Navbar>
 
                         <section className="homeWelcome">
@@ -63,39 +93,9 @@ return  <>
                                         </p>
                                 </div>                        
                         </section>
-                        <section className="homeSearch">
-                                <Form inline id="search">
-                                        <FormControl type="text" placeholder="Search" id="searchText" />
-                                        <Button variant="outline-success">Search</Button>
-                                </Form>
-                                <DropdownButton id="dropdown-basic-button" title="Filter By Category">
-                                        <Dropdown.Item href="#/action-1">Animals</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Tech</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-3">Holiday History</Dropdown.Item>
-                                </DropdownButton>
-                        </section>
                         
                         <HorazontalDisplay/>
 
-
-                        {/* Just an example of my styling */}
-                        {/* <section className="homeStories">
-                        
-                                <div className="homeCard">
-                                        <img className="cardImage" src="https://images.unsplash.com/photo-1553598837-21dd2303e506?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1036&q=80" />
-                                        <div className="article">
-                                                <h2>Article Title</h2>
-                                                <p>
-                                                        Article Preview Text *Maecenas tristique volutpat mauris, vel pharetra nulla egestas at. 
-                                                        Duis rhoncus eleifend lacinia. Nulla gravida molestie augue non mollis.*
-                                                </p>
-                                                <a href="/article/1">Check Out the Articles</a>
-                                                <PayButton/>
-                                        </div>
-                                </div>
-                                
-                        </section>  */}
-                
 
          </>    
 

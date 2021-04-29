@@ -6,12 +6,98 @@
     width: 30em;
     margin-right: auto;
     margin-left: auto;
+    box-shadow: white 0px 0px 10px;
+} 
+.authorInfoCard img{
+    margin: 1em auto 0 auto;
+    max-width: 20em;
+    max-height: 20em;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
+
 .authorCardBG{
-    background-color: rgb(167, 230, 255) ;
+    padding: 20px 0 20px 0  ;
+    background-image: linear-gradient(to top right, #47697E,#8fbdd1);
+
 }
-.likeCounter{
-    margin-left: 3em;
-    align-content: center;
+
+#updateHeader{
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    text-decoration: underline;
+    font-size: 40px;
+}
+.AuthorHeader{
+    display: flex;
+
+}
+.UpdateForm{
+    margin-top: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow:10px 10px lightgrey ;
+    width: 85vw;
+    background-color:white ;
+}
+.updateInfo{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-left: 10vw;
+}
+.updateInfo .label{
+    padding-top: 15px;
+    font-size: 20px;
+    font-weight: 500;
+}
+#updateButton{
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    width: 30vw;
+}
+#myArticles{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url('https://images.unsplash.com/photo-1580914272598-9c5b88d24db2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80') center center;
+    opacity: .6;
+    width: 100%;
+    height: 100%;
+}
+/* Button */
+#dropdownSeries{
+    color:black;
+    background: rgb(245, 212, 121);
+}
+#articleInfo{
+    font-size: 18px;
+    font-weight: 500;
+    border: 1px solid black;
+    background-color:rgba(113, 139, 98, 0.8);
+    margin: 5em;
+    height: 75vh;
+    overflow: scroll;
+
+}
+.articleCol h2{
+    padding: 30px 0 0 0;
+    text-align: center;
+}
+
+#myArticles h2{
+    text-align: center;
+}
+.articleHeaders{
+text-align: center;
 }

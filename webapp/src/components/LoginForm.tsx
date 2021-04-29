@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import api from '../api';
 
@@ -7,45 +7,76 @@ import api from '../api';
 export default function LoginForm(){
 
     const history = useHistory();
-    // const authModel = useAuthentication(); //we never get something back here or rather never a logged in
-    
+    const [isLoading, setLoading] = useState(false);
+
     const [ email, setEmail ] = useState<string>('');
     const [ password, setPassword ] = useState<string>('');
 
+    // This use effect is for the sign-in loading effect
+    useEffect(() => {
+        if (isLoading) {
+          setTimeout(function(){
+              setLoading(false);  
+          }, 2000)
+          };
+        
+    }, [ isLoading ]);
+    
     function handleLogin(e:any){
         e.preventDefault();
+        setLoading(true);
         api.tokens.post({_email:email , _password:password});
         api.user.post({email, password});
-        history.push('/'); //I think the above is fine. 
+        setTimeout(function(){
+            history.push('/');
+        }, 2000);
        };
 
     
 
     return (
         <>
-        <form id="signForm">
-        <h2>Sign In</h2>
+    <div className="loginSignupBackground">
+        <div id="loginForm">
+        <h1>Log In</h1>
 
-        <div className="form-group">
-            <label>Email </label> 
-            <input value={email} onChange={(e)=>setEmail(e.target.value)} id="emailInput" 
-                type="email" className="form-control" placeholder="Enter email" />
+        <Form > 
+                <Form.Group>
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
+                        id="emailInput" 
+                        type="email"
+                        className="form-control"
+                        placeholder="Enter email"/>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                        value={password}
+                        onChange={(e)=>setPassword(e.target.value)} 
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter password"
+                    />
+                </Form.Group>
+                <Button type="submit" disabled={isLoading} className="btn btn-primarys btn-block" onClick={handleLogin}>
+                    {isLoading ? 'Loading…' : 'Sign In'}
+                </Button>
+                <a href="#">Forgot Your Password?</a>
+            </Form>
+            <hr/>
+            <div className="createAccount">
+                <h4>Dont have an Account Yet?</h4>
+                <a href="/signup">Create an Account</a>
+            </div>
+
         </div>
-    <br/>
-        <div className="form-group">
-            <label>Password </label>
-            <input value={password} onChange={(e)=>setPassword(e.target.value)} 
-                type="password" className="form-control" placeholder="Enter password" />
-        </div>
 
-        <Button type="submit" className="btn btn-primary btn-block" onClick={handleLogin}>
-            Sign In
-        </Button>
-
-        <p className="forgot-password text-right">
-            Forgot your Password ? <a href="forms/signin">Help</a>
-        </p>
-    </form>
+    </div>
+    
+        
         </>
     )
 }

@@ -9,6 +9,7 @@ export default function HorazontalDisplay(){
 
 const [featuredArticles, setFeaturedArticles] = useState<IArticle[]>();
 const history = useHistory();
+
   //Here we use a useEffect to bring in ALL the articles
   useEffect(() => {
     api.articles.get().then((responce) => {
@@ -17,41 +18,40 @@ const history = useHistory();
     }).catch((error: any) => console.error(`Error: ${error}`)); 
         },[]);
 
-  const GoToArticle = (article:IArticle) => (event:any) => {
+   const GoToArticle = (article:IArticle) => (event:any) => {
     //here we find the article id for our Title, Link
     let articleId = article.article_id;
     //then We use history.push to redirect to that page
     history.push(`/article/${articleId}`)
     }
-
-return <>
-<section className="homeStories">
-  {featuredArticles?.map(function(_art, index){
-    let image = _art.image_link;
-    let title = _art.title;
-    let preview = _art.preview;
-    let createdOn = _art.created_on.slice(0,10);
-
-    return (
-      <div className="homeCard">
-
-      <img className="cardImage" src={image} />
-
-      <div className="article">
-
-        <h2 onClick={GoToArticle(_art)}>{title}</h2>
-
-        <p>{preview}</p>
-
-        <p>Date Posted: {createdOn}</p>
-
-        <FavButton/>
-
-      </div>
-    </div>
-    )
-  })}
-</section> 
+    return <>
+    <section className="homeStories">
+      {featuredArticles?.map(function(_art, index){
+        let image = _art.image_link;
+        let title = _art.title;
+        let preview = _art.preview;
+        let createdOn = _art.created_on.slice(0,10);
+        return (
+          <div key={_art.article_id} className="homeCard">
+    
+          <img className="cardImage" src={image} />
+    
+          <div className="article">
+    
+            <h2 className="articleTitle"onClick={GoToArticle(_art)}>{title}</h2>
+    
+            <p>{preview}</p>
+    
+            <p>Date Posted: {createdOn}</p>
+    
+            <FavButton{..._art}/>
+    
+          </div>
+        </div>
+        )
+      })}
       
-</>
- }
+    </section> 
+          
+    </>
+     }

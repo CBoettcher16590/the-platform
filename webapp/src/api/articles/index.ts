@@ -25,6 +25,22 @@ export default {
                 },  
             });
         },
+    addToFav: async ( body:any ) => {
+        return axios.post(`${HOSTNAME}/favoriteArticle` , body, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                },  
+            });
+        },
+    getForFavList: async ( body:any ) => {
+        return axios.get(`${HOSTNAME}/favoriteArticle` , {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                //in this case, body is going to be a userID
+                Code:`${body}`
+                },  
+            });
+        },
     patch: async ( body:any ) => {
         return axios.patch(`${HOSTNAME}/article`, body, {
             headers: {
@@ -33,21 +49,19 @@ export default {
             });
         },
     approval: async ( body:any ) => {
-        console.log("approvalAPI")
         return axios.patch(`${HOSTNAME}/article`, body, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-                //maybe I can use to identify the patch types?
+                //Code is used to identify what we need to do in the patch req
                 Code:"Approval",
                 },  
         });
     },
     feature: async ( body:any ) => {
-        console.log("featureAPI")
         return axios.patch(`${HOSTNAME}/article`, body, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-                //maybe I can use to identify the patch types?
+                //Code is used to identify what we need to do in the patch req
                 Code:"Feature",
                 },  
         });

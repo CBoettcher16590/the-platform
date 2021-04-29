@@ -3,8 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Card, CardGroup, Button, Accordion } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css'
-import cat from '../../images/cat.jpg';
-import little from '../../images/little.jpg';
+import  FavoriteArticles  from '../../components/article/favoriteArticle';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
 import { useEffect } from 'react';
@@ -64,8 +63,7 @@ function onClickLogout(){
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href = "/" > The-Platform</Nav.Link>
-        </Nav> 
+          <Navbar.Brand href="/">The Platform</Navbar.Brand>        </Nav> 
         <Nav>
           <Navbar.Brand href="/editorProfile"> My Account</Navbar.Brand>
         </Nav>
@@ -78,7 +76,7 @@ function onClickLogout(){
   
       <div className="editorCardBG">
         <Card className="editorInfoCard">
-          <Card.Img variant="top" src= {cat} />
+          <Card.Img variant="top" src= "#" />
           <Card.Body className="editorInfo">
           <Card.Title><h2>Editor Profile</h2></Card.Title>
             <br/>
@@ -144,100 +142,11 @@ function onClickLogout(){
   </Card.Body>
 </Card>
  </div>
- <div className= "raw">
-    <Card className="text-center" style={{ width: '100rem' }}>
-      <Card.Header><h3>Purchased Articles</h3></Card.Header>
-      <Card.Body>
-      <CardGroup>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-        <Card.Title><h4>Cats Training</h4></Card.Title>
-          <Card.Text>
-            Train the cats in sword fights, This thrilling article will include cats that have won the internet through some crazy skills that they
-            have all developed through secret nightly cat meetings.
-        
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={little}/>
-        <Card.Body>
-        <Card.Title><h4>Silent Meow</h4></Card.Title>
-          <Card.Text>
-            A heartwarming article about the rewards that come from addopting a kitty. This one goes into detail about the story of a cat that was found
-            by a trucker while at a truck stop in BC.
-      .{' '}
-          </Card.Text>
-        </Card.Body>
-    
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-        <Card.Title><h4>Article title</h4></Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in to
-            additional content. This card has even longer content than the first to
-            show that equal height action.
-          </Card.Text>
-        </Card.Body>
-    
-      </Card>
-    </CardGroup>
-    <br/>
-    
-    <Nav.Link href= "#" >See All </Nav.Link>
-      </Card.Body>
-      <Card.Footer className="text-muted" />
-    </Card>
-    
-    <br/>
-    <Card className="text-center"  style={{ width: '100rem' }}>
-      <Card.Header><h3>My Favorite List</h3></Card.Header>
-      <Card.Body>
-      <CardGroup>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-        <Card.Title><h4>Article title</h4></Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in to
-            additional content. This content is a little bit longer.
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-        <Card.Title><h4>Article title</h4></Card.Title>
-          <Card.Text>
-            This card has supporting text below as a natural lead-in to additional
-            content.{' '}
-          </Card.Text>
-        </Card.Body>
-    
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-          <Card.Title><h4>Article title</h4></Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in to
-            additional content. This card has even longer content than the first to
-            show that equal height action.
-          </Card.Text>
-        </Card.Body>
-    
-      </Card>
-    </CardGroup>
-    <br/>
-        <Nav.Link href= "#" >See All </Nav.Link>
-      </Card.Body>
-      <Card.Footer className="text-muted" />
-    </Card>
-    <br/>
- </div>
+
+ {/* ================= FAVORITED ARTICLES ================= */}
+
+<FavoriteArticles></FavoriteArticles>
+
                 
 </>
   }

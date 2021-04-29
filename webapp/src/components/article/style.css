@@ -4,16 +4,32 @@
     background-color: rgb(167, 230, 255) ;
     padding: 15px;
     width: 85em;
-    margin-left:"30px";
     display: flex;
-    margin-bottom: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    box-shadow: 5px 5px rgb(202, 200, 200);
 }
-
 .cardImage{
     border: 1px solid black;
     border-radius: 5px;
     height:150px;
     width:auto;
+    object-fit: cover;
+    margin-right: 20px;
+    display: flex;
+    align-self: center;
+}
+
+.article {
+    height: auto;
+    width: 400px;
+    border: 2px;
+}
+.cardImage{
+    border: 2px solid black;
+    border-radius: 10px;
+    height:150px;
+    width:240px;
     object-fit: cover;
     margin-right: 20px;
 }
@@ -33,6 +49,20 @@
    width: 100px;
    height: 100px;
    object-fit: cover;
+}
+.indvArticle{
+    margin: 25px auto 50px auto;
+    padding: 25px;
+    width: 90%;
+    box-shadow: 5px 5px rgb(202, 200, 200);
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgba(167, 230, 255, 0.473) ;
+}
+.indvArticle img{
+    box-shadow: 5px 5px rgb(202, 200, 200);
+    border: .5px solid black;
+    border-radius: 5px;
 }
 
 .articleTop{

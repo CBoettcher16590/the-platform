@@ -7,44 +7,25 @@ import { useHistory } from 'react-router';
 import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api'
 import { useState } from 'react';
-
-
+import { IArticle } from '../../../../services/crud-server/src/models/article';
+import  FavoriteArticles  from '../../components/article/favoriteArticle';
 export default function Profile(){
 
-  const history = useHistory();
-  const [LoggedInUser, setLoggedInUser] = useState<IUser>();
-
-  let windowUserId = localStorage.getItem("userID");
-
-  useEffect(()=>{
-    api.users.get().then((responce) => {
-      const userList:IUser[] = responce.data
-      const foundUser = userList.find((_user) => {
-        let _id = _user.user_id.toString();
-        windowUserId = _id;
-      });
-      
-      console.log(foundUser);
-
-    }).catch(error =>{ throw error})
-  },[]);
+const history = useHistory();
 
 function onClickLogout(){
   window.localStorage.clear()
   history.push('/');
-  alert("Logged Out")
 }
-
   return<>
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mr-auto">
-      <Nav.Link href = "/" > The-Platform</Nav.Link>
-</Nav> 
+      <Navbar.Brand href="/">The Platform</Navbar.Brand></Nav> 
 
 <Nav>
-      <Navbar.Brand href="/profile"> My Account</Navbar.Brand>
+      <Nav.Link href="/profile"> My Account</Nav.Link>
 </Nav>
 <Nav>
   <Button onClick={onClickLogout}>Logout</Button>
@@ -52,7 +33,8 @@ function onClickLogout(){
 </Navbar.Collapse>
 </Navbar>
   
-
+{/* We need this to get the actual members information */}
+{/* As a note, these say editor, because they use the same styling */}
 <div className="editorCardBG">
     <Card className="editorInfoCard">
       <Card.Img variant="top" src= {cat} />
@@ -69,96 +51,12 @@ function onClickLogout(){
       </Card.Body>
   </Card>
   </div>
-<br/>
-<Card className="text-center">
-  <Card.Header><h3>Purchased Articles</h3></Card.Header>
-  <Card.Body>
-  <CardGroup>
-  <Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-</Card.Text>
-</Card.Body>
-</Card>
-<Card>
-    <Card.Img variant="top" src={Littlecat}/>
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-</Card.Text>
-</Card.Body>
 
-</Card>
-<Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
 
-  </Card>
-</CardGroup>
-<br/>
+{/* ================= FAVORITED ARTICLES ================= */}
 
-<Nav.Link href= "/profilePurchased" >See All </Nav.Link>
-  </Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
+<FavoriteArticles></FavoriteArticles>
 
-<br/>
-<Card className="text-center">
-  <Card.Header><h3>My Favorite List</h3></Card.Header>
-  <Card.Body>
-  <CardGroup>
-  <Card>
-  <Card.Img variant="top" src={Littlecat} />
-  <Card.Body>
-  <Card.Title><h4>Article title</h4></Card.Title>
-  <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-</Card.Text>
-</Card.Body>
-</Card>
-<Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-</Card.Text>
-</Card.Body>
-
-</Card>
-  <Card>
-  <Card.Img variant="top" src={Littlecat} />
-  <Card.Body>
-  <Card.Title><h4>Article title</h4></Card.Title>
-  <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-</Card.Text>
-</Card.Body>
-
-</Card>
-</CardGroup>
-<br/>
-  <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
-</Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
 <br/>
 
   </>

@@ -5,6 +5,7 @@ import * as User from './routes/users/user';
 import * as Users from './routes/users';
 import * as Articles from './routes/articles';
 import * as Tokens from './routes/tokens';
+import * as Series from './routes/series';
 
 const app = express();
 const port = 4000;
@@ -24,12 +25,13 @@ function loadEndpoints( endpoint:any ){
 
 }
 
-[ Users ].forEach( ImportedObject => {
+[ Users, Tokens, Articles, Series ].forEach( ImportedObject => {
     
     Object.values( ImportedObject ).forEach( loadEndpoints );
 
 });
 
+<<<<<<< HEAD
 [ User ].forEach( ImportedObject => {
     
     Object.values( ImportedObject ).forEach( loadEndpoints );
@@ -47,7 +49,9 @@ function loadEndpoints( endpoint:any ){
     Object.values( ImportedObject ).forEach( loadEndpoints );
 
 });
+=======
+>>>>>>> a2625d188d1b90f5c93971c485daf11fe6d20a2d
 
-app.listen(port, () => {
+app.listen(port, () => {     
     console.log(`Web Server Started and listening on localhost:${port}`);
 });

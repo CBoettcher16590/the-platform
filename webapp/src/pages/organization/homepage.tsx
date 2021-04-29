@@ -17,10 +17,7 @@ import Littlecat from '../../images/little.jpg'
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#OrganizationAuthors">Organization Authors</Nav.Link>
-      </Nav>    
+  <Navbar.Collapse id="responsive-navbar-nav">   
       <Nav className="mr-auto">
       <Nav.Link href="#OrganizationArticles">Organization Articles</Nav.Link>
       </Nav>
@@ -118,3 +115,7 @@ import Littlecat from '../../images/little.jpg'
 
 </>
  }
+
+//  <Nav className="mr-auto">
+//  <Nav.Link href="#OrganizationAuthors">Organization Authors</Nav.Link>
+// </Nav>
