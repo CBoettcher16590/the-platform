@@ -7,35 +7,6 @@ import api from '../api';
 
 //simulates a network request
 function simulateNetworkRequest() {
-<<<<<<< HEAD
-  return new Promise((resolve) => setTimeout(resolve, 2000));
-}
-
-export default function PayButton() {
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (isLoading) {
-      simulateNetworkRequest().then(() => {
-
-        setLoading(false);
-      });
-    }
-  }, [isLoading]);
-
-  const handleClick = () => setLoading(true);
-
-  return (
-    <Button
-
-      variant="primary"
-      disabled={isLoading}
-      onClick={handleClick}
-    >
-      {isLoading ? 'Loading…' : 'Add To Favorites'}
-    </Button>
-  );
-=======
     return new Promise((resolve) => setTimeout(resolve, 2000));
     }
 
@@ -87,5 +58,4 @@ export default function PayButton(_article:IArticle) {
                {isLoading ? 'Loading…' : 'Add To Favorites'}
              </Button>
 );
->>>>>>> a2625d188d1b90f5c93971c485daf11fe6d20a2d
 }

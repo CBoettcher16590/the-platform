@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from 'react';
-import { Navbar, Nav, NavDropdown, Card, CardGroup, Button, Col, Form, Row } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import api from '../../api';
-import { IUser } from '../../../../services/crud-server/src/models/user';
-=======
 import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown, Card, CardGroup, Button, Col, Form, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,7 +21,6 @@ import api from '../../api';
 //         api.user.post({email, password});
 //         history.push('/'); //I think the above is fine. 
 //        };
->>>>>>> a2625d188d1b90f5c93971c485daf11fe6d20a2d
 
 
 export default function MEM_edit_profile() {
@@ -104,12 +96,7 @@ return <>
             Email
         </Form.Label>
         <Col sm={10}>
-<<<<<<< HEAD
-            <Form.Control type="any"  placeholder="`${userSet}`" />  
-            <Form.Control type="Number" src={'new Email'} />  
-=======
             <Form.Control type="email"  placeholder="New Email" />  
->>>>>>> a2625d188d1b90f5c93971c485daf11fe6d20a2d
         </Col>
     </Form.Group>
 

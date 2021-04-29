@@ -31,26 +31,6 @@ function loadEndpoints( endpoint:any ){
 
 });
 
-<<<<<<< HEAD
-[ User ].forEach( ImportedObject => {
-    
-    Object.values( ImportedObject ).forEach( loadEndpoints );
-
-});
-
-[ Tokens ].forEach( ImportedObject => {
-    
-    Object.values( ImportedObject ).forEach( loadEndpoints );
-
-});
-
-[ Articles ].forEach( ImportedObject => {
-    
-    Object.values( ImportedObject ).forEach( loadEndpoints );
-
-});
-=======
->>>>>>> a2625d188d1b90f5c93971c485daf11fe6d20a2d
 
 app.listen(port, () => {     
     console.log(`Web Server Started and listening on localhost:${port}`);
