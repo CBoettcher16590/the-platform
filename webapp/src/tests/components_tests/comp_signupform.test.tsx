@@ -47,7 +47,7 @@ describe('Signup', ()=>{
     
   
     const wrapper = shallow(<SignUp />) //I think this is a correct example. unsure of how to do the other checks.
-  
+ /* 
     it('Should Render the form correctly', ()=> {
   
       expect(wrapper.find('div.form-group')).to.have.lengthOf(4); // there are 4 of em? true...
@@ -57,7 +57,7 @@ describe('Signup', ()=>{
 
       // expect(wrapper.find())
 
-/*
+
     it('simulates click events', () => {
         const onButtonClick = sinon.spy();
         //  const wrapper = shallow(<SignUp onButtonClick={onButtonClick} />);
@@ -72,11 +72,9 @@ describe('Signup', ()=>{
         let functionSpy = sinon.spy( );
 
     });
-*/
-
     
     })
-  
+ */ 
     it('Should have the correct text', () =>{
   
       //text not being found correctly.
