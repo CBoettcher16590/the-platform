@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
+import api from '../../api';
 import MainLayout from '../../layouts/MainLayout';
 
 interface ISeries {
@@ -25,7 +26,17 @@ const Series = () => {
     const [seriesArticles, setSeriesArticles] = useState<IArticle[]>();
     
     
-//Need to write useEffect to get Series, and the Articles
+    useEffect(() => {
+      api.series.getById("1").then((responce:any) => {
+              const indvSeries:ISeries = responce.data;
+              console.log(indvSeries)
+  
+          }).catch((error) => console.error(`Error: ${error}`));
+  }
+  ,[]);
+    
+
+
 //Also Need to write API and Routes on both sides
 
     return (

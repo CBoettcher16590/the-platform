@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';      
-import { CardDeck, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
 import FavButton from '../FavButton';
 
-export default function HorazontalDisplay(){
+export default function HomepageCenterDisplay(){
 
 const [featuredArticles, setFeaturedArticles] = useState<IArticle[]>();
 const history = useHistory();
@@ -27,9 +26,11 @@ const history = useHistory();
     return <>
     <section className="homeStories">
       {featuredArticles?.map(function(_art, index){
+        //HERE I GET ALL FEATURED ARTICLES EXPECT FOR THE ONE IN THE FIRST SPOT
+        if(index>=1){
           let image = _art.image_link;
           let title = _art.title;
-          let preview = _art.preview;
+          let preview = _art.contents.slice(0,100) + "...";
           let createdOn = _art.created_on.slice(0,10);
           return (
             <div key={_art.article_id} className="homeCard">
@@ -38,19 +39,24 @@ const history = useHistory();
       
               <h2 onClick={GoToArticle(_art)}>{title}</h2>
       
-              <p>{preview}</p>
+              <p id="CenterArtPreview">{preview}</p>
       
-              <p>Date Posted: {createdOn}</p>
+              <p className="date">Date Posted: {createdOn}</p>
       
               <FavButton{..._art}/>
-      
+            
             </div>
-            <img className="cardImage" src={image} />
+            <div>
+               <img className="cardImage" src={image} />
+            </div>
+
           </div>
+
+          
           )
         }
        
-      )}
+      })}
       
     </section> 
           

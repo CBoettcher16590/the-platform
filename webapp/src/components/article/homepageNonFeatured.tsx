@@ -5,17 +5,18 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
 import FavButton from '../FavButton';
 
-export default function HorazontalDisplay(){
+export default function HomepageNonFeatureDisplay(){
 
-const [featuredArticles, setFeaturedArticles] = useState<IArticle[]>();
+const [articles, setArticles] = useState<IArticle[]>();
 const history = useHistory();
 
   //Here we use a useEffect to bring in ALL the articles
   useEffect(() => {
     api.articles.get().then((responce) => {
-    const featuredArt:IArticle[] = responce.data.filter((_art: IArticle) => _art.feature_tag === "featured")
-    setFeaturedArticles(featuredArt);
-    }).catch((error: any) => console.error(`Error: ${error}`)); 
+    const nonFeaturedArt:IArticle[] = responce.data.filter((_art: IArticle) => _art.feature_tag != "featured" && _art.article_status === 3)
+    setArticles(nonFeaturedArt);
+    }).catch((error: any) => console.error(`Error: ${error}`));
+    
         },[]);
 
    const GoToArticle = (article:IArticle) => (event:any) => {
@@ -25,27 +26,24 @@ const history = useHistory();
     history.push(`/article/${articleId}`)
     }
     return <>
-    <section className="homeStories">
-      {featuredArticles?.map(function(_art, index){
+    <section className="homeArticleList">
+        <h2>Discover New Articles</h2>
+      {articles?.map(function(_art, index){
+        
+    
           let image = _art.image_link;
           let title = _art.title;
-          let preview = _art.preview;
-          let createdOn = _art.created_on.slice(0,10);
+          let preview = _art.contents.slice(0,70) + "...";;
           return (
-            <div key={_art.article_id} className="homeCard">
-          
-            <div className="article">
-      
-              <h2 onClick={GoToArticle(_art)}>{title}</h2>
-      
-              <p>{preview}</p>
-      
-              <p>Date Posted: {createdOn}</p>
-      
-              <FavButton{..._art}/>
-      
+            <div id="listArticleBody" key={_art.article_id}>
+            <div>
+                <img id="listArticleImg"src={image} />
             </div>
-            <img className="cardImage" src={image} />
+            <div>   
+            <h2 onClick={GoToArticle(_art)}>{title}</h2>
+            <p>{preview}</p>
+            </div>
+           
           </div>
           )
         }

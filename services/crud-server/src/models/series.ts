@@ -44,6 +44,30 @@ export  const SeriesModel = {
         });          
     
  },
+ getById: async (id:string|number):Promise<ISeries[]>  => {
+
+    return new Promise((resolve,reject)=>{
+
+        const dbConnection = new DatabaseCONNECTION();
+        const pool = dbConnection.connection;
+
+        pool.getConnection(function(err:any, connection:any){
+            if(err) throw err; // not connected
+
+            const sql = `SELECT * FROM theplatformV2.series WHERE series_id = ${id}`;
+            connection.query(sql, function (error:any, results:ISeries[]) {
+                connection.release();
+
+                if(error){
+                    reject(error);
+                } else{
+                    resolve(results)
+                }
+            });
+        });
+    });          
+
+},
  create: async (seriesToCreate:ISubmittedSeries):Promise<ISeries[]>  => {
 
     return new Promise((resolve,reject)=>{

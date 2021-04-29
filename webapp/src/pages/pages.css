@@ -21,31 +21,20 @@ body{
    height: 100px;
    object-fit: cover;
 }
+#homeArtRight{
+    padding-top: 15px;
+    border-left: 1px solid black;
+    
+}
 
 .articleTop{
     margin: 30px 0 0 30px;
 }
-
-
-
-.homeWelcome{
-    padding-top:50px;
-    display: flex;  
-    height: 500px;
+.welcomeText{ 
+    padding-top: 1em;
+    height: 5em;
     background-color: rgb(208, 242, 255) ;
-}
-.homeWelcome img {
-    padding:20px;
-    height: 250px;
-    width: 250px;
-    object-fit:cover;
-    border-radius: 50%;
-}
-.welcomeText{
-    display: flex;
-    font-size: larger;
-    flex-direction: column;
-    padding-left: 30px;
+    text-align: center;
 }
 #newArticleHeader{
 text-align: center;
@@ -66,13 +55,12 @@ text-decoration: underline;
 }
 
 #imageInput{
-padding: 5px;
-   box-shadow: inset;
-   border-radius: 10px;
+    padding: 5px;
+    box-shadow: inset;
+    border-radius: 10px;
 }
 .series{
     padding-bottom: 20px;
-
 }
 
 .bold{
@@ -93,7 +81,9 @@ padding: 5px;
     display: flex;
     justify-content: center;
 }
+
+
 .footer{
-    scale:50%
-    
+    scale:50%;
+
 }
