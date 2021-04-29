@@ -5,6 +5,7 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
 import { useHistory } from 'react-router';
 import  _Update  from '../../data/updateinfo';
 import api from '../../api';
+import { IUser } from '../../../../services/crud-server/src/models/user';
 
 
 // export default function LoginForm(){

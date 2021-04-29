@@ -11,8 +11,6 @@ import Admin_profile from '../pages/systemAdmin/profile';
 import author_profile from '../pages/author/profile';
 import AU_edit_profile from '../pages/author/editprofile';
 import ED_edit_profile from '../pages/editor/editprofile';
-import OR_edit_profile from '../pages/organization/editprofile';
-import OR_personal_info from '../pages/organization/personalInfo';
 import MEM_edit_profile from '../pages/members/editprofile';
 import MEM_personal_info from '../pages/members/personalInfo';
 import AD_edit_profile from '../pages/systemAdmin/editprofile';
@@ -125,19 +123,6 @@ describe('All Components Render without surprises.', () => {
         ReactDOM.render(<ED_edit_profile />, div);
         ReactDOM.unmountComponentAtNode(div);
     });
-
-    it('OR_edit_profile renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<OR_edit_profile />, div);
-        ReactDOM.unmountComponentAtNode(div);
-    });
-
-    it('OR_personal_info renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<OR_personal_info />, div);
-        ReactDOM.unmountComponentAtNode(div);
-    });
-
 
     it('MEM_edit_profile renders without crashing', () => {
         const div = document.createElement('div');
