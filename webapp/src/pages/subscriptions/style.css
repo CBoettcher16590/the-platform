@@ -1,0 +1,60 @@
+.alignSubContent{
+    background: rgb(223,241,244);
+    background: radial-gradient(circle, rgba(223,241,244,1) 41%, rgba(151,185,224,1) 100%);
+        height: fit-content;
+    max-height: 100em;
+}
+/*Switch to 100% of content. */
+
+.subcontent{
+    
+    flex-flow: column wrap;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+
+}
+
+.subscribeButton{
+    margin-top: 1.5rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.SubscribeTxt{
+    margin-top: .25em;
+    font-size: 5rem;
+    font-weight: 350;
+    font-variant: inherit;
+    font-kerning: normal;
+
+}
+
+.subscribetxtsmol{
+    font-size: .5rem;
+    color:grey;
+}
+
+.subReasonsCards{
+    display:flex;
+    justify-content: center;
+    margin-top: 8em;
+    margin-bottom: 8em;
+    flex-direction: row;
+
+}
+
+.card-height{
+    max-height:50%;
+
+}
+
+.subCardImg{
+    max-height:100%;
+    height:370px;
+    max-width:100%;
+    object-fit:cover;
+    flex-direction: row;     
+}

@@ -74,6 +74,9 @@ return  <>
                         <Nav.Link href= '/OrgHome'>Organization Page</Nav.Link>
 
                         <Nav.Link href= '/Orgauthors'>Organization Authors</Nav.Link>
+
+                        <Nav.Link href= '/subscription'>Subscription</Nav.Link>
+
                 </Nav>
                         <Button id="logoutButton" onClick={onClickLogout}>Logout</Button>
         </Navbar>

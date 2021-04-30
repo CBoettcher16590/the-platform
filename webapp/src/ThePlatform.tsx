@@ -22,6 +22,7 @@ import Organization_profile from './pages/OrgAdmin/profile';
 import OrgArticles from './pages/organization/orgArticles';
 import SeriesPage from './pages/series/seriesPage';
 import SubmitSeries from './pages/series/newSeries';
+import Subscription from './pages/subscriptions/subscription'
 
 export default function ThePlatform( props:{} ){
 
@@ -61,6 +62,8 @@ export default function ThePlatform( props:{} ){
                     {/* Misc */}
                     <Route path="/signin" component={Login} />
                     <Route path="/signup" component={SignUp} />
+
+                    <Route path="/subscription" component={Subscription} />
 
                     <Route path="/" component={HomePage} />
 
