@@ -9,8 +9,8 @@ export default {
                 },  
             });
         },
-    getById: async (id:string) => {
-        return axios.get(`${HOSTNAME}/series/:id`, {
+    getById: async (id:number) => {
+        return axios.get(`${HOSTNAME}/series/${id}`, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("token")}`,
                 },  
