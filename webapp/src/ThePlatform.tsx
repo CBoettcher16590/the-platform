@@ -23,6 +23,7 @@ import OrgArticles from './pages/organization/orgArticles';
 import SeriesPage from './pages/series/seriesPage';
 import SubmitSeries from './pages/series/newSeries';
 import Subscription from './pages/subscriptions/subscription'
+import SubscriptionPlan from './pages/subscriptions/subscriptionPlan'
 
 export default function ThePlatform( props:{} ){
 
@@ -64,7 +65,7 @@ export default function ThePlatform( props:{} ){
                     <Route path="/signup" component={SignUp} />
 
                     <Route path="/subscription" component={Subscription} />
-
+                    <Route path="/plans" component={SubscriptionPlan} />
                     <Route path="/" component={HomePage} />
 
                 </Switch>
