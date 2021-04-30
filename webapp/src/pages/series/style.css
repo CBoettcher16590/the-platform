@@ -30,5 +30,28 @@ justify-content: space-between;
 width:60%;
 min-width: auto;
 border: 1px solid red;
-
 }
+.seriesHeader{
+    padding: 1em;
+}
+#seriesHeaderImg {
+    background-position: bottom;
+    overflow: hidden;
+    width:100%;
+    max-height: 70vh;
+}
+#seriesHeaderImg img{
+    width: 100%;
+}
+#seriesHeaderInfo{
+    padding: 4em;
+}
+#seriesHeaderInfo h1{
+    font-size: 3em;
+    text-decoration: underline;
+   padding-bottom: 1.5em;
+}
+#seriesHeaderInfo h4{
+    line-height: 1.4em;
+}
+
