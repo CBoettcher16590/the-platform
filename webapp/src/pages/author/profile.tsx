@@ -16,6 +16,7 @@ const history = useHistory();
 const [loggedInUser, setLoggedInUser] = useState<IUser>();
 const [userArticles, setUserArticles] = useState<IArticle[]>();
 const [userSeries , setUserSeries] = useState<ISeries[]>();
+const userID:string|null = localStorage.getItem("userID");
 
 function onClickLogout(){
   window.localStorage.clear();
@@ -32,7 +33,6 @@ const handelAddToSeries = (seriesID:string, artID:string) => {
 
 useEffect(() => {
   //find logged in user
-  const userID:string|null = localStorage.getItem("userID");
   //get user info, and set logged in user
   api.users.getById(userID).then((responce)=>{
     const foundUser:IUser = responce.data[0];

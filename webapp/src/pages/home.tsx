@@ -9,7 +9,7 @@ import { IUser } from '../../../services/crud-server/src/models/user';
 import { useHistory } from 'react-router';
 import HomepageFeatureDisplay from '../components/article/homepageFeatureDisplay';
 import HomepageNonFeatureDisplay from '../components/article/homepageNonFeatured';
-
+import api from '../api';
 
 
 function HomePage(props:{  }){
@@ -24,6 +24,11 @@ function HomePage(props:{  }){
                 history.go(0);
                 alert("Logged Out");
               }
+
+        // useEffect(() => {
+                
+        // }, [])
+
 
         useEffect(() => {
                 //First We make sure that a user is signed in by checking localstorage for information
