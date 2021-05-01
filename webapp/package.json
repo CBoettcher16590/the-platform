@@ -1,5 +1,5 @@
 {
-  "name": "praetorian",
+  "name": "twilight",
   "jest": {
     "snapshotSerializers": ["enzyme-to-json"],
     "collectCoverageFrom": [
