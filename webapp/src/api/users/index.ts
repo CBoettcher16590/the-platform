@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'; 
 import { HOSTNAME } from '../config';
 
 export default {

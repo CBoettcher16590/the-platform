@@ -20,7 +20,7 @@ export default function AU_edit_profile() {
     const [bio, setBio] = useState<string>();
     const [password, setPassword] = useState<string>();
 
-       // This use effect is for the update loading effect
+       // This use effect is for the update loading effect 
        useEffect(() => {
         if (isLoading) {
           setTimeout(function(){
@@ -65,7 +65,7 @@ export default function AU_edit_profile() {
                 <Form.Label className="label">New Password</Form.Label>
                 <Col sm={10}>
                     <Form.Control
-                    value={bio}
+                    value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     type ="password"/>  
                 </Col>
@@ -104,7 +104,9 @@ export default function AU_edit_profile() {
                     onChange={(e)=>setBio(e.target.value)}
                     maxLength = {200} 
                     as="textarea"
-                    rows={3} />  
+                    rows={3}
+                    
+                    />  
                 </Col>
        
 
