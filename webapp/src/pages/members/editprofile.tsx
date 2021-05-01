@@ -36,7 +36,7 @@ export default function Mem_edit_profile() {
         setLoading(true);
         api.users.updateUser({imageLink, email, phoneNumber, birthdate, bio, password, userID});
         setTimeout(function(){
-            history.push('/AUprofile');
+            history.push('/profile');
         }, 1000);
       }
 

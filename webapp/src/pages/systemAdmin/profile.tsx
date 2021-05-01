@@ -1,7 +1,7 @@
 import { disconnect, title } from 'process';
 import React, { useEffect } from 'react';
 import  FavoriteArticles  from '../../components/article/favoriteArticle';
-import { Accordion, Button, Card, CardGroup, Dropdown, Nav, Navbar } from 'react-bootstrap';
+import { Accordion, Button, Card, CardGroup, Col, Dropdown, Nav, Navbar, Row } from 'react-bootstrap';
 import './styling.css'
 import { IUser } from '../../../../services/crud-server/src/models/user'
 import { useState } from 'react';
@@ -13,10 +13,11 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
  export default function Admin_profile(){
 
   const history = useHistory();
-
+  const userID = localStorage.getItem("userID") || "";
   const [userList, setUserList] = useState<IUser[]>();
   const [publishedArticleList, setPublishedArticleList] =useState<IArticle[]>();
-  
+  const [loggedInUser, setLoggedInUser] = useState<IUser>();
+
 
   //variables for the userList
   const disableLogin = ["False", "True"];
@@ -34,14 +35,19 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
       const publishedArticles:IArticle[] = allArticles.filter(_art => _art.article_status === 3);
       setPublishedArticleList(publishedArticles);
     }).catch((err) => { console.log(`Error: ${err}`); })
-  },[]);
 
-  useEffect(() => {
     api.users.get().then((responce) => {
       const allUsers:IUser[] = responce.data;
       setUserList(allUsers);
     }).catch(err => console.log("Error: ", err));
-  }, []);
+
+    api.users.getById(userID).then((responce)=>{
+      const foundUser:IUser = responce.data[0];
+      setLoggedInUser(foundUser);
+    }
+    )},[]);
+
+
   
 
   const FeaturedArticle = (article:IArticle) => (event:any) => {
@@ -88,28 +94,23 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
           </Navbar.Collapse>
         </Navbar>
 
-
-
-        <div className="adminCardBG">
-        <Card className="adminInfoCard">
-          <Card.Img variant="top" src= "#"/>
-          <Card.Body className="adminInfo">
-          <Card.Title><h2>Admin Profile</h2></Card.Title>
-            <br/>
-            <br/>
-          <Card.Title><h5>Bio</h5></Card.Title>
-      
-          <Card.Text>
-              Q: What’s the best thing about Switzerland?
-              A: I don’t know, but the flag is a big plus.
-          </Card.Text>
-          <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
-        </Card.Body>
-        </Card>
-
-  {/* still need to style below properly */}
-
-  <Card className="bodyContainer">
+      <Row>
+      <Col className="authorCardBG"  sm={11} lg={6}>
+        <div >
+          <Card className="authorInfoCard">
+            <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+            <Card.Body className="authorInfo">
+            <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+              <br/>
+              <br/>
+            <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+            <Nav.Link href = "/profileEdit" >Edit Profile</Nav.Link>
+          </Card.Body>
+          </Card>
+        </div>
+      </Col>
+      <Col sm={11} lg={6}>
+      <Card className="bodyContainer">
     
   <Card.Header><h3>Manage User Login Permissions</h3></Card.Header>
     <Card.Body>
@@ -147,6 +148,10 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
       })}  
     </Card.Body>
   </Card>
+      </Col>
+      </Row>
+       
+  
     
   <Card className="bodyContainer">
     <Card.Header>
@@ -185,6 +190,6 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
 <FavoriteArticles></FavoriteArticles>
 
-</div>
+
      </>
  }
