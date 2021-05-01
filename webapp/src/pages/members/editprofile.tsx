@@ -1,137 +1,121 @@
-import React, { useState } from 'react';
-import { Navbar, Nav, NavDropdown, Card, CardGroup, Button, Col, Form, Row } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Navbar, Nav, Button, Col, Form, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon } from 'mdbreact';
-import { useHistory } from 'react-router';
-import  _Update  from '../../data/updateinfo';
-import api from '../../api';
 import { IUser } from '../../../../services/crud-server/src/models/user';
+import api from '../../api'
+import { useState } from 'react';
+import { useHistory } from 'react-router';
 
+export default function Mem_edit_profile() {
 
-// export default function LoginForm(){
-
-//     const history = useHistory();
-//     // const authModel = useAuthentication(); //we never get something back here or rather never a logged in
-    
-//     const [ email, setEmail ] = useState<string>('');
-//     const [ password, setPassword ] = useState<string>('');
-
-//     function handleLogin(e:any){
-//         e.preventDefault();
-//         api.tokens.post({_email:email , _password:password});
-//         api.user.post({email, password});
-//         history.push('/'); //I think the above is fine. 
-//        };
-
-
-export default function MEM_edit_profile() {
     const history = useHistory();
+    const [isLoading, setLoading] = useState(false);
 
-    const UpdateInfoHandle = _Update();
+    const userID = localStorage.getItem("userID")||"";
 
-    const [fName, setfName] = useState<string>();
-    const [lName, setlName] = useState<string>();
-    const [email, setEmail] = useState<string>();
-    const [bio, setbio] = useState<string>();
-    const [imglink, setlimgLink] = useState<string>();
-    const [userBD, setUersBD] = useState<string>();
-    const [phoneNumber, setphoneNumber] = useState<number>();
+    const [imageLink, setImageLink] = useState<string>();
+    const [email, setEmail] = useState<any>();
+    const [phoneNumber, setPhoneNumber] = useState<any>();
+    const [birthdate, setBirthdate] = useState<string>();
+    const [bio, setBio] = useState<string>();
+    const [password, setPassword] = useState<string>();
 
-    function handelUpdate(e:any){
-        e.preventDefault();
-        console.log("FNAME: ", fName,"LNAME: ", lName, " EMAIL: ", email," BIO: ", bio, " ImgLink: ", imglink, " UserBD: ", userBD, "PhoneNumber:", phoneNumber );
-        // the ! will allow us to handel the "undefined error"
-        UpdateInfoHandle._Update(fName!, lName!, email!,phoneNumber!, imglink!, userBD!, bio! );
-        history.push('/');
-    }
+       // This use effect is for the update loading effect
+       useEffect(() => {
+        if (isLoading) {
+          setTimeout(function(){
+              setLoading(false);  
+          }, 2000)
+          };
+        
+        }, [ isLoading ]);
 
 
-    //maybe make it as a component need to query based, on email. Need to load email held in local storage.
+    function SubmitUserUpdate(event:any){
+        event.preventDefault();
+        setLoading(true);
+        api.users.updateUser({imageLink, email, phoneNumber, birthdate, bio, password, userID});
+        setTimeout(function(){
+            history.push('/AUprofile');
+        }, 1000);
+      }
+
+    return <>
+    <div id="editAuthorBG">
+        <Navbar bg="dark" variant="dark">
+            <Nav className="mr-auto">
+                <Nav.Link href= '/AUprofile'>My Account</Nav.Link>
+            </Nav>
+        </Navbar>
+        
+        <h2 id="updateHeader"> Change Profile Information</h2>
+
+        <Form className="UpdateForm">
+            <Form.Group className="updateInfo">     
+
+                <Form.Label className="label">Profile Picture</Form.Label>
+                <Col sm={10}> 
+                    <Form.Control
+                    value={imageLink}
+                    onChange={(e)=>setImageLink(e.target.value)}
+                    type="text"
+                    placeholder="Enter New Image URL"/>  
+                </Col>
+         
+                <Form.Label className="label">New Password</Form.Label>
+                <Col sm={10}>
+                    <Form.Control
+                    value={password}
+                    onChange={(e)=>setPassword(e.target.value)}
+                    type ="password"/>  
+                </Col>
+
+                <Form.Label className="label">Email</Form.Label>
+                <Col sm={10}>
+                    <Form.Control
+                    value={email}
+                    onChange={(e)=>setEmail(e.target.value)}
+                    type="email"
+                    placeholder="New Email" />  
+                </Col>
+                
+                <Form.Label className="label">Phone</Form.Label>
+                <Col sm={10}>
+                    <Form.Control
+                    value={phoneNumber}
+                    onChange={(e)=>setPhoneNumber(e.target.value)}
+                    type="tel"
+                    placeholder="New Phone Number" />
+                </Col>
+                
+                <Form.Label className="label">Birthdate</Form.Label>
+                <Col sm={10}>
+                    <Form.Control
+                    value={birthdate}
+                    onChange={(e)=>setBirthdate(e.target.value)}
+                    type="date"
+                    placeholder="BirthDate" />
+                </Col>
+
+                <Form.Label className="label">Bio </Form.Label>
+                <Col sm={10}>
+                    <Form.Control
+                    value={bio}
+                    onChange={(e)=>setBio(e.target.value)}
+                    maxLength = {200} 
+                    as="textarea"
+                    rows={3} />  
+                </Col>
+       
+
+            </Form.Group>
     
-    const [ setUser, setingUser ] = useState<IUser[]>();
-
-
-//then I'd need to specify the email in the patch etc.
-
-
-
-
-
-return <>
-<div>
-    <Navbar bg="dark" variant="dark">
-    <Nav className="mr-auto">
-    <Nav.Link href= '/profile'>My Account</Nav.Link>
-</Nav>
-</Navbar>
-<br />
-<h6> Change profile Information</h6>
-<Form.Group as={Row} >      
-        <Form.Label column sm={10}>
-            First name
-        </Form.Label>
-        <Col sm={10}>
-            <Form.Control type="email"  placeholder="New Email" />  
-        </Col>
-    </Form.Group>
-    <Form.Group as={Row} >      
-        <Form.Label column sm={10}>
-            Last name
-        </Form.Label>
-        <Col sm={10}>
-            <Form.Control type="email"  placeholder="New Email" />  
-        </Col>
-    </Form.Group>
-    <Form style= {{alignContent: "normal"}}>
-    <Form.Group as={Row} >      
-        <Form.Label column sm={10}>
-            Profile Picture
-        </Form.Label>
-        <Col sm={10}>
-            <Form.Control type="url"placeholder="Enter New Image URL" />  
-        </Col>
-    </Form.Group>
-    
-    <Form.Group as={Row} >      
-        <Form.Label column sm={10}>
-            Email
-        </Form.Label>
-        <Col sm={10}>
-            <Form.Control type="email"  placeholder="New Email" />  
-        </Col>
-    </Form.Group>
-
-    <Form.Group as={Row} >
-        <Form.Label column sm={10}>
-            Phone
-        </Form.Label>
-        <Col sm={10}>
-            <Form.Control type="Phone number"  placeholder="New Phone Number" />
-        </Col>
-    </Form.Group>
-
-    <Form.Group as={Row} >
-        <Form.Label column sm={10}>
-            Birthdate
-        </Form.Label>
-        <Col sm={10}>
-            <Form.Control type="date" placeholder="BirthDate" />
-        </Col>
-    </Form.Group>   
-
-    <Form.Group controlId="exampleForm.ControlTextarea1">
-        <Form.Label>About Me: </Form.Label>
-        <Form.Control 
-        maxLength = {150}
-        as="textarea" rows={3} 
-        placeholder= "Maximum of 100"/>
-    </Form.Group>
-    <Button type="submit" onClick={handelUpdate}>
-                Update
+            <Button type="submit" disabled={isLoading} id="updateButton"className="btn btn-primary" onClick={SubmitUserUpdate}>
+                {isLoading ? 'Loading…' : 'Update'}
             </Button>
 </Form>
-<br/>
-</div>
+
+    </div>
 
 </>
 }

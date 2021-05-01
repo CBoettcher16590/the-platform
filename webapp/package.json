@@ -1,7 +1,9 @@
 {
   "name": "twilight",
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json"],
+    "snapshotSerializers": [
+      "enzyme-to-json"
+    ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
       "!src/**/*.d.ts",
