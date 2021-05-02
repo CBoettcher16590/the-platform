@@ -20,7 +20,7 @@ function onClickLogout(){
   history.push('/');
   alert("Logged Out")
 }
-
+ 
 useEffect(() => {
   //find logged in user
   const userID:string|null = localStorage.getItem("userID");

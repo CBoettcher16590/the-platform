@@ -1,7 +1,7 @@
 import axios from 'axios'; 
 import { HOSTNAME } from '../config';
 
-export default {
+export default { 
 
     get: async () => {
         return axios.get(`${HOSTNAME}/users`);
