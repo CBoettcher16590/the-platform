@@ -24,17 +24,29 @@ import SeriesPage from './pages/series/seriesPage';
 import SubmitSeries from './pages/series/newSeries';
 import Subscription from './pages/subscriptions/subscription'
 import SubscriptionPlan from './pages/subscriptions/subscriptionPlan'
+//test config for stripe below | if merged disregard or confirm with MK for further feedback
+import CheckoutForm from './pages/subscriptions/checkoutform'
 
-export default function ThePlatform( props:{} ){
+
+
+
+
+
+
+
+
+
+
+export default function ThePlatform(props: {}) {
 
     return (
-            <div>
+        <div>
             <BrowserRouter>
                 <Switch>
                     {/* Editor Routes */}
                     <Route path="/editorProfile" component={EditorProfile} />
                     <Route path="/EDupdateInfo" component={ED_edit_profile} />
-                    
+
                     {/* Admin Routes */}
                     <Route path="/ADProfile" component={Admin_profile} />
                     <Route path="/ADupdateMyInfo" component={AD_edit_profile} />
@@ -66,11 +78,17 @@ export default function ThePlatform( props:{} ){
 
                     <Route path="/subscription" component={Subscription} />
                     <Route path="/plans" component={SubscriptionPlan} />
+                    
+                    <Route path="/checkout" component={CheckoutForm} />
+
                     <Route path="/" component={HomePage} />
 
                 </Switch>
             </BrowserRouter>
-            </div>
+        </div>
+
+
+
     );
 
 }
