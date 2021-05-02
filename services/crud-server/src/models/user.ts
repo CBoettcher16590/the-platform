@@ -188,7 +188,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
         });
     },
 
-    editUserProfile: async (userInfo:IUserUpdate) => {
+    editUserProfile: async (userInfo:IUserUpdate) => { 
     
         return new Promise((resolve,reject) => {
             const dbConnection = new DatabaseCONNECTION();
