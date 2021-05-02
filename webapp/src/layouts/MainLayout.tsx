@@ -6,7 +6,7 @@ import {Col, Container, Row } from "react-bootstrap";
 export default function MainLayout(props: PropsWithChildren<{}>) {
     return (
         <>
-            <Container className="main">
+            
                 <TopNavbar />
                 <Row>
                     <Col>{props.children}</Col>
@@ -20,7 +20,6 @@ export default function MainLayout(props: PropsWithChildren<{}>) {
                         </Row>
                     </Container>
                 </footer>
-            </Container>
         </>
     );
 }

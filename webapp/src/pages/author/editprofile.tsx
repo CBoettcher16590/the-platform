@@ -69,7 +69,7 @@ export default function AU_edit_profile() {
                     onChange={(e)=>setPassword(e.target.value)}
                     type ="password"/>  
                 </Col>
-                
+
                 <Form.Label className="label">Email</Form.Label>
                 <Col sm={10}>
                     <Form.Control

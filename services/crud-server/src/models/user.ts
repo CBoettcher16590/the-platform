@@ -1,6 +1,7 @@
 import DatabaseCONNECTION from '../classes/index'
 import { PasswordModel } from "./password";
 
+
 export interface IUser {
     user_id:number,
     user_type_type_id:number,
@@ -63,7 +64,7 @@ export  const UserModel = {
 
 
 getByEmail: async (userEmail:string):Promise<IUser[]> => {
-       
+
     return new Promise((resolve,reject) => {
 
         const dbConnection = new DatabaseCONNECTION();
@@ -138,6 +139,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
 
     disableLogin: async (user:IUser) => {
        
+
         return new Promise((resolve,reject) => {
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
@@ -164,6 +166,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
     
     enableLogin: async (user:IUser) => {
     
+
         return new Promise((resolve,reject) => {
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
@@ -221,8 +224,6 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
                 const hashedPass:string = PasswordModel.hash(userInfo.password);
                 sqlParameters += `password='${hashedPass}',`;
             }
-      
-//add password
 
             var sql = `UPDATE user SET ${sqlParameters.slice(0, -1)} WHERE user_id=${userInfo.userID};`
         

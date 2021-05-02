@@ -18,23 +18,21 @@ export default
     
         axios.post(`${HOSTNAME}/user`, body).then(responce => {
             let data:IUserInfo = responce.data;
-            
             //the data._____ needs to match the names coming from the database
-            window.localStorage.setItem("firstName", data.first_name);            
-            window.localStorage.setItem("lastName", data.last_name);
-            window.localStorage.setItem("userType", data.user_type_type_id);
             window.localStorage.setItem("userID", data.user_id);
-            window.localStorage.setItem("email", data.email);
 
-            console.log("Has the data localstorage been filled out.")
     
         });
     },
 
     patch: async (body:any) => {
         return axios.patch( `${HOSTNAME}/user`, body).then(responce => {
-            console.log("UserPatch",responce.data);
             return responce.data;
         });
     }
 }
+
+
+
+//we need a sole get.
+    //we can use the getById(id) under users for this

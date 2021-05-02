@@ -10,7 +10,6 @@ ReactDOM.render(
   <React.StrictMode>
    
     <ThePlatform />
-    
    
   </React.StrictMode>,
   document.getElementById('root')

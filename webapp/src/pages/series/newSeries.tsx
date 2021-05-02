@@ -31,7 +31,7 @@ import SeriesSubmission from '../../data/submitSeries';
 return <>
 
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
+  <Navbar.Brand href = "/" >The-Platform</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">   
     <Nav className="mr-auto">

@@ -73,7 +73,7 @@ export const ArticleModel = {
                 var sql = `SELECT * FROM article WHERE article_id = '${articleId}'`;
                 connection.query(sql, function (error:any, results:IArticle[]){
                     connection.release();
-
+                    console.log("SQL",sql);
                     if(error){
                         reject(error)
                     } else {

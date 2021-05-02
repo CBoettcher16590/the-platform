@@ -27,29 +27,30 @@ const history = useHistory();
     return <>
     <section className="homeStories">
       {featuredArticles?.map(function(_art, index){
-        let image = _art.image_link;
-        let title = _art.title;
-        let preview = _art.preview;
-        let createdOn = _art.created_on.slice(0,10);
-        return (
-          <div key={_art.article_id} className="homeCard">
-    
-          <img className="cardImage" src={image} />
-    
-          <div className="article">
-    
-            <h2 onClick={GoToArticle(_art)}>{title}</h2>
-    
-            <p>{preview}</p>
-    
-            <p>Date Posted: {createdOn}</p>
-    
-            <FavButton{..._art}/>
-    
+          let image = _art.image_link;
+          let title = _art.title;
+          let preview = _art.preview;
+          let createdOn = _art.created_on.slice(0,10);
+          return (
+            <div key={_art.article_id} className="homeCard">
+          
+            <div className="article">
+      
+              <h2 onClick={GoToArticle(_art)}>{title}</h2>
+      
+              <p>{preview}</p>
+      
+              <p>Date Posted: {createdOn}</p>
+      
+              <FavButton{..._art}/>
+      
+            </div>
+            <img className="cardImage" src={image} />
           </div>
-        </div>
-        )
-      })}
+          )
+        }
+       
+      )}
       
     </section> 
           

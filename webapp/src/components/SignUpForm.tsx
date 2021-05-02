@@ -1,6 +1,6 @@
 import React, { Component, useState } from "react";
 import '../pages/forms/style.css'
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import _SignUp from '../data/signUpHandeler';
 import { useHistory } from "react-router";
 
@@ -31,62 +31,64 @@ export default function SignUp() {
 
 
     return <>
-        <form id="signForm">
-            <h2>Sign Up</h2>
 
-            <div className="form-group">
-                <label>First name </label>
-                <input
-                    value={first_name}
-                    onChange={(e)=>setFirst_name(e.target.value)}
-                    type="text"
-                    className="form-control"
-                    placeholder="First name"
-                />
-            </div>
-            <br />
-
-            <div className="form-group">
-                <label>Last name </label>
-                <input
+    <div className="loginSignupBackground">
+        <div id="loginForm">
+        <h1>Sign Up</h1> 
+        <Form>
+            <Form.Group>
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                value={first_name}
+                onChange={(e)=>setFirst_name(e.target.value)}
+                type="text"
+                className="form-control"
+                placeholder="First name"/>
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
                     value={last_name}
                     onChange={(e)=>setLast_name(e.target.value)}
                     type="text" 
                     className="form-control" 
                     placeholder="Last name" />
-            </div>
-            <br />
-
-            <div className="form-group">
-                <label>Email </label>
-                <input                    
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
-                    type="email"
-                    className="form-control"
-                    placeholder="Enter email" />
-            </div>
-            <br />
-
-            <div className="form-group">
-                <label>Password </label>
-                <input
-                    value={password}
-                   onChange={(e)=>setPassword(e.target.value)}
-                    type="password"
-                    className="form-control"
-                    placeholder="Enter password"
-                />
-            </div>
-            <br />
-
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}
+                        type="email"
+                        className="form-control"
+                        placeholder="Enter email" />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                        value={password}
+                        onChange={(e)=>setPassword(e.target.value)}
+                        type="password"
+                        className="form-control"
+                        placeholder="Enter password"/>
+            </Form.Group>
             <Button type="submit" className="btn btn-primary btn-block" onClick={handelSignUp}>
                 Sign Up
             </Button>
             <p className="forgot-password text-right">
-                Already registered <a href="./signin">sign in?</a>
+                Already registered? <a href="./signin">Sign In!</a>
             </p>
-        </form>
+        </Form>
+        </div>
+    </div>
+                
+    
+       
+
+
+
+
+
        
     </>
 

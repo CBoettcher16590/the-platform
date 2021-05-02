@@ -31,3 +31,31 @@
     padding-top: 25px;
     background-color: rgb(167, 230, 255) ;
 }
+.adminFeatureArticle{
+    padding-top: 1em;
+}
+.adminInfoCard{
+    width: 40em;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: white 0px 0px 10px;
+} 
+.adminInfoCard img{
+    margin: 1em auto 0 auto;
+    width: 30em;
+    height: 20em;
+    object-fit: cover;
+    border-radius: 10px;
+}
+#adminManagementBar{
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+
+.infoTabs{
+    padding: .3em;
+}
+.infoTabs .btn{
+    width: 150px;
+    height: 60px;
+}

@@ -1,81 +1,107 @@
-import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router';
-import { IArticle } from '../../../../services/crud-server/src/models/article';
+
+
+import React, { useEffect, useState } from 'react';
 import MainLayout from '../../layouts/MainLayout';
+import {Button, Col, Row } from 'react-bootstrap';
+import { IUser } from '../../../../services/crud-server/src/models/user';
+import { useHistory, useParams } from 'react-router';
+import api from '../../api'
+import { ISeries } from '../../../../services/crud-server/src/models/series';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
+import FavButton from '../FavButton';
 
-interface ISeries {
-  series_id:string,
-  series_title:string,
-  series_image:string,
-  series_description:string,
-  series_owner_id:string
-}
-
-
-
-const Series = () => {
-
-    const params = useParams<{id:string}>();
-    const numId = parseInt(params.id);
-
-    //I'm using serie as an individual series.. if theres a better word let me know hah
-    const [serie, setSerie] = useState<ISeries>();
-
-    //set articles within series
-    const [seriesArticles, setSeriesArticles] = useState<IArticle[]>();
+    const IndvSeries = () => {
+        const params = useParams<{id:string}>();
+        const numId = parseInt(params.id);
+        const history = useHistory();
+        const [serie, setSerie] = useState<ISeries>();
+        const [seriesArticles, setSeriesArticles] = useState<IArticle[]>();
     
+      const GoToArticle = (article:IArticle) => (event:any) => {
+        //here we find the article id for our Title, Link
+        let articleId = article.article_id;
+        //then We use history.push to redirect to that page
+        history.push(`/article/${articleId}`)
+        }
+
+
+        useEffect(() => {
+          //Find Specific Series
+          api.series.getById(numId).then((responce) => {
+            const _serie:ISeries = responce.data;
+            setSerie(_serie);
+          }).catch((error) => console.error(`Error: ${error}`));
+
+          //Find Specific Articles for Series 
+          api.articles.get().then((responce) => {
+            const seriesArt:IArticle[] = responce.data.filter((_art: IArticle) => _art.series_series_id === numId);
+            setSeriesArticles(seriesArt);
+        }).catch((error) => console.error(`Error: ${error}`));
+        
+        }
+        ,[]);
+
+            return (
+            
+              <MainLayout >
+              
+              <Row className="seriesHeader">
+                <Col  xs={12} sm={6} lg={5}>
+                  <div id="seriesHeaderImg">
+                    <img src={serie?.series_image} alt="header.jpg"/>
+                  </div>
+                  
+                </Col>
+                <Col  xs={12} sm={6} lg={7}>
+                  <div id="seriesHeaderInfo">
+                    <h1>{serie?.series_title}</h1>
+                    <h4>{serie?.series_description}</h4>
+                    <br/>
+                    <hr/>
+                  </div>
+                </Col>
+             
+              </Row>
+
+              <section className="seriesArticles">
+                <Row>
+                {seriesArticles?.map(function(_art, index){
+                    let articleImage = _art.image_link;
+                    let articleTitle = _art.title;
+                    let articlePreview = _art.contents.slice(0,100) + "...";
+                    let articleCreatedOn = _art.created_on.slice(0,10);
+                    return (  
+                      <Col>
+                        <div key={_art.article_id} className="SeriesArticleCard">
+                       
+                        <div>
+                  
+                          <h2 onClick={GoToArticle(_art)}>{articleTitle}</h2>
+                  
+                          <p id="seriesPreview">{articlePreview}</p>
+                  
+                          <p className="date">Date Posted: {articleCreatedOn}</p>
+
+                        </div>
+                        <div>
+                          <img className="cardImage" src={articleImage} />
+                        </div>
+
+                        </div>
+                    s</Col>
+
+                    )
+                  }
+                
+                )}
+                </Row>
+              
+              </section> 
+              </MainLayout>
+                  
+            )
+
+    }
+
+export default IndvSeries;
     
-//Need to write useEffect to get Series, and the Articles
-//Also Need to write API and Routes on both sides
-
-    return (
-
-        <MainLayout>
-
-        <section id="seriesHeader">
-        <div className="seriesImg">
-            img
-        </div>
-        <div className="seriesInfo">
-           <h1>Series Title</h1>
-           <h4>Series Content</h4>
-           <p>Series Author</p>
-        </div>
-        </section>
-        <br/>
-        <section id="seriesAricles">
-
-{/* REDO TO FIT SERIES */}
-
-      {seriesArticles?.map(function(_art:IArticle, index){
-        let image = _art.image_link;
-        let title = _art.title;
-        let createdOn = _art.created_on.slice(0,10);
-    
-        return (
-          <div className="homeCard">
-    
-          <img className="cardImage" src={image} />
-    
-          <div className="article">
-    
-            <h2>{title}</h2>
-    
-    
-    
-          </div>
-        </div>
-        )
-      })}
-       
-
-
-        </section>
-
-        </MainLayout>
-
-    )
-
-}
-
-export default Series;
