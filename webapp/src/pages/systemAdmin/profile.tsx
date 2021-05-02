@@ -1,7 +1,7 @@
 import { disconnect, title } from 'process';
 import React, { useEffect } from 'react';
 import  FavoriteArticles  from '../../components/article/favoriteArticle';
-import { Accordion, Button, Card, CardGroup, Col, Dropdown, Nav, Navbar, Row } from 'react-bootstrap';
+import { Accordion, Button, Card, CardGroup, Col, Dropdown, Nav, Navbar, Row, Tab, Tabs } from 'react-bootstrap';
 import './styling.css'
 import { IUser } from '../../../../services/crud-server/src/models/user'
 import { useState } from 'react';
@@ -94,12 +94,12 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
           </Navbar.Collapse>
         </Navbar>
 
-      <Row>
-      <Col className="authorCardBG"  sm={11} lg={6}>
+      <Row> 
+      <Col className="authorCardBG"  sm={11} lg={8}>
         <div >
-          <Card className="authorInfoCard">
+          <Card className="adminInfoCard">
             <Card.Img variant="top" src={loggedInUser?.user_image_link} />
-            <Card.Body className="authorInfo">
+            <Card.Body className="adminInfo">
             <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
               <br/>
               <br/>
@@ -109,83 +109,70 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
           </Card>
         </div>
       </Col>
-      <Col sm={11} lg={6}>
-      <Card className="bodyContainer">
-    
-  <Card.Header><h3>Manage User Login Permissions</h3></Card.Header>
-    <Card.Body>
 
-    {/* Bug with managing permissions.. 
-    The first request goes through right away, but the second takes a while (up to 20 seconds), It still works but you need 
-    to manually refresh page.  Maybe use a setTimeout function or something for the refresh?*/}
+      <Col id="adminManagementBar" sm={11} lg={4}>
 
+        <Tabs defaultActiveKey="Permissions" id="uncontrolled-tab-example">
+          <Tab className="infoTabs" eventKey="Permissions" title="Manage User Permissions">
+          {userList?.map(function(user, index){
+            let name = user.first_name + " " + user.last_name;
+            let userDisableLogin = disableLogin[user.disable_login];
+            let LoginPermissionStatus = "";
+            if(user.disable_login){
+              LoginPermissionStatus = "User Login DISABLED";
+            } else {
+              LoginPermissionStatus = "User Login ENABLED";
+            }
+              return( 
+               <div>
+                 <Row className="infoTabs">
+                   <Col sm={7} lg={8}>
+                    <h5>{name + "  -  " + userType[user.user_type_type_id - 1]}</h5>
+                    <h6>{LoginPermissionStatus}</h6>
+                   </Col>
+                   <Col sm={3}lg={3}>
+                    <Button className="btn" onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
+                   </Col>
+                 </Row>
+                </div>
+              )
+          })}
+        </Tab>
+        <Tab className="infoTabs" eventKey="Feature Articles" title="Select Feature Articles">
 
-    {/* This way to list users will have to be refined as we get more users */}
-
-      {userList?.map(function(user, index){
-        let name = user.first_name + " " + user.last_name;
-        let userDisableLogin = disableLogin[user.disable_login];
-        
-        return(
-          <Accordion defaultActiveKey="1">
-          <Card className="userCard">
-            <Accordion.Toggle as={Card.Header} eventKey="0">
-              <Card.Title className="userCardTitle">{name + "  -  " + userType[user.user_type_type_id - 1]} </Card.Title>
-              Disable User Login Status: {userDisableLogin}
-            </Accordion.Toggle>
-      
-            <Accordion.Collapse eventKey="0">
-              <div>
-                {/* you can ignore this error for now, it works */}
-                <Button onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
-            </div>
-            </Accordion.Collapse>
-            
-          </Card>
-      
-        </Accordion>
-        )
-      })}  
-    </Card.Body>
-  </Card>
-      </Col>
-      </Row>
-       
-  
-    
-  <Card className="bodyContainer">
-    <Card.Header>
-    {<h3>Set Home Page Featured Articles</h3>}
-    </Card.Header>
-    <Card.Body>
-    
-      {publishedArticleList?.map((_article,index) =>{
-        var isFeatured:boolean;
-
+        {publishedArticleList?.map((_article,index) =>{
+        var featuredMessage:string;
+        var buttonMessage:string;
         if(_article.feature_tag === "featured"){
-          isFeatured = true;
+          featuredMessage = "Featured";
+          buttonMessage = "Remove From Featured";
         }else{
-          isFeatured = false;
+          featuredMessage = "Not Featured";
+          buttonMessage = "Add To Featured";
         }
 
         return(
-          <Card>
-            <Card.Header>
-                <Card.Title className="">{_article.title}</Card.Title>
-            </Card.Header>
-          {/* Here I reuse the user.disable varient to reuse code */}
-          <div>
-            <Button onClick={FeaturedArticle(_article)} variant="info">Article Featured : {isFeatured.toString().toUpperCase()}</Button>
-            
+
+          <div className="adminFeatureArticle">
+          <Row className="infoTabs">
+            <Col sm={7} lg={8}>
+              <h5>{_article.title}</h5>
+              <h6>{featuredMessage}</h6>
+            </Col>
+            <Col sm={3}lg={3}>
+            <Button className="btn" onClick={FeaturedArticle(_article)} variant="info">{buttonMessage}</Button>
+            </Col>
+          </Row>
           </div>
-            
+        )})}
+          </Tab>
+        </Tabs>
+      </Col>
 
-          </Card>
-        )
-      })}
-
-    </Card.Body>
-  </Card>
+      </Row>
+       
+  
+  
 {/* ================= FAVORITED ARTICLES ================= */}
 
 <FavoriteArticles></FavoriteArticles>

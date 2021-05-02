@@ -95,11 +95,12 @@ function onClickLogout(){
           </Card>
         </div>
       </Col>
+
       <Col sm={11} lg={6}>
       <Card className="reviewArticles">
-    <Card.Body>
-      <Card.Title id="pendingBoxTitle">Pending Articles</Card.Title>
-      <br/>
+      <Card.Body>
+        <Card.Title id="pendingBoxTitle">Pending Articles</Card.Title>
+        <br/>
 
         {pendingArticles?.map(function(articleLoop, index){
         
@@ -136,7 +137,7 @@ function onClickLogout(){
 
   
 
-
+{/* 
 <Card className="reviewArticles">
   <Card.Img variant="top" src="" />
   <Card.Body>
@@ -147,7 +148,7 @@ function onClickLogout(){
     <Nav.Link href ="#">Review Articles</Nav.Link>
   </Card.Body>
 </Card>
- 
+  */}
 
  {/* ================= FAVORITED ARTICLES ================= */}
 
