@@ -7,6 +7,30 @@ import FavoriteArticles from '../../components/article/favoriteArticle';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
 import { useHistory } from 'react-router';
+import {CardElement} from '@stripe/react-stripe-js';
+
+
+/*  Stripe Messing Around. Until it works and there is no time to add a better version :) */
+
+// import {Elements} from '@stripe/react-stripe-js';
+// import {loadStripe} from '@stripe/stripe-js';
+
+// const stripePromise = loadStripe('pk_test_51Im6u3JQKiiOEQTIDHIIljaL0YS7CGvSKB9oOpFHF0jxdpSPRAVVPvJOLqq4uXe9kTh7GToiomCtLAgF1W06d84i00u2OkaPCB');
+
+//These should be moved to the app screen. 
+
+/*
+const App = () => {
+  return (
+    <Elements stripe={stripePromise}>
+      <MyCheckoutForm />
+    </Elements>
+  );
+}; //just a reference for later.
+*/
+
+
+
 
 
 
@@ -17,9 +41,14 @@ export default function SubscriptionPlan() {
 
 
   function goHome() {
-    history.push('/');
+    history.push('/checkout');
 
   }
+  function goHomeY() {
+    history.push('/_checkout');
+
+  }
+
 
   // invoke a stripe mock.
 
@@ -39,7 +68,7 @@ export default function SubscriptionPlan() {
         <br />
         <br />
         <div>
-          <Button variant="info" size="lg" block onClick={goHome}>
+          <Button variant="info" size="lg" block onClick={goHomeY}>
             Annualy 
             
             $60/year
@@ -47,6 +76,8 @@ export default function SubscriptionPlan() {
         </div>
       </div>
     </div>
+
+    
 
   </>
 }

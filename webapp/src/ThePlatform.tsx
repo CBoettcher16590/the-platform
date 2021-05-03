@@ -23,17 +23,21 @@ import SeriesPage from './pages/series/seriesPage';
 import SubmitSeries from './pages/series/newSeries';
 import Subscription from './pages/subscriptions/subscription'
 import SubscriptionPlan from './pages/subscriptions/subscriptionPlan'
+import CheckoutFormMonth from './pages/subscriptions/checkoutformMonth'
+import CheckoutFormYear from './pages/subscriptions/checkoutformYear'
 
-export default function ThePlatform( props:{} ){
+
+
+export default function ThePlatform(props: {}) {
 
     return (
-            <div>
+        <div>
             <BrowserRouter>
                 <Switch>
                     {/* Editor Routes */}
                     <Route path="/editorProfile" component={EditorProfile} />
                     <Route path="/EDupdateInfo" component={ED_edit_profile} />
-                    
+
                     {/* Admin Routes */}
                     <Route path="/ADProfile" component={Admin_profile} />
                     <Route path="/ADupdateMyInfo" component={AD_edit_profile} />
@@ -64,11 +68,19 @@ export default function ThePlatform( props:{} ){
 
                     <Route path="/subscription" component={Subscription} />
                     <Route path="/plans" component={SubscriptionPlan} />
+                    
+                    <Route path="/checkout" component={CheckoutFormMonth} />
+                    <Route path="/_checkout" component={CheckoutFormYear} />
+
+
                     <Route path="/" component={HomePage} />
 
                 </Switch>
             </BrowserRouter>
-            </div>
+        </div>
+
+
+
     );
 
 }
