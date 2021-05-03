@@ -18,8 +18,7 @@ import ArticleSubmission from '../data/submitArticle';
   const [preview, setPreview] = useState<string>("");
   const [imageLink, setImageLink] = useState<string>("");
   const [contents, setContents] = useState<string>("");
-  // const [userId, setuserId] = useState<number>();
-  
+  const [price, setPrice] = useState<string>("");
   const [seriesTitle, setSeriesTitle] = useState<string>();
   const [seriesPreview, setSeriesPreview] = useState<string>();
   const [seriesImage, setSeriesImage] = useState<string>();
@@ -33,7 +32,7 @@ import ArticleSubmission from '../data/submitArticle';
 
   function handelSubmit(e:any){
     e.preventDefault();
-    submit.ArticleSubmission(title!, preview!, imageLink!, contents!, userId!);
+    submit.ArticleSubmission(title!, preview!, imageLink!, price!, contents!, userId!);
     console.log("Submit Success!");
     history.push('/');
   }
@@ -83,21 +82,35 @@ return <>
       <Form.Label>Preview</Form.Label>
       <Form.Control 
       value={preview}
-      onChange={(e)=>setPreview(e.target.value)}
-      as="textarea" 
-      rows={2}  
+      onChange={(e)=>setPreview(e.target.value)} 
       placeholder="Write a short preview that summarizes your article"/>
     </Form.Group>
+   
+    <Form.Row>
+      <Col sm={9}>
+        <Form.Group  id="imageInput">
+        <Form.Label>Image URL</Form.Label>
+          <Form.Control
+          value={imageLink}
+          onChange={(e)=>setImageLink(e.target.value)}
+          type="text"
+          placeholder="Enter an Image URL to use for the article" />
+        </Form.Group> 
+      </Col>
 
-    <Form.Group  id="imageInput">
-    <Form.Label>Image URL</Form.Label>
-        <Form.Control
-        value={imageLink}
-        onChange={(e)=>setImageLink(e.target.value)}
-        type="text"
-        placeholder="Enter an Image URL to use for the article" />
-    </Form.Group> 
-    <Form.Group id="testAreaHeader">
+      <Col sm={3}>
+      <Form.Group>
+      <Form.Label>Article Status</Form.Label>
+        <Form.Control as="select" value={price} onChange={(e)=>setPrice(e.target.value)}>
+          <option>Free</option>
+          <option>Subscribe</option>
+        </Form.Control>
+      </Form.Group>
+      </Col>
+    </Form.Row>
+
+  
+    <Form.Group>
       <Form.Label>Whats on your Mind?</Form.Label>
       <Form.Control 
       value={contents}

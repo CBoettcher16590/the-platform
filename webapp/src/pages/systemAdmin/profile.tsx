@@ -1,7 +1,7 @@
 import { disconnect, title } from 'process';
 import React, { useEffect } from 'react';
 import  FavoriteArticles  from '../../components/article/favoriteArticle';
-import { Accordion, Button, Card, CardGroup, Col, Dropdown, Nav, Navbar, Row, Tab, Tabs } from 'react-bootstrap';
+import { Accordion, Button, Card, CardGroup, Col, Dropdown, Form, Nav, Navbar, Row, Tab, Tabs } from 'react-bootstrap';
 import './styling.css'
 import { IUser } from '../../../../services/crud-server/src/models/user'
 import { useState } from 'react';
@@ -17,6 +17,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   const [userList, setUserList] = useState<IUser[]>();
   const [publishedArticleList, setPublishedArticleList] =useState<IArticle[]>();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
+  const [newUserType, setNewUserType] = useState<string>();
 
 
   //variables for the userList
@@ -25,7 +26,6 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   //const  varient = ["danger","success"];
   const permissionButtonText = ["Disable User Login","Enable User Login"];
   const userType = ["Admin","Author","Editor","Member"];
-  
 
 
   // Inside the .catch I wanted to show that both these useEffects do the same thing even though they are written differently
@@ -79,104 +79,147 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     alert("Logged Out")
   }
 
-        return <>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-            <Navbar.Brand href="/">The Platform</Navbar.Brand>          </Nav> 
-          <Nav>
-              <Nav.Link href="/ADProfile"> My Account</Nav.Link>
-            </Nav>
-            <Nav>
-              <Button onClick={onClickLogout}>Logout</Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+  return <>
+  <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+      <Navbar.Brand href="/">The Platform</Navbar.Brand>          </Nav> 
+    <Nav>
+        <Nav.Link href="/ADProfile"> My Account</Nav.Link>
+      </Nav>
+      <Nav>
+        <Button onClick={onClickLogout}>Logout</Button>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
 
-      <Row> 
-      <Col className="authorCardBG"  sm={11} lg={8}>
-        <div >
-          <Card className="adminInfoCard">
-            <Card.Img variant="top" src={loggedInUser?.user_image_link} />
-            <Card.Body className="adminInfo">
-            <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
-              <br/>
-              <br/>
-            <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-            <Nav.Link href = "/profileEdit" >Edit Profile</Nav.Link>
-          </Card.Body>
-          </Card>
-        </div>
-      </Col>
+<Row> 
+<Col className="authorCardBG"  md={11} lg={6}>
+  <div >
+    <Card className="adminInfoCard">
+      <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+      <Card.Body className="adminInfo">
+      <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+        <br/>
+        <br/>
+      <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+      <Nav.Link href = "/profileEdit" >Edit Profile</Nav.Link>
+    </Card.Body>
+    </Card>
+  </div>
+</Col>
 
-      <Col id="adminManagementBar" sm={11} lg={4}>
+<Col id="adminManagementBar" md={11} lg={6}>
 
-        <Tabs defaultActiveKey="Permissions" id="uncontrolled-tab-example">
-          <Tab className="infoTabs" eventKey="Permissions" title="Manage User Permissions">
-          {userList?.map(function(user, index){
-            let name = user.first_name + " " + user.last_name;
-            let userDisableLogin = disableLogin[user.disable_login];
-            let LoginPermissionStatus = "";
-            if(user.disable_login){
-              LoginPermissionStatus = "User Login DISABLED";
-            } else {
-              LoginPermissionStatus = "User Login ENABLED";
-            }
-              return( 
-               <div>
-                 <Row className="infoTabs">
-                   <Col sm={7} lg={8}>
-                    <h5>{name + "  -  " + userType[user.user_type_type_id - 1]}</h5>
-                    <h6>{LoginPermissionStatus}</h6>
-                   </Col>
-                   <Col sm={3}lg={3}>
-                    <Button className="btn" onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
-                   </Col>
-                 </Row>
-                </div>
-              )
-          })}
-        </Tab>
-        <Tab className="infoTabs" eventKey="Feature Articles" title="Select Feature Articles">
+  <Tabs defaultActiveKey="Permissions" id="uncontrolled-tab-example">
+    <Tab className="infoTabs" eventKey="Permissions" title="Manage User Login">
+    {userList?.map(function(user, index){
+      let name = user.first_name + " " + user.last_name;
+      let userDisableLogin = disableLogin[user.disable_login];
+      let LoginPermissionStatus = "";
 
-        {publishedArticleList?.map((_article,index) =>{
-        var featuredMessage:string;
-        var buttonMessage:string;
-        if(_article.feature_tag === "featured"){
-          featuredMessage = "Featured";
-          buttonMessage = "Remove From Featured";
-        }else{
-          featuredMessage = "Not Featured";
-          buttonMessage = "Add To Featured";
-        }
+      if(user.disable_login){
+        LoginPermissionStatus = "User Login DISABLED";
+      } else {
+        LoginPermissionStatus = "User Login ENABLED";
+      }
 
-        return(
-
-          <div className="adminFeatureArticle">
-          <Row className="infoTabs">
-            <Col sm={7} lg={8}>
-              <h5>{_article.title}</h5>
-              <h6>{featuredMessage}</h6>
-            </Col>
-            <Col sm={3}lg={3}>
-            <Button className="btn" onClick={FeaturedArticle(_article)} variant="info">{buttonMessage}</Button>
-            </Col>
-          </Row>
+        return( 
+         <div key={index}>
+           <Row className="infoTabs">
+             <Col sm={6} lg={8} >
+              <h5>{name + "  -  " + userType[user.user_type_type_id - 1]}</h5>
+              <h6>{LoginPermissionStatus}</h6>
+             </Col>
+  
+             <Col sm={6} lg={4}>
+              <Button className="btn" onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
+             </Col>
+           </Row>
           </div>
-        )})}
-          </Tab>
-        </Tabs>
-      </Col>
+        )
+    })}
+  </Tab>
 
-      </Row>
-       
-  
-  
+  <Tab className="infoTabs" eventKey="UserType" title="Manage User Type">
+    {userList?.map(function(user, index){
+      let name = user.first_name + " " + user.last_name;
+      let userDisableLogin = disableLogin[user.disable_login];
+      let LoginPermissionStatus = "";
+
+    
+
+        return( 
+         <div key={index}>
+           <Row className="infoTabs">
+             <Col sm={6} lg={4} >
+              <h5>{name}</h5>
+              <h6>{userType[user.user_type_type_id - 1]}</h6>
+             </Col>
+            <Col sm={6} lg={8}>
+            <Form>
+              <Form.Group>
+              <Form.Label>Article Status</Form.Label>
+                <Form.Control as="select">
+                  <option>Admin</option>
+                  <option>Author</option>
+                  <option>Editor</option>
+                  <option>Member</option>
+                </Form.Control>
+              </Form.Group>
+            </Form>
+            </Col> 
+
+            <Button className="btnSmall" onClick={ChangeLoginPermission(user)} variant="info">Update</Button>
+           
+           </Row>
+          </div>
+        )
+    })}
+  </Tab>
+
+
+  <Tab className="infoTabs" eventKey="Feature Articles" title="Select Feature Articles">
+
+  {publishedArticleList?.map((_article,index) =>{
+  var featuredMessage:string;
+  var buttonMessage:string;
+  if(_article.feature_tag === "featured"){
+    featuredMessage = "Featured";
+    buttonMessage = "Remove From Featured";
+  }else{
+    featuredMessage = "Not Featured";
+    buttonMessage = "Add To Featured";
+  }
+
+  return(
+
+    <div className="adminFeatureArticle">
+    <Row className="infoTabs">
+      <Col sm={7} lg={8}>
+        <h3>{_article.title}</h3>
+        <h4>{featuredMessage}</h4>
+      </Col>
+      <Col sm={3}lg={3}>
+      <Button className="btn" onClick={FeaturedArticle(_article)} variant="info">{buttonMessage}</Button>
+      </Col>
+    </Row>
+    </div>
+  )})}
+    </Tab>
+
+  </Tabs>
+</Col>
+
+</Row>
+ 
+
+
 {/* ================= FAVORITED ARTICLES ================= */}
 
 <FavoriteArticles></FavoriteArticles>
 
 
-     </>
- }
+</>
+}

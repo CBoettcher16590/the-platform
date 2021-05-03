@@ -8,7 +8,7 @@ interface ISubmittedArticle {
     preview:string,
     imageLink:string,
     contents:string,
-    price:number,
+    price:string,
     userId:string
 }
 
@@ -19,13 +19,13 @@ export function post( app:any ){
         // read payload from post body
         const payload:ISubmittedArticle = request.body;
 
-    console.log("article Post:")
        await ArticleModel.create({
             userId:parseInt(payload.userId),
             title: payload.title,  
             preview: payload.preview,         
             contents: payload.contents,
             image_link: payload.imageLink,
+            price: payload.price,
             seriesId: 1,
             article_status:1
         });

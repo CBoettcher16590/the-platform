@@ -24,7 +24,7 @@ const history = useHistory();
     history.push(`/article/${articleId}`)
     }
     return <>
-    <section className="homeStories">
+    <section  className="homeStories">
       {featuredArticles?.map(function(_art, index){
         //HERE I GET ALL FEATURED ARTICLES EXPECT FOR THE ONE IN THE FIRST SPOT
         if(index>=1){
