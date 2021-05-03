@@ -1,6 +1,8 @@
 import React from "react";
-import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import {CardElement, useStripe, useElements,Elements} from '@stripe/react-stripe-js';
 import './style.css'
+import { useHistory } from "react-router";
+
 
 
 
@@ -9,17 +11,79 @@ import './style.css'
 
 
 
-export default function CheckoutForm() {
+
+// const CARD_OPTIONS = {
+//   iconStyle: "solid",
+//   style: {
+//     base: {
+//       iconColor: "#c4f0ff",
+//       color: "#fff",
+//       fontWeight: 500,
+//       fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+//       fontSize: "16px",
+//       fontSmoothing: "antialiased",
+//       ":-webkit-autofill": {
+//         color: "#fce883"
+//       },
+//       "::placeholder": {
+//         color: "#87bbfd"
+//       }
+//     },
+//     invalid: {
+//       iconColor: "#ffc7ee",
+//       color: "#ffc7ee"
+//     }
+//   }
+// };
+
+
+
+
+const CARD_OPTIONS = {
+  iconStyle: "solid",
+  style: {
+    base: {
+      iconColor: "#c4f0ff",
+      color: "#fff",
+      fontWeight: 500,
+      fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+      fontSize: "16px",
+      fontSmoothing: "antialiased",
+      ":-webkit-autofill": {
+        color: "#fce883"
+      },
+      "::placeholder": {
+        color: "#87bbfd"
+      }
+    },
+    invalid: {
+      iconColor: "#ffc7ee",
+      color: "#ffc7ee"
+    }
+  }
+};
+
+
+
+
+
+export default function CheckoutFormMonth() {
 
   const stripe = useStripe();
   const elements = useElements();
   
+  const history = useHistory();
+
+
 
 
   
   const handleSubmit = async (event:any) => {
     // Block native form submission.
     event.preventDefault();
+    
+
+    history.push('/');
 
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
@@ -46,31 +110,104 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: '16px',
-              color: '#424770',
-              '::placeholder': {
-                color: '#aab7c4',
+
+    
+    <div className="payMain">
+      <div className="checkoutCenterText"> <p className="checkoutCenterTextP">  5$ Monthly    </p></div>
+      <div className="checkoutCenter">
+
+      <form className="checkoutForm" onSubmit={handleSubmit}>
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: '16px',
+                color: '#424770',
+                '::placeholder': {
+                  color: '#aab7c4',
+                },
+              },
+              invalid: {
+                color: '#9e2146',
               },
             },
-            invalid: {
-              color: '#9e2146',
-            },
-          },
-        }}
-      />
-      <button type="submit" disabled={!stripe}>
-        Pay
-      </button>
-    </form>
+          }}
+        />
+        <button className="checkoutButton" type="submit" disabled={!stripe}>
+          Pay 
+        </button>
+      </form>
+      </div>
+    </div>
   );
 };
 
 
+
+
+/*
+<div className="panel">
+    <form action="payment.php" method="POST" id="paymentFrm">
+        <div className="panel-body">
+      
+            <p>   Payment form   </p>
+            <div className="form-group">
+                <label>CARD NUMBER</label>
+                <div id="card_number" className="c"></div>
+            </div>
+
+            <div className="form-group">
+                <label>EXPIRY DATE</label>
+                <div id="card_expiry" className="field"></div>
+            </div>
+
+            <div className="form-group">
+                <label>CVC CODE</label>
+                <div id="card_cvc" className="field"></div>
+            </div>
+
+
+            <button type="submit" className="btn btn-success" id="payBtn">Submit Payment</button>
+        </div>
+        <div id="paymentResponse"></div>
+    </form>
+</div>
+
+
+*/
+
+
+
+
+
+
+
+
+
+/*
+<form onSubmit={handleSubmit}>
+<CardElement
+  options={{
+    style: {
+      base: {
+        fontSize: '16px',
+        color: '#424770',
+        '::placeholder': {
+          color: '#aab7c4',
+        },
+      },
+      invalid: {
+        color: '#9e2146',
+      },
+    },
+  }}
+/>
+<button type="submit" disabled={!stripe}>
+  Pay
+</button>
+</form>
+
+*/
 
 
 

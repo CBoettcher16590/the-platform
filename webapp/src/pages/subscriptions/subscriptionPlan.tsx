@@ -44,6 +44,11 @@ export default function SubscriptionPlan() {
     history.push('/checkout');
 
   }
+  function goHomeY() {
+    history.push('/_checkout');
+
+  }
+
 
   // invoke a stripe mock.
 
@@ -63,7 +68,7 @@ export default function SubscriptionPlan() {
         <br />
         <br />
         <div>
-          <Button variant="info" size="lg" block onClick={goHome}>
+          <Button variant="info" size="lg" block onClick={goHomeY}>
             Annualy 
             
             $60/year
@@ -71,23 +76,6 @@ export default function SubscriptionPlan() {
         </div>
       </div>
     </div>
-    <CardElement
-      options={{
-          style: {
-            base: {
-              fontSize: '16px',
-              color: '#424770',
-              '::placeholder': {
-                color: '#aab7c4',
-              },
-            },
-            invalid: {
-              color: '#9e2146',
-            },
-          },
-        }}
-      />
-
 
     
 

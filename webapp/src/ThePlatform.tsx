@@ -24,9 +24,8 @@ import SeriesPage from './pages/series/seriesPage';
 import SubmitSeries from './pages/series/newSeries';
 import Subscription from './pages/subscriptions/subscription'
 import SubscriptionPlan from './pages/subscriptions/subscriptionPlan'
-//test config for stripe below | if merged disregard or confirm with MK for further feedback
-import CheckoutForm from './pages/subscriptions/checkoutform'
-
+import CheckoutFormMonth from './pages/subscriptions/checkoutformMonth'
+import CheckoutFormYear from './pages/subscriptions/checkoutformYear'
 
 
 
@@ -79,7 +78,9 @@ export default function ThePlatform(props: {}) {
                     <Route path="/subscription" component={Subscription} />
                     <Route path="/plans" component={SubscriptionPlan} />
                     
-                    <Route path="/checkout" component={CheckoutForm} />
+                    <Route path="/checkout" component={CheckoutFormMonth} />
+                    <Route path="/_checkout" component={CheckoutFormYear} />
+
 
                     <Route path="/" component={HomePage} />
 
