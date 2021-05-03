@@ -51,11 +51,8 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   
 
   const FeaturedArticle = (article:IArticle) => (event:any) => {
-
     event.preventDefault();
-
     api.articles.feature(article);
-
     //refresh
    history.go(0);
   }
@@ -77,6 +74,10 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     window.localStorage.clear()
     history.push('/');
     alert("Logged Out")
+  }
+
+  function handelUserType(e:any){
+    console.log(e);
   }
 
   return <>
@@ -148,32 +149,31 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
       let userDisableLogin = disableLogin[user.disable_login];
       let LoginPermissionStatus = "";
 
-    
-
         return( 
          <div key={index}>
+           <Form>
            <Row className="infoTabs">
              <Col sm={6} lg={4} >
               <h5>{name}</h5>
               <h6>{userType[user.user_type_type_id - 1]}</h6>
              </Col>
             <Col sm={6} lg={8}>
-            <Form>
+            
               <Form.Group>
-              <Form.Label>Article Status</Form.Label>
+              <Form.Label>User Type</Form.Label>
                 <Form.Control as="select">
-                  <option>Admin</option>
-                  <option>Author</option>
-                  <option>Editor</option>
-                  <option>Member</option>
+                  <option value="1">Admin</option>
+                  <option value="2">Author</option>
+                  <option value="3">Editor</option>
+                  <option value="4">Member</option>
                 </Form.Control>
               </Form.Group>
-            </Form>
+         
             </Col> 
-
-            <Button className="btnSmall" onClick={ChangeLoginPermission(user)} variant="info">Update</Button>
-           
+            {/* <Button className="btnSmall" onClick={handelUserType(this)} variant="info">Update</Button> */}
+    
            </Row>
+           </Form>
           </div>
         )
     })}
