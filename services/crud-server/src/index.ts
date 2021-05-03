@@ -6,6 +6,7 @@ import * as Users from './routes/users';
 import * as Articles from './routes/articles';
 import * as Tokens from './routes/tokens';
 import * as Series from './routes/series';
+import * as Subscriptions from './routes/subscription'
 
 const app = express();
 const port = 4000;
@@ -25,7 +26,7 @@ function loadEndpoints( endpoint:any ){
 
 }
 
-[ Users, Tokens, Articles, Series ].forEach( ImportedObject => {
+[ Users, Tokens, Articles, Series, Subscriptions ].forEach( ImportedObject => {
     
     Object.values( ImportedObject ).forEach( loadEndpoints );
 
