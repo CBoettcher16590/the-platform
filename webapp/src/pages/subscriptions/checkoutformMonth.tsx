@@ -2,7 +2,7 @@ import React from "react";
 import {CardElement, useStripe, useElements,Elements} from '@stripe/react-stripe-js';
 import './style.css'
 import { useHistory } from "react-router";
-
+import api from '../../api'
 
 
 
@@ -48,14 +48,17 @@ export default function CheckoutFormMonth() {
   
   const history = useHistory();
 
-
-
+const x = window.localStorage.getItem('userID');
 
   
   const handleSubmit = async (event:any) => {
     // Block native form submission.
     event.preventDefault();
-    
+
+
+    //api.subscription.get throw an if, if it gets something you can't subscribe again to reset your subscription
+    api.subscription.patchMonthly(x);
+    console.log(window.localStorage.getItem('userID')); //id is gottten
 
     history.push('/');
 
