@@ -29,13 +29,6 @@ import CheckoutFormYear from './pages/subscriptions/checkoutformYear'
 
 
 
-
-
-
-
-
-
-
 export default function ThePlatform(props: {}) {
 
     return (
