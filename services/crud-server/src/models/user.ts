@@ -34,7 +34,8 @@ interface IUserUpdate{
     birthdate:string,
     bio:string,
     userID:string,
-    password:string
+    password:string,
+    userType:string
 }
 
 // interface IUserType{
@@ -225,6 +226,10 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             if(userInfo.password){
                 const hashedPass:string = PasswordModel.hash(userInfo.password);
                 sqlParameters += `password='${hashedPass}',`;
+            }
+            //UserType
+            if(userInfo.userType){
+                sqlParameters += `user_type_type_id='${userInfo.userType}',`;
             }
 
             var sql = `UPDATE user SET ${sqlParameters.slice(0, -1)} WHERE user_id=${userInfo.userID};`
