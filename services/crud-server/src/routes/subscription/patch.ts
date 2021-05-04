@@ -11,20 +11,17 @@ export function patch(app:any){
 
     app.patch('/subscription', async(request:any, response:any) => {
         const headerCode = request.headers.code;
-        console.log(request);
-        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ')
+        const userID = request.headers.userid;
 
-    
-        
     switch(headerCode){
         
         case PatchType.Monthly:{
-            SubscriptionModel.editSubscriptionMonthly(request.body);
+            SubscriptionModel.editSubscriptionMonthly(userID);
             break;
         }
 
         case PatchType.Yearly:{
-            SubscriptionModel.editSubscriptionAnnualy(request.body);
+            SubscriptionModel.editSubscriptionAnnualy(userID);
             break;
         }
         

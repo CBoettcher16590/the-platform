@@ -122,8 +122,8 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
 
-            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created, user_image_link)
-                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate(), "${defaultImg}");`;
+            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created, user_image_link, subscription)
+                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate(), "${defaultImg}", 0);`;
 
                  pool.getConnection(function(err:any, connection:any){
                     if(err) throw err; // not connected
