@@ -13,6 +13,7 @@ export interface ISubmittedArticle{
     title:string;
     preview:string;
     contents:string;
+    price:string;
     image_link:string;
     article_status:number;
 }
@@ -26,7 +27,7 @@ export interface IArticle{
     preview:string;
     contents:string;
     image_link:string;
-    price:number;
+    price:string;
     created_on:string;
     article_status:number;
     rating:number[];
@@ -141,7 +142,8 @@ export const ArticleModel = {
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err;
                 //need to update sql statemnet
-                var sql = `INSERT INTO article VALUES (article_id, null, ${articleToCreate.userId}, '${articleToCreate.title}', '${articleToCreate.preview}', '${articleToCreate.contents}', '${articleToCreate.image_link}', CURDATE(), 2, 0, null)`;
+                var sql = `INSERT INTO article (article_id, user_user_id, title, preview, contents, image_link, price, created_on, article_status, rating, feature_tag)
+                VALUES (article_id, ${articleToCreate.userId}, "${articleToCreate.title}", "${articleToCreate.preview}", "${articleToCreate.contents}", '${articleToCreate.image_link}', "${articleToCreate.price}", CURDATE(), 2, 0, null);`
 
                 connection.query(sql, function (error:any, results:IArticle){
                     connection.release();

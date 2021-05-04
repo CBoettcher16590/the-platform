@@ -50,9 +50,10 @@ text-decoration: underline;
     border-radius: 10px;
     box-shadow: 5px 10px lightgray;
     background-color: rgb(208, 242, 255) ;
-
 }
-
+#artSubmitFormCheckbox{
+    padding-top: 20px;
+}
 #imageInput{
     padding: 5px;
     box-shadow: inset;
