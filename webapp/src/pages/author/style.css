@@ -10,15 +10,15 @@
 } 
 .authorInfoCard img{
     margin: 1em auto 0 auto;
-    max-width: 20em;
-    max-height: 20em;
+    width: 20em;
+    height: 20em;
     object-fit: cover;
     border-radius: 10px;
 }
 
 
 .authorCardBG{
-    padding: 20px 0 20px 0  ;
+    padding: 50px 0 20px 0  ;
     background-image: linear-gradient(to top right, #47697E,#8fbdd1);
 
 }
@@ -80,14 +80,17 @@
     color:black;
     background: rgb(245, 212, 121);
 }
+#myArticlesTableH1{
+    text-align: center;
+}
 #articleInfo{
     font-size: 18px;
     font-weight: 500;
     border: 1px solid black;
-    background-color:rgba(113, 139, 98, 0.8);
     margin: 5em;
     height: 75vh;
-    overflow: scroll;
+    overflow-y:scroll;
+    opacity: .93;
 
 }
 .articleCol h2{
@@ -101,3 +104,24 @@
 .articleHeaders{
 text-align: center;
 }
+
+/* SCROLLBAR STYLE */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #cce4ee;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(87, 87, 87);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }

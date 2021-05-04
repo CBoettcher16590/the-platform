@@ -9,7 +9,8 @@ export default {
         console.log(body);
         return axios.patch(`${HOSTNAME}/subscription`, body, {
             headers: {
-                Code: "M"
+                Code: "M",
+                userid: body,
             },
         });
     },
@@ -17,7 +18,8 @@ export default {
     patchYearly: async (body: any) => {
         return axios.patch(`${HOSTNAME}/subscription`, body, {
             headers: {
-                Code: "Y"
+                Code: "Y",
+                userid: body,
             },
         });
     },

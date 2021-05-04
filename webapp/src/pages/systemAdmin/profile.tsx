@@ -1,7 +1,7 @@
 import { disconnect, title } from 'process';
 import React, { useEffect } from 'react';
 import  FavoriteArticles  from '../../components/article/favoriteArticle';
-import { Accordion, Button, Card, CardGroup, Dropdown, Nav, Navbar } from 'react-bootstrap';
+import { Accordion, Button, Card, CardGroup, Col, Dropdown, Form, Nav, Navbar, Row, Tab, Tabs } from 'react-bootstrap';
 import './styling.css'
 import { IUser } from '../../../../services/crud-server/src/models/user'
 import { useState } from 'react';
@@ -13,10 +13,12 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
  export default function Admin_profile(){
 
   const history = useHistory();
-
+  const userID = localStorage.getItem("userID") || "";
   const [userList, setUserList] = useState<IUser[]>();
   const [publishedArticleList, setPublishedArticleList] =useState<IArticle[]>();
-  
+  const [loggedInUser, setLoggedInUser] = useState<IUser>();
+  const [newUserType, setNewUserType] = useState<string>();
+
 
   //variables for the userList
   const disableLogin = ["False", "True"];
@@ -24,7 +26,6 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   //const  varient = ["danger","success"];
   const permissionButtonText = ["Disable User Login","Enable User Login"];
   const userType = ["Admin","Author","Editor","Member"];
-  
 
 
   // Inside the .catch I wanted to show that both these useEffects do the same thing even though they are written differently
@@ -34,22 +35,24 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
       const publishedArticles:IArticle[] = allArticles.filter(_art => _art.article_status === 3);
       setPublishedArticleList(publishedArticles);
     }).catch((err) => { console.log(`Error: ${err}`); })
-  },[]);
 
-  useEffect(() => {
     api.users.get().then((responce) => {
       const allUsers:IUser[] = responce.data;
       setUserList(allUsers);
     }).catch(err => console.log("Error: ", err));
-  }, []);
+
+    api.users.getById(userID).then((responce)=>{
+      const foundUser:IUser = responce.data[0];
+      setLoggedInUser(foundUser);
+    }
+    )},[]);
+
+
   
 
   const FeaturedArticle = (article:IArticle) => (event:any) => {
-
     event.preventDefault();
-
     api.articles.feature(article);
-
     //refresh
    history.go(0);
   }
@@ -73,118 +76,150 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     alert("Logged Out")
   }
 
-        return <>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto">
-            <Navbar.Brand href="/">The Platform</Navbar.Brand>          </Nav> 
-          <Nav>
-              <Nav.Link href="/ADProfile"> My Account</Nav.Link>
-            </Nav>
-            <Nav>
-              <Button onClick={onClickLogout}>Logout</Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+  function handelUserType(e:any){
+    console.log(e);
+  }
 
+  return <>
+  <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+      <Navbar.Brand href="/">The Platform</Navbar.Brand>          </Nav> 
+    <Nav>
+        <Nav.Link href="/ADProfile"> My Account</Nav.Link>
+      </Nav>
+      <Nav>
+        <Button onClick={onClickLogout}>Logout</Button>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
 
-
-        <div className="adminCardBG">
-        <Card className="adminInfoCard">
-          <Card.Img variant="top" src= "#"/>
-          <Card.Body className="adminInfo">
-          <Card.Title><h2>Admin Profile</h2></Card.Title>
-            <br/>
-            <br/>
-          <Card.Title><h5>Bio</h5></Card.Title>
-      
-          <Card.Text>
-              Q: What’s the best thing about Switzerland?
-              A: I don’t know, but the flag is a big plus.
-          </Card.Text>
-          <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
-        </Card.Body>
-        </Card>
-
-  {/* still need to style below properly */}
-
-  <Card className="bodyContainer">
-    
-  <Card.Header><h3>Manage User Login Permissions</h3></Card.Header>
-    <Card.Body>
-
-    {/* Bug with managing permissions.. 
-    The first request goes through right away, but the second takes a while (up to 20 seconds), It still works but you need 
-    to manually refresh page.  Maybe use a setTimeout function or something for the refresh?*/}
-
-
-    {/* This way to list users will have to be refined as we get more users */}
-
-      {userList?.map(function(user, index){
-        let name = user.first_name + " " + user.last_name;
-        let userDisableLogin = disableLogin[user.disable_login];
-        
-        return(
-          <Accordion defaultActiveKey="1">
-          <Card className="userCard">
-            <Accordion.Toggle as={Card.Header} eventKey="0">
-              <Card.Title className="userCardTitle">{name + "  -  " + userType[user.user_type_type_id - 1]} </Card.Title>
-              Disable User Login Status: {userDisableLogin}
-            </Accordion.Toggle>
-      
-            <Accordion.Collapse eventKey="0">
-              <div>
-                {/* you can ignore this error for now, it works */}
-                <Button onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
-            </div>
-            </Accordion.Collapse>
-            
-          </Card>
-      
-        </Accordion>
-        )
-      })}  
+<Row> 
+<Col className="authorCardBG"  md={11} lg={6}>
+  <div >
+    <Card className="adminInfoCard">
+      <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+      <Card.Body className="adminInfo">
+      <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+        <br/>
+        <br/>
+      <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+      <Nav.Link href = "/profileEdit" >Edit Profile</Nav.Link>
     </Card.Body>
-  </Card>
-    
-  <Card className="bodyContainer">
-    <Card.Header>
-    {<h3>Set Home Page Featured Articles</h3>}
-    </Card.Header>
-    <Card.Body>
-    
-      {publishedArticleList?.map((_article,index) =>{
-        var isFeatured:boolean;
+    </Card>
+  </div>
+</Col>
 
-        if(_article.feature_tag === "featured"){
-          isFeatured = true;
-        }else{
-          isFeatured = false;
-        }
+<Col id="adminManagementBar" md={11} lg={6}>
 
-        return(
-          <Card>
-            <Card.Header>
-                <Card.Title className="">{_article.title}</Card.Title>
-            </Card.Header>
-          {/* Here I reuse the user.disable varient to reuse code */}
-          <div>
-            <Button onClick={FeaturedArticle(_article)} variant="info">Article Featured : {isFeatured.toString().toUpperCase()}</Button>
-            
+  <Tabs defaultActiveKey="Permissions" id="uncontrolled-tab-example">
+    <Tab className="infoTabs" eventKey="Permissions" title="Manage User Login">
+    {userList?.map(function(user, index){
+      let name = user.first_name + " " + user.last_name;
+      let userDisableLogin = disableLogin[user.disable_login];
+      let LoginPermissionStatus = "";
+
+      if(user.disable_login){
+        LoginPermissionStatus = "User Login DISABLED";
+      } else {
+        LoginPermissionStatus = "User Login ENABLED";
+      }
+
+        return( 
+         <div key={index}>
+           <Row className="infoTabs">
+             <Col sm={6} lg={8} >
+              <h5>{name + "  -  " + userType[user.user_type_type_id - 1]}</h5>
+              <h6>{LoginPermissionStatus}</h6>
+             </Col>
+  
+             <Col sm={6} lg={4}>
+              <Button className="btn" onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
+             </Col>
+           </Row>
           </div>
-            
-
-          </Card>
         )
-      })}
+    })}
+  </Tab>
 
-    </Card.Body>
-  </Card>
+  <Tab className="infoTabs" eventKey="UserType" title="Manage User Type">
+    {userList?.map(function(user, index){
+      let name = user.first_name + " " + user.last_name;
+      let userDisableLogin = disableLogin[user.disable_login];
+      let LoginPermissionStatus = "";
+
+        return( 
+         <div key={index}>
+           <Form>
+           <Row className="infoTabs">
+             <Col sm={6} lg={4} >
+              <h5>{name}</h5>
+              <h6>{userType[user.user_type_type_id - 1]}</h6>
+             </Col>
+            <Col sm={6} lg={8}>
+            
+              <Form.Group>
+              <Form.Label>User Type</Form.Label>
+                <Form.Control as="select">
+                  <option value="1">Admin</option>
+                  <option value="2">Author</option>
+                  <option value="3">Editor</option>
+                  <option value="4">Member</option>
+                </Form.Control>
+              </Form.Group>
+         
+            </Col> 
+            {/* <Button className="btnSmall" onClick={handelUserType(this)} variant="info">Update</Button> */}
+    
+           </Row>
+           </Form>
+          </div>
+        )
+    })}
+  </Tab>
+
+
+  <Tab className="infoTabs" eventKey="Feature Articles" title="Select Feature Articles">
+
+  {publishedArticleList?.map((_article,index) =>{
+  var featuredMessage:string;
+  var buttonMessage:string;
+  if(_article.feature_tag === "featured"){
+    featuredMessage = "Featured";
+    buttonMessage = "Remove From Featured";
+  }else{
+    featuredMessage = "Not Featured";
+    buttonMessage = "Add To Featured";
+  }
+
+  return(
+
+    <div className="adminFeatureArticle">
+    <Row className="infoTabs">
+      <Col sm={7} lg={8}>
+        <h3>{_article.title}</h3>
+        <h4>{featuredMessage}</h4>
+      </Col>
+      <Col sm={3}lg={3}>
+      <Button className="btn" onClick={FeaturedArticle(_article)} variant="info">{buttonMessage}</Button>
+      </Col>
+    </Row>
+    </div>
+  )})}
+    </Tab>
+
+  </Tabs>
+</Col>
+
+</Row>
+ 
+
+
 {/* ================= FAVORITED ARTICLES ================= */}
 
 <FavoriteArticles></FavoriteArticles>
 
-</div>
-     </>
- }
+
+</>
+}

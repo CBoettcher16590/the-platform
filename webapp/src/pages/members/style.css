@@ -1,38 +1,18 @@
 .profileInfo{
-padding-top: 50px;
-display: block;
-margin-right: auto;
-margin-left: auto;
-width: 80%;
-}
-
-.favCard{
-    border: 2px solid grey;
+    padding-top: 50px;
+    display: block;
     margin-right: auto;
     margin-left: auto;
-    border-radius: 5px;
-    background-color: rgb(167, 230, 255) ;
-    padding: 15px;
-    width: 85em;
-    display: flex;
-    padding-bottom: 15px;
-    margin-bottom: 30px;
-    box-shadow: 5px 5px rgb(202, 200, 200);
-}
+    width: 80%;
+    }
+    
 
-.favImage{
-    border: 1px solid black;
-    border-radius: 5px;
-    height:150px;
-    width:auto;
-    object-fit: cover;
-    margin-right: 20px;
-    display: flex;
-    align-self: center;
-}
+.favArticleBody img{
+        height: 75px;
+        width: 100px;
+        object-fit: cover;
+    }
 
-.favArticle{
-    height: auto;
-    width: 400px;
-    border: 2px;      
-}
+
+    
+ 

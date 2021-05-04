@@ -188,3 +188,32 @@ padding: 5px;
     display: flex;
     justify-content: center;
 }
+.favCard{
+    border: 2px solid grey;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 5px;
+    background-color: rgb(167, 230, 255) ;
+    padding: 15px;
+    width: 85em;
+    display: flex;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    box-shadow: 5px 5px rgb(202, 200, 200);
+}
+
+.favImage{
+        border-radius: 5px;
+    width: 200px;
+    height:200px;
+    object-fit: cover;
+    margin-right: 20px;
+    display: flex;
+    align-self: center;
+}
+
+.favArticle{
+    height: auto;
+    width: 400px;
+    border: 2px;      
+}

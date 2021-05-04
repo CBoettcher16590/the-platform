@@ -13,8 +13,7 @@ import ED_edit_profile from './pages/editor/editprofile';
 import OR_edit_profile from './pages/OrgAdmin/editprofile';
 import OrgAuthors from './pages/OrgAdmin/OrgAuthors';
 import OR_personal_info from './pages/OrgAdmin/personalInfo';
-import MEM_edit_profile from './pages/members/editprofile';
-import MEM_personal_info from './pages/members/personalInfo';
+import Mem_edit_profile from './pages/members/editprofile';
 import AD_edit_profile from './pages/systemAdmin/editprofile';
 import EditorProfile from './pages/editor/editorProfile';
 import OrganizationHome from './pages/organization/homepage';
@@ -45,8 +44,7 @@ export default function ThePlatform(props: {}) {
 
                     {/* Member Routes */}
                     <Route path="/profile" component={Profile} />
-                    <Route path="/MEMupdateMyInfo" component={MEM_edit_profile} />
-                    <Route path="/MEMPersInfo" component={MEM_personal_info} />
+                    <Route path="/profileEdit" component={Mem_edit_profile} />
 
                     {/* Article/Author Routes */}
                     <Route path="/article/:id" exact component={IndvArticlePage} />

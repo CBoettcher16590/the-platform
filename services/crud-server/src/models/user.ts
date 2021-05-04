@@ -13,8 +13,10 @@ export interface IUser {
     disable_login:number,
     phoneNumber: Date,
     userDB: Date, 
-    user_image_link:string
-    bio:string
+    user_image_link:string,
+    bio:string,
+    subscription:number,
+    sub_end_date:string
     
 }
 
@@ -120,8 +122,8 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
 
-            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created, user_image_link)
-                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate(), "${defaultImg}");`;
+            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created, user_image_link, subscription)
+                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate(), "${defaultImg}", 0);`;
 
                  pool.getConnection(function(err:any, connection:any){
                     if(err) throw err; // not connected
@@ -144,9 +146,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
 
-            console.log("DISABLE: ", user.user_id);
-
-            var sql = `UPDATE user SET disable_login = "${1}" WHERE user_id="${user.user_id}"`;
+            var sql = `UPDATE user SET disable_login = "${1}" WHERE user_id="${user.user_id}";`;
     
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
@@ -171,9 +171,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
 
-            console.log("ENABLE: ", user.user_id);
-
-            var sql = `UPDATE user SET disable_login = "${0}" WHERE user_id= "${user.user_id}"`;
+            var sql = `UPDATE user SET disable_login = "${0}" WHERE user_id= "${user.user_id}";`;
     
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
@@ -240,32 +238,5 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             });
         });
     },
-    // editProfile: async (user:IUser) => {
-    
-    //     return new Promise((resolve,reject) => {
-    //         const dbConnection = new DatabaseCONNECTION();
-    //         const pool = dbConnection.connection();
-
-    //         console.log("ENABLE: ", user.user_id);
-
-    //         var sql = `UPDATE theplatformV2.user ;
-                
-    //         SET first_name = ${user.first_name}, last_name = ${user.last_name}, email = ${user.email}, bio = ${user.bio}, 
-    //         user_image_link = ${user.user_image_link}, user_BD = ${user.userDB}, phone_number = ${user.phoneNumber} WHERE user_id = ${user.user_id}`;
-    
-    //         pool.getConnection(function(err:any, connection:any){
-    //             if(err) throw err; // not connected
-
-    //             connection.query(sql, function (error:any, results:IUser[]) {
-    //                 connection.release();
-
-    //                 if(error){
-    //                     reject(error);
-    //                 } else{
-    //                     resolve(results[0])
-    //                 }
-    //             });
-    //         });
-    //     });
-    // } 
+   
 }

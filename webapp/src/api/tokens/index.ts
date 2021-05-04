@@ -1,19 +1,14 @@
 import axios from 'axios';
 import { HOSTNAME } from '../config';
 
-export default { //we are using this post? to set the token? I am not sure the other window local storage is being run
-
-//we hit this 
-
+export default {
+    //Here is where we save a token to browser storage
     post: async ( body:any ) => {
-        return axios.post( `${HOSTNAME}/tokens`, body).then( response => {
-            
-            console.log("tokensPost", response.data);
+        return axios.post( `${HOSTNAME}/tokens`, body).then( response => { 
+            // Where could we save this instead of local storage for extra security?
             window.localStorage.setItem("token", response.data.token);
-
             return response.data.token;
         });
     }
 
 }
-

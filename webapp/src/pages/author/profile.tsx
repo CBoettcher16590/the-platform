@@ -16,6 +16,7 @@ const history = useHistory();
 const [loggedInUser, setLoggedInUser] = useState<IUser>();
 const [userArticles, setUserArticles] = useState<IArticle[]>();
 const [userSeries , setUserSeries] = useState<ISeries[]>();
+const userID:string|null = localStorage.getItem("userID");
 
 function onClickLogout(){
   window.localStorage.clear();
@@ -32,7 +33,6 @@ const handelAddToSeries = (seriesID:string, artID:string) => {
 
 useEffect(() => {
   //find logged in user
-  const userID:string|null = localStorage.getItem("userID");
   //get user info, and set logged in user
   api.users.getById(userID).then((responce)=>{
     const foundUser:IUser = responce.data[0];
@@ -95,17 +95,23 @@ useEffect(() => {
       
       <Col className="articleCol" sm={12} lg={6}>
         <div id="myArticles"></div>
+
         <div id="articleInfo">
-            <h2>My Articles</h2> <Table > 
+
+          <Table striped borderless hover variant="dark">
+            
             <thead>
-            <tr className="articleHeaders">
-              <th></th>
-              <th>Article Name</th>
-              <th>Series ID</th>
-              <th>Add To Series</th>
-            </tr>
-          </thead>
-          <tbody>
+              <tr>
+                <th colSpan={4} id="myArticlesTableH1"><h1>My Aricles</h1></th>
+              </tr>
+              <tr>
+                <th> </th>
+                <th>Title</th>
+                <th>Series ID</th>
+                <th>Add To Series</th>
+              </tr>
+            </thead>
+            <tbody>
             {userArticles?.map(function(_art, index){
               let number = index + 1;
               let articleTitle = _art.title;
@@ -134,8 +140,8 @@ useEffect(() => {
                 </tr>
               )
             })}
-          </tbody>
-        </Table>
+            </tbody>
+          </Table>
       </div>
      
       </Col>

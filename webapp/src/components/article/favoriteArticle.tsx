@@ -47,7 +47,7 @@ return(
             return (
             <div key={_art.article_id} className="favCard">
 
-            <img className="favImage" src={image} />
+            <img className="favImage"src={image} />
 
             <div className="favArticle">
 
