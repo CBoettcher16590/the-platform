@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import MainLayout from '../../layouts/MainLayout';
 import './style.css';
-import {Button, Col, Row } from 'react-bootstrap';
+import {Badge, Button, Col, Row } from 'react-bootstrap';
 import Image from 'react-bootstrap/Image'
 import {IArticle} from '../../../../services/crud-server/src/models/article';
 import { IUser } from '../../../../services/crud-server/src/models/user';
@@ -28,6 +28,12 @@ import FavButton from '../FavButton';
             e.preventDefault();
             history.push(`/series/${series?.series_id}`)
         }
+
+        const HandelRating = () => (event:any) => {
+            event.preventDefault();
+            //refresh
+            history.go(0);
+          }
 
         useEffect(() => {
             
@@ -67,7 +73,27 @@ import FavButton from '../FavButton';
                     <h3>{article?.preview}</h3>
                 </Col>  
             </Row>
-                    <div></div>
+                    
+                        <Col lg={2}>
+                        <div className="InvArticleLikes">
+                            <Row>
+                                <h5>Likes: {article?.rating}</h5>
+                            </Row>
+                            <Row>
+                                <Badge onClick={HandelRating()} className="badge" pill variant="success">
+                                    Like
+                                </Badge>
+                                <Badge onClick={HandelRating()}  className="badge" pill variant="danger">
+                                    DisLike
+                                </Badge>
+                            </Row>
+                                
+                            
+                            
+                            </div>
+                        </Col>
+                   
+             
                     <hr/>  
                     <FavButton{...article!}/>        
                     <Row className="d-flex flex-row-reverse" id="authorInfo">
