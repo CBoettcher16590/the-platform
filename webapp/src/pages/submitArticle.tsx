@@ -45,12 +45,12 @@ export default function SubmitArticle(props: {}) {
   }
 
 
-  const editorRef = useRef(null);
-  const log = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
+  // const editorRef = useRef(null);
+  // const log = () => {
+  //   if (editorRef.current) {
+  //     console.log(editorRef.current.getContent());
+  //   }
+  // };
 
 
 
@@ -131,7 +131,7 @@ export default function SubmitArticle(props: {}) {
           <Editor
             apiKey="x8tdx7tf5h57k9jw0hgfbnd6per58j0sq5xzvufcqdinrl99"
             plugins="wordcount"
-            onInit={(evt, editor) => editorRef.current = editor}
+           // onInit={(evt, editor) => editorRef.current = editor}
             initialValue="<p>Try writing something.</p>"
             init={{
               height: 450,
