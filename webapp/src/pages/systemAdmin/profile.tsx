@@ -55,7 +55,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     api.articles.feature(article);
     //refresh
    history.go(0);
-  }
+  } 
 
   const ChangeUserType = (userID:number, userType:number) => (event:any) => {
 

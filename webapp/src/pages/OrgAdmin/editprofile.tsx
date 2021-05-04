@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 import api from '../../api';
 
  
-export default function OR_edit_profile() {
+export default function ORG_Ad_edit_profile() {
 
   const history = useHistory();
   const [isLoading, setLoading] = useState(false);

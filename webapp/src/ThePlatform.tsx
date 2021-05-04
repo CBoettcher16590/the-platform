@@ -11,13 +11,12 @@ import AuthorProfile from './pages/author/profile';
 import AU_edit_profile from './pages/author/editprofile';
 import ED_edit_profile from './pages/editor/editprofile';
 import OR_edit_profile from './pages/OrgAdmin/editprofile';
-import OrgAuthors from './pages/OrgAdmin/OrgAuthors';
+import OrgAuthors from './pages/organization/OrgAuthors';
 import Mem_edit_profile from './pages/members/editprofile';
 import AD_edit_profile from './pages/systemAdmin/editprofile';
 import EditorProfile from './pages/editor/editorProfile';
 import OrganizationHome from './pages/organization/homepage';
 import Organization_profile from './pages/OrgAdmin/profile';
-import OrgArticles from './pages/organization/orgArticles';
 import SeriesPage from './pages/series/seriesPage';
 import SubmitSeries from './pages/series/newSeries';
 import Subscription from './pages/subscriptions/subscription'
@@ -26,6 +25,7 @@ import CheckoutFormMonth from './pages/subscriptions/checkoutformMonth'
 import CheckoutFormYear from './pages/subscriptions/checkoutformYear'
 import OrganizationAd_profile from './pages/OrgAdmin/profile';
 import OrgAd_profile from './pages/OrgAdmin/profile';
+import ORG_Ad_edit_profile from './pages/OrgAdmin/editprofile';
 
 
 
@@ -58,10 +58,14 @@ export default function ThePlatform(props: {}) {
                     {/* ORG Routes */}
                     <Route path="/OrgHome" component={OrganizationHome} />
                     <Route path="/ORupdateMyInfo" component={OR_edit_profile} />
-                    <Route path="/OrgArticles" component={OrgArticles} />
                     <Route path="/Orgauthors" component={OrgAuthors} />
                     <Route path="/orgProfile" component={Organization_profile} /> 
+
+                    {/* ORG Admin */}
                     <Route path="/orgAdminProfile" component={OrgAd_profile} /> 
+                    <Route path="/ORAdUpdate" component={ORG_Ad_edit_profile}/>
+
+
                     {/* Misc */}
                     <Route path="/signin" component={Login} />
                     <Route path="/signup" component={SignUp} />

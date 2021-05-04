@@ -59,6 +59,11 @@ function HomePage(props:{  }){
                                                 setNavProfileLink("/profile"); 
                                                 break; 
                                              } 
+                                             case 5: { 
+                                                //Organization
+                                                setNavProfileLink("/orgProfile"); 
+                                                break; 
+                                             } 
                                         default: { 
                                            console.error("No User Type by that ID");
                                            break; 
