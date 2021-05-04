@@ -23,9 +23,6 @@ function onClickLogout(){
   history.push('/');
   alert("Logged Out");
 }
-<<<<<<< HEAD
- 
-=======
 const handelAddToSeries = (seriesID:string, artID:string) => {
   return (event: React.MouseEvent) => {
     api.series.addArticleToSeries(seriesID, artID);
@@ -34,7 +31,6 @@ const handelAddToSeries = (seriesID:string, artID:string) => {
 }
 // x
 
->>>>>>> 8271ac32dbc7d6d037bf6be8f642a067d2bee54a
 useEffect(() => {
   //find logged in user
   //get user info, and set logged in user
@@ -130,14 +126,14 @@ useEffect(() => {
                     <DropdownButton id="dropdownSeries" title="Add Article To Series">
                       {userSeries?.map(function(serie, index){
                         let seriesTitle = serie.series_title;
-                        return(
-                          <Dropdown.Item
-                          value={serie.series_title}
-                          seriesid={serie.series_id}
-                          key={index}
-                          onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
-                          >{serie.series_title}</Dropdown.Item>
-                        )
+                        // return(
+                        //   <Dropdown.Item
+                        //   value={serie.series_title}
+                        //   seriesid={serie.series_id}
+                        //   key={index}
+                        //   onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
+                        //   >{serie.series_title}</Dropdown.Item>
+                        // )
                       })}
                       
                     </DropdownButton></td>
