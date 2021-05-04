@@ -14,7 +14,6 @@ export function patch(app:any){
         console.log(request);
         console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ')
 
-    
         
     switch(headerCode){
         
