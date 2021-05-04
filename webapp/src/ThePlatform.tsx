@@ -24,8 +24,8 @@ import Subscription from './pages/subscriptions/subscription'
 import SubscriptionPlan from './pages/subscriptions/subscriptionPlan'
 import CheckoutFormMonth from './pages/subscriptions/checkoutformMonth'
 import CheckoutFormYear from './pages/subscriptions/checkoutformYear'
-import OrganizationAdminHome from './pages/OrgAdmin/adminHome';
 import OrganizationAd_profile from './pages/OrgAdmin/profile';
+import OrgAd_profile from './pages/OrgAdmin/profile';
 
 
 
@@ -61,8 +61,7 @@ export default function ThePlatform(props: {}) {
                     <Route path="/OrgArticles" component={OrgArticles} />
                     <Route path="/Orgauthors" component={OrgAuthors} />
                     <Route path="/orgProfile" component={Organization_profile} /> 
-                    <Route path="/orgAdminProfile" component={OrganizationAd_profile} /> 
-                    <Route path="/orgAdminHome" component={OrganizationAdminHome} />
+                    <Route path="/orgAdminProfile" component={OrgAd_profile} /> 
                     {/* Misc */}
                     <Route path="/signin" component={Login} />
                     <Route path="/signup" component={SignUp} />
