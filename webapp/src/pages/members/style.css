@@ -1,0 +1,18 @@
+.profileInfo{
+    padding-top: 50px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+    }
+    
+
+.favArticleBody img{
+        height: 75px;
+        width: 100px;
+        object-fit: cover;
+    }
+
+
+    
+ 

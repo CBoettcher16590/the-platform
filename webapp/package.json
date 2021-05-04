@@ -1,0 +1,117 @@
+{
+  "name": "twilight",
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts",
+      "!src/reportWebVitals.ts"
+    ],
+    "coveragePathIgnorePatterns": [
+      "./src/*/*.types.{ts,tsx}",
+      "./src/index.tsx",
+      "./src/serviceWorker.ts"
+    ],
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text-summary",
+      "html",
+      "clover"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 0,
+        "branches": 0,
+        "lines": 0,
+        "functions": 0
+      }
+    }
+  },
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "@material-ui/core": "^4.9.14",
+    "@stripe/react-stripe-js": "^1.4.0",
+    "@stripe/stripe-js": "^1.14.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "axios": "^0.21.0",
+    "bootstrap": "^4.6.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "history": "^5.0.0",
+    "jsdom": "^16.4.0",
+    "jsdom-global": "^3.0.2",
+    "lodash": "^4.17.15",
+    "mysql": "^2.18.1",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.5.2",
+    "react-dom": "^16.13.1",
+    "react-phone-number-input": "^3.1.8",
+    "react-router": "^5.2.0",
+    "react-router-bootstrap": "^0.25.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-user-profile": "^1.0.3",
+    "recoil": "^0.1.2",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "test-enzyme": "mocha -r ts-node/register -r jsdom-global/register -r unitTestSetup.ts **/test/**/*.ts test/**/*.tsx --recursive --timeout 5000",
+    "test:coverage": "react-scripts test --coverage --runInBand --watchAll=false",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.15",
+    "@types/enzyme": "^3.10.8",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/jsdom": "^16.2.6",
+    "@types/lodash": "^4.14.152",
+    "@types/mocha": "^8.2.0",
+    "@types/node": "^12.12.42",
+    "@types/react-phone-number-input": "^3.0.6",
+    "@types/react-router": "^5.1.7",
+    "@types/react-router-bootstrap": "^0.24.5",
+    "@types/react-router-dom": "^5.1.5",
+    "@types/sinon": "^9.0.10",
+    "@types/webpack-env": "^1.15.2",
+    "chai": "^4.3.0",
+    "enzyme-to-json": "^3.6.2",
+    "gh-pages": "^2.2.0",
+    "mdbreact": "^5.0.1",
+    "mocha": "^8.3.0",
+    "node-sass": "^4.14.1",
+    "sinon": "^9.2.4",
+    "ts-node": "^9.1.1"
+  }
+}
