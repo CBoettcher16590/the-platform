@@ -13,10 +13,6 @@ export function patch(app:any){
         const headerCode = request.headers.code;
         const userID = request.headers.userid;
 
-<<<<<<< HEAD
-        
-=======
->>>>>>> 3d08963312785f8dcb52ff01f4d4a1692e06b786
     switch(headerCode){
         
         case PatchType.Monthly:{
