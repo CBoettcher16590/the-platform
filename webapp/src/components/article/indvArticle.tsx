@@ -67,6 +67,7 @@ import FavButton from '../FavButton';
                     <h3>{article?.preview}</h3>
                 </Col>  
             </Row>
+                    <div></div>
                     <hr/>  
                     <FavButton{...article!}/>        
                     <Row className="d-flex flex-row-reverse" id="authorInfo">

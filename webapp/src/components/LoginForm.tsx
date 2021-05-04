@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router';
+import { IUser } from '../../../services/crud-server/src/models/user';
 import api from '../api';
 
 
@@ -21,15 +22,25 @@ export default function LoginForm(){
           };
         
     }, [ isLoading ]);
+
     
     function handleLogin(e:any){
         e.preventDefault();
         setLoading(true);
-        api.tokens.post({_email:email , _password:password});
-        api.user.post({email, password});
-        setTimeout(function(){
-            history.push('/');
-        }, 2000);
+        api.users.get().then((responce) => {
+            const foundUser:IUser[] = responce.data.filter((_user:IUser) => _user.email === `${email}`);
+            
+            if(foundUser[0].disable_login === 0){
+                api.tokens.post({_email:email , _password:password});
+                api.user.post({email, password});
+                setTimeout(function(){
+                    history.push('/');
+                }, 2000);
+            } else{
+                alert("Your Account Has Been Temporarily Disabled");
+            }
+        });
+   
        };
 
     

@@ -57,6 +57,14 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
    history.go(0);
   }
 
+  const ChangeUserType = (userID:number, userType:number) => (event:any) => {
+
+    event.preventDefault();
+    api.users.updateUser({userID, userType});
+    //refresh
+    history.go(0);
+  }
+
   const ChangeLoginPermission = (user:IUser) => (event:any) =>{
     event.preventDefault();
     //Here we change the user that is being sent to the CRUD server partch so we know what to do
@@ -76,10 +84,6 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     alert("Logged Out")
   }
 
-  function handelUserType(e:any){
-    console.log(e);
-  }
-
   return <>
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -96,7 +100,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   </Navbar>
 
 <Row> 
-<Col className="authorCardBG"  md={11} lg={6}>
+<Col className="authorCardBG"  md={11} lg={7}>
   <div >
     <Card className="adminInfoCard">
       <Card.Img variant="top" src={loggedInUser?.user_image_link} />
@@ -111,9 +115,9 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   </div>
 </Col>
 
-<Col id="adminManagementBar" md={11} lg={6}>
+<Col id="adminManagementBar" md={11} lg={5}>
 
-  <Tabs defaultActiveKey="Permissions" id="uncontrolled-tab-example">
+  <Tabs id="uncontrolled-tab-example">
     <Tab className="infoTabs" eventKey="Permissions" title="Manage User Login">
     {userList?.map(function(user, index){
       let name = user.first_name + " " + user.last_name;
@@ -146,32 +150,23 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   <Tab className="infoTabs" eventKey="UserType" title="Manage User Type">
     {userList?.map(function(user, index){
       let name = user.first_name + " " + user.last_name;
-      let userDisableLogin = disableLogin[user.disable_login];
-      let LoginPermissionStatus = "";
 
         return( 
-         <div key={index}>
+         <div key={user.user_id}>
            <Form>
            <Row className="infoTabs">
-             <Col sm={6} lg={4} >
+             <Col md={11} lg={4} >
               <h5>{name}</h5>
               <h6>{userType[user.user_type_type_id - 1]}</h6>
              </Col>
-            <Col sm={6} lg={8}>
-            
-              <Form.Group>
-              <Form.Label>User Type</Form.Label>
-                <Form.Control as="select">
-                  <option value="1">Admin</option>
-                  <option value="2">Author</option>
-                  <option value="3">Editor</option>
-                  <option value="4">Member</option>
-                </Form.Control>
-              </Form.Group>
-         
+            <Col md={11} lg={8}>
+
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 1)} variant="outline-dark">Admin</Button>
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 2)} variant="outline-dark">Author</Button>
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 3)} variant="outline-dark">Editor</Button>
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 4)} variant="outline-dark ">Member</Button>
             </Col> 
-            {/* <Button className="btnSmall" onClick={handelUserType(this)} variant="info">Update</Button> */}
-    
+
            </Row>
            </Form>
           </div>
@@ -195,7 +190,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
   return(
 
-    <div className="adminFeatureArticle">
+    <div key={_article.article_id} className="adminFeatureArticle">
     <Row className="infoTabs">
       <Col sm={7} lg={8}>
         <h3>{_article.title}</h3>
