@@ -102,7 +102,7 @@ useEffect(() => {
             
             <thead>
               <tr>
-                <th colSpan={4} id="myArticlesTableH1"><h1>My Aricles</h1></th>
+                <th colSpan={4} id="myArticlesTableH1"><h1>My Articles</h1></th>
               </tr>
               <tr>
                 <th> </th>
