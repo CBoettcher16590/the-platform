@@ -7,7 +7,7 @@ export default {
         return axios.get(`${HOSTNAME}/users`);
     },  
     getById: async ( userId:any ) => {
-        return axios.get(`${HOSTNAME}/users/${userId}`);
+        return axios.get(`${HOSTNAME}/users/${userId}`); 
     },
 
     post: async (body:any) => {
@@ -19,7 +19,7 @@ export default {
             headers:{
                 Code:"LoginPermission"
             },
-        });
+        }); 
     },
     updateUser: async (body:any) => {
         return axios.patch( `${HOSTNAME}/users`, body, {
@@ -27,7 +27,7 @@ export default {
                 Code:"Update",
             },
         });
-    },
+    }, 
 
     delete: async (body:any) => {
         return axios.delete(`${HOSTNAME}/users`, body).then( responce => {

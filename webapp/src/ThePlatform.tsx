@@ -16,7 +16,6 @@ import Mem_edit_profile from './pages/members/editprofile';
 import AD_edit_profile from './pages/systemAdmin/editprofile';
 import EditorProfile from './pages/editor/editorProfile';
 import OrganizationHome from './pages/organization/homepage';
-import Organization_profile from './pages/OrgAdmin/profile';
 import SeriesPage from './pages/series/seriesPage';
 import SubmitSeries from './pages/series/newSeries';
 import Subscription from './pages/subscriptions/subscription'
@@ -26,6 +25,8 @@ import CheckoutFormYear from './pages/subscriptions/checkoutformYear'
 import OrganizationAd_profile from './pages/OrgAdmin/profile';
 import OrgAd_profile from './pages/OrgAdmin/profile';
 import ORG_Ad_edit_profile from './pages/OrgAdmin/editprofile';
+import Org_profile from './pages/organization/profile';
+import org_edit_profile from './pages/organization/editprofile';
 
 
 
@@ -56,10 +57,11 @@ export default function ThePlatform(props: {}) {
                     <Route path="/newSeries" component={SubmitSeries} />
 
                     {/* ORG Routes */}
-                    <Route path="/OrgHome" component={OrganizationHome} />
-                    <Route path="/ORupdateMyInfo" component={OR_edit_profile} />
-                    <Route path="/Orgauthors" component={OrgAuthors} />
-                    <Route path="/orgProfile" component={Organization_profile} /> 
+                    {/* <Route path="/OrgHome" component={OrganizationHome} /> */}
+                    {/* <Route path="/ORupdateMyInfo" component={OR_edit_profile} /> */}
+                    {/* <Route path="/Orgauthors" component={OrgAuthors} /> */}
+                    <Route path="/orgProfile" component={Org_profile} /> 
+                    <Route path="/orgpersonalinfo" component={org_edit_profile}/>
 
                     {/* ORG Admin */}
                     <Route path="/orgAdminProfile" component={OrgAd_profile} /> 

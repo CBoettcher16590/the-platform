@@ -32,7 +32,7 @@ const handelAddToSeries = (seriesID:string, artID:string) => {
 // x
 
 useEffect(() => {
-  //find logged in user
+  //find logged in user 
   //get user info, and set logged in user
   api.users.getById(userID).then((responce)=>{
     const foundUser:IUser = responce.data[0];

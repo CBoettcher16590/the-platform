@@ -3,7 +3,7 @@ import { authenticateToken } from '../../middleware/authenticator';
 import {IArticle, ArticleModel} from '../../models/article';
 
 enum ArticleCode{
-    Featured = 'Feature',
+    Featured = 'Feature', 
     Approval = "Approval"
 } 
  

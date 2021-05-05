@@ -27,7 +27,7 @@ interface IUserSignup {
     password:string
 }
 
-interface IUserUpdate{
+export interface IUserUpdate{
     imageLink:string,
     email:string,
     phone:string,
@@ -91,7 +91,7 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
                 }
             });
         });
-    });
+    }); 
 },
 getByID: async (userID:string|number):Promise<IUser[]> => {
        
@@ -203,7 +203,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             //build parameters for sql query.
             var sqlParameters:string ="";
             //IMAGE
-            if(userInfo.imageLink){
+            if(userInfo.imageLink){ 
                 sqlParameters += `user_image_link='${userInfo.imageLink}',`;
             }
             //EMAIL
