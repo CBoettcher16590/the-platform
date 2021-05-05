@@ -148,7 +148,7 @@ export default function SubmitArticle(props: {}) {
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
           />
-                 <button onClick={log}>Log editor content</button>
+                 {/* <button onClick={log}>Log editor content</button> */}
 
           {/* <Form.Control
             value={contents}
