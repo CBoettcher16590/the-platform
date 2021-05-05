@@ -26,11 +26,23 @@ export default function SubmitArticle(props: {}) {
 
 
 
-  // const [value, setValue] = useState("");
+  const editorRef = useRef<any>(null);
 
-  // const handleOnChange = (e:any, editor:any) => {
+  const [content, setContent] = useState<string>("");
 
-  // }
+    
+  // setContent(editorRef.current.getContent());
+  
+
+  const log = () => {
+    if (editorRef.current !== null) {
+     console.log(editorRef.current.getContent());
+     setContent(editorRef.current.getContent());
+    }
+  };
+//if there is no better way a meta function should be used to editorRef.current.getContent()); and then the call should be made to data/submit
+
+
 
   const [title, setTitle] = useState<string>("");
   const [preview, setPreview] = useState<string>("");
@@ -52,18 +64,16 @@ export default function SubmitArticle(props: {}) {
     e.preventDefault();
     console.log(e);
 
+    submit.ArticleSubmission(title!, preview!, imageLink!, price!, content!, userId!);
     // submit.ArticleSubmission(title!, preview!, imageLink!, price!, contents!, userId!);
-    // console.log("Submit Success!");
-    // history.push('/');
+    console.log(title, imageLink, content)
+    // editorRef.current.getContent()
+    console.log("Submit Success!");
+    history.push('/');
   }
 
 
-  // const editorRef = useRef(null);
-  // const log = () => {
-  //   if (editorRef.current) {
-  //     console.log(editorRef.current.getContent());
-  //   }
-  // };
+
 
 
 
@@ -142,10 +152,10 @@ export default function SubmitArticle(props: {}) {
         <Form.Group>
           <Form.Label>Whats on your Mind?</Form.Label>
           <Editor
+            onInit={(evt, editor) => editorRef.current = editor}
             apiKey={tinyAxe}
             plugins="wordcount"
-            // onChange={handleOnChange}
-                init={{
+            init={{
               height: 450,
               menubar: false,
               plugins: [
@@ -160,7 +170,7 @@ export default function SubmitArticle(props: {}) {
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
           />
-                 {/* <button onClick={log}>Log editor content</button> */}
+          {/* <button onClick={log}>Log editor content</button> */}
 
           {/* <Form.Control
             value={contents}
