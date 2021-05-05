@@ -11,8 +11,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const tinyAxe = process.env.REACT_APP_tinyMC
-console.log(tinyAxe);
-
 
 
 
@@ -28,7 +26,7 @@ export default function SubmitArticle(props: {}) {
 
   const editorRef = useRef<any>(null);
 
-  const [content, setContent] = useState<string>("");
+  // const [content, setContent] = useState<string>("");
 
     
   // setContent(editorRef.current.getContent());
@@ -37,7 +35,7 @@ export default function SubmitArticle(props: {}) {
   const log = () => {
     if (editorRef.current !== null) {
      console.log(editorRef.current.getContent());
-     setContent(editorRef.current.getContent());
+    //  setContent(editorRef.current.getContent());
     }
   };
 //if there is no better way a meta function should be used to editorRef.current.getContent()); and then the call should be made to data/submit
@@ -64,9 +62,9 @@ export default function SubmitArticle(props: {}) {
     e.preventDefault();
     console.log(e);
 
-    submit.ArticleSubmission(title!, preview!, imageLink!, price!, content!, userId!);
+    submit.ArticleSubmission(title!, preview!, imageLink!, price!, editorRef.current!, userId!);
     // submit.ArticleSubmission(title!, preview!, imageLink!, price!, contents!, userId!);
-    console.log(title, imageLink, content)
+    console.log(title, imageLink, editorRef.current)
     // editorRef.current.getContent()
     console.log("Submit Success!");
     history.push('/');
@@ -170,7 +168,7 @@ export default function SubmitArticle(props: {}) {
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
           />
-          {/* <button onClick={log}>Log editor content</button> */}
+          <button onClick={log}>Log editor content</button>
 
           {/* <Form.Control
             value={contents}
