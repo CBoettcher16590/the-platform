@@ -27,7 +27,7 @@ interface IUserSignup {
     password:string
 }
 
-interface IUserUpdate{
+export interface IUserUpdate{
     imageLink:string,
     email:string,
     phone:string,
@@ -37,6 +37,10 @@ interface IUserUpdate{
     password:string,
     userType:string
 }
+
+// interface IUserType{
+//     user_type: number
+// }
 
 export  const UserModel = {
 
@@ -87,7 +91,7 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
                 }
             });
         });
-    });
+    }); 
 },
 getByID: async (userID:string|number):Promise<IUser[]> => {
        
@@ -190,7 +194,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
         });
     },
 
-    editUserProfile: async (userInfo:IUserUpdate) => {
+    editUserProfile: async (userInfo:IUserUpdate) => { 
     
         return new Promise((resolve,reject) => {
             const dbConnection = new DatabaseCONNECTION();
@@ -199,7 +203,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             //build parameters for sql query.
             var sqlParameters:string ="";
             //IMAGE
-            if(userInfo.imageLink){
+            if(userInfo.imageLink){ 
                 sqlParameters += `user_image_link='${userInfo.imageLink}',`;
             }
             //EMAIL
@@ -243,5 +247,23 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             });
         });
     },
+
+    // editUserType: async (userInfo:IUserType) => { 
+    
+    //     return new Promise((resolve,reject) => {
+    //         const dbConnection = new DatabaseCONNECTION();
+    //         const pool = dbConnection.connection;
+
+    //         var sqlParameters:string ="";
+    //         //Type
+    //         if(userInfo.user_type){
+    //             sqlParameters += `type_id'${userInfo.user_type}',`;
+    //         }
+    //         var sql = `UPDATE user_type SET ${sqlParameters.slice(0, -1)} WHERE user_id=${userInfo.userID};`
+
+
+    //     });
+    // }
+
    
 }

@@ -32,7 +32,7 @@ const handelAddToSeries = (seriesID:string, artID:string) => {
 // x
 
 useEffect(() => {
-  //find logged in user
+  //find logged in user 
   //get user info, and set logged in user
   api.users.getById(userID).then((responce)=>{
     const foundUser:IUser = responce.data[0];
@@ -126,14 +126,14 @@ useEffect(() => {
                     <DropdownButton id="dropdownSeries" title="Add Article To Series">
                       {userSeries?.map(function(serie, index){
                         let seriesTitle = serie.series_title;
-                        return(
-                          <Dropdown.Item
-                          value={serie.series_title}
-                          seriesid={serie.series_id}
-                          key={index}
-                          onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
-                          >{serie.series_title}</Dropdown.Item>
-                        )
+                        // return(
+                        //   <Dropdown.Item
+                        //   value={serie.series_title}
+                        //   seriesid={serie.series_id}
+                        //   key={index}
+                        //   onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
+                        //   >{serie.series_title}</Dropdown.Item>
+                        // )
                       })}
                       
                     </DropdownButton></td>

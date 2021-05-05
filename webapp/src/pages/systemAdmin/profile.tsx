@@ -12,7 +12,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
  export default function Admin_profile(){
 
-  const history = useHistory();
+  const history = useHistory(); 
   const userID = localStorage.getItem("userID") || "";
   const [userList, setUserList] = useState<IUser[]>();
   const [publishedArticleList, setPublishedArticleList] =useState<IArticle[]>();
@@ -55,7 +55,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     api.articles.feature(article);
     //refresh
    history.go(0);
-  }
+  } 
 
   const ChangeUserType = (userID:number, userType:number) => (event:any) => {
 
@@ -96,7 +96,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
       <Nav>
         <Button onClick={onClickLogout}>Logout</Button>
       </Nav>
-    </Navbar.Collapse>
+    </Navbar.Collapse> 
   </Navbar>
 
 <Row> 

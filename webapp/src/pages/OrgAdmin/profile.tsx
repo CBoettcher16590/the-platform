@@ -1,79 +1,119 @@
-import React from 'react';
-import { Navbar, Nav, Button, Card } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Navbar, Nav, Button, Card, Row, Col, Form, Tab, Tabs } from 'react-bootstrap';
+import { useHistory } from 'react-router';
+import { IUser } from '../../../../services/crud-server/src/models/user';
+import api from '../../api';
+import FavoriteArticles from '../../components/article/favoriteArticle';
 import cat from '../../images/cat.jpg'
 
 
-export default class Organization_profile extends React.Component {
+export default function OrgAd_profile(){
 
-    state = {
-      likes: 0
-    };
-    addLike = () => {
-      let newCount = this.state.likes + 1;
-      this.setState({
-        likes: newCount
-      });
-    };
-    state2 = {
-        disLike : 0
-      };
-      addDisLike = () => {
-        let DisLikes = this.state2.disLike + 1;
-        let Likes = this.state.likes - 1;
+  const history = useHistory(); 
 
-        this.setState({
-          likes: Likes,
-          disLike: DisLikes 
-        });
-      };
+  const userID = localStorage.getItem("userID") || "";
+  const [userList, setUserList] = useState<IUser[]>();
+  const [loggedInUser, setLoggedInUser] = useState<IUser>();
+
+  const disableLogin = ["False", "True"];
+
+  const userType = ["Author","Member"];
+
   
-  render(){
-    return (
-        <div>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mr-auto">
-                    <Nav.Link href="/OrgHome">The-Platform</Nav.Link>
-                </Nav>
-                <Nav className="mr-auto">
-                    <Nav.Link href="/ORgauthors">Organization Authors</Nav.Link>
-                </Nav>
-                <Nav className="mr-auto">
-                    <Nav.Link href="#OrganizationArticles">Organization Articles</Nav.Link>
-                </Nav>
-                <Nav>
-                    <Navbar.Brand href="/OrgProfile"> My Account</Navbar.Brand>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-            <br />
-            <Card style={{ width: '30rem' }}>
-      <Card.Img variant="top" src={cat} />
-      <br />
+  const ChangeUserType = (userID:number, userType:number) => (event:any) => {
 
-      <Card.Body>
-        <Card.Title><h2>Donald Trump</h2></Card.Title>
-        <br />
-        <br />
-        <Card.Title><h5>Bio</h5></Card.Title>
+    event.preventDefault();
+    api.users.updateUser({userID, userType});
+    //refresh
+    history.go(0);
+  }
 
-        <Card.Text>
-          Q: What’s the best thing about Switzerland?
-          A: I don’t know, but the flag is a big plus.
-        </Card.Text>
-        <Nav.Link href="/ORupdateMyInfo">Edite Profile</Nav.Link>
-      </Card.Body>
+
+  useEffect(()=>{
+    api.users.get().then((responce) => {
+      const allUsers:IUser[] = responce.data;
+      setUserList(allUsers);
+    }).catch(err => console.log("Error: ", err));
+
+    api.users.getById(userID).then((responce)=>{
+      const foundUser:IUser = responce.data[0];
+      setLoggedInUser(foundUser);
+    }
+    )},[]);
+
+  function onClickLogout() {
+    window.localStorage.clear()
+    history.push('/');
+    alert("Logged Out")
+  }
+
+  return <>
+    <div>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="/">The-Platform</Nav.Link>
+          </Nav>
+          <Nav>
+            <Navbar.Brand href="/orgAdminProfile"> My Account</Navbar.Brand>
+          </Nav>
+          <Nav>
+            <Button onClick={onClickLogout}>Logout</Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+
+      <Row> 
+        
+      <Card className="adminInfoCard">
+      <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+      <Card.Body className="org-adminInfo">
+      <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+        <br/>
+        <br/>
+      <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+      <Nav.Link href = "/ORAdUpdate" >Edit Profile</Nav.Link>
+    </Card.Body>
     </Card>
-    <br />
-    <Button onClick={this.addLike}>Likes: {this.state.likes} </Button>
-    <br/>
-    <br/>
-    <Button variant= "danger" onClick={this.addDisLike}> disLikes: {this.state2.disLike} </Button>
-    <br/>
-    <br/>
-      </div>
+    </Row>
 
-    )
-}
+    <Tabs>
+
+    <Tab className="infoTabs" eventKey="UserType" title="Manage User Type">
+    {userList?.map(function(user, index){
+      let name = user.first_name + " " + user.last_name;
+      let userDisableLogin = disableLogin[user.disable_login];
+      let LoginPermissionStatus = "";
+      return( 
+        <div key={user.user_id}>
+        <Form>
+        <Row className="infoTabs">
+          <Col md={11} lg={4} >
+           <h5>{name}</h5>
+           <h6>{userType[user.user_type_type_id - 1]}</h6>
+          </Col>
+         <Col md={11} lg={8}>
+
+             <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 2)} variant="outline-dark">Author</Button>
+             <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 4)} variant="outline-dark ">Member</Button>
+         </Col> 
+
+        </Row>
+        </Form>
+       </div>
+       )
+   })}
+ </Tab>
+
+ </Tabs>
+
+
+  </div>
+
+  <FavoriteArticles></FavoriteArticles>
+
+
+  </>
+
 }

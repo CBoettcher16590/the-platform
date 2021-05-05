@@ -5,11 +5,16 @@ export default function OrgAuthors() {
     return <>
     
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand href = "thispage" >The-Platform</Navbar.Brand>
+      <Nav>
+  <Nav.Link href = "/orgAdminHome" >The-Platform</Nav.Link>
+  </Nav>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">   
+  <Nav>
+      <Navbar.Brand href="/Orgauthors">Organization Authors</Navbar.Brand>
+    </Nav>
     <Nav>
-      <Nav.Link href="/OrgProfile"> My</Nav.Link>
+      <Nav.Link href="/orgAdminProfile"> My Account</Nav.Link>
     </Nav>
   </Navbar.Collapse>
 </Navbar>

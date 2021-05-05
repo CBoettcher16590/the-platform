@@ -54,14 +54,17 @@
 
 .infoTabs{
     padding: .3em; 
+    align-items: baseline;
+    font-weight: 100;
 }
 .infoTabs .btn{
     width: 150px;
-    height: 60px;
+    height: 60px; 
 }
 .btnSmall{
     max-height: 40px;
-    max-width: 90px;
+    max-width: 100px;
     margin-right: 10px;
+    text-align: center;
 
 }
