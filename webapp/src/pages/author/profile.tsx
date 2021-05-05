@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Nav, Card, Button, Table, Dropdown, DropdownButton, Col, Row } from 'react-bootstrap';
+import { Navbar, Nav, Card, Button, Table, Dropdown, DropdownButton, Col, Row, Badge } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import  FavoriteArticles  from '../../components/article/favoriteArticle';
 import './style.css';
@@ -13,10 +13,15 @@ import { ISeries } from '../../../../services/crud-server/src/models/series';
 export default function AuthorProfile() {
 //did not add logout to the author profile, as its a class, should we make this a regular function? 
 const history = useHistory();
+const [expiredSubscription, setSubscription] = useState<string>();
 const [loggedInUser, setLoggedInUser] = useState<IUser>();
 const [userArticles, setUserArticles] = useState<IArticle[]>();
 const [userSeries , setUserSeries] = useState<ISeries[]>();
 const userID:string|null = localStorage.getItem("userID");
+
+
+let thing = '';
+
 
 function onClickLogout(){
   window.localStorage.clear();
@@ -30,6 +35,25 @@ const handelAddToSeries = (seriesID:string, artID:string) => {
   }
 }
 // x
+
+useEffect( () => {
+  api.users.getById(userID).then((responce)=>{
+    const foundUser:IUser = responce.data[0];
+    // style={{color:'gold'}
+    if (foundUser.subscription == 1){
+      // const subExpire = foundUser.sub_end_date;
+      const newString = (foundUser.sub_end_date).substring(0,(foundUser.sub_end_date).length -14)
+
+
+      setSubscription('Subscription Ends on the   ' + newString); 
+      console.log(thing)
+      console.log(newString)
+      console.log(newString)
+
+    }
+  }).catch((err) => { console.log(`Error: ${err}`); });
+
+}, []);
 
 useEffect(() => {
   //find logged in user
@@ -88,6 +112,7 @@ useEffect(() => {
               <br/>
             <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
             <Nav.Link href = "/AUupdateMyInfo" >Edit Profile</Nav.Link>
+            <Card.Text className="expSubText"> {expiredSubscription}  </Card.Text>
           </Card.Body>
           </Card>
         </div>

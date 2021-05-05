@@ -125,3 +125,11 @@ text-align: center;
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+
+
+.expSubText{
+    color:gold;
+    text-shadow: 20;
+
+}
