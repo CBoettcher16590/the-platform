@@ -100,7 +100,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   </Navbar>
 
 <Row> 
-<Col className="authorCardBG"  md={11} lg={7}>
+<Col className="authorCardBG"  md={11} lg={6}>
   <div >
     <Card className="adminInfoCard">
       <Card.Img variant="top" src={loggedInUser?.user_image_link} />
@@ -115,38 +115,10 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   </div>
 </Col>
 
-<Col id="adminManagementBar" md={11} lg={5}>
+<Col id="adminManagementBar" md={11} lg={6}>
 
-  <Tabs id="uncontrolled-tab-example">
-    <Tab className="infoTabs" eventKey="Permissions" title="Manage User Login">
-    {userList?.map(function(user, index){
-      let name = user.first_name + " " + user.last_name;
-      let userDisableLogin = disableLogin[user.disable_login];
-      let LoginPermissionStatus = "";
-
-      if(user.disable_login){
-        LoginPermissionStatus = "User Login DISABLED";
-      } else {
-        LoginPermissionStatus = "User Login ENABLED";
-      }
-
-        return( 
-         <div key={index}>
-           <Row className="infoTabs">
-             <Col sm={6} lg={8} >
-              <h5>{name + "  -  " + userType[user.user_type_type_id - 1]}</h5>
-              <h6>{LoginPermissionStatus}</h6>
-             </Col>
+  <Tabs  id="uncontrolled-tab-example">
   
-             <Col sm={6} lg={4}>
-              <Button className="btn" onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
-             </Col>
-           </Row>
-          </div>
-        )
-    })}
-  </Tab>
-
   <Tab className="infoTabs" eventKey="UserType" title="Manage User Type">
     {userList?.map(function(user, index){
       let name = user.first_name + " " + user.last_name;
@@ -174,6 +146,34 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     })}
   </Tab>
 
+  <Tab className="infoTabs" eventKey="Permissions" title="Manage User Login">
+    {userList?.map(function(user, index){
+      let name = user.first_name + " " + user.last_name;
+      let userDisableLogin = disableLogin[user.disable_login];
+      let LoginPermissionStatus = "";
+
+      if(user.disable_login){
+        LoginPermissionStatus = "User Login DISABLED";
+      } else {
+        LoginPermissionStatus = "User Login ENABLED";
+      }
+
+        return( 
+         <div key={index}>
+           <Row className="infoTabs">
+             <Col sm={6} lg={8} >
+              <h5>{name + "  -  " + userType[user.user_type_type_id - 1]}</h5>
+              <h6>{LoginPermissionStatus}</h6>
+             </Col>
+  
+             <Col sm={6} lg={4}>
+              <Button className="btn" onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
+             </Col>
+           </Row>
+          </div>
+        )
+    })}
+  </Tab>
 
   <Tab className="infoTabs" eventKey="Feature Articles" title="Select Feature Articles">
 

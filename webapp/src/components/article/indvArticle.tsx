@@ -192,8 +192,6 @@ import FavButton from '../FavButton';
                     </Row>
                     {/* ADD SOCIALS INTO USER DATABASE */}
                 
-        
-        
                         <Image className="mx-auto articleImage" src={article?.image_link} />
         
                         <p> {article?.contents}</p>

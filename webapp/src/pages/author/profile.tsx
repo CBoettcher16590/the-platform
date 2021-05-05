@@ -126,14 +126,14 @@ useEffect(() => {
                     <DropdownButton id="dropdownSeries" title="Add Article To Series">
                       {userSeries?.map(function(serie, index){
                         let seriesTitle = serie.series_title;
-                        // return(
-                        //   <Dropdown.Item
-                        //   value={serie.series_title}
-                        //   seriesid={serie.series_id}
-                        //   key={index}
-                        //   onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
-                        //   >{serie.series_title}</Dropdown.Item>
-                        // )
+                        return(
+                          <Dropdown.Item
+                          value={serie.series_title}
+                          seriesid={serie.series_id}
+                          key={index}
+                          onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
+                          >{serie.series_title}</Dropdown.Item>
+                        )
                       })}
                       
                     </DropdownButton></td>
