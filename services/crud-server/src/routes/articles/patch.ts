@@ -4,7 +4,8 @@ import {IArticle, ArticleModel} from '../../models/article';
 
 enum ArticleCode{
     Featured = 'Feature',
-    Approval = "Approval"
+    Approval = "Approval",
+    Rating = "Rating"
 }
 
 export function patch(app:any){
@@ -20,6 +21,12 @@ export function patch(app:any){
             case ArticleCode.Featured: {
 
                 ArticleModel.toggleFeatured(foundArticle);
+
+                break;
+            }
+            case ArticleCode.Rating: {
+
+                ArticleModel.UpdateArticleRating(request.body);
 
                 break;
             }
