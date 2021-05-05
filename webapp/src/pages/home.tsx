@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Col, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap';
-import PayButton from '../components/FavButton';
+import { Button, Col, Nav, Navbar, Row } from 'react-bootstrap';
+
 import Footer from '../components/footer';
 import HomepageCenterDisplay from '../components/article/homepageCenterDisplay';
 import { IUser } from '../../../services/crud-server/src/models/user';
@@ -10,7 +10,6 @@ import { useHistory } from 'react-router';
 import HomepageFeatureDisplay from '../components/article/homepageFeatureDisplay';
 import HomepageNonFeatureDisplay from '../components/article/homepageNonFeatured';
 import api from '../api';
-import user from '../api/users/user';
 
 
 function HomePage(props:{  }){
@@ -25,11 +24,7 @@ function HomePage(props:{  }){
                 window.localStorage.clear();
                 history.go(0);
                 alert("Logged Out");
-              }
-
-        // useEffect(() => {
-                
-        // }, [])
+                }
 
 
         useEffect(() => {
@@ -69,7 +64,6 @@ function HomePage(props:{  }){
                         history.push("/signin")
                 }
 
-                //THEN we check the user type
                
                     },[]);
 
@@ -109,15 +103,8 @@ return  <>
         </Col>
         </Row>                   
         </section>
-                        
-
-
          </>    
 
 }
-
-
-
-
 
 export default HomePage;

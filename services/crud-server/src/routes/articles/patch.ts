@@ -12,7 +12,7 @@ export function patch(app:any){
 
     app.patch('/article', authenticateToken, async(request:any, response:any) => {
         //First we get our Patch Code, and Found Article.  PatchCode is sent in under code in the headers in the api
-        const foundArticle = await ArticleModel.getById(request.body.article_id);
+        const foundArticle:IArticle = await ArticleModel.getById(request.body.article_id);
         const patchCode = request.headers.code;
         console.log(patchCode)
 

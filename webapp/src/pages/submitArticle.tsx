@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Navbar, Nav, Col, Form, Row, Button, Accordion, Card, Dropdown, DropdownButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages.css';
@@ -8,18 +8,33 @@ import ArticleSubmission from '../data/submitArticle';
 
 import { Editor } from "@tinymce/tinymce-react";
 import dotenv from 'dotenv';
+
 dotenv.config();
-
-const x = process.env.tiny
-
-
-
-
-
+const tinyAxe = process.env.REACT_APP_tinyMC
 
 export default function SubmitArticle(props: {}) {
 
   const history = useHistory();
+
+
+
+  const editorRef = useRef<any>(null);
+
+  // const [content, setContent] = useState<string>("");
+
+    
+  // setContent(editorRef.current.getContent());
+  
+
+  const log = () => {
+    if (editorRef.current !== null) {
+     console.log(editorRef.current.getContent());
+    //  setContent(editorRef.current.getContent());
+    }
+  };
+//if there is no better way a meta function should be used to editorRef.current.getContent()); and then the call should be made to data/submit
+
+
 
   const [title, setTitle] = useState<string>("");
   const [preview, setPreview] = useState<string>("");
@@ -39,18 +54,17 @@ export default function SubmitArticle(props: {}) {
 
   function handelSubmit(e: any) {
     e.preventDefault();
-    submit.ArticleSubmission(title!, preview!, imageLink!, price!, contents!, userId!);
+    console.log(e);
+
+    submit.ArticleSubmission(title!, preview!, imageLink!, price!, editorRef.current!, userId!);
+    // submit.ArticleSubmission(title!, preview!, imageLink!, price!, contents!, userId!);
+    console.log(title, imageLink, editorRef.current)
+    // editorRef.current.getContent()
     console.log("Submit Success!");
     history.push('/');
   }
 
 
-  // const editorRef = useRef(null);
-  // const log = () => {
-  //   if (editorRef.current) {
-  //     console.log(editorRef.current.getContent());
-  //   }
-  // };
 
 
 
@@ -125,14 +139,13 @@ export default function SubmitArticle(props: {}) {
           </Col>
         </Form.Row>
 
-
+        {/* <Editor apiKey='your-api-key' init={{  your other settings }} /> */}
         <Form.Group>
           <Form.Label>Whats on your Mind?</Form.Label>
           <Editor
-            apiKey="x8tdx7tf5h57k9jw0hgfbnd6per58j0sq5xzvufcqdinrl99"
+            onInit={(evt, editor) => editorRef.current = editor}
+            apiKey={tinyAxe}
             plugins="wordcount"
-           // onInit={(evt, editor) => editorRef.current = editor}
-            initialValue="<p>Try writing something.</p>"
             init={{
               height: 450,
               menubar: false,
@@ -148,7 +161,7 @@ export default function SubmitArticle(props: {}) {
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
           />
-                 {/* <button onClick={log}>Log editor content</button> */}
+          <button onClick={log}>Log editor content</button>
 
           {/* <Form.Control
             value={contents}
