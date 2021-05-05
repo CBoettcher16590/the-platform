@@ -14,6 +14,8 @@ export default function OrgAd_profile(){
   const userID = localStorage.getItem("userID") || "";
   const [userList, setUserList] = useState<IUser[]>();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
+  const [_userType, setUserType] = useState<IUser[]>();
+
 
   const disableLogin = ["False", "True"];
 
@@ -27,13 +29,18 @@ export default function OrgAd_profile(){
     //refresh
     history.go(0);
   }
-
+ 
 
   useEffect(()=>{
     api.users.get().then((responce) => {
       const allUsers:IUser[] = responce.data;
       setUserList(allUsers);
     }).catch(err => console.log("Error: ", err));
+
+    api.users.get().then((responce) => {
+      const authors: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 6);
+      setUserType(authors);
+    }).catch((error: any) => console.error(`Error: ${error}`)); 
 
     api.users.getById(userID).then((responce)=>{
       const foundUser:IUser = responce.data[0];
@@ -81,7 +88,7 @@ export default function OrgAd_profile(){
     <Tabs>
 
     <Tab className="infoTabs" eventKey="UserType" title="Manage User Type">
-    {userList?.map(function(user, index){
+    {_userType?.map(function(user, index){
       let name = user.first_name + " " + user.last_name;
       let userDisableLogin = disableLogin[user.disable_login];
       let LoginPermissionStatus = "";

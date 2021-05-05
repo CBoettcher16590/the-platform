@@ -66,6 +66,15 @@ export default {
                 },  
         });
     },
+    updateRating: async ( body:any ) => {
+        return axios.patch(`${HOSTNAME}/article`, body, {
+            headers: {
+                Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+                //Code is used to identify what we need to do in the patch req
+                Code:"Rating",
+                },  
+        });
+    },
     delete: async ( articleId : number ) => {
         return axios.delete(`${HOSTNAME}/article/${articleId}`, {
             headers: {

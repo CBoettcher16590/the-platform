@@ -3,10 +3,11 @@ import { authenticateToken } from '../../middleware/authenticator';
 import {IArticle, ArticleModel} from '../../models/article';
 
 enum ArticleCode{
-    Featured = 'Feature', 
-    Approval = "Approval"
-} 
- 
+    Featured = 'Feature',
+    Approval = "Approval",
+    Rating = "Rating"
+}
+
 export function patch(app:any){
 
     app.patch('/article', authenticateToken, async(request:any, response:any) => {
@@ -20,6 +21,12 @@ export function patch(app:any){
             case ArticleCode.Featured: {
 
                 ArticleModel.toggleFeatured(foundArticle);
+
+                break;
+            }
+            case ArticleCode.Rating: {
+
+                ArticleModel.UpdateArticleRating(request.body);
 
                 break;
             }

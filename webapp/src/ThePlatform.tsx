@@ -11,11 +11,9 @@ import AuthorProfile from './pages/author/profile';
 import AU_edit_profile from './pages/author/editprofile';
 import ED_edit_profile from './pages/editor/editprofile';
 import OR_edit_profile from './pages/OrgAdmin/editprofile';
-import OrgAuthors from './pages/organization/OrgAuthors';
 import Mem_edit_profile from './pages/members/editprofile';
 import AD_edit_profile from './pages/systemAdmin/editprofile';
 import EditorProfile from './pages/editor/editorProfile';
-import OrganizationHome from './pages/organization/homepage';
 import SeriesPage from './pages/series/seriesPage';
 import SubmitSeries from './pages/series/newSeries';
 import Subscription from './pages/subscriptions/subscription'
@@ -57,9 +55,7 @@ export default function ThePlatform(props: {}) {
                     <Route path="/newSeries" component={SubmitSeries} />
 
                     {/* ORG Routes */}
-                    {/* <Route path="/OrgHome" component={OrganizationHome} /> */}
-                    {/* <Route path="/ORupdateMyInfo" component={OR_edit_profile} /> */}
-                    {/* <Route path="/Orgauthors" component={OrgAuthors} /> */}
+
                     <Route path="/orgProfile" component={Org_profile} /> 
                     <Route path="/orgpersonalinfo" component={org_edit_profile}/>
 

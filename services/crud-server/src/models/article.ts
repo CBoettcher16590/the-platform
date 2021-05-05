@@ -1,3 +1,4 @@
+import { request } from 'express';
 import DatabaseCONNECTION from '../classes/index'
 
 //right now we only have a "featured" section, but I made this an enum in case we want to expand in the future
@@ -5,7 +6,7 @@ enum FeatureTypes {
     none = "",
     featured = "featured"
 }
-
+    
 export interface ISubmittedArticle{
     
     seriesId: number;
@@ -30,7 +31,7 @@ export interface IArticle{
     price:string;
     created_on:string;
     article_status:number;
-    rating:number[];
+    rating:number;
     feature_tag:string;
 }
 
@@ -195,6 +196,28 @@ export const ArticleModel = {
                 var sql = `UPDATE article SET article_status = 4 WHERE article_id = ${article.article_id};`;
 
                 connection.query(sql, function (error:any, results:IArticle[]){
+                    connection.release();
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });
+        }); 
+    },
+    UpdateArticleRating: async (body:any)=> {
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+
+                var sql = `UPDATE article SET rating = ? WHERE article_id = ?;`;
+               
+                connection.query(sql,[body.newRating, body.article_id], function (error:any, results:IArticle[]){
                     connection.release();
                     if(error){
                         reject(error)
