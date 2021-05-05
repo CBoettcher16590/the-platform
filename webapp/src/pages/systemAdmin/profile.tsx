@@ -12,7 +12,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
  export default function Admin_profile(){
 
-  const history = useHistory();
+  const history = useHistory(); 
   const userID = localStorage.getItem("userID") || "";
   const [userList, setUserList] = useState<IUser[]>();
   const [publishedArticleList, setPublishedArticleList] =useState<IArticle[]>();
@@ -55,6 +55,14 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     api.articles.feature(article);
     //refresh
    history.go(0);
+  } 
+
+  const ChangeUserType = (userID:number, userType:number) => (event:any) => {
+
+    event.preventDefault();
+    api.users.updateUser({userID, userType});
+    //refresh
+    history.go(0);
   }
 
   const ChangeLoginPermission = (user:IUser) => (event:any) =>{
@@ -76,10 +84,6 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     alert("Logged Out")
   }
 
-  function handelUserType(e:any){
-    console.log(e);
-  }
-
   return <>
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -92,7 +96,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
       <Nav>
         <Button onClick={onClickLogout}>Logout</Button>
       </Nav>
-    </Navbar.Collapse>
+    </Navbar.Collapse> 
   </Navbar>
 
 <Row> 
@@ -113,8 +117,36 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
 <Col id="adminManagementBar" md={11} lg={6}>
 
-  <Tabs defaultActiveKey="Permissions" id="uncontrolled-tab-example">
-    <Tab className="infoTabs" eventKey="Permissions" title="Manage User Login">
+  <Tabs  id="uncontrolled-tab-example">
+  
+  <Tab className="infoTabs" eventKey="UserType" title="Manage User Type">
+    {userList?.map(function(user, index){
+      let name = user.first_name + " " + user.last_name;
+
+        return( 
+         <div key={user.user_id}>
+           <Form>
+           <Row className="infoTabs">
+             <Col md={11} lg={4} >
+              <h5>{name}</h5>
+              <h6>{userType[user.user_type_type_id - 1]}</h6>
+             </Col>
+            <Col md={11} lg={8}>
+
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 1)} variant="outline-dark">Admin</Button>
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 2)} variant="outline-dark">Author</Button>
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 3)} variant="outline-dark">Editor</Button>
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 4)} variant="outline-dark ">Member</Button>
+            </Col> 
+
+           </Row>
+           </Form>
+          </div>
+        )
+    })}
+  </Tab>
+
+  <Tab className="infoTabs" eventKey="Permissions" title="Manage User Login">
     {userList?.map(function(user, index){
       let name = user.first_name + " " + user.last_name;
       let userDisableLogin = disableLogin[user.disable_login];
@@ -143,43 +175,6 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
     })}
   </Tab>
 
-  <Tab className="infoTabs" eventKey="UserType" title="Manage User Type">
-    {userList?.map(function(user, index){
-      let name = user.first_name + " " + user.last_name;
-      let userDisableLogin = disableLogin[user.disable_login];
-      let LoginPermissionStatus = "";
-
-        return( 
-         <div key={index}>
-           <Form>
-           <Row className="infoTabs">
-             <Col sm={6} lg={4} >
-              <h5>{name}</h5>
-              <h6>{userType[user.user_type_type_id - 1]}</h6>
-             </Col>
-            <Col sm={6} lg={8}>
-            
-              <Form.Group>
-              <Form.Label>User Type</Form.Label>
-                <Form.Control as="select">
-                  <option value="1">Admin</option>
-                  <option value="2">Author</option>
-                  <option value="3">Editor</option>
-                  <option value="4">Member</option>
-                </Form.Control>
-              </Form.Group>
-         
-            </Col> 
-            {/* <Button className="btnSmall" onClick={handelUserType(this)} variant="info">Update</Button> */}
-    
-           </Row>
-           </Form>
-          </div>
-        )
-    })}
-  </Tab>
-
-
   <Tab className="infoTabs" eventKey="Feature Articles" title="Select Feature Articles">
 
   {publishedArticleList?.map((_article,index) =>{
@@ -195,7 +190,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
 
   return(
 
-    <div className="adminFeatureArticle">
+    <div key={_article.article_id} className="adminFeatureArticle">
     <Row className="infoTabs">
       <Col sm={7} lg={8}>
         <h3>{_article.title}</h3>

@@ -116,6 +116,5 @@ export default function Mem_edit_profile() {
 </Form>
 
     </div>
-
 </>
 }

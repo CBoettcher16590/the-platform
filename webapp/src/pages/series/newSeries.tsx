@@ -48,7 +48,8 @@ return <>
 
 
 <br/>
-  <div className="newSeriesHeader">
+<div className="series">
+<div className="newSeriesHeader">
     <h1>Create a New Series</h1>
   </div>
 
@@ -84,5 +85,7 @@ return <>
           <Button variant="success" onClick={handelSubmit}>Submit</Button>
       </Form>
   </div>
+</div>
+  
 </>
  }

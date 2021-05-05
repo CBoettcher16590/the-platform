@@ -6,7 +6,7 @@ import api from '../../api'
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 
-export default function AU_edit_profile() {
+export default function Mem_edit_profile() {
 
     const history = useHistory();
     const [isLoading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function AU_edit_profile() {
     const [bio, setBio] = useState<string>();
     const [password, setPassword] = useState<string>();
 
-       // This use effect is for the update loading effect 
+       // This use effect is for the update loading effect
        useEffect(() => {
         if (isLoading) {
           setTimeout(function(){
@@ -36,7 +36,7 @@ export default function AU_edit_profile() {
         setLoading(true);
         api.users.updateUser({imageLink, email, phoneNumber, birthdate, bio, password, userID});
         setTimeout(function(){
-            history.push('/AUprofile');
+            history.push('/ADProfile');
         }, 1000);
       }
 
@@ -44,7 +44,7 @@ export default function AU_edit_profile() {
     <div id="editAuthorBG">
         <Navbar bg="dark" variant="dark">
             <Nav className="mr-auto">
-                <Nav.Link href= '/AUprofile'>My Account</Nav.Link>
+                <Nav.Link href= '/ADProfile'>My Account</Nav.Link>
             </Nav>
         </Navbar>
         
@@ -104,9 +104,7 @@ export default function AU_edit_profile() {
                     onChange={(e)=>setBio(e.target.value)}
                     maxLength = {200} 
                     as="textarea"
-                    rows={3}
-                    
-                    />  
+                    rows={3} />  
                 </Col>
        
 

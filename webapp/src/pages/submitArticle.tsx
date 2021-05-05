@@ -8,15 +8,9 @@ import ArticleSubmission from '../data/submitArticle';
 
 import { Editor } from "@tinymce/tinymce-react";
 import dotenv from 'dotenv';
+
 dotenv.config();
-
 const tinyAxe = process.env.REACT_APP_tinyMC
-
-
-
-
-
-
 
 export default function SubmitArticle(props: {}) {
 
@@ -69,7 +63,6 @@ export default function SubmitArticle(props: {}) {
     console.log("Submit Success!");
     history.push('/');
   }
-
 
 
 
