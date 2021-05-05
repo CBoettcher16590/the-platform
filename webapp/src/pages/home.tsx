@@ -86,9 +86,9 @@ return  <>
                 <Nav>
                         <Nav.Link href= {navProfileLink}>My Account</Nav.Link>
      
-                        <Nav.Link href= '/OrgHome'>Organization Page</Nav.Link>
+                        <Nav.Link href= '/orgProfile'>Organization Page</Nav.Link>
 
-                        <Nav.Link href= '/Orgauthors'>Organization Authors</Nav.Link>
+                        <Nav.Link href= '/orgAdminProfile'>Organization Admin</Nav.Link>
 
                         <Nav.Link href= '/subscription'>Subscription</Nav.Link>
 
