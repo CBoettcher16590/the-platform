@@ -109,7 +109,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
         <br/>
         <br/>
       <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-      <Nav.Link href = "/profileEdit" >Edit Profile</Nav.Link>
+      <Nav.Link href = "/ADupdateMyInfo" >Edit Profile</Nav.Link>
     </Card.Body>
     </Card>
   </div>

@@ -131,7 +131,7 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
                         VALUES (4, ?, ?, ?, ?, curdate(), ?, 0);`;
 
                  pool.getConnection(function(err:any, connection:any){
-                    if(err) throw err; // not connected
+                    if(err) throw err; 
                         connection.query(sql,[user.first_name! , user.last_name! , user.email! , hashedPassword! , defaultImg], function (error:any, results:IUser[]) {
                             connection.release();
                                 if(error){

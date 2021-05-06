@@ -44,7 +44,7 @@ export default function AU_edit_profile() {
     <div id="editAuthorBG">
         <Navbar bg="dark" variant="dark">
             <Nav className="mr-auto">
-                <Nav.Link href= '/AUprofile'>My Account</Nav.Link>
+                <Nav.Link href= '/editorProfile'>My Account</Nav.Link>
             </Nav>
         </Navbar>
         
