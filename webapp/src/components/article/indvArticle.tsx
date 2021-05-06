@@ -10,6 +10,7 @@ import { useHistory, useParams } from 'react-router';
 import api from '../../api'
 import { ISeries } from '../../../../services/crud-server/src/models/series';
 import FavButton from '../FavButton';
+import parse from 'html-react-parser';
 
 
 
@@ -187,14 +188,13 @@ import FavButton from '../FavButton';
                         <Col xs={3} lg={1} >
                             <Image id="authorAvatar" src={articleAuthor?.user_image_link} roundedCircle  />
                         </Col>
-        
-           
                     </Row>
                     {/* ADD SOCIALS INTO USER DATABASE */}
                 
                         <Image className="mx-auto articleImage" src={article?.image_link} />
         
-                        <p> {article?.contents}</p>
+                        <p> {parse(article!.contents)}</p>
+
                      </section>
         
                     </MainLayout>
