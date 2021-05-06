@@ -76,12 +76,12 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
 
         const dbConnection = new DatabaseCONNECTION();
         const pool = dbConnection.connection;
-        var sql = `SELECT * FROM theplatformV2.user WHERE email = "${userEmail}"`;
+        var sql = `SELECT * FROM theplatformV2.user WHERE email = ?`;
 
         pool.getConnection(function(err:any, connection:any){
             if(err) throw err; // not connected
 
-            connection.query(sql, function (error:any, results:IUser[]) {
+            connection.query(sql,[userEmail], function (error:any, results:IUser[]) {
                 connection.release();
 
                 if(error){
@@ -99,12 +99,12 @@ getByID: async (userID:string|number):Promise<IUser[]> => {
 
         const dbConnection = new DatabaseCONNECTION();
         const pool = dbConnection.connection;
-        var sql = `SELECT * FROM theplatformV2.user WHERE user_id = "${userID}"`;
+        var sql = `SELECT * FROM theplatformV2.user WHERE user_id = ?`;
 
         pool.getConnection(function(err:any, connection:any){
             if(err) throw err; // not connected
 
-            connection.query(sql, function (error:any, results:IUser[]) {
+            connection.query(sql,[userID], function (error:any, results:IUser[]) {
                 connection.release();
 
                 if(error){
@@ -128,11 +128,11 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const pool = dbConnection.connection;
 
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created, user_image_link, subscription)
-                        VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate(), "${defaultImg}", 0);`;
+                        VALUES (4, ?, ?, ?, ?, curdate(), ?, 0);`;
 
                  pool.getConnection(function(err:any, connection:any){
                     if(err) throw err; // not connected
-                        connection.query(sql, function (error:any, results:IUser[]) {
+                        connection.query(sql,[user.first_name! , user.last_name! , user.email! , hashedPassword! , defaultImg], function (error:any, results:IUser[]) {
                             connection.release();
                                 if(error){
                                     reject(error);
@@ -151,11 +151,11 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
 
-            var sql = `UPDATE user SET disable_login = "${1}" WHERE user_id="${user.user_id}";`;
+            var sql = `UPDATE user SET disable_login = 1 WHERE user_id= ? ;`;
     
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
-                connection.query(sql, function (error:any, results:IUser[]) {
+                connection.query(sql,[user.user_id], function (error:any, results:IUser[]) {
                     connection.release();
 
                     if(error){
@@ -176,12 +176,12 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
 
-            var sql = `UPDATE user SET disable_login = "${0}" WHERE user_id= "${user.user_id}";`;
+            var sql = `UPDATE user SET disable_login = 0 WHERE user_id= ? ;`;
     
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
 
-                connection.query(sql, function (error:any, results:IUser[]) {
+                connection.query(sql,[user.user_id], function (error:any, results:IUser[]) {
                     connection.release();
 
                     if(error){
@@ -202,41 +202,55 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
 
             //build parameters for sql query.
             var sqlParameters:string ="";
+            var sqlData:any = [];
             //IMAGE
             if(userInfo.imageLink){ 
-                sqlParameters += `user_image_link='${userInfo.imageLink}',`;
+                sqlParameters += `user_image_link= ?,`;
+                sqlData.push(userInfo.imageLink);
             }
             //EMAIL
             if(userInfo.email){
-                sqlParameters += `email='${userInfo.email}',`;
+                sqlParameters += `email= ?,`;
+                sqlData.push(userInfo.email);
             }
             //PHONE
             if(userInfo.phone){
-                sqlParameters += `phone_number='${userInfo.phone}',`;
+                sqlParameters += `phone_number=?,`;
+                sqlData.push(userInfo.phone);
+
             }
             //BIRTHDATE
             if(userInfo.birthdate){
-                sqlParameters += `user_BD ='${userInfo.birthdate}',`;
+                sqlParameters += `user_BD = ?,`;
+                sqlData.push(userInfo.birthdate);
+
             }
             //BIO
             if(userInfo.bio){
-                sqlParameters += `bio='${userInfo.bio}',`;
+                sqlParameters += `bio=?,`;
+                sqlData.push(userInfo.bio);
+
             }
              //Password
             if(userInfo.password){
                 const hashedPass:string = PasswordModel.hash(userInfo.password);
-                sqlParameters += `password='${hashedPass}',`;
+                sqlParameters += `password= ?,`;
+                sqlData.push(hashedPass);
+
             }
             //UserType
             if(userInfo.userType){
-                sqlParameters += `user_type_type_id='${userInfo.userType}',`;
+                sqlParameters += `user_type_type_id= ?,`;
+                sqlData.push(userInfo.userType);
+
             }
 
-            var sql = `UPDATE user SET ${sqlParameters.slice(0, -1)} WHERE user_id=${userInfo.userID};`
+            sqlParameters = sqlParameters.slice(0, -1);
+            var sql = `UPDATE user SET ${sqlParameters} WHERE user_id=?;`
         
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
-                connection.query(sql, function (error:any, results:any) {
+                connection.query(sql,[...sqlData, userInfo.userID], function (error:any, results:any) {
                     connection.release();
                     if(error){
                         reject(error);

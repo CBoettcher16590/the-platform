@@ -75,7 +75,6 @@ export const ArticleModel = {
                 var sql = `SELECT * FROM article WHERE article_id = ?`;
                 connection.query(sql, [articleId], function (error:any, results:IArticle[]){
                     connection.release();
-                    console.log("SQL",sql);
                     if(error){
                         reject(error)
                     } else {
@@ -144,7 +143,7 @@ export const ArticleModel = {
                 if(err) throw err;
                 //need to update sql statemnet
                 var sql = `INSERT INTO article (article_id, user_user_id, title, preview, contents, image_link, price, created_on, article_status, rating, feature_tag)
-                VALUES (article_id, :1, :2, :3, :4, :5, :6, CURDATE(), 2, 0, null);`
+                VALUES (article_id, ?, ?, ?, ?, ?, ?, CURDATE(), 2, 0, null);`
 
                 connection.query(sql, [ articleToCreate.userId, articleToCreate.title, articleToCreate.preview, articleToCreate.contents ,articleToCreate.image_link, articleToCreate.price] ,function (error:any, results:IArticle){
                     connection.release();

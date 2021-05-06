@@ -10,8 +10,6 @@ export function post( app:any ){
         const payload:IUser = request.body;
 
         const newUser = await UserModel.createUser(payload);
-
-        console.log(newUser);
     
         // send successful response
         response.status(200).send(newUser);
