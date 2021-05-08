@@ -14,7 +14,7 @@ export default function Org_profile() {
 
 
   const history = useHistory();
-  const userID:string|number = localStorage.getItem("userID") || "";
+  const userID: string | number = localStorage.getItem("userID") || "";
   const [userList, setUserList] = useState<IUser[]>();
   const [publishedArticleList, setPublishedArticleList] = useState<IArticle[]>();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
@@ -27,7 +27,9 @@ export default function Org_profile() {
   //error with button varient being a string[]
   //const  varient = ["danger","success"];
   const permissionButtonText = ["Disable User Login", "Enable User Login"];
-  const userType = ["Admin", "Member"];
+  const userType = ["Admin", "Author", "Editor", "Member", "orgAdmin", "orgAuthor", "organization"];
+
+
   function onClickLogout() {
     window.localStorage.clear()
     history.push('/');
@@ -50,17 +52,20 @@ export default function Org_profile() {
 
 
     // get only authors
-        api.orgs.get().then((responce) => {
-      const authors: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 6);
-      setUserType(authors);
-    }).catch((error: any) => console.error(`Error: ${error}`)); 
+    //     api.orgs.get().then((responce) => {
+    //   const authors: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 6);
+    //   setUserType(authors);
+    // }).catch((error: any) => console.error(`Error: ${error}`)); 
 
     // get user by id 
-    api.orgs.getById(userID).then((responce)=>{
-      const foundUser:IUser = responce.data[0];
+    api.orgs.getById(userID).then((responce) => {
+      const foundUser: IUser = responce.data[0];
       setLoggedInUser(foundUser);
     }).catch((err) => { console.log(`Error: ${err}`); });
   }, []);
+
+
+
 
 
 
@@ -75,22 +80,23 @@ export default function Org_profile() {
 
     event.preventDefault();
     api.orgs.updateUser({ userID, userType });
-    //refresh
-    history.go(0);
+
+      //refresh
+      history.go(0);
+
   }
 
-  const ChangeLoginPermission = (user: IUser) => (event: any) => {
+  const ChangeType = (userID: number, userType: number, org_name:string | undefined) => (event: any) => {
+
     event.preventDefault();
-    //Here we change the user that is being sent to the CRUD server partch so we know what to do
-    if (user.disable_login === 0) {
-      user.disable_login = 1;
-    } else {
-      user.disable_login = 0;
-    }
-    api.orgs.changePermission(user);
-    //refresh
-    history.go(0);
+    api.orgs.updateUser({ userID, userType, org_name });
+
+      //refresh
+      history.go(0);
+
   }
+
+
 
 
   return <>
@@ -114,7 +120,7 @@ export default function Org_profile() {
           <Card className="adminInfoCard">
             <Card.Img variant="top" src={loggedInUser?.user_image_link} />
             <Card.Body className="adminInfo">
-              <Card.Title><h2>{loggedInUser?.org_name + " " + "Organization" }</h2></Card.Title>
+              <Card.Title><h2>{loggedInUser?.org_name + " " + "Organization"}</h2></Card.Title>
               <br />
               <br />
               <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
@@ -127,7 +133,7 @@ export default function Org_profile() {
       <Col id="adminManagementBar" md={11} lg={5}>
 
         <Tabs id="uncontrolled-tab-example">
-          <Tab className="infoTabs" eventKey="Permissions" title="Manage Authors Login">
+          {/* <Tab className="infoTabs" eventKey="Permissions" title="Manage Authors Login">
             {_userType?.map(function (user, index) {
               let name = user.first_name + " " + user.last_name;
               let userDisableLogin = disableLogin[user.disable_login];
@@ -154,7 +160,7 @@ export default function Org_profile() {
                 </div>
               )
             })}
-          </Tab>
+          </Tab> */}
 
           <Tab className="infoTabs" eventKey="UserType" title="Add / Remove Admins">
             {userList?.map(function (user, index) {
@@ -170,7 +176,7 @@ export default function Org_profile() {
                       </Col>
                       <Col md={11} lg={8}>
 
-                        <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 1)} variant="outline-dark">OrgAdmin</Button>
+                        <Button className="btnSmall" onClick={ChangeType(user.user_id, 5, loggedInUser?.org_name)} variant="outline-dark">OrgAdmin</Button>
                         <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 4)} variant="outline-dark ">Member</Button>
                       </Col>
 

@@ -11,7 +11,7 @@ export default function OrgAd_profile(){
 
   const history = useHistory(); 
 
-  const userID = localStorage.getItem("userID") || "";
+  const userID: string | number = localStorage.getItem("userID") || "";
   const [userList, setUserList] = useState<IUser[]>();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
   const [_userType, setUserType] = useState<IUser[]>();
@@ -19,34 +19,55 @@ export default function OrgAd_profile(){
 
   const disableLogin = ["False", "True"];
 
-  const userType = ["Author","Member"];
+  const userType = ["Admin", "Author", "Editor", "Member", "orgAdmin", "orgAuthor", "organization"];
 
-  
+
+  const ChangeType = (userID:number, userType:number, org_name:string|undefined) => (event:any) => {
+
+    event.preventDefault();
+    api.orgs.updateUser({userID, userType, org_name});
+    //refresh
+    history.go(0);
+  }
   const ChangeUserType = (userID:number, userType:number) => (event:any) => {
 
     event.preventDefault();
-    api.users.updateUser({userID, userType});
+    api.orgs.updateUser({userID, userType});
     //refresh
     history.go(0);
   }
  
+  // const ChangeUserOrg = (orgName:string, org_name:string) => (event:any) => {
+
+  //   event.preventDefault();
+  //   api.orgs.updateUser({orgName, org_name});
+  //   //refresh
+  //   history.go(0);
+  // }
 
   useEffect(()=>{
-    api.users.get().then((responce) => {
+    api.orgs.get().then((responce) => {
       const allUsers:IUser[] = responce.data;
       setUserList(allUsers);
     }).catch(err => console.log("Error: ", err));
 
-    api.users.get().then((responce) => {
+    api.orgs.get().then((responce) => {
       const authors: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 6);
       setUserType(authors);
     }).catch((error: any) => console.error(`Error: ${error}`)); 
 
-    api.users.getById(userID).then((responce)=>{
+    api.orgs.getById(userID).then((responce)=>{
       const foundUser:IUser = responce.data[0];
       setLoggedInUser(foundUser);
-    }
-    )},[]);
+    });
+          // api.orgs.get().then((responce) => {
+          //   const authors: IUser[] = responce.data.filter((user: IUser ) => user.org_name === loggedInUser?.org_name);
+          //   setOrgName(authors);
+          // }).catch((error: any) => console.error(`Error: ${error}`)); 
+
+    },[]);
+
+
 
   function onClickLogout() {
     window.localStorage.clear()
@@ -76,7 +97,7 @@ export default function OrgAd_profile(){
       <Card className="adminInfoCard">
       <Card.Img variant="top" src={loggedInUser?.user_image_link} />
       <Card.Body className="org-adminInfo">
-      <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+      <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name} <br/>{"Admin of" + " " + loggedInUser?.org_name + " " + "Org."}</h2></Card.Title>
         <br/>
         <br/>
       <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
@@ -92,7 +113,8 @@ export default function OrgAd_profile(){
       let name = user.first_name + " " + user.last_name;
       let userDisableLogin = disableLogin[user.disable_login];
       let LoginPermissionStatus = "";
-      return( 
+
+       return( 
         <div key={user.user_id}>
         <Form>
         <Row className="infoTabs">
@@ -102,7 +124,7 @@ export default function OrgAd_profile(){
           </Col>
          <Col md={11} lg={8}>
 
-             <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 2)} variant="outline-dark">Author</Button>
+             <Button className="btnSmall" onClick={ () => {ChangeType(user.user_id, 6, loggedInUser?.org_name)}} variant="outline-dark">Author</Button>
              <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 4)} variant="outline-dark ">Member</Button>
          </Col> 
 
@@ -110,7 +132,7 @@ export default function OrgAd_profile(){
         </Form>
        </div>
        )
-   })}
+    })}
  </Tab>
 
  <Tab className="infoTabs" eventKey="UserType" title="Add New Authors">
@@ -118,7 +140,7 @@ export default function OrgAd_profile(){
       let name = user.first_name + " " + user.last_name;
 
         return( 
-         <div key={user.user_id}>
+         <div key={user.user_id}> 
            <Form>
            <Row className="infoTabs">
              <Col md={11} lg={4} >

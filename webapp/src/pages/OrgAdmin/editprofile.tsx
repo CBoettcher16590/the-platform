@@ -27,7 +27,7 @@ export default function ORG_Ad_edit_profile() {
         }, 2000)
         };
       
-      }, [ isLoading ]);
+      }, [ isLoading ]); 
 
 
   function SubmitUserUpdate(event:any){

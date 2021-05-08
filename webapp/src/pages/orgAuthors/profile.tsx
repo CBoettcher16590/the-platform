@@ -69,6 +69,9 @@ useEffect(() => {
           <Navbar.Brand href="/">The Platform</Navbar.Brand>
         </Nav>
         <Nav>
+            <Navbar.Brand href="/orgAuthProfile"> My Account</Navbar.Brand>
+          </Nav>
+        <Nav>
           <Nav.Link href="/newArticle">Submit An Article</Nav.Link>
           <Nav.Link href="/newSeries">Create New Series</Nav.Link>
           <Button onClick={onClickLogout}>Logout</Button>
@@ -83,11 +86,11 @@ useEffect(() => {
           <Card className="authorInfoCard">
             <Card.Img variant="top" src={loggedInUser?.user_image_link} />
             <Card.Body className="authorInfo">
-            <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+            <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name} <br/>{"  - An Author "} <br/> {" - Works for " + " " + loggedInUser?.org_name + " " + "Org."}</h2></Card.Title>
               <br/>
               <br/>
             <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-            <Nav.Link href = "/AUupdateMyInfo" >Edit Profile</Nav.Link>
+            <Nav.Link href = "/ORAUthUpdate" >Edit Profile</Nav.Link>
           </Card.Body>
           </Card>
         </div>

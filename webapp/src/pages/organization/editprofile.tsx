@@ -34,7 +34,7 @@ export default function Mem_edit_profile() {
     function SubmitUserUpdate(event:any){
         event.preventDefault();
         setLoading(true);
-        api.orgs.updateUser({imageLink, email, phoneNumber, orgName, bio, password, userID});
+        api.orgs.updateUser({imageLink, password, email, phoneNumber, orgName, bio});
         setTimeout(function(){
             history.push('/orgProfile');
         }, 1000);
