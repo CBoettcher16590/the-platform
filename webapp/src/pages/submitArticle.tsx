@@ -28,17 +28,17 @@ export default function SubmitArticle(props: {}) {
 
   // const [content, setContent] = useState<string>("");
 
-    
+
   // setContent(editorRef.current.getContent());
-  
+
 
   const log = () => {
     if (editorRef.current !== null) {
-     console.log(editorRef.current.getContent());
-    //  setContent(editorRef.current.getContent());
+      console.log(editorRef.current.getContent());
+      //  setContent(editorRef.current.getContent());
     }
   };
-//if there is no better way a meta function should be used to editorRef.current.getContent()); and then the call should be made to data/submit
+  //if there is no better way a meta function should be used to editorRef.current.getContent()); and then the call should be made to data/submit
 
 
 
@@ -149,7 +149,7 @@ export default function SubmitArticle(props: {}) {
         {/* <Editor apiKey='your-api-key' init={{  your other settings }} /> */}
         <Form.Group>
           <Form.Label>Whats on your Mind?</Form.Label>
-          <Editor
+          {/* <Editor
             onInit={(evt, editor) => editorRef.current = editor}
             apiKey={tinyAxe}
             plugins="wordcount"
@@ -167,7 +167,17 @@ export default function SubmitArticle(props: {}) {
                 'removeformat | help',
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
-          />
+          /> */}
+
+          <Form.Group id="testAreaHeader">
+            <Form.Label>Whats on your Mind?</Form.Label>
+            <Form.Control
+              value={contents}
+              onChange={(e) => setContents(e.target.value)}
+              as="textarea"
+              id="newArticleTextArea"
+              rows={3} />
+          </Form.Group>
           <button onClick={log}>Log editor content</button>
 
           {/* <Form.Control

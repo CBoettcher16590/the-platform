@@ -25,6 +25,9 @@ import OrgAd_profile from './pages/OrgAdmin/profile';
 import ORG_Ad_edit_profile from './pages/OrgAdmin/editprofile';
 import Org_profile from './pages/organization/profile';
 import org_edit_profile from './pages/organization/editprofile';
+import OrgSignUp from './components/orgSignup';
+import OrgautherEdit from './pages/orgAuthors/editprofile';
+import OrgAuthorProfile from './pages/orgAuthors/profile';
 
 
 
@@ -63,10 +66,14 @@ export default function ThePlatform(props: {}) {
                     <Route path="/orgAdminProfile" component={OrgAd_profile} /> 
                     <Route path="/ORAdUpdate" component={ORG_Ad_edit_profile}/>
 
+                    {/* ORG Author */}
+                    <Route path="/orgAuthProfile" component={OrgAuthorProfile} /> 
+                    <Route path="/ORAUthUpdate" component={OrgautherEdit}/>
 
                     {/* Misc */}
                     <Route path="/signin" component={Login} />
                     <Route path="/signup" component={SignUp} />
+                    <Route path="/Orgsignup" component={OrgSignUp}/>
 
                     <Route path="/subscription" component={Subscription} />
                     <Route path="/plans" component={SubscriptionPlan} />

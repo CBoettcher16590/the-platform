@@ -6,6 +6,8 @@ export interface IsignUp{
     email: string;
     password: string;
     phoneNumber:string;
+    org_name: string;
+
     
 }
 

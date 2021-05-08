@@ -5,7 +5,12 @@ import articles from './articles';
 import  users from './users';
 import user from './users/user';
 import subscription from './subscription';
-import rating from './rating'
+import rating from './rating';
+import orgs from './org';
+import org from './org/org'
+// import organizations from './organizations';
+// import organization from './organizations/organization';
+
 
 export default {
     tokens,
@@ -14,5 +19,7 @@ export default {
     user,
     series,
     subscription,
-    rating
-}
+    rating,
+    orgs,
+    org
+ }

@@ -201,7 +201,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
       </Col>
     </Row>
     </div>
-  )})}
+  )})} 
     </Tab>
 
   </Tabs>

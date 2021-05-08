@@ -23,7 +23,7 @@ export default function LoginForm(){
         
     }, [ isLoading ]);
 
-    
+     
     function handleLogin(e:any){
         e.preventDefault();
         setLoading(true);
@@ -40,6 +40,21 @@ export default function LoginForm(){
                 alert("Your Account Has Been Temporarily Disabled");
             }
         });
+
+        api.orgs.get().then((responce) => {
+            const foundUser:IUser[] = responce.data.filter((_user:IUser) => _user.email === `${email}`);
+            
+            if(foundUser[0].disable_login === 0){
+                api.tokens.post({_email:email , _password:password});
+                api.org.post({email, password});
+                setTimeout(function(){
+                    history.push('/');
+                }, 2000);
+            } else{
+                alert("Your Account Has Been Temporarily Disabled");
+            }
+        });
+
    
        };
 
@@ -81,6 +96,7 @@ export default function LoginForm(){
             <div className="createAccount">
                 <h4>Dont have an Account Yet?</h4>
                 <a href="/signup">Create an Account</a>
+
             </div>
 
         </div>

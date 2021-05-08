@@ -87,7 +87,7 @@ export default function OrgAd_profile(){
 
     <Tabs>
 
-    <Tab className="infoTabs" eventKey="UserType" title="Manage User Type">
+    <Tab className="infoTabs" eventKey="Permissions" title="Manage Org. Authors">
     {_userType?.map(function(user, index){
       let name = user.first_name + " " + user.last_name;
       let userDisableLogin = disableLogin[user.disable_login];
@@ -112,6 +112,31 @@ export default function OrgAd_profile(){
        )
    })}
  </Tab>
+
+ <Tab className="infoTabs" eventKey="UserType" title="Add New Authors">
+    {userList?.map(function(user, index){
+      let name = user.first_name + " " + user.last_name;
+
+        return( 
+         <div key={user.user_id}>
+           <Form>
+           <Row className="infoTabs">
+             <Col md={11} lg={4} >
+              <h5>{name}</h5>
+              <h6>{userType[user.user_type_type_id - 1]}</h6>
+             </Col>
+            <Col md={11} lg={8}>
+
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 2)} variant="outline-dark">Author</Button>
+                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 4)} variant="outline-dark ">Member</Button>
+            </Col> 
+
+           </Row>
+           </Form>
+          </div>
+        )
+    })}
+  </Tab>
 
  </Tabs>
 

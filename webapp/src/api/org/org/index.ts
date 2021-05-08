@@ -18,7 +18,7 @@ export default
 {
     post: async (body:any) => { 
     
-        axios.post(`${HOSTNAME}/user`, body).then(responce => {
+        axios.post(`${HOSTNAME}/org`, body).then(responce => {
             let data:IUserInfo = responce.data;
             //the data._____ needs to match the names coming from the database
             window.localStorage.setItem("userID", data.user_id);
@@ -28,13 +28,8 @@ export default
     },
 
     patch: async (body:any) => {
-        return axios.patch( `${HOSTNAME}/user`, body).then(responce => {
+        return axios.patch( `${HOSTNAME}/org`, body).then(responce => {
             return responce.data;
         });
     }
 }
-
-
-
-//we need a sole get.
-    //we can use the getById(id) under users for this

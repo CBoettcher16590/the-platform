@@ -3,10 +3,10 @@ import { Navbar, Nav, Button, Col, Form, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api'
-import { useState } from 'react';
+import { useState } from 'react'; 
 import { useHistory } from 'react-router';
 
-export default function Mem_edit_profile() {
+export default function OrgautherEdit() {
 
     const history = useHistory();
     const [isLoading, setLoading] = useState(false);
@@ -16,11 +16,11 @@ export default function Mem_edit_profile() {
     const [imageLink, setImageLink] = useState<string>();
     const [email, setEmail] = useState<any>();
     const [phoneNumber, setPhoneNumber] = useState<any>();
-    const [orgName, setorgName] = useState<string>();
+    const [birthdate, setBirthdate] = useState<string>();
     const [bio, setBio] = useState<string>();
     const [password, setPassword] = useState<string>();
 
-       // This use effect is for the update loading effect
+       // This use effect is for the update loading effect 
        useEffect(() => {
         if (isLoading) {
           setTimeout(function(){
@@ -29,14 +29,14 @@ export default function Mem_edit_profile() {
           };
         
         }, [ isLoading ]);
- 
+
 
     function SubmitUserUpdate(event:any){
         event.preventDefault();
         setLoading(true);
-        api.orgs.updateUser({imageLink, email, phoneNumber, orgName, bio, password, userID});
+        api.users.updateUser({imageLink, email, phoneNumber, birthdate, bio, password, userID});
         setTimeout(function(){
-            history.push('/orgProfile');
+            history.push('/AUprofile');
         }, 1000);
       }
 
@@ -44,7 +44,7 @@ export default function Mem_edit_profile() {
     <div id="editAuthorBG">
         <Navbar bg="dark" variant="dark">
             <Nav className="mr-auto">
-                <Nav.Link href= '/orgProfile'>My Account</Nav.Link>
+                <Nav.Link href= '/AUprofile'>My Account</Nav.Link>
             </Nav>
         </Navbar>
         
@@ -58,7 +58,7 @@ export default function Mem_edit_profile() {
                     <Form.Control
                     value={imageLink}
                     onChange={(e)=>setImageLink(e.target.value)}
-                    type="url"
+                    type="text"
                     placeholder="Enter New Image URL"/>  
                 </Col>
          
@@ -88,13 +88,13 @@ export default function Mem_edit_profile() {
                     placeholder="New Phone Number" />
                 </Col>
                 
-                <Form.Label className="label">Org. Name</Form.Label>
+                <Form.Label className="label">Birthdate</Form.Label>
                 <Col sm={10}>
                     <Form.Control
-                    value={orgName}
-                    onChange={(e)=>setorgName(e.target.value)}
-                    type="name"
-                    placeholder="Org. Name" />
+                    value={birthdate}
+                    onChange={(e)=>setBirthdate(e.target.value)}
+                    type="date"
+                    placeholder="BirthDate" />
                 </Col>
 
                 <Form.Label className="label">Bio </Form.Label>
@@ -104,7 +104,9 @@ export default function Mem_edit_profile() {
                     onChange={(e)=>setBio(e.target.value)}
                     maxLength = {200} 
                     as="textarea"
-                    rows={3} />  
+                    rows={3}
+                    
+                    />  
                 </Col>
        
 

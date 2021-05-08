@@ -16,7 +16,9 @@ export interface IUser {
     user_image_link:string,
     bio:string,
     subscription:number,
-    sub_end_date:string
+    sub_end_date:string,
+    org_name:string,
+ 
     
 }
 
@@ -24,7 +26,10 @@ interface IUserSignup {
     first_name:string,
     last_name:string,
     email:string,
-    password:string
+    password:string,
+    org_name:string,
+
+
 }
 
 export interface IUserUpdate{
@@ -35,7 +40,8 @@ export interface IUserUpdate{
     bio:string,
     userID:string,
     password:string,
-    userType:string
+    userType:string,
+    org_name:string,
 }
 
 // interface IUserType{
@@ -93,6 +99,10 @@ getByEmail: async (userEmail:string):Promise<IUser[]> => {
         });
     }); 
 },
+
+
+
+
 getByID: async (userID:string|number):Promise<IUser[]> => {
        
     return new Promise((resolve,reject) => {
@@ -129,6 +139,33 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
 
             var sql = `INSERT INTO user (user_type_type_id, first_name, last_name, email, password, date_created, user_image_link, subscription)
                         VALUES (${4}, "${user.first_name!}", "${user.last_name!}", "${user.email!}", "${hashedPassword!}", curdate(), "${defaultImg}", 0);`;
+
+                 pool.getConnection(function(err:any, connection:any){
+                    if(err) throw err; // not connected
+                        connection.query(sql, function (error:any, results:IUser[]) {
+                            connection.release();
+                                if(error){
+                                    reject(error);
+                                } else{
+                                    resolve(results[0])
+                                }
+                            });
+                        });
+            });
+    },
+
+    
+createOrg: async (Org:IUserSignup):Promise<IUserSignup> => {
+
+
+    return new Promise((resolve,reject) => {
+            const hashedPassword:string = PasswordModel.hash(Org.password);
+            const defaultImg = "https://i0.wp.com/www.repol.copl.ulaval.ca/wp-content/uploads/2019/01/default-user-icon.jpg?w=415";
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+
+            var sql = `INSERT INTO user (user_type_type_id, first_name, last_name,  org_name, email, password, date_created, user_image_link)
+                        VALUES (${7}, "${Org.first_name!}", "${Org.last_name!}", "${Org.org_name!}", "${Org.email!}", "${hashedPassword!}", curdate(), "${defaultImg}");`;
 
                  pool.getConnection(function(err:any, connection:any){
                     if(err) throw err; // not connected
@@ -248,22 +285,61 @@ createUser: async (user:IUserSignup):Promise<IUserSignup> => {
         });
     },
 
-    // editUserType: async (userInfo:IUserType) => { 
+
+    // Org edit profile
+    editOrgProfile: async (userInfo:IUserUpdate) => { 
     
-    //     return new Promise((resolve,reject) => {
-    //         const dbConnection = new DatabaseCONNECTION();
-    //         const pool = dbConnection.connection;
+        return new Promise((resolve,reject) => {
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
 
-    //         var sqlParameters:string ="";
-    //         //Type
-    //         if(userInfo.user_type){
-    //             sqlParameters += `type_id'${userInfo.user_type}',`;
-    //         }
-    //         var sql = `UPDATE user_type SET ${sqlParameters.slice(0, -1)} WHERE user_id=${userInfo.userID};`
+            //build parameters for sql query.
+            var sqlParameters:string ="";
+            //IMAGE
+            if(userInfo.imageLink){ 
+                sqlParameters += `user_image_link='${userInfo.imageLink}',`;
+            }
+            //EMAIL
+            if(userInfo.email){
+                sqlParameters += `email='${userInfo.email}',`;
+            }
+            //PHONE
+            if(userInfo.phone){
+                sqlParameters += `phone_number='${userInfo.phone}',`;
+            }
+            //BIRTHDATE
+            if(userInfo.org_name){
+                sqlParameters += `org_name ='${userInfo.org_name}',`;
+            }
+            //BIO
+            if(userInfo.bio){
+                sqlParameters += `bio='${userInfo.bio}',`;
+            }
+             //Password
+            if(userInfo.password){
+                const hashedPass:string = PasswordModel.hash(userInfo.password);
+                sqlParameters += `password='${hashedPass}',`;
+            }
+            //UserType
+            if(userInfo.userType){
+                sqlParameters += `user_type_type_id='${userInfo.userType}',`;
+            }
 
-
-    //     });
-    // }
+            var sql = `UPDATE user SET ${sqlParameters.slice(0, -1)} WHERE user_id=${userInfo.userID};`
+        
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err; // not connected
+                connection.query(sql, function (error:any, results:any) {
+                    connection.release();
+                    if(error){
+                        reject(error);
+                    } else{
+                        resolve(results)
+                    } 
+                });
+            });
+        });
+    },
 
    
 }

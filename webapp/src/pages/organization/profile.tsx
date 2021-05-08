@@ -14,11 +14,12 @@ export default function Org_profile() {
 
 
   const history = useHistory();
-  const userID = localStorage.getItem("userType = 6") || "";
+  const userID:string|number = localStorage.getItem("userID") || "";
   const [userList, setUserList] = useState<IUser[]>();
   const [publishedArticleList, setPublishedArticleList] = useState<IArticle[]>();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
   const [_userType, setUserType] = useState<IUser[]>();
+
 
 
   //variables for the userList
@@ -42,34 +43,23 @@ export default function Org_profile() {
     }).catch((err) => { console.log(`Error: ${err}`); })
 
     // get all users
-    api.users.get().then((responce) => {
+    api.orgs.get().then((responce) => {
       const allUsers: IUser[] = responce.data;
       setUserList(allUsers);
     }).catch(err => console.log("Error: ", err));
 
 
-    // useEffect(() => {
-    //   api.articles.get().then((responce) => {
-    //   const featuredArt:IArticle[] = responce.data.filter((_art: IArticle) => _art.feature_tag === "featured")
-    //   setFeaturedArticles(featuredArt);
-    //   }).catch((error: any) => console.error(`Error: ${error}`)); 
-    //       },[]);
     // get only authors
-        api.users.get().then((responce) => {
+        api.orgs.get().then((responce) => {
       const authors: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 6);
       setUserType(authors);
     }).catch((error: any) => console.error(`Error: ${error}`)); 
 
     // get user by id 
-    api.users.getById(userID).then((responce) => {
-      const foundUser: IUser = responce.data[0];
+    api.orgs.getById(userID).then((responce)=>{
+      const foundUser:IUser = responce.data[0];
       setLoggedInUser(foundUser);
-    }
-    )
-    // api.users.getById(userID).then((responce)=>{
-    //   const foundUser:IUser = responce.data[0];
-    //   setLoggedInUser(foundUser);
-    // }).catch((err) => { console.log(`Error: ${err}`); });
+    }).catch((err) => { console.log(`Error: ${err}`); });
   }, []);
 
 
@@ -84,7 +74,7 @@ export default function Org_profile() {
   const ChangeUserType = (userID: number, userType: number) => (event: any) => {
 
     event.preventDefault();
-    api.users.updateUser({ userID, userType });
+    api.orgs.updateUser({ userID, userType });
     //refresh
     history.go(0);
   }
@@ -97,7 +87,7 @@ export default function Org_profile() {
     } else {
       user.disable_login = 0;
     }
-    api.users.changePermission(user);
+    api.orgs.changePermission(user);
     //refresh
     history.go(0);
   }
@@ -124,11 +114,11 @@ export default function Org_profile() {
           <Card className="adminInfoCard">
             <Card.Img variant="top" src={loggedInUser?.user_image_link} />
             <Card.Body className="adminInfo">
-              <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+              <Card.Title><h2>{loggedInUser?.org_name + " " + "Organization" }</h2></Card.Title>
               <br />
               <br />
               <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-              <Nav.Link href="/profileEdit" >Edit Profile</Nav.Link>
+              <Nav.Link href="/orgpersonalinfo" >Edit Profile</Nav.Link>
             </Card.Body>
           </Card>
         </div>

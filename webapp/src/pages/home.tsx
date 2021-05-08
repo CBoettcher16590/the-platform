@@ -27,10 +27,7 @@ function HomePage(props:{  }){
                 alert("Logged Out");
               }
 
-        // useEffect(() => {
-                
-        // }, [])
-
+              
 
         useEffect(() => {
                 //First We make sure that a user is signed in by checking localstorage for information
@@ -59,7 +56,18 @@ function HomePage(props:{  }){
                                                 setNavProfileLink("/profile"); 
                                                 break; 
                                              } 
-                                             case 5: { 
+
+                                        case 5: {  
+                                                //Organization Admin
+                                                setNavProfileLink("/orgAdminProfile"); 
+                                                break; 
+                                             } 
+                                        case 6: {  
+                                                //Organization Admin
+                                                setNavProfileLink("/orgAuthProfile"); 
+                                                break; 
+                                             } 
+                                        case 7: {  
                                                 //Organization
                                                 setNavProfileLink("/orgProfile"); 
                                                 break; 

@@ -7,4 +7,4 @@ export default function updateUserInfo(imageLink:string, email:string, phone:str
            
     });
     
-}
+} 
