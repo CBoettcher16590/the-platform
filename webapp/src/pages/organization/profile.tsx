@@ -19,6 +19,8 @@ export default function Org_profile() {
   const [publishedArticleList, setPublishedArticleList] = useState<IArticle[]>();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
   const [_userType, setUserType] = useState<IUser[]>();
+  const [AdList, setAdminList] = useState<IUser[]>();
+
 
 
 
@@ -44,18 +46,19 @@ export default function Org_profile() {
       setPublishedArticleList(publishedArticles);
     }).catch((err) => { console.log(`Error: ${err}`); })
 
-    // get all users
+    // get only members
     api.orgs.get().then((responce) => {
-      const allUsers: IUser[] = responce.data;
+      const allUsers: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 4);;
       setUserList(allUsers);
-    }).catch(err => console.log("Error: ", err));
+    }).catch(err => console.log("Error: ", err)); 
 
+    // get only orgAdmins
 
-    // get only authors
-    //     api.orgs.get().then((responce) => {
-    //   const authors: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 6);
-    //   setUserType(authors);
-    // }).catch((error: any) => console.error(`Error: ${error}`)); 
+    api.orgs.get().then((responce) => {
+      const allUsers: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 5);;
+      setAdminList(allUsers);
+    }).catch(err => console.log("Error: ", err)); 
+
 
     // get user by id 
     api.orgs.getById(userID).then((responce) => {
@@ -133,34 +136,6 @@ export default function Org_profile() {
       <Col id="adminManagementBar" md={11} lg={5}>
 
         <Tabs id="uncontrolled-tab-example">
-          {/* <Tab className="infoTabs" eventKey="Permissions" title="Manage Authors Login">
-            {_userType?.map(function (user, index) {
-              let name = user.first_name + " " + user.last_name;
-              let userDisableLogin = disableLogin[user.disable_login];
-              let LoginPermissionStatus = "";
-
-              if (user.disable_login) {
-                LoginPermissionStatus = "User Login DISABLED";
-              } else {
-                LoginPermissionStatus = "User Login ENABLED";
-              }
-
-              return (
-                <div key={index}>
-                  <Row className="infoTabs">
-                    <Col sm={6} lg={8} >
-                      <h5>{name + "  -  " + userType[user.user_type_type_id - 1]}</h5>
-                      <h6>{LoginPermissionStatus}</h6>
-                    </Col>
-
-                    <Col sm={6} lg={4}>
-                      <Button className="btn" onClick={ChangeLoginPermission(user)} variant="info">{permissionButtonText[user.disable_login]}</Button>
-                    </Col>
-                  </Row>
-                </div>
-              )
-            })}
-          </Tab> */}
 
           <Tab className="infoTabs" eventKey="UserType" title="Add / Remove Admins">
             {userList?.map(function (user, index) {
@@ -177,7 +152,33 @@ export default function Org_profile() {
                       <Col md={11} lg={8}>
 
                         <Button className="btnSmall" onClick={ChangeType(user.user_id, 5, loggedInUser?.org_name)} variant="outline-dark">OrgAdmin</Button>
-                        <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 4)} variant="outline-dark ">Member</Button>
+                        <Button className="btnSmall" onClick={ChangeType(user.user_id, 4, user.org_name = "NULL")} variant="outline-dark ">Member</Button>
+                      </Col>
+
+                    </Row>
+                  </Form>
+                </div>
+              )
+            })}
+          </Tab>
+
+          
+          <Tab className="infoTabs" eventKey="AdminList" title="Mangage Org. Admins">
+            {AdList?.map(function (user, index) {
+              let name = user.first_name + " " + user.last_name;
+
+              return (
+                <div key={user.user_id}>
+                  <Form>
+                    <Row className="infoTabs">
+                      <Col md={11} lg={4} >
+                        <h5>{name}</h5>
+                        <h6>{userType[user.user_type_type_id - 1]}</h6>
+                      </Col>
+                      <Col md={11} lg={8}>
+
+                        <Button className="btnSmall" onClick={ChangeType(user.user_id, 5, loggedInUser?.org_name)} variant="outline-dark">OrgAdmin</Button>
+                        <Button className="btnSmall" onClick={ChangeType(user.user_id, 4, user.org_name = "NULL")} variant="outline-dark ">Member</Button>
                       </Col>
 
                     </Row>

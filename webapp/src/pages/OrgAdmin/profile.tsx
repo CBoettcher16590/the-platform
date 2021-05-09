@@ -29,27 +29,22 @@ export default function OrgAd_profile(){
     //refresh
     history.go(0);
   }
-  const ChangeUserType = (userID:number, userType:number) => (event:any) => {
 
-    event.preventDefault();
-    api.orgs.updateUser({userID, userType});
-    //refresh
-    history.go(0);
-  }
  
-  // const ChangeUserOrg = (orgName:string, org_name:string) => (event:any) => {
-
-  //   event.preventDefault();
-  //   api.orgs.updateUser({orgName, org_name});
-  //   //refresh
-  //   history.go(0);
-  // }
 
   useEffect(()=>{
-    api.orgs.get().then((responce) => {
-      const allUsers:IUser[] = responce.data;
-      setUserList(allUsers);
-    }).catch(err => console.log("Error: ", err));
+
+      //  get only authors
+        api.orgs.get().then((responce) => {
+      const authors: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 2);
+      setUserList(authors);
+    }).catch((error: any) => console.error(`Error: ${error}`)); 
+
+
+    // api.orgs.get().then((responce) => {
+    //   const allUsers:IUser[] = responce.data;
+    //   setUserList(allUsers);
+    // }).catch(err => console.log("Error: ", err));
 
     api.orgs.get().then((responce) => {
       const authors: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 6);
@@ -60,10 +55,6 @@ export default function OrgAd_profile(){
       const foundUser:IUser = responce.data[0];
       setLoggedInUser(foundUser);
     });
-          // api.orgs.get().then((responce) => {
-          //   const authors: IUser[] = responce.data.filter((user: IUser ) => user.org_name === loggedInUser?.org_name);
-          //   setOrgName(authors);
-          // }).catch((error: any) => console.error(`Error: ${error}`)); 
 
     },[]);
 
@@ -124,8 +115,8 @@ export default function OrgAd_profile(){
           </Col>
          <Col md={11} lg={8}>
 
-             <Button className="btnSmall" onClick={ () => {ChangeType(user.user_id, 6, loggedInUser?.org_name)}} variant="outline-dark">Author</Button>
-             <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 4)} variant="outline-dark ">Member</Button>
+             <Button className="btnSmall" onClick={ () => {ChangeType(user.user_id, 6, loggedInUser?.org_name)}} variant="outline-dark">orgAuthor</Button>
+             <Button className="btnSmall" onClick={ChangeType(user.user_id, 2, user.org_name = "NULL")} variant="outline-dark ">Author</Button>
          </Col> 
 
         </Row>
@@ -149,8 +140,8 @@ export default function OrgAd_profile(){
              </Col>
             <Col md={11} lg={8}>
 
-                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 2)} variant="outline-dark">Author</Button>
-                <Button className="btnSmall" onClick={ChangeUserType(user.user_id, 4)} variant="outline-dark ">Member</Button>
+                <Button className="btnSmall" onClick={ChangeType(user.user_id, 2, user.org_name ="NULL")} variant="outline-dark">Author</Button>
+                <Button className="btnSmall" onClick={ChangeType(user.user_id, 6, loggedInUser?.org_name)} variant="outline-dark ">orgAuthor</Button>
             </Col> 
 
            </Row>
