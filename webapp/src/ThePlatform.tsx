@@ -28,6 +28,7 @@ import org_edit_profile from './pages/organization/editprofile';
 import OrgSignUp from './components/orgSignup';
 import OrgautherEdit from './pages/orgAuthors/editprofile';
 import OrgAuthorProfile from './pages/orgAuthors/profile';
+import AuthForm from './pages/members/form';
 
 
 
@@ -48,6 +49,8 @@ export default function ThePlatform(props: {}) {
                     {/* Member Routes */}
                     <Route path="/profile" component={Profile} />
                     <Route path="/profileEdit" component={Mem_edit_profile} />
+                    <Route path="/authform" component={AuthForm} />
+
 
                     {/* Article/Author Routes */}
                     <Route path="/article/:id" exact component={IndvArticlePage} />

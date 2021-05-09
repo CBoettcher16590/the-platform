@@ -35,7 +35,7 @@ export default function ORG_Ad_edit_profile() {
       setLoading(true);
       api.users.updateUser({imageLink, email, phoneNumber, birthdate, bio, password, userID});
       setTimeout(function(){
-          history.push('/ADProfile');
+          history.push('/orgAdminProfile');
       }, 1000);
     }
 

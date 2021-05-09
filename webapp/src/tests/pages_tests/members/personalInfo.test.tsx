@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import sinon, { spy } from 'sinon';
-import MEM_personal_info from '../../../pages/members/personalInfo';
+import MEM_personal_info from '../../../pages/members/form';
 import { assert, expect } from 'chai';
 import ReactDOM from 'react-dom';
 import {render} from 'enzyme'

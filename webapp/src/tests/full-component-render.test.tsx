@@ -12,10 +12,9 @@ import author_profile from '../pages/author/profile';
 import AU_edit_profile from '../pages/author/editprofile';
 import ED_edit_profile from '../pages/editor/editprofile';
 import MEM_edit_profile from '../pages/members/editprofile';
-import MEM_personal_info from '../pages/members/personalInfo';
+import MEM_personal_info from '../pages/members/form';
 import AD_edit_profile from '../pages/systemAdmin/editprofile';
 import EditorProfile from '../pages/editor/editorProfile';
-import OrganizationHome from '../pages/organization/homepage';
 import Organization_profile from '../pages/organization/profile';
 import ThePlatform from '../ThePlatform';
 
@@ -149,11 +148,11 @@ describe('All Components Render without surprises.', () => {
         ReactDOM.unmountComponentAtNode(div);
     });
 
-    it('OrganizationHome renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<OrganizationHome />, div);
-        ReactDOM.unmountComponentAtNode(div);
-    });
+    // it('OrganizationHome renders without crashing', () => {
+    //     const div = document.createElement('div');
+    //     ReactDOM.render(<OrganizationHome />, div);
+    //     ReactDOM.unmountComponentAtNode(div);
+    // });
 
     it('Organization_profile renders without crashing', () => {
         const div = document.createElement('div');

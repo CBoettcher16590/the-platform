@@ -6,7 +6,7 @@ import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api'
 import { useState } from 'react';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
-import './style.css';
+import './form.css';
 export default function Profile(){
  
 //did not add logout to the author profile, as its a class, should we make this a regular function? 
@@ -53,9 +53,14 @@ useEffect(() => {
       <Nav className="mr-auto">
       <Navbar.Brand href="/">The Platform</Navbar.Brand></Nav> 
 
+      <Nav>
+      <Nav.Link href="/authform">Become An Author?</Nav.Link>
+</Nav> 
 <Nav>
       <Nav.Link href="/profile"> My Account</Nav.Link>
 </Nav>
+
+
 <Nav>
   <Button onClick={onClickLogout}>Logout</Button>
 </Nav>
