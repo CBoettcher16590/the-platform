@@ -15,26 +15,7 @@ const tinyAxe = process.env.REACT_APP_tinyMC
 export default function SubmitArticle(props: {}) {
 
   const history = useHistory();
-
-
-
   const editorRef = useRef<any>(null);
-
-  // const [content, setContent] = useState<string>("");
-
-    
-  // setContent(editorRef.current.getContent());
-  
-
-  const log = () => {
-    if (editorRef.current !== null) {
-     console.log(editorRef.current.getContent());
-    //  setContent(editorRef.current.getContent());
-    }
-  };
-//if there is no better way a meta function should be used to editorRef.current.getContent()); and then the call should be made to data/submit
-
-
 
   const [title, setTitle] = useState<string>("");
   const [preview, setPreview] = useState<string>("");
@@ -94,11 +75,11 @@ export default function SubmitArticle(props: {}) {
 
     <div className="newArticleBody">
 
-      <Form>
+      <Form className="newArticleForm">
 
         <Form.Row>
           <Form.Group as={Col}>
-            <Form.Label>Title</Form.Label>
+            <Form.Label >Title</Form.Label>
             <Form.Control
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -109,7 +90,7 @@ export default function SubmitArticle(props: {}) {
         </Form.Row>
 
         <Form.Group>
-          <Form.Label>Preview</Form.Label>
+          <Form.Label >Preview</Form.Label>
           <Form.Control
             value={preview}
             onChange={(e) => setPreview(e.target.value)}
@@ -119,7 +100,7 @@ export default function SubmitArticle(props: {}) {
         <Form.Row>
           <Col sm={9}>
             <Form.Group id="imageInput">
-              <Form.Label>Image URL</Form.Label>
+              <Form.Label >Image URL</Form.Label>
               <Form.Control
                 value={imageLink}
                 onChange={(e) => setImageLink(e.target.value)}
@@ -130,7 +111,7 @@ export default function SubmitArticle(props: {}) {
 
           <Col sm={3}>
             <Form.Group>
-              <Form.Label>Article Status</Form.Label>
+              <Form.Label >Article Status</Form.Label>
               <Form.Control as="select" value={price} onChange={(e) => setPrice(e.target.value)}>
                 <option>Free</option>
                 <option>Subscribe</option>
@@ -141,18 +122,20 @@ export default function SubmitArticle(props: {}) {
 
         {/* <Editor apiKey='your-api-key' init={{  your other settings }} /> */}
         <Form.Group>
-          <Form.Label>Whats on your Mind?</Form.Label>
+          <Form.Label >Whats on your Mind?</Form.Label>
           <Editor
             onInit={(evt, editor) => editorRef.current = editor}
             apiKey={tinyAxe}
             plugins="wordcount"
             init={{
-              height: 450,
+              height: 500,
               menubar: false,
               plugins: [
                 'advlist autolink lists link image charmap print preview anchor',
                 'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
+                'insertdatetime media table paste code help wordcount',
+                // really cool, but shrinks it, worse aesthetically "autoresize"
+
               ],
               toolbar: 'undo redo | formatselect | ' +
                 'bold italic backcolor | alignleft aligncenter ' +
@@ -161,17 +144,13 @@ export default function SubmitArticle(props: {}) {
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
           />
-          {/* <button onClick={log}>Log editor content</button> */}
-
-          {/* <Form.Control
-            value={contents}
-            onChange={(e) => setContents(e.target.value)}
-            as="textarea"
-            id="newArticleTextArea"
-            rows={3} /> */}
         </Form.Group>
+        <br></br>
+        
 
         <Button variant="success" onClick={handelSubmit}>Submit</Button>
+        <br></br>
+
       </Form>
     </div>
   </>

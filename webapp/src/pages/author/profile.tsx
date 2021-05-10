@@ -175,8 +175,8 @@ useEffect(() => {
     </div>
 
 {/* ================= FAVORITED ARTICLES ================= */}
-
-<FavoriteArticles></FavoriteArticles>
+ 
+  <FavoriteArticles></FavoriteArticles>
 
 
 {/* ================= My ARTICLES ================= */}

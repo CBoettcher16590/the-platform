@@ -10,30 +10,6 @@ import { useHistory } from 'react-router';
 import {CardElement} from '@stripe/react-stripe-js';
 
 
-/*  Stripe Messing Around. Until it works and there is no time to add a better version :) */
-
-// import {Elements} from '@stripe/react-stripe-js';
-// import {loadStripe} from '@stripe/stripe-js';
-
-// const stripePromise = loadStripe('pk_test_51Im6u3JQKiiOEQTIDHIIljaL0YS7CGvSKB9oOpFHF0jxdpSPRAVVPvJOLqq4uXe9kTh7GToiomCtLAgF1W06d84i00u2OkaPCB');
-
-//These should be moved to the app screen. 
-
-/*
-const App = () => {
-  return (
-    <Elements stripe={stripePromise}>
-      <MyCheckoutForm />
-    </Elements>
-  );
-}; //just a reference for later.
-*/
-
-
-
-
-
-
 export default function SubscriptionPlan() {
 
 
@@ -41,16 +17,13 @@ export default function SubscriptionPlan() {
 
 
   function goHome() {
-    history.push('/checkout');
+    history.push('/checkoutmonthly');
 
   }
   function goHomeY() {
-    history.push('/_checkout');
+    history.push('/checkoutyearly');
 
   }
-
-
-  // invoke a stripe mock.
 
   return <>
 

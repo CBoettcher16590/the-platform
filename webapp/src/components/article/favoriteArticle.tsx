@@ -38,7 +38,7 @@ return(
         <Card.Header><h3>Favorited Articles</h3></Card.Header>
         <Card.Body>
 
-        <section>
+        <section className="favArticleRow">
         {favoriteArticles?.map(function(_art:IArticle){
             let image = _art.image_link;
             let title = _art.title;
@@ -55,7 +55,7 @@ return(
 
                 <p>{preview}</p>
 
-                <p>Date Posted: {createdOn}</p>
+                <p>Posted On: {createdOn}</p>
         
             </div>
             </div>
