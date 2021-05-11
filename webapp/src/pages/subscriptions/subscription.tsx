@@ -63,35 +63,34 @@ export default function Subscription() {
               <Col sm={4}>
                 <Card border="light" style={{ width: '16rem' }}>
                   <Card.Img className="subCardImg" variant="top" src="https://images.unsplash.com/photo-1618422960849-739830070f39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=675&q=80" />
-                  <Card.Body>
-                    <Card.Title>Want to support your favourite creators? If so, </Card.Title>
+                  <Card.Body className="subCardText">
+                    <Card.Title>Want to support your favourite creators? If so <Button variant="info" onClick={routeToSub}> Subscribe</Button> </Card.Title>
                     <Card.Text>
                     </Card.Text>
-                    <Button variant="info" onClick={routeToSub}> Subscribe</Button>
+                    {/* <Button variant="info" onClick={routeToSub}> Subscribe</  Button> */}
                   </Card.Body>
                 </Card>
               </Col>
               <Col sm={4}>
                 <Card border="light" style={{ width: '16rem' }}>
                   <Card.Img className="subCardImg" variant="top" src="https://images.unsplash.com/photo-1616427758519-c8f639b64134?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" />
-                  <Card.Body>
+                  <Card.Body className="subCardText">
                     <Card.Title>Want exclusive content?</Card.Title>
                     <Card.Text>
-                      Are you tired of being locked out of premium content.
+                       Tired of being locked out? <Button variant="info" onClick={routeToSub}>Subscribe</Button>
+ 
                   </Card.Text>
-                    <Button variant="info" onClick={routeToSub}>Subscribe</Button>
                   </Card.Body>
                 </Card>
               </Col>
               <Col sm={4}>
                 <Card border="light" style={{ width: '16rem' }}>
                   <Card.Img className="subCardImg" variant="top" src="https://images.unsplash.com/photo-1607183420110-1eda752919cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=657&q=80" />
-                  <Card.Body>
+                  <Card.Body className="subCardText">
                     <Card.Title> Tired of waiting? </Card.Title>
                     <Card.Text>
-                      Why don't you
+                      Why don't you <Button variant="info" onClick={routeToSub}>Subscribe </Button>
                   </Card.Text>
-                    <Button variant="info" onClick={routeToSub}>Subscribe </Button>
                   </Card.Body>
                 </Card>
               </Col>

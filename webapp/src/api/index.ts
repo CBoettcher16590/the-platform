@@ -8,9 +8,8 @@ import subscription from './subscription';
 import rating from './rating';
 import orgs from './org';
 import org from './org/org';
-// import organizations from './organizations';
-// import organization from './organizations/organization';
-
+import update from './updates'
+import authors from './authors'
 
 export default {
     tokens,
@@ -22,5 +21,7 @@ export default {
     rating,
     orgs,
     org,
+    update,
+    authors
     
  }

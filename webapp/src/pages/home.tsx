@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './pages.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Col, Dropdown, DropdownButton, Form, FormControl, Nav, Navbar, NavDropdown, Row } from 'react-bootstrap';
-import PayButton from '../components/FavButton';
+import { Button, Col, Nav, Navbar, Row } from 'react-bootstrap';
+
 import Footer from '../components/footer';
 import HomepageCenterDisplay from '../components/article/homepageCenterDisplay';
 import { IUser } from '../../../services/crud-server/src/models/user';
@@ -10,7 +10,6 @@ import { useHistory } from 'react-router';
 import HomepageFeatureDisplay from '../components/article/homepageFeatureDisplay';
 import HomepageNonFeatureDisplay from '../components/article/homepageNonFeatured';
 import api from '../api';
-import user from '../api/users/user';
 
 
 function HomePage(props: {}) {
@@ -25,8 +24,7 @@ function HomePage(props: {}) {
                 window.localStorage.clear();
                 history.go(0);
                 alert("Logged Out");
-        }
-
+                }
 
 
         useEffect(() => {
@@ -83,9 +81,8 @@ function HomePage(props: {}) {
                         history.push("/signin")
                 }
 
-                //THEN we check the user type
-
-        }, []);
+               
+                    },[]);
 
         return <>
                 <Navbar bg="dark" variant="dark">
@@ -103,35 +100,28 @@ function HomePage(props: {}) {
 
                         </Nav>
                         <Button id="logoutButton" onClick={onClickLogout}>Logout</Button>
-                </Navbar>
+        </Navbar>
 
-                <section>
-                        <div className="welcomeText">
-                                <h1>Welcome to "The Platform"</h1>
-                        </div>
-                </section>
-                <section>
-                        <Row id="homeArticles">
-                                <Col id="homeArtLeft" sm={5} lg={4}>
-                                        <HomepageFeatureDisplay />
-                                </Col>
-                                <Col id="homeArtCenter" sm={7} lg={5}>
-                                        <HomepageCenterDisplay />
-                                </Col>
-                                <Col id="homeArtRight" sm={12} lg={3}>
-                                        <HomepageNonFeatureDisplay />
-                                </Col>
-                        </Row>
-                </section>
-
-
-
-        </>
+        <section>
+                <div className="welcomeText">
+                        <h1>Welcome to "The Platform"</h1>
+                </div>                        
+        </section>
+        <section>
+        <Row id="homeArticles">
+        <Col id="homeArtLeft" sm={5} lg={4}>
+                <HomepageFeatureDisplay/>
+        </Col>
+        <Col id="homeArtCenter" sm={7} lg={5}>
+                <HomepageCenterDisplay/>
+        </Col>
+        <Col id="homeArtRight" sm={12} lg={3}>
+                <HomepageNonFeatureDisplay/>
+        </Col>
+        </Row>                   
+        </section>
+         </>    
 
 }
-
-
-
-
 
 export default HomePage;

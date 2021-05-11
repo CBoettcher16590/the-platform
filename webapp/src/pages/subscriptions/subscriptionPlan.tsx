@@ -10,8 +10,6 @@ import { useHistory } from 'react-router';
 import {CardElement} from '@stripe/react-stripe-js';
 
 
-
-
 export default function SubscriptionPlan() {
 
 
@@ -19,16 +17,13 @@ export default function SubscriptionPlan() {
 
 
   function goHome() {
-    history.push('/checkout');
+    history.push('/checkoutmonthly');
 
   }
   function goHomeY() {
-    history.push('/_checkout');
+    history.push('/checkoutyearly');
 
   }
-
-
-  // invoke a stripe mock.
 
   return <>
 

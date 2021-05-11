@@ -1,11 +1,16 @@
-
+.series{
+    height: 90vh;
+}
 .newSeriesHeader{
 text-align: center;
 padding-bottom: 20px;
 }
 .newSeriesHeader h1{
-    font-size: 50px;   
-    text-decoration: underline;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    font-size: 45px;
+    font-weight: 400;   
+    /* text-decoration: underline; */
 }
 .seriesImg{
 width: 40%;
@@ -13,13 +18,14 @@ border: 1px solid blue;
 
 }
 .newSeriesBody{
-    padding: 20px;
+    padding: 40px;
     margin-right: auto;
     margin-left: auto;
-    width: 80% ;
-    border: 1px solid black;
+    width: 60% ;
+    border: 2px solid black;
     border-radius: 10px;
-    box-shadow: 5px 10px lightgray;
+    box-shadow: 5px 10px rgba(187, 185, 185, .5);
+    background-color: rgb(208, 242, 255);
 }
 
 .seriesInfo{
@@ -54,4 +60,10 @@ border: 1px solid red;
 #seriesHeaderInfo h4{
     line-height: 1.4em;
 }
+
+
+
+
+
+
 

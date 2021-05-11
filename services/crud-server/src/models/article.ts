@@ -6,7 +6,7 @@ enum FeatureTypes {
     none = "",
     featured = "featured"
 }
-     
+    
 export interface ISubmittedArticle{
     
     seriesId: number;

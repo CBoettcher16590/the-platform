@@ -11,7 +11,6 @@ import * as Subscriptions from './routes/subscription';
 import * as Rating from './routes/rating';
 
 
-
 const app = express();
 const port = 4000;
 
@@ -19,24 +18,24 @@ app.use(express.json());
 app.use(cors());
 
 
-function loadEndpoints( endpoint:any ){
-    
-    if( typeof endpoint === "function" ){
+function loadEndpoints(endpoint: any) {
+
+    if (typeof endpoint === "function") {
         endpoint(app);
         return;
- }
+    }
 
- Object.values(endpoint).forEach(loadEndpoints);
+    Object.values(endpoint).forEach(loadEndpoints);
 
 }
 
-[ Users, Tokens, Articles, Series, Subscriptions, Rating, Org ].forEach( ImportedObject => {
-    
-    Object.values( ImportedObject ).forEach( loadEndpoints );
+[Users, Tokens, Articles, Series, Subscriptions, Rating, Org].forEach(ImportedObject => {
+
+    Object.values(ImportedObject).forEach(loadEndpoints);
 
 });
 
 
-app.listen(port, () => {     
+app.listen(port, () => {
     console.log(`Web Server Started and listening on localhost:${port}`);
 });

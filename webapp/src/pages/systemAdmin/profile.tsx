@@ -96,7 +96,8 @@ export default function Admin_profile() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Navbar.Brand href="/">The Platform</Navbar.Brand>          </Nav>
+          <Navbar.Brand href="/">The Platform</Navbar.Brand>
+        </Nav>
         <Nav>
           <Nav.Link href="/ADProfile"> My Account</Nav.Link>
         </Nav>

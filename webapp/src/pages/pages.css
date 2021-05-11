@@ -37,20 +37,35 @@ body{
 }
 #newArticleHeader{
 text-align: center;
-padding-bottom: 20px;
-font-size: 50px;
-text-decoration: underline;
+padding-top: 10px;
+padding-bottom: 30px;
+font-size: 45px;
 }
+
 .newArticleBody{
+    display: flex;
+    justify-content: center;
     padding: 20px;
-    margin-right: auto;
+    margin-right: 10rem;
     margin-left: auto;
-    width: 80% ;
+    width: 50%;
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 5px 10px lightgray;
-    background-color: rgb(208, 242, 255) ;
+    background-color: rgb(227, 245, 252) ;
+    width: 20px;
 }
+
+.newArticleForm{
+    display: grid;
+    width: 850px;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+
+
+
 #artSubmitFormCheckbox{
     padding-top: 20px;
 }

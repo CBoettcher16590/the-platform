@@ -79,8 +79,8 @@ export default function ThePlatform(props: {}) {
                     <Route path="/subscription" component={Subscription} />
                     <Route path="/plans" component={SubscriptionPlan} />
                     
-                    <Route path="/checkout" component={CheckoutFormMonth} />
-                    <Route path="/_checkout" component={CheckoutFormYear} />
+                    <Route path="/checkoutmonthly" component={CheckoutFormMonth} />
+                    <Route path="/checkoutyearly" component={CheckoutFormYear} />
 
 
                     <Route path="/" component={HomePage} />
