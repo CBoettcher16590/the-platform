@@ -8,7 +8,7 @@ interface ISubmittedArticle {
     preview:string,
     imageLink:string,
     contents:string,
-    price:string,
+    price:string, 
     userId:string
 }
 

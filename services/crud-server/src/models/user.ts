@@ -18,6 +18,7 @@ export interface IUser {
     subscription:number,
     sub_end_date:string,
     org_name:string,
+    user_status:number
  
     
 }
@@ -180,6 +181,11 @@ createOrg: async (Org:IUserSignup):Promise<IUserSignup> => {
                         });
             });
     },
+
+
+
+
+    // login 
 
     disableLogin: async (user:IUser) => {
        

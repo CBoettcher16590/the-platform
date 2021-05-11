@@ -1,5 +1,5 @@
 import React from "react";
-import {CardElement, useStripe, useElements,Elements} from '@stripe/react-stripe-js';
+import { CardElement, useStripe, useElements, Elements } from '@stripe/react-stripe-js';
 import './style.css'
 import { useHistory } from "react-router";
 import api from '../../api'
@@ -45,12 +45,12 @@ export default function CheckoutFormMonth() {
 
   const stripe = useStripe();
   const elements = useElements();
-  
+
   const history = useHistory();
 
-const x = window.localStorage.getItem('userID');
+  const x = window.localStorage.getItem('userID');
 
-  const handleSubmit = async (event:any) => {
+  const handleSubmit = async (event: any) => {
     // Block native form submission.
     event.preventDefault();
 
@@ -71,9 +71,9 @@ const x = window.localStorage.getItem('userID');
     // to find your CardElement because there can only ever be one of
     // each type of element.
     const cardElement = elements.getElement(CardElement)!; //this exclamation mark is very very important :)
-          //something something asserting magic.
+    //something something asserting magic.
     // Use your card Element with other Stripe.js APIs
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
     });
@@ -87,32 +87,32 @@ const x = window.localStorage.getItem('userID');
 
   return (
 
-    
+
     <div className="payMain">
       <div className="checkoutCenterText"> <p className="checkoutCenterTextP">  5$ Monthly    </p></div>
       <div className="checkoutCenter">
 
-      <form className="checkoutForm" onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: '16px',
-                color: '#424770',
-                '::placeholder': {
-                  color: '#aab7c4',
+        <form className="checkoutForm" onSubmit={handleSubmit}>
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: '16px',
+                  color: '#424770',
+                  '::placeholder': {
+                    color: '#aab7c4',
+                  },
+                },
+                invalid: {
+                  color: '#9e2146',
                 },
               },
-              invalid: {
-                color: '#9e2146',
-              },
-            },
-          }}
-        />
-        <button className="checkoutButton" type="submit" disabled={!stripe}>
-          Pay 
+            }}
+          />
+          <button className="checkoutButton" type="submit" disabled={!stripe}>
+            Pay
         </button>
-      </form>
+        </form>
       </div>
     </div>
   );

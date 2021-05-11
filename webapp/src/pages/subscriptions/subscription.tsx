@@ -23,7 +23,7 @@ export default function Subscription() {
     alert("Logged Out")
   }
 
-  function routeToSub(){
+  function routeToSub() {
     history.push('/plans');
 
   }
@@ -49,7 +49,7 @@ export default function Subscription() {
         <br />
         <div className="subscribeButton">
           <div>
-              <Button variant="primary" size="lg" block  onClick={routeToSub}>
+            <Button variant="primary" size="lg" block onClick={routeToSub}>
               Subscribe Today
              </Button>{''}
           </div>

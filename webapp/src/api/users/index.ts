@@ -33,5 +33,5 @@ export default {
         return axios.delete(`${HOSTNAME}/users`, body).then( responce => {
             return responce.data;
         });
-    }
+    },
 }

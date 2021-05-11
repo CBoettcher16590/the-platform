@@ -7,20 +7,20 @@ import LoginForm from '../../components/LoginForm'
 
 export default function Login() {
 
-    return <>
+  return <>
     <MainLayout>
 
-      <LoginForm/>
-        
+      <LoginForm />
+
     </MainLayout>
-            
-       </>
-    }
+
+  </>
+}
 
 //This maybe bad code (but maybe a start)
 // function SignInDirect(_logInID: any){
 //   const [author, editor ] = useState(null);
-  
+
 //   useEffect(() => {
 //     function logInStatus(status){
 //       directUser(status.logIn);

@@ -7,7 +7,7 @@ import user from './users/user';
 import subscription from './subscription';
 import rating from './rating';
 import orgs from './org';
-import org from './org/org'
+import org from './org/org';
 // import organizations from './organizations';
 // import organization from './organizations/organization';
 
@@ -21,5 +21,6 @@ export default {
     subscription,
     rating,
     orgs,
-    org
+    org,
+    
  }

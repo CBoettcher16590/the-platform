@@ -48,16 +48,16 @@ export default function Org_profile() {
 
     // get only members
     api.orgs.get().then((responce) => {
-      const allUsers: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 4);;
+      const allUsers: IUser[] = responce.data.filter((user: IUser) => user.user_type_type_id === 4);;
       setUserList(allUsers);
-    }).catch(err => console.log("Error: ", err)); 
+    }).catch(err => console.log("Error: ", err));
 
     // get only orgAdmins
 
     api.orgs.get().then((responce) => {
-      const allUsers: IUser[] = responce.data.filter((user: IUser ) => user.user_type_type_id === 5);;
+      const allUsers: IUser[] = responce.data.filter((user: IUser) => user.user_type_type_id === 5);;
       setAdminList(allUsers);
-    }).catch(err => console.log("Error: ", err)); 
+    }).catch(err => console.log("Error: ", err));
 
 
     // get user by id 
@@ -84,18 +84,18 @@ export default function Org_profile() {
     event.preventDefault();
     api.orgs.updateUser({ userID, userType });
 
-      //refresh
-      history.go(0);
+    //refresh
+    history.go(0);
 
   }
 
-  const ChangeType = (userID: number, userType: number, org_name:string | undefined) => (event: any) => {
+  const ChangeType = (userID: number, userType: number, org_name: string | undefined) => (event: any) => {
 
     event.preventDefault();
     api.orgs.updateUser({ userID, userType, org_name });
 
-      //refresh
-      history.go(0);
+    //refresh
+    history.go(0);
 
   }
 
@@ -162,7 +162,7 @@ export default function Org_profile() {
             })}
           </Tab>
 
-          
+
           <Tab className="infoTabs" eventKey="AdminList" title="Mangage Org. Admins">
             {AdList?.map(function (user, index) {
               let name = user.first_name + " " + user.last_name;

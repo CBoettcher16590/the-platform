@@ -10,12 +10,12 @@ export default function SignUpPage() {
 
 
     return <>
-   <MainLayout>
-        
-        <OrgSignUp/>
+        <MainLayout>
 
-    </MainLayout>
-       
+            <OrgSignUp />
+
+        </MainLayout>
+
     </>
 
 }

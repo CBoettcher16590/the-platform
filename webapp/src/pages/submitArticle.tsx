@@ -7,7 +7,10 @@ import { useHistory } from 'react-router';
 import ArticleSubmission from '../data/submitArticle';
 
 import { Editor } from "@tinymce/tinymce-react";
+// import  Editor  from "react-editor-js"
 import dotenv from 'dotenv';
+import { render } from '@testing-library/react';
+import ReactDOM from "react-dom";
 dotenv.config();
 
 const tinyAxe = process.env.REACT_APP_tinyMC
@@ -19,6 +22,8 @@ const tinyAxe = process.env.REACT_APP_tinyMC
 
 
 export default function SubmitArticle(props: {}) {
+
+
 
   const history = useHistory();
 
@@ -75,7 +80,7 @@ export default function SubmitArticle(props: {}) {
 
 
 
-  return <>
+  return (<>
 
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="thispage" >The-Platform</Navbar.Brand>
@@ -147,10 +152,12 @@ export default function SubmitArticle(props: {}) {
         </Form.Row>
 
         {/* <Editor apiKey='your-api-key' init={{  your other settings }} /> */}
-        <Form.Group>
-          <Form.Label>Whats on your Mind?</Form.Label>
-          {/* <Editor
-            onInit={(evt, editor) => editorRef.current = editor}
+        {/* <Form.Group>
+           
+           <Form.Label>Whats on your Mind?</Form.Label> 
+          <Form>  */}
+        {/* <Editor
+            onInit={(_evt: any, editor: any) => editorRef.current = editor}
             apiKey={tinyAxe}
             plugins="wordcount"
             init={{
@@ -166,30 +173,37 @@ export default function SubmitArticle(props: {}) {
                 'alignright alignjustify | bullist numlist outdent indent | ' +
                 'removeformat | help',
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-            }}
+          }}
           /> */}
+        {/* </Form> */}
 
-          <Form.Group id="testAreaHeader">
-            <Form.Label>Whats on your Mind?</Form.Label>
-            <Form.Control
-              value={contents}
-              onChange={(e) => setContents(e.target.value)}
-              as="textarea"
-              id="newArticleTextArea"
-              rows={3} />
-          </Form.Group>
-          <button onClick={log}>Log editor content</button>
-
-          {/* <Form.Control
+        <Form.Group id="testAreaHeader">
+          <Form.Label>Whats on your Mind?</Form.Label>
+          <Form.Control
             value={contents}
             onChange={(e) => setContents(e.target.value)}
             as="textarea"
             id="newArticleTextArea"
-            rows={3} /> */}
+            rows={3} />
         </Form.Group>
+        <button onClick={log}>Log editor content</button>
+
+        <Form.Control
+          value={contents}
+          onChange={(e) => setContents(e.target.value)}
+          as="textarea"
+          id="newArticleTextArea"
+          rows={3} />
+
 
         <Button variant="success" onClick={handelSubmit}>Submit</Button>
       </Form>
+=
     </div>
   </>
+  );
 }
+function _evt(_evt: any): any {
+  throw new Error('Function not implemented.');
+}
+
