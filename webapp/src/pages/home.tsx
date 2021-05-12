@@ -54,9 +54,14 @@ function HomePage(props:{  }){
                                                 setNavProfileLink("/profile"); 
                                                 break; 
                                              } 
-                                             case 5: { 
+                                        case 5: { 
                                                 //Organization
                                                 setNavProfileLink("/orgProfile"); 
+                                                break; 
+                                             } 
+                                        case 6: { 
+                                                //Organization
+                                                setNavProfileLink("/Orgauthors"); 
                                                 break; 
                                              } 
                                         default: { 
@@ -90,20 +95,20 @@ return  <>
                         <Button id="logoutButton" onClick={onClickLogout}>Logout</Button>
         </Navbar>
 
-        <section>
-                <div className="welcomeText">
-                        <h1>Welcome to "The Platform"</h1>
-                </div>                        
-        </section>
-        <section>
-        <Row id="homeArticles">
+
+        <section className="homeArticles">
+        
+        <Row>
         <Col id="homeArtLeft" sm={5} lg={4}>
+                <h2></h2>
                 <HomepageFeatureDisplay/>
         </Col>
         <Col id="homeArtCenter" sm={7} lg={5}>
+                 <h2></h2>
                 <HomepageCenterDisplay/>
         </Col>
         <Col id="homeArtRight" sm={12} lg={3}>
+                <h2>Discover Articles</h2>
                 <HomepageNonFeatureDisplay/>
         </Col>
         </Row>                   

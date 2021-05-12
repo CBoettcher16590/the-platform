@@ -92,7 +92,8 @@ export default function SubmitArticle(props: {}) {
           <Form.Control
             value={preview}
             onChange={(e) => setPreview(e.target.value)}
-            placeholder="Write a short preview that summarizes your article" />
+            type="textarea"
+            placeholder="Write a hook to grab the readers attention" />
         </Form.Group>
 
         <Form.Row>
