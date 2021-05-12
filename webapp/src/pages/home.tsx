@@ -78,11 +78,12 @@ function HomePage(props: {}) {
                         });
                         history.push("/");
                 } else {
-                        history.push("/signin")
+                        history.push("/splashPage")
                 }
 
                
                     },[]);
+
 
         return <>
                 <Navbar bg="dark" variant="dark">
@@ -92,11 +93,8 @@ function HomePage(props: {}) {
                         <Nav>
                                 <Nav.Link href={navProfileLink}>My Account</Nav.Link>
 
-                                <Nav.Link href='/orgProfile'>Organization Page</Nav.Link>
-
-                                <Nav.Link href='/orgAdminProfile'>Organization Admin</Nav.Link>
-
                                 <Nav.Link href='/subscription'>Subscription</Nav.Link>
+
 
                         </Nav>
                         <Button id="logoutButton" onClick={onClickLogout}>Logout</Button>

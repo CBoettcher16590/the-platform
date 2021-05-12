@@ -54,6 +54,8 @@ export default function Profile() {
           <Navbar.Brand href="/">The Platform</Navbar.Brand></Nav>
         <Nav>
           <Nav.Link href="/profile"> My Account</Nav.Link>
+          <Nav.Link href='/splashPage'>Splash</Nav.Link>
+
         </Nav>
 
 

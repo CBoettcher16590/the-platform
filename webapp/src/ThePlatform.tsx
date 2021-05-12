@@ -28,6 +28,7 @@ import org_edit_profile from './pages/organization/editprofile';
 import OrgSignUp from './components/orgSignup';
 import OrgautherEdit from './pages/orgAuthors/editprofile';
 import OrgAuthorProfile from './pages/orgAuthors/profile';
+import splashPage from './pages/splashpage';
 
 
 
@@ -76,11 +77,13 @@ export default function ThePlatform(props: {}) {
                     <Route path="/signup" component={SignUp} />
                     <Route path="/Orgsignup" component={OrgSignUp}/>
 
-                    <Route path="/subscription" component={Subscription} />
+                    <Route path="/subscription" component={Subscription} /> 
                     <Route path="/plans" component={SubscriptionPlan} />
                     
                     <Route path="/checkoutmonthly" component={CheckoutFormMonth} />
                     <Route path="/checkoutyearly" component={CheckoutFormYear} />
+                    <Route path="/splashPage" component={splashPage}/>
+
 
 
                     <Route path="/" component={HomePage} />
