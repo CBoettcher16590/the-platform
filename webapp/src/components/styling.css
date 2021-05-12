@@ -1,3 +1,8 @@
 .paynow {
 margin-bottom: 100px;
 }
+
+#favbtn {
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+}

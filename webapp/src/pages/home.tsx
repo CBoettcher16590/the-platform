@@ -93,7 +93,7 @@ function HomePage(props: {}) {
                         <Nav>
                                 <Nav.Link href={navProfileLink}>My Account</Nav.Link>
 
-                                <Nav.Link href='/subscription'>Subscription</Nav.Link>
+                                <Nav.Link className= "animated-button1" href='/subscription'>Subscription</Nav.Link>
 
 
                         </Nav>

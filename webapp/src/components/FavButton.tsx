@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { IArticle } from '../../../services/crud-server/src/models/article';
 import api from '../api';
+import './styling.css';
 
 
 //simulates a network request
@@ -50,12 +51,13 @@ export default function PayButton(_article:IArticle) {
          
     return (
              <Button
+             id= "favbtn"
              
                variant="primary"
                disabled={isLoading}
                onClick={handleClick}
              >
-               {isLoading ? 'Loading…' : 'Add To Favorites'}
+               {isLoading ? 'Loading…' : 'Add To favourites'}
              </Button>
 );
 }
