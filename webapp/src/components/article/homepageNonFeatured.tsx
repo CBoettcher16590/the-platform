@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';      
-import { CardDeck, Card } from 'react-bootstrap';
+import { CardDeck, Card, Badge } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
@@ -26,26 +26,41 @@ const history = useHistory();
     history.push(`/article/${articleId}`)
     }
     return <>
-    <section className="homeArticleList">
-        <h2>Discover New Articles</h2>
+    <section className="homeDiscoverList">
       {articles?.map(function(_art, index){
         
-    
+          let subscribe = _art.price;
           let image = _art.image_link;
           let title = _art.title;
-          let preview = _art.contents.slice(0,70) + "...";;
-          return (
-            <div id="listArticleBody" key={_art.article_id}>
-            <div>
-                <img id="listArticleImg"src={image} />
+          let preview = _art.preview;
+          if(subscribe === "Subscribe"){
+            return (
+              <div id="listArticleBody" key={_art.article_id}>
+              <div>
+                  <img id="listArticleImg"src={image} />
+              </div>
+              <div>   
+              <h2 id="discoverTitle" className="clickableTitle"  onClick={GoToArticle(_art)}>{title}</h2>
+              <p>{preview}</p>
+              <Badge pill variant="success">Premium</Badge>
+              </div>
             </div>
-            <div>   
-            <h2 onClick={GoToArticle(_art)}>{title}</h2>
-            <p>{preview}</p>
+            )
+          } else {
+            return (
+              <div id="listArticleBody" key={_art.article_id}>
+              <div>
+                  <img id="listArticleImg"src={image} />
+              </div>
+              <div>   
+              <h2 id="discoverTitle" className="clickableTitle"  onClick={GoToArticle(_art)}>{title}</h2>
+              <p>{preview}</p>
+              </div>
+             
             </div>
-           
-          </div>
-          )
+            )
+          }
+    
         }
        
       )}

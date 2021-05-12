@@ -59,7 +59,7 @@ export default function ThePlatform(props: {}) {
                     {/* ORG Routes */}
                     {/* <Route path="/OrgHome" component={OrganizationHome} /> */}
                     {/* <Route path="/ORupdateMyInfo" component={OR_edit_profile} /> */}
-                    {/* <Route path="/Orgauthors" component={OrgAuthors} /> */}
+                    <Route path="/Orgauthors" component={OrgAuthors} />
                     <Route path="/orgProfile" component={Org_profile} /> 
                     <Route path="/orgpersonalinfo" component={org_edit_profile}/>
 
