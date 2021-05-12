@@ -45,7 +45,7 @@ export default function AuthorProfile() {
         const newString = (foundUser.sub_end_date).substring(0, (foundUser.sub_end_date).length - 14)
 
 
-        setSubscription('Subscription Ends on the   ' + newString);
+        setSubscription('Subscription Ends ' + newString);
         console.log(thing)
         console.log(newString)
         console.log(newString)
@@ -99,30 +99,14 @@ export default function AuthorProfile() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-
-      {/* center the author component
-//try to get new divs to basically capture 60% | 40%
-//from there make it fit. Standardize the background.... as well.
-  |User profile| --> take the card make new background, make it the global background or h'white
-  |sub/edit/soc| --> make it transparent, essentially it just to free float
-|favourites|myart|
-[  ] [  ]  |~~~~~|
-
-get the author thing smoller. ANd for it to not take up halfy
-*/}
-
-
-
-
-
+      
       <div className="userProf">
         <div className="userBox">
           <Card className="authorInfoCard">
             <Card.Img className="authorCardImg" variant="top" src={loggedInUser?.user_image_link} />
             <Card.Body className="authorInfo">
-              <Card.Title><h4>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h4></Card.Title>
-              <br></br>
-              <Card.Title><h6>{loggedInUser?.bio}</h6></Card.Title>
+              <Card.Title className="authorProfileHead"><p >{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</p></Card.Title>
+              <Card.Title className="profBioTxt"><p>{loggedInUser?.bio}</p></Card.Title>
               <Nav.Link className="editProfTxt" href="/AUupdateMyInfo" >  Edit Profile</Nav.Link>
               <Card.Text className="expSubText"> {expiredSubscription}  </Card.Text>
             </Card.Body>
@@ -145,11 +129,11 @@ get the author thing smoller. ANd for it to not take up halfy
                         <div id="myArticles"></div>
                         <div id="articleInfo">
 
-                          <Table striped borderless hover variant="dark">
+                          <Table striped borderless hover variant="light">
 
                             <thead>
                               <tr>
-                                <th colSpan={4} id="myArticlesTableH1"><h1>My Articles</h1></th>
+                                <th colSpan={4} id="myArticlesTableH1"><h3>My Articles</h3></th>
                               </tr>
                               <tr>
                                 <th> </th>
@@ -194,157 +178,11 @@ get the author thing smoller. ANd for it to not take up halfy
                     </div>
                   </div>
                 </Tab>
-
               </Tabs>
-
             </Col>
           </Row>
         </Container>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {/* <div className="setArticleInfoSize">
-          <Col >
-            <div id="myArticles"></div>
-            <div id="articleInfo">
-
-              <Table striped borderless hover variant="dark">
-
-                <thead>
-                  <tr>
-                    <th colSpan={4} id="myArticlesTableH1"><h1>My Articles</h1></th>
-                  </tr>
-                  <tr>
-                    <th> </th>
-                    <th>Title</th>
-                    <th>Series ID</th>
-                    <th>Add To Series</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {userArticles?.map(function (_art, index) {
-                    let number = index + 1;
-                    let articleTitle = _art.title;
-                    let series = _art.series_series_id;
-
-                    return (
-                      <tr key={_art.article_id}>
-                        <td>{number}</td>
-                        <td>{articleTitle}</td>
-                        <td>{series}</td>
-                        <td>
-                          <DropdownButton id="dropdownSeries" title="Add Article To Series">
-                            {userSeries?.map(function (serie, index) {
-                              let seriesTitle = serie.series_title;
-                              return (
-                                <Dropdown.Item
-                                  value={serie.series_title}
-                                  seriesid={serie.series_id}
-                                  key={index}
-                                  onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id))}
-                                >{serie.series_title}</Dropdown.Item>
-                              )
-                            })}
-
-                          </DropdownButton></td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </Table>
-            </div>
-          </Col>
-        </div> */}
-
-
-      {/* <div>
-        <Row className="AuthorHeader">
-          <Col className="articleCol" sm={12} lg={6}>
-            <div id="myArticles"></div>
-            <div id="articleInfo">
-
-              <Table striped borderless hover variant="dark">
-
-                <thead>
-                  <tr>
-                    <th colSpan={4} id="myArticlesTableH1"><h1>My Articles</h1></th>
-                  </tr>
-                  <tr>
-                    <th> </th>
-                    <th>Title</th>
-                    <th>Series ID</th>
-                    <th>Add To Series</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {userArticles?.map(function (_art, index) {
-                    let number = index + 1;
-                    let articleTitle = _art.title;
-                    let series = _art.series_series_id;
-
-                    return (
-                      <tr key={_art.article_id}>
-                        <td>{number}</td>
-                        <td>{articleTitle}</td>
-                        <td>{series}</td>
-                        <td>
-                          <DropdownButton id="dropdownSeries" title="Add Article To Series">
-                            {userSeries?.map(function (serie, index) {
-                              let seriesTitle = serie.series_title;
-                              return (
-                                <Dropdown.Item
-                                  value={serie.series_title}
-                                  seriesid={serie.series_id}
-                                  key={index}
-                                  onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id))}
-                                >{serie.series_title}</Dropdown.Item>
-                              )
-                            })}
-
-                          </DropdownButton></td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </Table>
-            </div>
-          </Col>
-        </Row>
-        
-      </div> */}
-
-      {/* ================= FAVORITED ARTICLES ================= */}
-
-      {/* <FavoriteArticles></FavoriteArticles> */}
-
-
-      {/* ================= My ARTICLES ================= */}
-
-
-
     </div>
   )
 }
