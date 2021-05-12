@@ -35,7 +35,7 @@ const GoToArticle = (article:IArticle) => (event:any) => {
 return(
     <>
         <Card className="text-center purchasedArticles">
-        <Card.Header><h3>Favorited Articles</h3></Card.Header>
+        <Card.Header className="favArtTitle"><h3>Favorite Articles</h3></Card.Header>
         <Card.Body>
 
         <section className="favArticleRow">

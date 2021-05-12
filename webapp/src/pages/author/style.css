@@ -1,27 +1,60 @@
+.userProf{
+    /* background-color: rgb(57, 231, 86); */
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: rgb(227, 245, 252) ;
+
+    
+}
+
+.userBox{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 40px;
+}
+
 .authorInfo{
     align-content: center;
+    padding-top: 20px
 }
 
 .authorInfoCard{
-    width: 30em;
-    margin-right: auto;
-    margin-left: auto;
-    box-shadow: white 0px 0px 10px;
+    max-width: 360px;
+    min-width: 360px;
+   
+    background-color: #FFF ;
+
+    margin-right: 0;
+    margin-left: 0; 
+    /* /* box-shadow: white 0px 0px 10px;
+
+    margin-bottom: 50px; */
 } 
+
+/* .authorInfoCard:hover{
+
+
+
+} */
+
+
 .authorInfoCard img{
-    margin: 1em auto 0 auto;
-    width: 20em;
-    height: 20em;
+    margin: 1.5em auto 0 auto;
+    width: 225px;
+    height: 225px;
     object-fit: cover;
     border-radius: 10px;
 }
 
-
-.authorCardBG{
-    padding: 50px 0 20px 0  ;
-    background-image: linear-gradient(to top right, #47697E,#8fbdd1);
-
+.authorCardImg{
+    max-height:190px;
+    max-width:300px;
+    object-fit: cover;
 }
+
+
+
 
 #updateHeader{
     margin-top: 30px;
@@ -29,10 +62,6 @@
     display:flex;
     justify-content: center;
     font-size: 40px;
-}
-.AuthorHeader{
-    display: flex;
-
 }
 .UpdateForm{
     margin-top: 50px;
@@ -85,26 +114,41 @@
 #myArticlesTableH1{
     text-align: center;
 }
+
+/* // !!!!!!!!!!!!!!!!!!!! */
 #articleInfo{
     font-size: 18px;
-    font-weight: 500;
-    border: 1px solid black;
-    margin: 5em;
-    height: 75vh;
+    font-weight: 400;
+    border: 1.5px solid black;
+    height: 65vh;
     overflow-y:scroll;
     opacity: .93;
 
 }
-.articleCol h2{
-    padding: 30px 0 0 0;
-    text-align: center;
+
+.setArticleInfoSize{
+    padding-top: 35px;
+    padding-bottom: 50px;
+    /* padding-left: 50px; */
+    min-width: 700px;
+    max-width: 700px;
+    /* display: flex;
+    justify-content: right; */
 }
 
-#myArticles h2{
+/* .articleCol h2{
+    padding: 10px 0 0 0;
     text-align: center;
-}
+} */
+
+/* #myArticles h2{
+    text-align: center;
+
+} */
+
 .articleHeaders{
 text-align: center;
+
 }
 
 /* SCROLLBAR STYLE */
@@ -129,10 +173,32 @@ text-align: center;
   }
 
 
+/* .editProfTxt{
+    padding-right: 30px;
+    color:red;
+} */
+
 
 .expSubText{
     color:gold;
     text-shadow: 20;
+    padding-left: 15px;
 
 }
 
+
+
+.test{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.redbox{
+    background: red;
+    float: right;
+    width: 200px;
+    height: 200px;  
+
+}
