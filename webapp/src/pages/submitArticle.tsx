@@ -71,9 +71,9 @@ export default function SubmitArticle(props: {}) {
 
     <h1 id="newArticleHeader">Create a New Article</h1>
 
-    <div className="newArticleBody">
+    <div className="newArticleBody" >
 
-      <Form>
+      <Form >
 
         <Form.Row>
           <Form.Group as={Col}>
@@ -85,14 +85,14 @@ export default function SubmitArticle(props: {}) {
               placeholder="Enter an Article Title" />
           </Form.Group>
 
-        </Form.Row>
-
+        </Form.Row>  
         <Form.Group>
           <Form.Label>Preview</Form.Label>
           <Form.Control
             value={preview}
             onChange={(e) => setPreview(e.target.value)}
-            type="textarea"
+            as="textarea"
+            rows={2}
             placeholder="Write a hook to grab the readers attention" />
         </Form.Group>
 
@@ -141,12 +141,7 @@ export default function SubmitArticle(props: {}) {
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
           />
-          {/* <Form.Control
-            value={contents}
-            onChange={(e) => setContents(e.target.value)}
-            as="textarea"
-            id="newArticleTextArea"
-            rows={3} /> */}
+        
         </Form.Group>
 
         <Button variant="success" onClick={handelSubmit}>Submit</Button>

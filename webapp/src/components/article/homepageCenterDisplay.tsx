@@ -31,7 +31,7 @@ const history = useHistory();
         if(index>=1){
           let image = _art.image_link;
           let title = _art.title;
-          let preview = _art.contents.slice(0,100) + "...";
+          let preview = _art.preview.slice(0,90) + "...";
           let createdOn = _art.created_on.slice(0,10);
           let subscribe = _art.price;
 

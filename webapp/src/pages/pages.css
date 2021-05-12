@@ -48,17 +48,14 @@ font-size: 45px;
 }
 
 .newArticleBody{
-    display: flex;
-    justify-content: center;
     padding: 20px;
-    margin-right: 10rem;
+    margin-right: auto;
     margin-left: auto;
-    width: 50%;
+    width: 60% ;
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 5px 10px lightgray;
     background-color: rgb(227, 245, 252) ;
-    width: 20px;
 }
 
 .newArticleForm{

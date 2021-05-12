@@ -35,7 +35,6 @@ const history = useHistory();
           let subscribe = _art.price;
           let preview = _art.preview;
           let createdOn = _art.created_on.slice(0,10);
-          let body = _art.contents.slice(0,150) + "...";
 
 
           // DISPLAY FOR PREMIUM ARTICLE
@@ -58,7 +57,6 @@ const history = useHistory();
 
           <p>{preview}</p>
       
-            <p>{body}</p>
             </div>
            
           </div>
@@ -75,12 +73,10 @@ const history = useHistory();
               <Col xs={12}>
                 <p className="date">Date Posted: {createdOn}</p>
               </Col>
-        
             </Row>
 
           <p>{preview}</p>
       
-            <p>{body}</p>
             </div>
            
           </div>

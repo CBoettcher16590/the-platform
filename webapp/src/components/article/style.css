@@ -160,15 +160,6 @@ text-align: center;
     padding-left: 30px;
 }
 
-.newArticleBody{
-    padding: 20px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 80% ;
-    border: 1px solid black;
-    border-radius: 10px;
-    box-shadow: 5px 10px lightgray;
-}
 
 #imageInput{
 padding: 5px;
@@ -234,6 +225,12 @@ padding: 5px;
     height: 300px;
     transition: width .3s, height .3s;
 }
+.favCard:hover img{
+    width: 200px;
+    height:200px;
+    transition: width .3s, height .3s;
+}
+
 
 .favArticleRow{
     width:100%;
@@ -242,18 +239,22 @@ padding: 5px;
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-
+    overflow: hidden;
 }
-
+.favArticleRow h2{
+   font-size: 25px;
+}
 .favImage{
     border-radius: 5px;
-    width: 200px;
-    height:200px;
+    width: 120px;
+    height:120px;
     object-fit: cover;
     margin-right: 20px;
     display: flex;
     align-self: center;
 }
+
+
 
 .favArticle{
     height: auto;

@@ -32,7 +32,7 @@ const history = useHistory();
           let subscribe = _art.price;
           let image = _art.image_link;
           let title = _art.title;
-          let preview = _art.preview;
+          let preview = _art.preview.slice(0,70) + "...";
           if(subscribe === "Subscribe"){
             return (
               <div id="listArticleBody" key={_art.article_id}>
