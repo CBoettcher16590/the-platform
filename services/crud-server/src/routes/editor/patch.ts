@@ -11,8 +11,6 @@ export function patch( app:any ){
 
     app.patch("/article", async ( request:any, response:any ) => { 
 
-       console.log("PATCH");
-
         response.status(200).send();
     });
 

@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Navbar, Nav, Col, Form, Row, Button, Accordion, Card, Dropdown, DropdownButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './pages.css';
-import api from '../api';
 import { useHistory } from 'react-router';
 import ArticleSubmission from '../data/submitArticle';
 
@@ -15,42 +14,41 @@ const tinyAxe = process.env.REACT_APP_tinyMC
 
 export default function SubmitArticle(props: {}) {
 
-
-
   const history = useHistory();
   const editorRef = useRef<any>(null);
+
+
+  const [content, setContent] = useState<string>("");
+
+    
+  // setContent(editorRef.current.getContent());
+  
+
+ 
+//if there is no better way a meta function should be used to editorRef.current.getContent()); and then the call should be made to data/submit
+
+
 
   const [title, setTitle] = useState<string>("");
   const [preview, setPreview] = useState<string>("");
   const [imageLink, setImageLink] = useState<string>("");
   const [contents, setContents] = useState<string>("");
-  const [price, setPrice] = useState<string>("");
-  const [seriesTitle, setSeriesTitle] = useState<string>();
-  const [seriesPreview, setSeriesPreview] = useState<string>();
-  const [seriesImage, setSeriesImage] = useState<string>();
-  const [seriesContent, setSeriesContent] = useState<string>();
+  const [price, setPrice] = useState<string>("Free");
+
 
   const submit = ArticleSubmission();
 
   //Set a default user for now till login works, then we can get user Id from localstorage
   const userId: string = localStorage.getItem("userID") || "0";
 
-
   function handelSubmit(e: any) {
     e.preventDefault();
-    console.log(e);
+    
+    submit.ArticleSubmission(title!, preview!, imageLink!, price!, editorRef.current.getContent()!, userId!);
 
-    submit.ArticleSubmission(title!, preview!, imageLink!, price!, editorRef.current!, userId!);
-    // submit.ArticleSubmission(title!, preview!, imageLink!, price!, contents!, userId!);
-    console.log(title, imageLink, editorRef.current)
-    // editorRef.current.getContent()
     console.log("Submit Success!");
     history.push('/');
   }
-
-
-
-
 
   return <>
 
@@ -70,9 +68,7 @@ export default function SubmitArticle(props: {}) {
       </Navbar.Collapse>
     </Navbar>
 
-
     <br />
-
 
     <h1 id="newArticleHeader">Create a New Article</h1>
 
@@ -97,7 +93,8 @@ export default function SubmitArticle(props: {}) {
           <Form.Control
             value={preview}
             onChange={(e) => setPreview(e.target.value)}
-            placeholder="Write a short preview that summarizes your article" />
+            type="textarea"
+            placeholder="Write a hook to grab the readers attention" />
         </Form.Group>
 
         <Form.Row>
@@ -146,7 +143,13 @@ export default function SubmitArticle(props: {}) {
                 'removeformat | help',
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
-          /> */}
+          />
+          {/* <Form.Control
+            value={contents}
+            onChange={(e) => setContents(e.target.value)}
+            as="textarea"
+            id="newArticleTextArea"
+            rows={3} /> */}
         </Form.Group>
         <br></br>
         

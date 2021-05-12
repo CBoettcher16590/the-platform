@@ -1,3 +1,4 @@
+
 body{
     font-family: 'DM Serif Text', serif;}
 .navUser{
@@ -22,9 +23,13 @@ body{
    object-fit: cover;
 }
 #homeArtRight{
-    padding-top: 15px;
-    border-left: 1px solid black;
-    
+    padding-top: 14px;
+    padding-right: 2em;    
+}
+.homeArticles{
+}
+.homeArticles img{
+    border-radius: 3px;
 }
 
 .articleTop{

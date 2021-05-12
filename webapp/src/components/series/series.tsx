@@ -71,7 +71,7 @@ import FavButton from '../FavButton';
                     let articlePreview = _art.contents.slice(0,100) + "...";
                     let articleCreatedOn = _art.created_on.slice(0,10);
                     return (  
-                      <Col>
+                      <Col sm={6} lg={4}>
                         <div key={_art.article_id} className="SeriesArticleCard">
                        
                         <div>
@@ -88,7 +88,7 @@ import FavButton from '../FavButton';
                         </div>
 
                         </div>
-                    s</Col>
+                    </Col>
 
                     )
                   }

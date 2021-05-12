@@ -86,12 +86,12 @@ export default function EditorProfile() {
           <Card className="authorInfoCard">
             <Card.Img variant="top" src={loggedInUser?.user_image_link} />
             <Card.Body className="authorInfo">
-              <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
-              <br />
-              <br />
-              <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-              <Nav.Link href="/profileEdit" >Edit Profile</Nav.Link>
-            </Card.Body>
+            <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+              <br/>
+              <br/>
+            <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+            <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+          </Card.Body>
           </Card>
         </div>
       </Col>
