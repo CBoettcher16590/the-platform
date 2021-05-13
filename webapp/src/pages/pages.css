@@ -1,23 +1,12 @@
-.homeCard{
-    border: 2px solid grey;
-    border-radius: 5px;
-    background-color: rgb(167, 230, 255) ;
-    padding: 15px;
-    width: '18rem';
-    margin-left:"30px";
-    display: flex;
-    margin-bottom: 15px;
-}
 
-.cardImage{
-    border: 1px solid black;
-    border-radius: 5px;
-    height:150px;
-    width:auto;
-    object-fit: cover;
-    margin-right: 20px;
+body{
+    font-family: 'DM Serif Text', serif;}
+.navUser{
+    color:white;
 }
-
+#logoutButton{
+    margin-left:15px;
+}
 .articleImage{
     display: flex;
     justify-content: center;
@@ -26,72 +15,73 @@
     width: 700px;
     height: 500px;
     object-fit: cover;
-
 }
 #authorAvatar{
-   margin: 40px 0 20px 0;
-   width: 100px;
-   height: 100px;
+  
+   width: 50px;
+   height: 50px;
    object-fit: cover;
+}
+#homeArtRight{
+    padding-top: 14px;
+    padding-right: 2em;    
+}
+.homeArticles{
+}
+.homeArticles img{
+    border-radius: 3px;
 }
 
 .articleTop{
     margin: 30px 0 0 30px;
 }
-
-.authorInfo{
-  margin-top: 40px;
-   
-}
-
-.homeStories{
-    margin-top: 20px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
-.homeWelcome{
-    display: flex;
-    height: auto;
-    background-color: rgb(208, 242, 255) ;
-}
-.homeWelcome img {
-    padding:20px;
-    height: 250px;
-    width: 250px;
-    object-fit:cover;
-    border-radius: 50%;
-}
-.welcomeText{
-    display: flex;
-    flex-direction: column;
-    padding-left: 30px;
+.welcomeText{ 
+    padding-top: 1em;
+    height: 5em;
+    text-align: center;
 }
 #newArticleHeader{
 text-align: center;
-padding-bottom: 20px;
-font-size: 50px;
-text-decoration: underline;
+padding-top: 10px;
+padding-bottom: 30px;
+font-size: 45px;
 }
+
 .newArticleBody{
     padding: 20px;
     margin-right: auto;
     margin-left: auto;
-    width: 80% ;
+    width: 60% ;
     border: 1px solid black;
     border-radius: 10px;
     box-shadow: 5px 10px lightgray;
+    background-color: rgb(227, 245, 252) ;
 }
 
-#imageInput{
-padding: 5px;
-   box-shadow: inset;
-   border-radius: 10px;
+.newArticleForm{
+    display: grid;
+    width: 850px;
+    padding-bottom: 40px;
+    padding-top: 20px;
 }
-.checkboxes{
+
+
+
+
+#artSubmitFormCheckbox{
+    padding-top: 20px;
+}
+#imageInput{
     padding: 5px;
-    border: 1px solid rgb(9, 77, 167);
+    box-shadow: inset;
     border-radius: 10px;
+}
+.series{
+    padding-bottom: 20px;
+}
+
+.bold{
+ font-weight: 600;
 }
 #newArticleTextArea{
     height: 400px;
@@ -100,19 +90,31 @@ padding: 5px;
 #TextAreaHeader{
     margin-top: 10px;
 }
-#search{
-    width: 70%;
-    margin-top: 20px;
-}
-#searchText{
-    margin-right: 10px;
-    width: 70%
 
-}
-#dropdown-basic-button{
-    margin-top: 20px;
+#dropdown-basic{
+    margin: 10px 0 20px 0;
 }
 .homeSearch{
     display: flex;
     justify-content: center;
 }
+
+.footer{
+    scale:50%;
+}
+.seriesArticles{
+    width:100%;
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.SeriesArticleCard{
+    padding:1em;
+    width: auto;
+    height: auto;
+    display: flex;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+

@@ -6,12 +6,16 @@ import * as serviceWorker from './serviceWorker';
 import { RecoilRoot } from 'recoil';
 
 
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe('pk_test_51Im6u3JQKiiOEQTIDHIIljaL0YS7CGvSKB9oOpFHF0jxdpSPRAVVPvJOLqq4uXe9kTh7GToiomCtLAgF1W06d84i00u2OkaPCB');
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <RecoilRoot>
-    <ThePlatform />
-    </RecoilRoot>
-   
+    <Elements stripe={stripePromise}>
+      <ThePlatform />
+    </Elements>
   </React.StrictMode>,
   document.getElementById('root')
 );

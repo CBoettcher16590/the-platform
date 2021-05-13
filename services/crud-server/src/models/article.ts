@@ -1,79 +1,294 @@
+import { request } from 'express';
+import DatabaseCONNECTION from '../classes/index'
 
-export interface IArticle{
+//right now we only have a "featured" section, but I made this an enum in case we want to expand in the future
+enum FeatureTypes {
+    none = "",
+    featured = "featured"
+}
     
-    articleId: number;
+export interface ISubmittedArticle{
+    
     seriesId: number;
-    statusTypeId:number;
+    userId:number;
     title:string;
     preview:string;
     contents:string;
-    imageLink:string;
+    price:string;
+    image_link:string;
+    article_status:number;
 }
 
+export interface IArticle{
+    
+    article_id: number;
+    series_series_id:number;
+    user_user_id:number;
+    title:string;
+    preview:string;
+    contents:string;
+    image_link:string;
+    price:string;
+    created_on:string;
+    article_status:number;
+    rating:number;
+    feature_tag:string;
+}
 
-var mysql = require('mysql');
-var connection = mysql.createConnection({
-     host     : 'db-stargazer.cd4ztxxcuiwb.us-east-1.rds.amazonaws.com',
-     user     : 'admin',
-     password : 'stargazer2020',
-    database : 'theplatform'
-});
 
 export const ArticleModel = {
 
     getAll: async ():Promise<IArticle[]>  => {
-    connection.connect();
-        const allArticles = connection.query('SELECT * FROM article', function (error:any, results:any, fields:any) {
-            if (error) throw error;
-            // Line below is an example of how to get content
-            // console.log("results.contents: ", results[0].contents, " fields: ", fields)
-            return results;
-        });
-    connection.end();
- 
-        return allArticles;
     
- },
+        return new Promise((resolve,reject) => {
 
-    getById: async (articleId:string):Promise<IArticle[]> => {
-            connection.connect();
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+                
+                var sql = `SELECT * FROM theplatformV2.article`;
+                connection.query(sql, function (error:any, results:IArticle[]){
+                    connection.release();
 
-            const foundArticle = connection.query(`SELECT * FROM article WHERE article.article_id = ${articleId}`, function (error:any, results:any, fields:any) {
-                if (error) throw error;
-                // Line below is an example of how to get content
-                return results;
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results)
+                    }
+                });
             });
-            connection.end();
- 
-        return foundArticle;
-},
-
-    create: async( articleToCreate:IArticle)=> {
-        
-        connection.connect();
-
-        const newArticle:IArticle = connection.query(`INSERT INTO article(title, preview, contents, picture_link)
-        VALUES(${articleToCreate.title}, ${articleToCreate.preview}, ${articleToCreate.contents}, ${articleToCreate.imageLink})`, function (error:any, results:any, fields:any) {
-            if (error) throw error;
-            // Line below is an example of how to get content
         });
-        connection.end(); 
-        return newArticle;
+     },
+
+    getById: async (articleId:number):Promise<IArticle> => {
+
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+                
+                var sql = `SELECT * FROM article WHERE article_id = ?`;
+                connection.query(sql, [articleId], function (error:any, results:IArticle[]){
+                    connection.release();
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });
+        });       
     },
 
-    publish: async ( article:IArticle)=> {
+    addToFavorite:  async (article:IArticle, userID:string) => { //needs to be double checked
 
-        connection.connect();
+        return new Promise((resolve,reject) => {
 
-        const publishedArticle = connection.query(`UPDATE article SET statusTypeId='3' WHERE article.article_id = ${article.articleId} `, function (error:any, results:any, fields:any) {
-            if (error) throw error;
-            // Line below is an example of how to get content
-            return results;
-        });
-        connection.end();
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+                
+                var sql = `INSERT INTO user_has_article VALUES(?, ?);`;
+                connection.query(sql,[article.article_id , userID], function (error:any, results:IArticle[]){
+                    connection.release();
 
-    return publishedArticle;
-         
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });
+        });                
+    },
+
+    getFromFavorites:  async (userID:string) => {
+        
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+               var sql = `SELECT * FROM user_has_article a JOIN article b ON a.article_id = b.article_id WHERE a.user_id = ?;`;
+                connection.query(sql,[userID], function (error:any, results:IArticle[]){
+                    connection.release();
+
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results);
+                    }
+                });
+            });
+        });                
+    },
+
+    create: async( articleToCreate:ISubmittedArticle)=> {
+
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+                //need to update sql statemnet
+                var sql = `INSERT INTO article (article_id, user_user_id, title, preview, contents, image_link, price, created_on, article_status, rating, feature_tag)
+                VALUES (article_id, ?, ?, ?, ?, ?, ?, CURDATE(), 2, 0, null);`
+
+                connection.query(sql, [ articleToCreate.userId, articleToCreate.title, articleToCreate.preview, articleToCreate.contents ,articleToCreate.image_link, articleToCreate.price] ,function (error:any, results:IArticle){
+                    connection.release();
+
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results);
+                    }
+                });
+            });
+        });       
+    },
+
+    approveArticle: async ( article:IArticle)=> {
+
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+
+                var sql = `UPDATE article SET article_status = 3 WHERE article_id = ?;`;
+
+                connection.query(sql,[article.article_id], function (error:any, results:IArticle[]){
+                    connection.release();
+
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });
+        }); 
+    },
+
+    rejectArticle: async ( article:IArticle)=> {
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+
+                var sql = `UPDATE article SET article_status = 4 WHERE article_id = ? ;`;
+
+                connection.query(sql,[article.article_id], function (error:any, results:IArticle[]){
+                    connection.release();
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });
+        }); 
+    },
+    UpdateArticleRating: async (body:any)=> {
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+
+                var sql = `UPDATE article SET rating = ? WHERE article_id = ?;`;
+               
+                connection.query(sql,[body.newRating, body.article_id], function (error:any, results:IArticle[]){
+                    connection.release();
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });
+        }); 
+    },
+
+    toggleFeatured: async ( article:IArticle)=> {
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            var sqlFeature =`UPDATE article SET feature_tag = ? WHERE article_id = ? ;`;
+            var sqlClearFeature =`UPDATE article SET feature_tag = Null WHERE article_id = ?;`;
+            var sql = '';
+                        //here the switch assigns the sql appropriatly to toggle feature
+            switch(article.feature_tag){
+                case "featured": sql = sqlClearFeature;
+                pool.getConnection(function(err:any, connection:any){
+                    if(err) throw err;
+                    
+                    connection.query(sql,[article.article_id], function (error:any, results:IArticle[]){
+                        connection.release();
+                        if(error){
+                            reject(error)
+                        } else {
+                            resolve(results[0]);
+                        }
+                    });
+                });
+                    break;
+                    
+                default:
+                sql = sqlFeature;
+                pool.getConnection(function(err:any, connection:any){
+                    if(err) throw err;
+                    
+                    connection.query(sql, [FeatureTypes.featured ,article.article_id], function (error:any, results:IArticle[]){
+                        connection.release();
+                        if(error){
+                            reject(error)
+                        } else {
+                            resolve(results[0]);
+                        }
+                    });
+                });
+                break;
+            }
+        }); 
+    },
+    removeFromFeatured: async ( article:IArticle)=> {
+        return new Promise((resolve,reject) => {
+
+            const dbConnection = new DatabaseCONNECTION();
+            const pool = dbConnection.connection;
+            
+            pool.getConnection(function(err:any, connection:any){
+                if(err) throw err;
+                var sql = `UPDATE article SET feature_tag = null WHERE article_id = ? ;`;
+                connection.query(sql,[article.article_id], function (error:any, results:IArticle[]){
+                    connection.release();
+                    if(error){
+                        reject(error)
+                    } else {
+                        resolve(results[0]);
+                    }
+                });
+            });
+        }); 
     }
-
 }

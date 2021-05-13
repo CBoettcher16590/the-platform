@@ -1,169 +1,159 @@
-import React from 'react';
-
-import reported_articles from '../systemAdmin/reportedArticles'
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, NavDropdown, Card, CardGroup, Button } from 'react-bootstrap';
+import { Navbar, Nav, Card, CardGroup, Button, Accordion, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import cat from '../images/cat.jpg';
-import little from '../images/little.jpg';
-
-    
-    
-     export default function EditorProfile(){
-    
-     
-            return <>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="mr-auto">
-              <Nav.Link href = "/homepage" > The-Platform</Nav.Link>
-                  </Nav> 
-                   
-                  
-                  <Nav className="mr-auto">
-                  <Nav.Link href="#users">Users</Nav.Link>
-                  </Nav>
-                <Nav>
-                  <Navbar.Brand href="/ADProfile"> My Account</Navbar.Brand>
-                </Nav>
-              </Navbar.Collapse>
-            </Navbar>
-            <Card style={{ width: '30rem' }}>
-      <Card.Img variant="top" src= {cat} />
-      <br/>
-    
-      <Card.Body>
-        <Card.Title><h2>Donald Trump</h2></Card.Title>
-        <br/>
-        <br/>
-        <Card.Title><h5>Bio</h5></Card.Title>
-    
-        <Card.Text>
-       Q: What’s the best thing about Switzerland?
-       A: I don’t know, but the flag is a big plus.
-        </Card.Text>
-        <Nav.Link href = "/EDupdateMyInfo" >Edite Profile</Nav.Link>
-      </Card.Body>
-    </Card>
-    <br/>
-    <Card style={{ width: '70%' }}>
-  <Card.Img variant="top" src="" />
-  <Card.Body>
-    <Card.Title>Pending articles</Card.Title>
-    <Card.Text>
-      Do not forget about these pending articles.
-    </Card.Text>
-    <Nav.Link href="/editorPending">Review Articles</Nav.Link>
-  </Card.Body>
-</Card>
+import './style.css'
+import FavoriteArticles from '../../components/article/favoriteArticle';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
+import api from '../../api';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router';
+import { IUser } from '../../../../services/crud-server/src/models/user';
 
 
-<Card style={{ width: '70%' }}>
-  <Card.Img variant="top" src="" />
-  <Card.Body>
-    <Card.Title>reported Articles</Card.Title>
-    <Card.Text>
-      Do not forget about these pending articles.
-    </Card.Text>
-    <Nav.Link href ="primary">Review Articles</Nav.Link>
-  </Card.Body>
-</Card>
+export default function EditorProfile() {
 
- <div className= "raw">
-    <Card className="text-center" style={{ width: '100rem' }}>
-      <Card.Header><h3>Purchased Articles</h3></Card.Header>
-      <Card.Body>
-      <CardGroup>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-        <Card.Title><h4>Cats Training</h4></Card.Title>
-          <Card.Text>
-            Train the cats in sword fights, This thrilling article will include cats that have won the internet through some crazy skills that they
-            have all developed through secret nightly cat meetings.
-        
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={little}/>
-        <Card.Body>
-        <Card.Title><h4>Silent Meow</h4></Card.Title>
-          <Card.Text>
-            A heartwarming article about the rewards that come from addopting a kitty. This one goes into detail about the story of a cat that was found
-            by a trucker while at a truck stop in BC.
-      .{' '}
-          </Card.Text>
-        </Card.Body>
-    
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-        <Card.Title><h4>Article title</h4></Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in to
-            additional content. This card has even longer content than the first to
-            show that equal height action.
-          </Card.Text>
-        </Card.Body>
-    
-      </Card>
-    </CardGroup>
-    <br/>
-    
-    <Nav.Link href= "/profilePurchased" >See All </Nav.Link>
-      </Card.Body>
-      <Card.Footer className="text-muted" />
-    </Card>
-    
-    <br/>
-    <Card className="text-center"  style={{ width: '100rem' }}>
-      <Card.Header><h3>My Favorite List</h3></Card.Header>
-      <Card.Body>
-      <CardGroup>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-        <Card.Title><h4>Article title</h4></Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in to
-            additional content. This content is a little bit longer.
-          </Card.Text>
-        </Card.Body>
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-        <Card.Title><h4>Article title</h4></Card.Title>
-          <Card.Text>
-            This card has supporting text below as a natural lead-in to additional
-            content.{' '}
-          </Card.Text>
-        </Card.Body>
-    
-      </Card>
-      <Card>
-        <Card.Img variant="top" src={little} />
-        <Card.Body>
-          <Card.Title><h4>Article title</h4></Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in to
-            additional content. This card has even longer content than the first to
-            show that equal height action.
-          </Card.Text>
-        </Card.Body>
-    
-      </Card>
-    </CardGroup>
-    <br/>
-        <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
-      </Card.Body>
-      <Card.Footer className="text-muted" />
-    </Card>
-    <br/>
- </div>
-                
-</>
+  const history = useHistory();
+  const [pendingArticles, setPendingArticles] = useState<IArticle[]>();
+  const [loggedInUser, setLoggedInUser] = useState<IUser>();
+  const userId: string | null = localStorage.getItem("userID");
+
+
+  //inside this useEffect is where we find all the pending articles, and assign it to pendingArtiles
+  useEffect(() => {
+    //First we get ALL the articles
+    api.articles.get().then((responce) => {
+      const articleList: IArticle[] = responce.data;
+      //Then we filter through our array of Articles to get ALL of our articles that match our if statement
+      let pendArticles = articleList.filter(function (_article) {
+        if (_article.article_status === 2) {
+          return _article;
+        }
+      });
+      setPendingArticles(pendArticles);
+
+    }).catch((error) => console.log("Error: ", error));
+
+    api.users.getById(userId).then((responce) => {
+      const foundUser: IUser = responce.data[0];
+      setLoggedInUser(foundUser);
+    });
+
+
+  }, []);
+
+
+  const Publish = (article: IArticle) => (event: any) => {
+    //Here we are changing the article status so we can know what to do in the patch route
+    article.article_status = 3;
+    api.articles.approval(article);
+    //this is just a refresh
+    history.go(0);
   }
+
+  const Reject = (article: IArticle) => (event: any) => {
+    //Here we are changing the article status so we can know what to do in the patch route
+    article.article_status = 4;
+    api.articles.approval(article);
+    //this is just a refresh
+    history.go(0);
+  }
+  function onClickLogout() {
+    window.localStorage.clear()
+    history.push('/');
+    alert("Logged Out")
+  }
+
+
+  return <>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="mr-auto">
+          <Navbar.Brand href="/">The Platform</Navbar.Brand>        </Nav>
+        <Nav>
+          <Navbar.Brand href="/editorProfile"> My Account</Navbar.Brand>
+        </Nav>
+        <Nav>
+          <Button onClick={onClickLogout}>Logout</Button>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+
+    <Row>
+      <Col className="authorCardBG" sm={11} lg={6}>
+        <div >
+          <Card className="authorInfoCard">
+            <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+            <Card.Body className="authorInfo">
+            <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+              <br/>
+              <br/>
+            <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+            <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
+          </Card.Body>
+          </Card>
+        </div>
+      </Col>
+
+      <Col sm={11} lg={6}>
+        <Card className="reviewArticles">
+          <Card.Body>
+            <Card.Title id="pendingBoxTitle">Pending Articles</Card.Title>
+            <br />
+
+            {pendingArticles?.map(function (articleLoop, index) {
+
+              let title = articleLoop.title;
+              let contents = articleLoop.contents;
+              return (
+                <Accordion defaultActiveKey="1">
+                  <Card key={index} className="pendingArticles">
+                    <Accordion.Toggle as={Card.Header} eventKey="0">
+                      <h4>{title}</h4>
+                      <hr />
+                      <p> <strong>Click Here to See Article Contents</strong></p>
+                    </Accordion.Toggle>
+
+                    <Accordion.Collapse eventKey="0">
+                      <Card.Body>
+                        <p>{contents}</p>
+                        <Button onClick={Publish(articleLoop)} className="btn-info editButtons">Approve</Button>
+                        <Button onClick={Reject(articleLoop)} className="btn-danger editButtons">Reject </Button>
+                      </Card.Body>
+                    </Accordion.Collapse>
+
+                  </Card>
+
+                </Accordion>
+
+              )
+            })}
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+
+
+
+
+    {/* 
+<Card className="reviewArticles">
+  <Card.Img variant="top" src="" />
+  <Card.Body>
+    <Card.Title>Reported Articles</Card.Title>
+    <Card.Text>
+      A user has reported these articles, please review the Article to comfirm that it does not comply with our Code of Conduct.  
+    </Card.Text>
+    <Nav.Link href ="#">Review Articles</Nav.Link>
+  </Card.Body>
+</Card>
+  */}
+
+    {/* ================= FAVORITED ARTICLES ================= */}
+
+    <FavoriteArticles></FavoriteArticles>
+
+
+  </>
+}

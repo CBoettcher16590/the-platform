@@ -1,164 +1,188 @@
-import React from 'react';
-import { Navbar, Nav, Card, CardGroup, CardDeck, Button } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Navbar, Nav, Card, Button, Table, Dropdown, DropdownButton, Col, Row, Badge, Tabs, Tab, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Littlecat from '../images/little.jpg'
-import cat from '../images/cat.jpg'
-import { render } from '@testing-library/react';
+import FavoriteArticles from '../../components/article/favoriteArticle';
+import './style.css';
+import { useHistory } from 'react-router';
+import { IUser } from '../../../../services/crud-server/src/models/user';
+import api from '../../api';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
+import { ISeries } from '../../../../services/crud-server/src/models/series';
 
 
+export default function AuthorProfile() {
+  //did not add logout to the author profile, as its a class, should we make this a regular function? 
+  const history = useHistory();
+  const [expiredSubscription, setSubscription] = useState<string>();
+  const [loggedInUser, setLoggedInUser] = useState<IUser>();
+  const [userArticles, setUserArticles] = useState<IArticle[]>();
+  const [userSeries, setUserSeries] = useState<ISeries[]>();
+  const userID: string | null = localStorage.getItem("userID");
 
 
+  let thing = '';
 
 
+  function onClickLogout() {
+    window.localStorage.clear();
+    history.push('/');
+    alert("Logged Out");
+  }
+  const handelAddToSeries = (seriesID: string, artID: string) => {
+    return (event: React.MouseEvent) => {
+      api.series.addArticleToSeries(seriesID, artID);
+      event.preventDefault();
+    }
+  }
+  // x
+
+  useEffect(() => {
+    api.users.getById(userID).then((responce) => {
+      const foundUser: IUser = responce.data[0];
+      // style={{color:'gold'}
+      if (foundUser.subscription == 1) {
+        // const subExpire = foundUser.sub_end_date;
+        const newString = (foundUser.sub_end_date).substring(0, (foundUser.sub_end_date).length - 14)
 
 
-export default class author_profile extends React.Component {
+        setSubscription('Subscription Ends ' + newString);
+        console.log(thing)
+        console.log(newString)
+        console.log(newString)
 
-  state = {
-    likes: 0
-  };
-  addLike = () => {
-    let newCount = this.state.likes + 1;
-    this.setState({
-      likes: newCount
-    });
-  };
+      }
+    }).catch((err) => { console.log(`Error: ${err}`); });
 
+  }, []);
 
-render(){
+  useEffect(() => {
+    //find logged in user 
+    //get user info, and set logged in user
+    api.users.getById(userID).then((responce) => {
+      const foundUser: IUser = responce.data[0];
+      setLoggedInUser(foundUser);
+    }).catch((err) => { console.log(`Error: ${err}`); });
+  }, []);
+
+  useEffect(() => {
+    const userID = Number(localStorage.getItem("userID"));
+    //find articles that belong to logged in user
+
+    api.articles.get().then((responce) => {
+      const allArticles: IArticle[] = responce.data;
+      const userArt = allArticles.filter(_art => _art.user_user_id == userID);
+      setUserArticles(userArt);
+    }).catch((err) => { console.log(`Error: ${err}`); });
+
+    //find series that belong to logged in user
+    api.series.get().then((responce) => {
+      const allSeries: ISeries[] = responce.data;
+      const uSeries = allSeries.filter(series => parseInt(series.series_owner_id) == userID);
+      setUserSeries(uSeries);
+    })
+
+  }, []);
+
   return (
     <div>
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="/authorHome"> The-Platform</Nav.Link>
-        </Nav>
-        <Nav className="mr-auto">
-          <Nav.Link href="#Reported articles">Write an Article</Nav.Link>
-        </Nav>
-        <Nav className="mr-auto">
-          <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
-        </Nav>
-        <Nav className="mr-auto">
-          <Nav.Link href="/authorArticles">My Articles</Nav.Link>
-        </Nav>
-        <Nav>
-          <Navbar.Brand> My Account</Navbar.Brand>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
-    <br />
-    <Card style={{ width: '20rem' }}>
-      <Card.Img variant="top" src={cat} />
-      <br />
 
-      <Card.Body>
-        <Card.Title><h2>Donald Trump</h2></Card.Title>
-        <br />
-        <br />
-        <Card.Title><h5>Bio</h5></Card.Title>
-
-        <Card.Text>
-          Q: What’s the best thing about Switzerland?
-          A: I don’t know, but the flag is a big plus.
-        </Card.Text>
-        <Nav.Link href="/AUupdateMyInfo">Edite Profile</Nav.Link>
-      </Card.Body>
-    </Card>
-    <br />
-    <Button onClick={this.addLike}>Likes: {this.state.likes} </Button>
-    <br/>
-    <br/>
-        <Card.Header><h3>Purchased Articles</h3></Card.Header>
-    <Card.Body>
-      <CardDeck>
-        <Card>
-          <Card.Img variant="top" src={Littlecat} />
-          <Card.Body>
-            <Card.Title><h4>Article title</h4></Card.Title>
-            <Card.Text>
-                        This is a wider card with supporting text below as a natural lead-in to
-              additional content.This content is a little bit longer.
-            </Card.Text>
-          </Card.Body>
-        </Card>
-        <Card>
-          <Card.Img variant="top" src={Littlecat} />
-          <Card.Body>
-            <Card.Title><h4>Article title</h4></Card.Title>
-            <Card.Text>
-                           This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-            </Card.Text>
-          </Card.Body>
-
-        </Card>
-        <Card>
-          <Card.Img variant="top" src={Littlecat} />
-          <Card.Body>
-            <Card.Title><h4>Article title</h4></Card.Title>
-            <Card.Text>
-              This is a wider card with supporting text below as a natural lead-in to
-              additional content.This card has even longer content than the first to
-              show that equal height action.
-            </Card.Text>
-          </Card.Body>
-
-        </Card>
-      </CardDeck>
-
-      <br />
-    </Card.Body>
-    <br />
-
-    <Nav.Link href="/profilePurchased">See All </Nav.Link>
-    <Card.Footer className="text-muted" />
-  <br /><Card className="text-center">
-      <Card.Header><h3>My Favorite List</h3></Card.Header>
-
-      <Card.Body>
-        <CardDeck>
-          <Card>
-            <Card.Img variant="top" src={Littlecat} />
-            <Card.Body>
-              <Card.Title><h4>Article title</h4></Card.Title>
-              <Card.Text>
-                This is a wider card with supporting text below as a natural lead-in to
-                additional content.This content is a little bit longer.
-              </Card.Text>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Navbar.Brand href="/">The Platform</Navbar.Brand>
+          </Nav>
+          <Nav>
+            <Nav.Link href="/newArticle">Submit An Article</Nav.Link>
+            <Nav.Link href="/newSeries">Create New Series</Nav.Link>
+            <Button onClick={onClickLogout}>Logout</Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      
+      <div className="userProf">
+        <div className="userBox">
+          <Card className="authorInfoCard">
+            <Card.Img className="authorCardImg" variant="top" src={loggedInUser?.user_image_link} />
+            <Card.Body className="authorInfo">
+              <Card.Title className="authorProfileHead"><p >{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</p></Card.Title>
+              <Card.Title className="profBioTxt"><p>{loggedInUser?.bio}</p></Card.Title>
+              <Nav.Link className="editProfTxt" href="/AUupdateMyInfo" >  Edit Profile</Nav.Link>
+              <Card.Text className="expSubText"> {expiredSubscription}  </Card.Text>
             </Card.Body>
           </Card>
-          <Card>
-            <Card.Img variant="top" src={Littlecat} />
-            <Card.Body>
-              <Card.Title><h4>Article title</h4></Card.Title>
-              <Card.Text>
-                This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-              </Card.Text>
-            </Card.Body>
+        </div>
 
-          </Card>
-          <Card>
-            <Card.Img variant="top" src={Littlecat} />
-            <Card.Body>
-              <Card.Title><h4>Article title</h4></Card.Title>
-              <Card.Text>
-                This is a wider card with supporting text below as a natural lead-in to
-                additional content.This card has even longer content than the first to
-                show that equal height action.
-              </Card.Text>
-            </Card.Body>
+        <Container fluid>
+          <Row>
+            <Col>
+              <Tabs className="tabsProfileCenter" defaultActiveKey="Favourites" id="uncontrolled-tab-example">
+                <Tab className="tabSpacingProfileL" eventKey="Favourites" title="Favourites">
 
-          </Card>
-        </CardDeck>
-        <br />
-        <Nav.Link href="/profileFavorite">See All </Nav.Link>
-      </Card.Body>
-    </Card>
-    <br />
+                  <FavoriteArticles></FavoriteArticles>
+
+                </Tab>
+                <Tab className="tabSpacingProfileR" eventKey="Articles" title="Articles">
+                  <div>
+                    <div className="setArticleInfoSize">
+                      <Col >
+                        <div id="myArticles"></div>
+                        <div id="articleInfo">
+
+                          <Table striped borderless hover variant="light">
+
+                            <thead>
+                              <tr>
+                                <th colSpan={4} id="myArticlesTableH1"><h3>My Articles</h3></th>
+                              </tr>
+                              <tr>
+                                <th> </th>
+                                <th>Title</th>
+                                <th>Series ID</th>
+                                <th>Add To Series</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {userArticles?.map(function (_art, index) {
+                                let number = index + 1;
+                                let articleTitle = _art.title;
+                                let series = _art.series_series_id;
+
+                                return (
+                                  <tr key={_art.article_id}>
+                                    <td>{number}</td>
+                                    <td>{articleTitle}</td>
+                                    <td>{series}</td>
+                                    <td>
+                                      <DropdownButton id="dropdownSeries" title="Add Article To Series">
+                                        {userSeries?.map(function (serie, index) {
+                                          let seriesTitle = serie.series_title;
+                                          return (
+                                            <Dropdown.Item
+                                              value={serie.series_title}
+                                              seriesid={serie.series_id}
+                                              key={index}
+                                              onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id))}
+                                            >{serie.series_title}</Dropdown.Item>
+                                          )
+                                        })}
+
+                                      </DropdownButton></td>
+                                  </tr>
+                                )
+                              })}
+                            </tbody>
+                          </Table>
+                        </div>
+                      </Col>
+                    </div>
+                  </div>
+                </Tab>
+              </Tabs>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </div>
-    )
+  )
 }
- }

@@ -3,3 +3,23 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect';
+import * as Enzyme from 'enzyme'
+
+
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16'
+
+
+Enzyme.configure({ adapter: new Adapter() });
+
+// configure({ adapter: new Adapter() });
+
+
+//npm run test will work things out :)
+
+
+//https://create-react-app.dev/docs/running-tests/
+
+
+
+

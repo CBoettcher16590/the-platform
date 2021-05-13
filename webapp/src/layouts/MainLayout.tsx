@@ -1,12 +1,12 @@
 import React, { PropsWithChildren } from "react";
 import TopNavbar from "../components/TopNavbar";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+import {Col, Container, Row } from "react-bootstrap";
+
 
 export default function MainLayout(props: PropsWithChildren<{}>) {
     return (
         <>
-            <Container className="main">
+            
                 <TopNavbar />
                 <Row>
                     <Col>{props.children}</Col>
@@ -20,7 +20,6 @@ export default function MainLayout(props: PropsWithChildren<{}>) {
                         </Row>
                     </Container>
                 </footer>
-            </Container>
         </>
     );
 }

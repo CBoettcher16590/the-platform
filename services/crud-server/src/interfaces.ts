@@ -1,20 +1,14 @@
 
 export interface IsignUp{
+    memberid:number;
     Fname: string;
     Lname: string;
     email: string;
     password: string;
-    success: boolean;
-}
+    phoneNumber:string;
+    org_name: string;
 
-
-export interface IArticle{
     
-    articleId: number;
-    seriesId: number;
-    statusTypeId:number;
-    title:string;
-    preview:string;
-    contents:string;
-    imageLink:string;
 }
+
+

@@ -1,9 +1,15 @@
 import express from "express";
 import cors from 'cors';
 
+import * as User from './routes/users/user';
+import * as Org from './routes/organizations'
+import * as Users from './routes/users';
+import * as Articles from './routes/articles';
+import * as Tokens from './routes/tokens';
+import * as Series from './routes/series';
+import * as Subscriptions from './routes/subscription';
+import * as Rating from './routes/rating';
 
-import * as Members from './routes/members';
-import * as Articles from './routes/articles'
 
 const app = express();
 const port = 4000;
@@ -12,28 +18,23 @@ app.use(express.json());
 app.use(cors());
 
 
-function loadEndpoints( endpoint:any ){
-    
-    if( typeof endpoint === "function" ){
+function loadEndpoints(endpoint: any) {
+
+    if (typeof endpoint === "function") {
         endpoint(app);
         return;
- }
+    }
 
- Object.values(endpoint).forEach(loadEndpoints);
+    Object.values(endpoint).forEach(loadEndpoints);
 
 }
 
-[ Members ].forEach( ImportedObject => {
-    
-    Object.values( ImportedObject ).forEach( loadEndpoints );
+[Users, Tokens, Articles, Series, Subscriptions, Rating, Org].forEach(ImportedObject => {
+
+    Object.values(ImportedObject).forEach(loadEndpoints);
 
 });
 
-[ Articles ].forEach( ImportedObject => {
-    
-    Object.values( ImportedObject ).forEach( loadEndpoints );
-
-});
 
 app.listen(port, () => {
     console.log(`Web Server Started and listening on localhost:${port}`);

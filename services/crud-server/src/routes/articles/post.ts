@@ -1,37 +1,37 @@
 
 import { ArticleModel } from '../../models/article';
-import { IArticle } from '../../interfaces';
+import {authenticateToken} from '../../middleware/authenticator'
+import { IArticle } from '../../models/article';
+
+interface ISubmittedArticle {
+    title:string,
+    preview:string,
+    imageLink:string,
+    contents:string,
+    price:string, 
+    userId:string
+}
 
 export function post( app:any ){
 
-    app.post("/article", async ( request:any, response:any ) => {
+    app.post("/article",authenticateToken, async ( request:any, response:any ) => {
 
         // read payload from post body
-        const payload:IArticle = request.body;
+        const payload:ISubmittedArticle = request.body;
+        console.log(payload);
+        await ArticleModel.create({
+                userId:parseInt(payload.userId),
+                title: payload.title,  
+                preview: payload.preview,            
+                contents: payload.contents,
+                image_link: payload.imageLink,
+                price: payload.price,
+                seriesId: 1,
+                article_status:1
+            });
 
-        const articles = ArticleModel.getAll();
-
-        articles.push(payload);
-        ArticleModel.setAll(members);
-
-        // send successful response
         response.status(201).send();
 
     });
 
 }
-
-// export function post( app:any ){
-
-//     app.post("/tasks", authenticateToken, async (request:any, response:any) => {
-    
-//         const task = await TaskModel.create({
-//             done: false,
-//             description: request.body.description
-//         });
-    
-//         response.status(201).send( task );
-    
-//     });
-
-// }

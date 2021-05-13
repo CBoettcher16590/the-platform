@@ -1,0 +1,208 @@
+.userProf{
+    /* background-color: rgb(57, 231, 86); */    
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: rgb(227, 245, 252) ;
+    background-size: cover;
+
+        
+}
+
+.userBox{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 40px;
+}
+
+.authorInfo{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.authorInfoCard{
+    max-width: 360px;
+    min-width: 360px;
+    max-height: 600px;
+    background-color: #FFF ;
+    
+    margin-right: 0;
+    margin-left: 0; 
+    box-shadow: #f7f7f7 1px 1px 10px;
+    /* margin-bottom: 50px; */
+} 
+
+.authorProfileHead{
+    display: flex;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 630;
+
+}
+
+
+
+/* .authorInfoCard:hover{
+
+
+
+} */
+
+
+.authorInfoCard img{
+    margin: 1.5em auto 0 auto;
+    width: 225px;
+    height: 225px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.authorCardImg{
+    max-height:290px;
+    max-width:300px;
+    object-fit: cover;
+}
+
+.editProfTxt{
+
+    padding-left: 105px;
+}
+
+.profBioTxt{
+    font-size: 18px;
+    padding-left: 12px;
+    max-width: 300px;
+
+}
+.expSubText{
+    color:gold;
+    text-shadow: 20;
+    padding-left: 30px;
+
+}
+
+
+
+
+#updateHeader{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display:flex;
+    justify-content: center;
+    font-size: 40px;
+}
+.UpdateForm{
+    margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow:10px 10px lightgrey ;
+    width: 65vw;
+    height: 900px;
+    background-color:white ;
+    padding-bottom: 50px;
+}
+.updateInfo{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-left: 10vw;
+}
+.updateInfo .label{
+    padding-top: 15px;
+    font-size: 20px;
+    font-weight: 500;
+}
+#updateButton{
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    width: 30vw;
+}
+#myArticles{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #f7f7f7;
+    /* background: url('https://images.unsplash.com/photo-1580914272598-9c5b88d24db2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80') center center; */
+    opacity: .6;
+    width: 100%;
+    height: 100%;
+}
+/* Button */
+#dropdownSeries{
+    color:black;
+    background: rgb(245, 212, 121);
+}
+#myArticlesTableH1{
+    text-align: center;
+}
+
+/* // !!!!!!!!!!!!!!!!!!!! */
+#articleInfo{
+    font-size: 18px;
+    font-weight: 400;
+    /* border: 1.5px solid black; */
+    height: 65.5vh;
+    overflow-y:scroll;
+    opacity: .95;
+
+}
+
+.setArticleInfoSize{
+    /* padding-top: 0px; */
+    padding-bottom: 20%; 
+    /* padding-left: 50px; */
+    max-width: 70vw;
+    
+
+    /* min-height: 200px;
+    max-height: 200px; */
+}
+
+
+
+
+/* SCROLLBAR STYLE */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #cce4ee;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(87, 87, 87);
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+
+
+
+/* THIS WHOLE PAGE NEEDS TO BE CLEANED UP */
+
+
+
+
+

@@ -1,142 +1,116 @@
-import React, { Component } from 'react'
-import { Card, Button, CardGroup, Nav, Navbar } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Button, Card, CardGroup, Col, Nav, Navbar, Row, Table } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import cat from '../../images/cat.jpg'
-import Littlecat from '../../images/little.jpg'
-import favorite from './favorite';
+import { useHistory } from 'react-router';
+import { IUser } from '../../../../services/crud-server/src/models/user';
+import api from '../../api'
+import { useState } from 'react';
+import { IArticle } from '../../../../services/crud-server/src/models/article';
+import './form.css';
+export default function Profile() {
+
+  //did not add logout to the author profile, as its a class, should we make this a regular function? 
+  const history = useHistory();
+  const [loggedInUser, setLoggedInUser] = useState<IUser>();
+  const [favoriteArticles, setFavoriteArticles] = useState<IArticle[]>();
+  const userID = localStorage.getItem("userID") || "";
 
 
+  function onClickLogout() {
+    window.localStorage.clear();
+    history.push('/');
+    alert("Logged Out");
+  }
 
-export default function profile(){
+  const GoToArticle = (article: IArticle) => (event: any) => {
+    //here we find the article id for our Title, Link
+    let articleId = article.article_id;
+    //then We use history.push to redirect to that page
+    history.push(`/article/${articleId}`)
+  }
 
-  return<>
-  <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+
+  useEffect(() => {
+    //find logged in user
+    const userID: string | null = localStorage.getItem("userID");
+    //get user info, and set logged in user
+    api.users.getById(userID).then((responce) => {
+      const foundUser: IUser = responce.data[0];
+      setLoggedInUser(foundUser);
+
+      api.articles.getForFavList(userID).then((responce) => {
+        const favArticles: IArticle[] = responce.data;
+        return setFavoriteArticles(favArticles);
+      });
+    }).catch((err) => { console.log(`Error: ${err}`); });
+  }, []);
+
+
+  return <>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-      <Nav className="mr-auto">
-      <Nav.Link href = "/memberHome" > The-Platform</Nav.Link>
-</Nav> 
-      <Nav className="mr-auto">
-      <Nav.Link href="/freetoread">Free To Read</Nav.Link>
-</Nav>    
-      <Nav className="mr-auto">
-      <Nav.Link href="/recentar">Most recent</Nav.Link>
-</Nav>
-<Nav>
-      <Navbar.Brand href="/profile"> My Account</Navbar.Brand>
-</Nav>
-</Navbar.Collapse>
-</Navbar>
-<br/>
+        <Nav className="mr-auto">
+          <Navbar.Brand href="/">The Platform</Navbar.Brand></Nav>
+        <Nav>
+          <Nav.Link href="/profile"> My Account</Nav.Link>
+          <Nav.Link href='/splashPage'>Splash</Nav.Link>
 
-<Card style={{ width: '20rem' }}>
-      <Card.Img variant="top" src= {cat} />
-<br/>
+        </Nav>
 
-<Card.Body>
-<Card.Title><h2>Donald Trump</h2></Card.Title>
-<br/>
-<br/>
-<Card.Title><h5>Bio</h5></Card.Title>
 
-<Card.Text>
-   Q: What’s the best thing about Switzerland?
-   A: I don’t know, but the flag is a big plus.
-</Card.Text>
-  <Nav.Link href = "/MEMupdateMyInfo" >Edite Profile</Nav.Link>
-</Card.Body>
-</Card>
-<br/>
-<Card className="text-center">
-  <Card.Header><h3>Purchased Articles</h3></Card.Header>
-  <Card.Body>
-  <CardGroup>
-  <Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-</Card.Text>
-</Card.Body>
-</Card>
-<Card>
-    <Card.Img variant="top" src={Littlecat}/>
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-</Card.Text>
-</Card.Body>
+        <Nav>
+          <Button onClick={onClickLogout}>Logout</Button>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
 
-</Card>
-<Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-      </Card.Text>
-    </Card.Body>
+    <Row>
+      <Col className="authorCardBG" sm={11} lg={6}>
+        <div >
+          <Card className="authorInfoCard">
+            <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+            <Card.Body className="authorInfo">
+              <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+              <br />
+              <br />
+              <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+              <Nav.Link href="/profileEdit" >Edit Profile</Nav.Link>
+            </Card.Body>
+          </Card>
+        </div>
+      </Col>
 
-  </Card>
-</CardGroup>
-<br/>
 
-<Nav.Link href= "/profilePurchased" >See All </Nav.Link>
-  </Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
+      {/* ================= FAVORITED ARTICLES ================= */}
 
-<br/>
-<Card className="text-center">
-  <Card.Header><h3>My Favorite List</h3></Card.Header>
-  <Card.Body>
-  <CardGroup>
-  <Card>
-  <Card.Img variant="top" src={Littlecat} />
-  <Card.Body>
-  <Card.Title><h4>Article title</h4></Card.Title>
-  <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This content is a little bit longer.
-</Card.Text>
-</Card.Body>
-</Card>
-<Card>
-    <Card.Img variant="top" src={Littlecat} />
-    <Card.Body>
-    <Card.Title><h4>Article title</h4></Card.Title>
-    <Card.Text>
-        This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-</Card.Text>
-</Card.Body>
-
-</Card>
-  <Card>
-  <Card.Img variant="top" src={Littlecat} />
-  <Card.Body>
-  <Card.Title><h4>Article title</h4></Card.Title>
-  <Card.Text>
-        This is a wider card with supporting text below as a natural lead-in to
-        additional content. This card has even longer content than the first to
-        show that equal height action.
-</Card.Text>
-</Card.Body>
-
-</Card>
-</CardGroup>
-<br/>
-  <Nav.Link href= "/profileFavorite" >See All </Nav.Link>
-</Card.Body>
-  <Card.Footer className="text-muted" />
-</Card>
-<br/>
+      <Col sm={11} lg={6}>
+        <Table className="favArticleTable" striped borderless hover>
+          <thead>
+            <tr>
+              <th><h3>Favorite Articles</h3></th>
+            </tr>
+          </thead>
+          <tbody>
+            {favoriteArticles?.map(function (_article: IArticle, index = 1) {
+              let artTitle = _article.title;
+              let artImage = _article.image_link
+              let preview = _article.contents.slice(0, 70) + "...";
+              return (
+                <div className="favArticleBody" key={index}>
+                  <tr>
+                    <td>{index}</td>
+                    <td><img id="favArtImg" src={artImage} alt="articleImage.jpg" /></td>
+                    <td onClick={GoToArticle(_article)}><h4>{artTitle}</h4></td>
+                    <td><h6>{preview}</h6></td>
+                  </tr>
+                </div>
+              )
+            })}
+          </tbody>
+        </Table>
+      </Col>
+    </Row>
 
   </>
 }
