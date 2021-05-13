@@ -17,7 +17,7 @@ function getUser(userID:string){
   return user;
 }
          
-export default function PayButton(_article:IArticle) {
+export default function FavButton(_article:IArticle) {
 
   //when clicked gives an article that it was clicked on,
   // needs to add article to user_has_article table
