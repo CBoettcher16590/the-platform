@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';      
+import { Badge, Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
@@ -31,31 +32,57 @@ const history = useHistory();
         if(index<=0){
           let image = _art.image_link;
           let title = _art.title;
+          let subscribe = _art.price;
           let preview = _art.preview;
           let createdOn = _art.created_on.slice(0,10);
-          let body = _art.contents.slice(0,150) + "...";
-          let authorName = _art.user_user_id
+
+
+          // DISPLAY FOR PREMIUM ARTICLE
+
+          if(subscribe === "Subscribe"){
           return (
             <div id="featureArticleBody" key={_art.article_id}>
             <img id="featureImg"src={image} />
             <div>
       
-            <h2 onClick={GoToArticle(_art)}>{title}</h2>
-      
-            <p>{preview}</p>
-      
-            <p className="date">Date Posted: {createdOn}</p>
-            <p>{body}</p>
+            <h2 className="clickableTitle"  onClick={GoToArticle(_art)}>{title}</h2>
+            <Row>
+              <Col xs={6}>
+                <p className="date">Date Posted: {createdOn}</p>
+              </Col>
+              <Col xs={6}>
+              <Badge pill variant="success">Premium</Badge>
+              </Col>
+            </Row>
 
-            <FavButton{..._art}/>
-        
+          <p>{preview}</p>
+      
+            </div>
+           
+          </div>
+          )
+          // DISPLAY FOR FREE ARTICLE
+        } else {
+          return (
+            <div id="featureArticleBody" key={_art.article_id}>
+            <img id="featureImg"src={image} />
+            <div>
+      
+            <h2 className="clickableTitle"  onClick={GoToArticle(_art)}>{title}</h2>
+            <Row>
+              <Col xs={12}>
+                <p className="date">Date Posted: {createdOn}</p>
+              </Col>
+            </Row>
 
+          <p>{preview}</p>
+      
             </div>
            
           </div>
           )
         }
-       
+      }
       })}
       
     </section> 

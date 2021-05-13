@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';      
+import { Row, Col, Badge } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
@@ -30,21 +31,51 @@ const history = useHistory();
         if(index>=1){
           let image = _art.image_link;
           let title = _art.title;
-          let preview = _art.contents.slice(0,100) + "...";
+          let preview = _art.preview.slice(0,90) + "...";
           let createdOn = _art.created_on.slice(0,10);
+          let subscribe = _art.price;
+
+          if(subscribe === "Subscribe"){
+          // DISPLAY FOR PREMIUM ARTICLE
+          return (
+              <div key={_art.article_id} className="homeCard">
+            
+              <div className="article">
+        
+                <h2 className="clickableTitle" onClick={GoToArticle(_art)}>{title}</h2>
+        
+                <p id="CenterArtPreview">{preview}</p>
+        
+                <Row>
+                  <Col xs={6}>
+                    <p className="date">Date Posted: {createdOn}</p>
+                  </Col>
+                  <Col xs={6}>
+                    <Badge pill variant="success">Premium</Badge>
+                  </Col>
+                </Row>
+                    
+              </div>
+              <div>
+                 <img className="cardImage" src={image} />
+              </div>
+  
+            </div>
+            )
+                      // DISPLAY FOR FREE ARTICLE
+
+          } else {
           return (
             <div key={_art.article_id} className="homeCard">
           
             <div className="article">
       
-              <h2 onClick={GoToArticle(_art)}>{title}</h2>
+              <h2 className="clickableTitle" onClick={GoToArticle(_art)}>{title}</h2>
       
               <p id="CenterArtPreview">{preview}</p>
       
               <p className="date">Date Posted: {createdOn}</p>
-      
-              <FavButton{..._art}/>
-            
+                  
             </div>
             <div>
                <img className="cardImage" src={image} />
@@ -54,6 +85,7 @@ const history = useHistory();
 
           
           )
+          }
         }
        
       })}

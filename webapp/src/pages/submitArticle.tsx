@@ -6,7 +6,6 @@ import { useHistory } from 'react-router';
 import ArticleSubmission from '../data/submitArticle';
 
 import { Editor } from "@tinymce/tinymce-react";
-// import  Editor  from "react-editor-js"
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -72,13 +71,13 @@ export default function SubmitArticle(props: {}) {
 
     <h1 id="newArticleHeader">Create a New Article</h1>
 
-    <div className="newArticleBody">
+    <div className="newArticleBody" >
 
-      <Form className="newArticleForm">
+      <Form >
 
         <Form.Row>
           <Form.Group as={Col}>
-            <Form.Label >Title</Form.Label>
+            <Form.Label>Title</Form.Label>
             <Form.Control
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -86,20 +85,21 @@ export default function SubmitArticle(props: {}) {
               placeholder="Enter an Article Title" />
           </Form.Group>
 
-        </Form.Row>
-
+        </Form.Row>  
         <Form.Group>
-          <Form.Label >Preview</Form.Label>
+          <Form.Label>Preview</Form.Label>
           <Form.Control
             value={preview}
             onChange={(e) => setPreview(e.target.value)}
-            placeholder="Write a short preview that summarizes your article" />
+            as="textarea"
+            rows={2}
+            placeholder="Write a hook to grab the readers attention" />
         </Form.Group>
 
         <Form.Row>
           <Col sm={9}>
             <Form.Group id="imageInput">
-              <Form.Label >Image URL</Form.Label>
+              <Form.Label>Image URL</Form.Label>
               <Form.Control
                 value={imageLink}
                 onChange={(e) => setImageLink(e.target.value)}
@@ -110,7 +110,7 @@ export default function SubmitArticle(props: {}) {
 
           <Col sm={3}>
             <Form.Group>
-              <Form.Label >Article Status</Form.Label>
+              <Form.Label>Article Status</Form.Label>
               <Form.Control as="select" value={price} onChange={(e) => setPrice(e.target.value)}>
                 <option>Free</option>
                 <option>Subscribe</option>
@@ -121,20 +121,18 @@ export default function SubmitArticle(props: {}) {
 
         {/* <Editor apiKey='your-api-key' init={{  your other settings }} /> */}
         <Form.Group>
-          <Form.Label >Whats on your Mind?</Form.Label>
-          {/* <Editor
+          <Form.Label>Whats on your Mind?</Form.Label>
+          <Editor
             onInit={(evt, editor) => editorRef.current = editor}
             apiKey={tinyAxe}
             plugins="wordcount"
             init={{
-              height: 500,
+              height: 450,
               menubar: false,
               plugins: [
                 'advlist autolink lists link image charmap print preview anchor',
                 'searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount',
-                // really cool, but shrinks it, worse aesthetically "autoresize"
-
+                'insertdatetime media table paste code help wordcount'
               ],
               toolbar: 'undo redo | formatselect | ' +
                 'bold italic backcolor | alignleft aligncenter ' +
@@ -143,6 +141,7 @@ export default function SubmitArticle(props: {}) {
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
           />
+<<<<<<< HEAD
           {/* <Form.Control
             value={contents}
             onChange={(e) => setContents(e.target.value)}
@@ -151,17 +150,13 @@ export default function SubmitArticle(props: {}) {
             rows={3} /> */}
         </Form.Group>
         <br></br>
+=======
+>>>>>>> e6b5589e9afa5851c2b34a54f2d43603c26749de
         
+        </Form.Group>
 
         <Button variant="success" onClick={handelSubmit}>Submit</Button>
-        <br></br>
-
       </Form>
-=
     </div>
   </>
 }
-function _evt(_evt: any): any {
-  throw new Error('Function not implemented.');
-}
-

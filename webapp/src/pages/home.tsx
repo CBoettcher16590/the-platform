@@ -104,23 +104,22 @@ function HomePage(props: {}) {
 
 
                         </Nav>
+                        </Navbar>
 
-        </Navbar>
-        <section>
-                <div className= "welcomeText">
-                        <h1>Welcome to the platfrom</h1>
-                </div>
-        </section>
 
-        <section>
-        <Row id="homeArticles">
+        <section className="homeArticles">
+        
+        <Row>
         <Col id="homeArtLeft" sm={5} lg={4}>
+                <h2></h2>
                 <HomepageFeatureDisplay/>
         </Col>
         <Col id="homeArtCenter" sm={7} lg={5}>
+                 <h2></h2>
                 <HomepageCenterDisplay/>
         </Col>
         <Col id="homeArtRight" sm={12} lg={3}>
+                <h2>Discover Articles</h2>
                 <HomepageNonFeatureDisplay/>
         </Col>
         </Row>                   

@@ -55,7 +55,6 @@ return(
 
                 <p>{preview}</p>
 
-                <p>Posted On: {createdOn}</p>
         
             </div>
             </div>

@@ -10,9 +10,11 @@ import { useHistory, useParams } from 'react-router';
 import api from '../../api'
 import { ISeries } from '../../../../services/crud-server/src/models/series';
 import FavButton from '../FavButton';
+import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
 
  
+
 
     const IndvArticle = () => {
         const params = useParams<{id:string}>();
@@ -23,6 +25,7 @@ import parse from 'html-react-parser';
 
 
         const [article, setArticle] = useState<IArticle>();
+        const [articleContents, setArticleContents] = useState<string>("");
         const [articleAuthor, setArticleAuthor] = useState<IUser>();
         const [series, setSeries] = useState<ISeries>();
 
@@ -61,6 +64,7 @@ import parse from 'html-react-parser';
             api.articles.getIndv(numId).then((responce) => {
                 const article:IArticle = responce.data;
                 setArticle(article);
+                setArticleContents(responce.data.contents);
 
             api.users.getById(article.user_user_id).then((responce) => {
                 setArticleAuthor(responce.data[0])
@@ -133,7 +137,9 @@ import parse from 'html-react-parser';
 
                 <Image className="mx-auto articleImage" src={article?.image_link} />
 
-                <p> {article?.contents}</p>
+                {/* danerouslySetHTML is prone to xss;  DOMPurify mitigates this */}
+                <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(articleContents)}}></div>
+
              </section>
 
             </MainLayout>
@@ -193,7 +199,7 @@ import parse from 'html-react-parser';
                 
                         <Image className="mx-auto articleImage" src={article?.image_link} />
         
-                        <p> {parse(article!.contents)}</p>
+                        <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(articleContents)}}></div>
 
                      </section>
         
