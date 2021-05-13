@@ -155,8 +155,7 @@ import parse from 'html-react-parser';
                     <section className="indvArticle">
                     <Row>
                         <Col>
-                            <h1>{article?.title}</h1>
-                            <h3>{article?.preview}</h3>
+                            <div className="articleIndividualTitle">{article?.title}</div>
                         </Col> 
                     </Row>
                     <Row>
@@ -183,6 +182,11 @@ import parse from 'html-react-parser';
                     
 
                     <hr/> 
+
+                    <hr/> 
+                    <hr/> 
+                    <hr/> 
+
                     <FavButton{...article!}/>       
                     <Row className="d-flex flex-row-reverse" id="authorInfo">
                         <Col xs={3} lg={2}>    
@@ -195,9 +199,19 @@ import parse from 'html-react-parser';
                             <Image id="authorAvatar" src={articleAuthor?.user_image_link} roundedCircle  />
                         </Col>
                     </Row>
+
+
+
+
+
+
                     {/* ADD SOCIALS INTO USER DATABASE */}
-                
+                    <div className="articleIndidivualHook">{article?.preview}</div>
+
+
                         <Image className="mx-auto articleImage" src={article?.image_link} />
+
+                        
         
                         <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(articleContents)}}></div>
 

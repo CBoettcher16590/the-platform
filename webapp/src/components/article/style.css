@@ -1,6 +1,10 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@300&display=swap');
+
+
+/* body{
     background-image: radial-gradient(circle, rgba(223,241,244,1) 41%, rgba(151,185,224,1) 100%);
-}
+} */
+
 .homeCard{
     width: auto;
     height: auto;
@@ -300,4 +304,40 @@ padding: 5px;
     font-weight: 600;
 
 
+}
+
+
+
+
+
+
+/* UNSURE WHAT IS HAPPENING ABOVE WORK ON INDIVIDUAL ARTICLE TEST CSS BELOW*/
+
+/* #1 Spectral Application
+   #2 Squeeze center line.
+   #3 Standardize the images? ... which should be doable.
+    -wraps and stuff :|
+   #4PADDING across the board
+   #5 Pulling it leftward.
+   #6 compiling the triangle of functionality. (possibly seperate out the author)
+
+
+*/
+
+.content{
+    font-family: 'Spectral', serif;
+    max-width: 800px;
+    padding-bottom: 200px;
+}
+
+.articleIndividualTitle{
+    font-size: 80px;
+    color: red;
+}
+
+.articleIndidivualHook{
+    font-size: 20px;
+    color: red;
+    line-height: 20px;
+    letter-spacing: 1px;
 }
