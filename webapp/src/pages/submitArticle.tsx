@@ -141,17 +141,6 @@ export default function SubmitArticle(props: {}) {
               content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
             }}
           />
-<<<<<<< HEAD
-          {/* <Form.Control
-            value={contents}
-            onChange={(e) => setContents(e.target.value)}
-            as="textarea"
-            id="newArticleTextArea"
-            rows={3} /> */}
-        </Form.Group>
-        <br></br>
-=======
->>>>>>> e6b5589e9afa5851c2b34a54f2d43603c26749de
         
         </Form.Group>
 
