@@ -291,12 +291,6 @@ padding: 5px;
     letter-spacing: 1px;
     line-height: 1.2;
     text-anchor: initial;
-    
-    /* background-position: absolute;
-    position: relative;
-    color: red; */
-    /* font-stretch: semi-condensed; */
-
 
 }
 
@@ -312,18 +306,6 @@ padding: 5px;
 
 
 
-/* UNSURE WHAT IS HAPPENING ABOVE WORK ON INDIVIDUAL ARTICLE TEST CSS BELOW*/
-
-/* #1 Spectral Application
-   #2 Squeeze center line.
-   #3 Standardize the images? ... which should be doable.
-    -wraps and stuff :|
-   #4PADDING across the board
-   #5 Pulling it leftward.
-   #6 compiling the triangle of functionality. (possibly seperate out the author)
-
-
-*/
 
 .content{
     font-family: 'Spectral', serif;
@@ -336,8 +318,6 @@ padding: 5px;
 
 }
 
-/* need max width for things that are imgs
-Scale down. */
 
 .content p{
     margin-bottom: 43px
