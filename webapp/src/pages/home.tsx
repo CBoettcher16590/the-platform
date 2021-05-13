@@ -84,27 +84,34 @@ function HomePage(props: {}) {
                
                     },[]);
 
-
         return <>
                 <Navbar bg="dark" variant="dark">
                         <Navbar.Brand href="/">The Platform</Navbar.Brand>
                         <Nav className="navUser"> Logged In As: {loggedInUser?.first_name} </Nav>
                         <Nav className="mr-auto"></Nav>
                         <Nav>
-                                <Nav.Link href={navProfileLink}>My Account</Nav.Link>
 
-                                <Nav.Link className= "animated-button1" href='/subscription'>Subscription</Nav.Link>
+                                <Nav.Link className = "glow-on-hover"href={navProfileLink}>My Account</Nav.Link>
+
+                                <Nav.Link className= "sunbtn" href='/subscription'> Subscription
+                                         <span></span>
+                                         <span></span>
+                                         <span></span>
+                                         <span></span>
+
+                                         </Nav.Link>
+                                         <Button id="logoutButton" onClick={onClickLogout}>Logout</Button>
 
 
                         </Nav>
-                        <Button id="logoutButton" onClick={onClickLogout}>Logout</Button>
-        </Navbar>
 
+        </Navbar>
         <section>
-                <div className="welcomeText">
-                        <h1>Welcome to "The Platform"</h1>
-                </div>                        
+                <div className= "welcomeText">
+                        <h1>Welcome to the platfrom</h1>
+                </div>
         </section>
+
         <section>
         <Row id="homeArticles">
         <Col id="homeArtLeft" sm={5} lg={4}>

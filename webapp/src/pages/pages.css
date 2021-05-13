@@ -3,44 +3,155 @@ body{
 .navUser{
     color:white;
 }
-#logoutButton{
-    margin-left:15px;
-    border: 1px solid rgb(26, 23, 23);
+
+ /* My account btn style starts here */ /* My account btn style starts here */ /* My account btn style starts here */ /* My account btn style starts here */
+
+ .glow-on-hover {
+    width: 150px;
+    height: 40px;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: absolute;
+    z-index: 0;
+    border-radius: 10px;
+    text-align: center;
+    top:11px;
+    right: 20% ;
 }
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #343a40!important;;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+
+
+ /* testing another style  */  /* testing another style  */  /* testing another style  */  /* testing another style  */  /* testing another style  */  /* testing another style  */ 
+
+.myaccbtn{
+    background:transparent;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:20px;
+    padding:2em 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  .myaccbtn:hover{
+    background:transparent;
+    color:#fff;
+  }
+  .myaccbtn:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:1px;
+    width:0;
+    background: #fff;
+    transition:400ms ease all;
+  }
+  .myaccbtn:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+  .myaccbtn:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+
+
+ /*My account btn style ends here */ /*My account btn style ends here */ /*My account btn style ends here */ /*My account btn style ends here */
+
+
+ 
+
 
 /* Log Out start here */
 
 
 
 
-/* #logoutButton {
+#logoutButton {
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     cursor: pointer;
-    font-size: 15px;
-    letter-spacing: 3px;
+    font-size: 20px;
+    letter-spacing: 1px;
     position: relative;
     background-color: transparent;
     border: none;
-    color: #fff;
-    padding: 10px;
-    width: 100px;
+    color: rgba(255,255,255,.5);
+    padding: 5px;
+    width: 80px;
+    height: 33px;
     text-align: center;
-    transition-duration: 0.4s;
+    transition-duration: 0.2s;
     overflow: hidden;
-    box-shadow: 0 5px 15px #193047;
+    /* box-shadow: 0 5px 15px #193047; */
     border-radius: 4px;
+    font-weight:100;
+    margin-bottom: -20%;
+    margin-top: -22%;
   }
   
   #logoutButton:hover {
     background: #fff;
-    box-shadow: 0px 2px 10px 5px #1abc9c;
+    /* box-shadow: 0px 2px 10px 5px #1abc9c; */
     color: #000;
   }
   
   #logoutButton:after {
     content: "";
-    background: #1abc9c;
+    background: transparent;
     display: block;
     position: absolute;
     padding-top: 300%;
@@ -58,14 +169,14 @@ body{
     transition: 0s
   }
   
-  #logoutButton:focus { outline:0; } */
+  #logoutButton:focus { outline:0; }
 
 
 
 
 
 
-/* ends here */
+/* Logout btn styling ends here */ /* Logout btn styling ends here */  /* Logout btn styling ends here */  /* Logout btn styling ends here */ 
 
 
 
@@ -76,10 +187,127 @@ body{
 /* Sub. button  */
 
 
+.sunbtn{
+    position: relative;
+    left:27%;
+    width: fit-content;
+    height:auto;
+}
+.sunbtn{
+    width:130px;
+    height:50px;
+    background: transparent;
+    border-style: none;
+    color:#fff;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-family: 'Lato';
+    font-weight: 100;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    padding: 5px;
+    overflow: hidden;
+    margin-right: 160px;
+    text-align: center;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.2);
+    top:7%;
+    left: 83%;
+}
+.sunbtn span{
+    position: absolute;
+    display: block;
+}
+.sunbtn span:nth-child(1){
+    height: 3px;
+    width:200px;
+    top:0px;
+    left:-200px;
+    background: linear-gradient(to right, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span1 2s linear infinite;
+    animation-delay: 1s;
+}
 
+@keyframes span1{
+    0%{
+        left:-200px
+    }
+    100%{
+        left:200px;
+    }
+}
+.sunbtn span:nth-child(2){
+    height: 70px;
+    width: 3px;
+    top:-70px;
+    right:0px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), #f6e58d);
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    animation: span2 2s linear infinite;
+    animation-delay: 2s;
+}
+@keyframes span2{
+    0%{
+        top:-70px;
+    }
+    100%{
+        top:70px;
+    }
+}
+.sunbtn span:nth-child(3){
+    height:3px;
+    width:200px;
+    right:-200px;
+    bottom: 0px;
+    background: linear-gradient(to left, rgba(0,0,0,0), #f6e58d);
+    border-top-left-radius: 1px;
+    border-bottom-left-radius: 1px;
+    animation: span3 2s linear infinite;
+    animation-delay: 3s;
+}
+@keyframes span3{
+    0%{
+        right:-100px;
+    }
+    100%{
+        right: 200px;
+    }
+}
 
+.sunbtn span:nth-child(4){
+    height:70px;
+    width:3px;
+    bottom:-70px;
+    left:0px;
+    background: linear-gradient(to top, rgba(0,0,0,0), #f6e58d);
+    border-top-right-radius: 1px;
+    border-top-left-radius: 1px;
+    animation: span4 2s linear infinite;
+    animation-delay: 4s;
+}
+@keyframes span4{
+    0%{
+        bottom: -70px;
+    }
+    100%{
+        bottom:70px;
+    }
+}
 
-/* end here */
+.sunbtn:hover{
+    transition: all .5s;
+    transform: rotate(-2deg) scale(1.1);
+    box-shadow: 0px 3px 5px rgba(0,0,0,.4);
+} 
+ .sunbtn:hover span{
+    animation-play-state: paused;
+}
+
+/* sub. btn styling ends here */ /* sub. btn styling ends here */  /* sub. btn styling ends here */  /* sub. btn styling ends here */ 
+
 
 
 

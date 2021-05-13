@@ -109,6 +109,7 @@
     "chai": "^4.3.0",
     "enzyme-to-json": "^3.6.2",
     "gh-pages": "^2.2.0",
+    "html-react-parser": "^1.2.6",
     "mdbreact": "^5.0.1",
     "mocha": "^8.3.0",
     "node-sass": "^4.14.1",

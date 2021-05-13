@@ -11,12 +11,12 @@ export const SubscriptionModel = {
     
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
-            var sql = `UPDATE user SET subscription = 1, sub_end_date = ADDDATE(curdate(), INTERVAL 30 DAY) WHERE user_id = "${userID}"`;
+            var sql = `UPDATE user SET subscription = 1, sub_end_date = ADDDATE(curdate(), INTERVAL 30 DAY) WHERE user_id = ?`;
 
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
     
-                connection.query(sql, function (error:any, results:IUser[]) {
+                connection.query(sql,[userID], function (error:any, results:IUser[]) {
                     connection.release();
     
                     if(error){
@@ -35,12 +35,12 @@ export const SubscriptionModel = {
     
             const dbConnection = new DatabaseCONNECTION();
             const pool = dbConnection.connection;
-            var sql = `UPDATE user SET subscription = 1, sub_end_date = ADDDATE(curdate(), INTERVAL 365 DAY) WHERE user_id = "${userID}"`;
+            var sql = `UPDATE user SET subscription = 1, sub_end_date = ADDDATE(curdate(), INTERVAL 365 DAY) WHERE user_id = ?`;
     
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
     
-                connection.query(sql, function (error:any, results:IUser[]) {
+                connection.query(sql,[userID], function (error:any, results:IUser[]) {
                     connection.release();
     
                     if(error){
@@ -64,8 +64,8 @@ export const SubscriptionModel = {
                 if(err) throw err; // not connected
 
                 //grabbing the whole user. For the simplicity of IUser integration.
-                var sql = `SELECT  * FROM theplatformV2.user WHERE user_id = "${userID}"`;
-                connection.query(sql, function (error:any, results:IUser[]) {
+                var sql = `SELECT  * FROM theplatformV2.user WHERE user_id = ?`;
+                connection.query(sql,[userID], function (error:any, results:IUser[]) {
                     connection.release();
 
                     if(error){

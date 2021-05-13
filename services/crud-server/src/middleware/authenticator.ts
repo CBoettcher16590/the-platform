@@ -4,8 +4,6 @@ import { TokenModel } from '../models/token';
     
     const authHeader = request.headers['authorization'];
     
-    console.log("Auth Header",authHeader);
-
     if(!authHeader){
         response.status(401).send({
             message: "This is a protected resource. Please login first."
