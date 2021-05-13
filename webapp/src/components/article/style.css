@@ -88,8 +88,8 @@ font-size: smaller;}
 }
 .indvArticle{
     margin-left: auto;
-    margin-right: auto;
-    width: 70vw;
+    margin-right: 26%;
+    width: 58vw;
 }
 .indvArticle h1{
     text-align: center;
@@ -114,6 +114,7 @@ padding-bottom: .5em;
 
 .InvArticleLikes{
 text-align: center;
+
 }
 .InvArticleLikes h5{
     padding-left: 10px;
@@ -326,18 +327,81 @@ padding: 5px;
 
 .content{
     font-family: 'Spectral', serif;
-    max-width: 800px;
+    margin-left: 5%;
+    width: 90%;
     padding-bottom: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+/* need max width for things that are imgs
+Scale down. */
+
+.content p{
+    margin-bottom: 43px
+}
+
+.content img{
+    max-width: 800px;
+    margin-bottom: 30px;
+    object-fit: cover;
+    
 }
 
 .articleIndividualTitle{
-    font-size: 80px;
-    color: red;
+
+    width: 55vw;
+    font-weight: 550;
+    font-size: 50px;
+    color: rgb(0, 0, 0);
+    padding-top:45px;
+    line-height: 57px;
+    letter-spacing: 1.5px;
+    padding-bottom: 15px;
+
 }
 
 .articleIndidivualHook{
+    font-style: italic;
+    margin-left: 5%;
+    width: 90%;
     font-size: 20px;
-    color: red;
-    line-height: 20px;
+    line-height: 21px;
     letter-spacing: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    opacity: 60%;
+}
+
+.favButtonRelocationFund{
+    display: flex;
+    justify-content: center;
+    /* margin-left: 77.5%; */
+    margin-left: 45vw;
+    min-height: 38px;
+    width: 180px;
+    padding-top: 10px;
+}
+
+.userProfileRow{
+    padding-top: 12px;
+}
+
+.seriesOnclickGo:hover{
+    cursor: pointer;
+
+}
+
+.InvArticleLikesNoneSeriesVariant{
+    text-align: center;
+    padding-bottom: 7px;
+    padding-left: 8px;
+
+}
+
+.authorNameSpaceIndArticleRow{
+    padding-right: 10%;
+    padding-left: 14px;
 }
