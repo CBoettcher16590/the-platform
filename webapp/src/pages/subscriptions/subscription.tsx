@@ -45,7 +45,7 @@ export default function Subscription() {
 
     <div className="alignSubContent">
       <div className="subcontent">
-        <div className="SubscribeTxt"> Support content creators!</div>
+        <div className="SubscribeTxt"> Support Content Creators!</div>
         <br />
         <div className="subscribeButton">
           <div>
@@ -64,10 +64,11 @@ export default function Subscription() {
                 <Card border="light" style={{ width: '16rem' }}>
                   <Card.Img className="subCardImg" variant="top" src="https://images.unsplash.com/photo-1618422960849-739830070f39?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=675&q=80" />
                   <Card.Body className="subCardText">
-                    <Card.Title>Want to support your favourite creators? If so <Button variant="info" onClick={routeToSub}> Subscribe</Button> </Card.Title>
+                    <Card.Title>Want to support your favourite creators? If so  </Card.Title>
                     <Card.Text>
                     </Card.Text>
-                    {/* <Button variant="info" onClick={routeToSub}> Subscribe</  Button> */}
+                    Better filler text
+
                   </Card.Body>
                 </Card>
               </Col>
@@ -77,8 +78,9 @@ export default function Subscription() {
                   <Card.Body className="subCardText">
                     <Card.Title>Want exclusive content?</Card.Title>
                     <Card.Text>
-                       Tired of being locked out? <Button variant="info" onClick={routeToSub}>Subscribe</Button>
- 
+                       Tired of being locked out?
+                       Better filler text
+
                   </Card.Text>
                   </Card.Body>
                 </Card>
@@ -89,7 +91,7 @@ export default function Subscription() {
                   <Card.Body className="subCardText">
                     <Card.Title> Tired of waiting? </Card.Title>
                     <Card.Text>
-                      Why don't you <Button variant="info" onClick={routeToSub}>Subscribe </Button>
+                      Better filler text
                   </Card.Text>
                   </Card.Body>
                 </Card>
