@@ -13,6 +13,7 @@ export function patch(app:any){
         const headerCode = request.headers.code;
         const userID = request.headers.userid;
 
+        //Check the headercode to see if we are dealing with a monthly or annual subscription
     switch(headerCode){
         
         case PatchType.Monthly:{

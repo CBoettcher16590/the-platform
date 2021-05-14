@@ -8,7 +8,6 @@ enum FeatureTypes {
 }
     
 export interface ISubmittedArticle{
-    
     seriesId: number;
     userId:number;
     title:string;
@@ -19,8 +18,7 @@ export interface ISubmittedArticle{
     article_status:number;
 }
 
-export interface IArticle{
-    
+export interface IArticle{ 
     article_id: number;
     series_series_id:number;
     user_user_id:number;
@@ -85,7 +83,7 @@ export const ArticleModel = {
         });       
     },
 
-    addToFavorite:  async (article:IArticle, userID:string) => { //needs to be double checked
+    addToFavorite:  async (article:IArticle, userID:string) => { 
 
         return new Promise((resolve,reject) => {
 

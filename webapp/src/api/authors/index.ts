@@ -34,8 +34,6 @@ export default {
             return responce.data;
         });
     },
-
-
     
     Patch: async(body:any) =>{
 

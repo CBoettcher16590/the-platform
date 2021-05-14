@@ -5,6 +5,7 @@ import { IUser, UserModel } from '../../../models/user';
 export function post (app:any){
     //Here We will be able to get a specific user for logging into thePlatform
     app.post("/org", async (request:any, response:any) => {
+        
         const orgEmail = request.body.email;
         const org:IUser[] = await UserModel.getByEmail(orgEmail);
         const hashedPass = PasswordModel.hash(request.body.password);

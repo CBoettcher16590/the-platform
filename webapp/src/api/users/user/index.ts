@@ -33,8 +33,3 @@ export default
         });
     }
 }
-
-
-
-//we need a sole get.
-    //we can use the getById(id) under users for this

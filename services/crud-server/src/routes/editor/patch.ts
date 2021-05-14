@@ -7,10 +7,7 @@ import {ArticleModel, IArticle } from '../../models/article';
 
 export function patch( app:any ){
 
-    //this request needs to approve an article
-
     app.patch("/article", async ( request:any, response:any ) => { 
-
         response.status(200).send();
     });
 

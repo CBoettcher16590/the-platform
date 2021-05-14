@@ -29,8 +29,11 @@ export default function LoginForm(){
         setLoading(true);
         api.users.get().then((responce) => {
             const foundUser:IUser[] = responce.data.filter((_user:IUser) => _user.email === `${email}`);
-            
-            if(foundUser[0].disable_login === 0){
+            // make sure there is a found user by checing for first name
+            // if it returns undefined then we dont have a user
+            if(!foundUser){
+                alert(`No User found for email: ${email}`); 
+            } else  if(foundUser[0].disable_login === 0){
                 api.tokens.post({_email:email , _password:password});
                 api.user.post({email, password});
                 setTimeout(function(){

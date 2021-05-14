@@ -90,8 +90,8 @@ export  const SeriesModel = {
             });
         });
     });          
-
 }, 
+
 addArticle: async (seriesID:string, articleID:string):Promise<ISeries[]>  => {
 
     //CHECK TO SEE IF ARTICLE ALREADY HAS SERIES
@@ -111,8 +111,10 @@ addArticle: async (seriesID:string, articleID:string):Promise<ISeries[]>  => {
         if(!articleHasSeries){
             pool.getConnection(function(err:any, connection:any){
                 if(err) throw err; // not connected
+
                 //FIRST SQL STATEMENT ADDS TO THE series_has_article Table to establish a relationship
                 const sql1 = `INSERT INTO series_has_article VALUES(?,?);`;
+                
                 //SECOND SQL STATEMENT updates the article data to include new series
                 const sql2 = `UPDATE article SET series_series_id = ? WHERE article_id = ?;`
                 connection.query(sql1, [articleID, seriesID], function (error:any, results:any) {

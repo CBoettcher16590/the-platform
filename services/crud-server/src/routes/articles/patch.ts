@@ -18,31 +18,33 @@ export function patch(app:any){
 
         //Then Depending on the PatchCode we select the task to be completed
         switch(patchCode){
+
+            //Toggle Featured Article
             case ArticleCode.Featured: {
-
                 ArticleModel.toggleFeatured(foundArticle);
-
                 break;
             }
+
+            //Article Rating 
             case ArticleCode.Rating: {
-
                 ArticleModel.UpdateArticleRating(request.body);
-
                 break;
             }
-            case ArticleCode.Approval: {
-                console.log("switch, Approval")
 
+            //Article Approve, or Reject
+            case ArticleCode.Approval: {
+                //Approve article
                 if(request.body.article_status === 3){
                     ArticleModel.approveArticle(foundArticle);
                 }
-
+                //Reject article
                 if(request.body.article_status === 4){
                     ArticleModel.rejectArticle(foundArticle);
                 }
 
                 break;
             }
+
             default: 
                 console.error("No Proper Article Patch Code");
                 break;

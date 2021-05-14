@@ -13,16 +13,17 @@ app.post('/tokens', async (request:any, response:any) => {
 
     const payload:ITokenPostRequest = request.body;
 
+    //Incomming email and password
     const email = payload._email;
-    //Here we hash the password coming in to see if it matches the hased password in the system
     const password =  PasswordModel.hash(payload._password);
 
+    //found user based on the email coming in
     const foundUser:IUser[] = await UserModel.getByEmail(email);
 
-    //foundUser[0] IS a row data packet, I used JSON parse and stringify to make into a more usable object
+    //foundUser[0] IS a row data packet, I used JSON parse and stringify to make into a usable object
     const foundUserString:IUser = JSON.parse(JSON.stringify(foundUser[0]));
    
-
+// change to    if(!foundUserString.first_name){ ???
     if(!foundUser){
         response.status(404).send({ //current none functional because works (skip)
             message: `Cannot find user with email: ${email}`
