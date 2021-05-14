@@ -1,3 +1,4 @@
+/* 
 .authorInfo{
     align-content: center;
 }
@@ -76,7 +77,7 @@
     height: 100%;
 }
 /* Button */
-#dropdownSeries{
+/* #dropdownSeries{
     color:black;
     background: rgb(245, 212, 121);
 }
@@ -102,26 +103,28 @@
     text-align: center;
 }
 .articleHeaders{
-text-align: center;
-}
+text-align: center; 
+} */
 
 /* SCROLLBAR STYLE */
 /* width */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 10px;
   }
   
   /* Track */
-  ::-webkit-scrollbar-track {
+  /* ::-webkit-scrollbar-track {
     background: #cce4ee;
   }
-  
+   */
   /* Handle */
-  ::-webkit-scrollbar-thumb {
+  /* ::-webkit-scrollbar-thumb {
     background: rgb(87, 87, 87);
-  }
+  } */
   
   /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
+ /* ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+  
+*/
