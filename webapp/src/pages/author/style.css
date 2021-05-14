@@ -10,7 +10,7 @@
     background-color: rgb(227, 245, 252) ;
     background-size: cover;
 
-        
+
 }
 
 .userBox{
@@ -46,15 +46,6 @@
 
 }
 
-
-
-/* .authorInfoCard:hover{
-
-
-
-} */
-
-
 .authorInfoCard img{
     margin: 1.5em auto 0 auto;
     width: 225px;
@@ -86,9 +77,6 @@
     padding-left: 30px;
 
 }
-
-
-
 
 #updateHeader{
     margin-top: 30px;
@@ -161,14 +149,10 @@
 }
 
 .setArticleInfoSize{
-    /* padding-top: 0px; */
     padding-bottom: 20%; 
-    /* padding-left: 50px; */
+    padding-left: 50px;
     max-width: 70vw;
-    
-
-    /* min-height: 200px;
-    max-height: 200px; */
+    height: 800px;
 }
 
 
