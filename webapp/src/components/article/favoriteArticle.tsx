@@ -35,14 +35,14 @@ const GoToArticle = (article:IArticle) => (event:any) => {
 return(
     <>
         <Card className="text-center purchasedArticles">
-        <Card.Header><h3>Favourite Articles</h3></Card.Header>
+        <Card.Header className="favArtTitle"><h3>Favorite Articles</h3></Card.Header>
         <Card.Body>
 
         <section className="favArticleRow">
         {favoriteArticles?.map(function(_art:IArticle){
             let image = _art.image_link;
             let title = _art.title;
-            let preview = _art.preview;
+            let preview = _art.preview; 
             let createdOn = _art.created_on.slice(0,10);
             return (
             <div key={_art.article_id} className="favCard">
@@ -51,10 +51,11 @@ return(
 
             <div className="favArticle">
 
-            <h2 onClick={GoToArticle(_art)}>{title}</h2>
+            <p className="favArticleTitle" onClick={GoToArticle(_art)}>{title}</p>
 
-                <p>{preview}</p>
+                <p className="favArticlePreview">{preview}</p>
 
+                <p className="favArticleCreatedOn">Posted On: {createdOn}</p>
         
             </div>
             </div>

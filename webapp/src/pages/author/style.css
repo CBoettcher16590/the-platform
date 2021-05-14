@@ -1,27 +1,94 @@
+.userProf{
+    /* background-color: rgb(57, 231, 86); */    
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: rgb(227, 245, 252) ;
+    background-size: cover;
+
+        
+}
+
+.userBox{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 40px;
+}
+
 .authorInfo{
-    align-content: center;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .authorInfoCard{
-    width: 30em;
-    margin-right: auto;
-    margin-left: auto;
-    box-shadow: white 0px 0px 10px;
+    max-width: 360px;
+    min-width: 360px;
+    max-height: 600px;
+    background-color: #FFF ;
+    
+    margin-right: 0;
+    margin-left: 0; 
+    box-shadow: #f7f7f7 1px 1px 10px;
+    /* margin-bottom: 50px; */
 } 
+
+.authorProfileHead{
+    display: flex;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 630;
+
+}
+
+
+
+/* .authorInfoCard:hover{
+
+
+
+} */
+
+
 .authorInfoCard img{
-    margin: 1em auto 0 auto;
-    width: 20em;
-    height: 20em;
+    margin: 1.5em auto 0 auto;
+    width: 225px;
+    height: 225px;
     object-fit: cover;
     border-radius: 10px;
 }
 
+.authorCardImg{
+    max-height:290px;
+    max-width:300px;
+    object-fit: cover;
+}
 
-.authorCardBG{
-    padding: 50px 0 20px 0  ;
-    background-image: linear-gradient(to top right, #47697E,#8fbdd1);
+.editProfTxt{
+
+    padding-left: 105px;
+}
+
+.profBioTxt{
+    font-size: 18px;
+    padding-left: 12px;
+    max-width: 300px;
 
 }
+.expSubText{
+    color:gold;
+    text-shadow: 20;
+    padding-left: 30px;
+
+}
+
+
+
 
 #updateHeader{
     margin-top: 30px;
@@ -29,10 +96,6 @@
     display:flex;
     justify-content: center;
     font-size: 40px;
-}
-.AuthorHeader{
-    display: flex;
-
 }
 .UpdateForm{
     margin-top: 50px;
@@ -72,7 +135,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: url('https://images.unsplash.com/photo-1580914272598-9c5b88d24db2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80') center center;
+    background: #f7f7f7;
+    /* background: url('https://images.unsplash.com/photo-1580914272598-9c5b88d24db2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80') center center; */
     opacity: .6;
     width: 100%;
     height: 100%;
@@ -85,27 +149,31 @@
 #myArticlesTableH1{
     text-align: center;
 }
+
+/* // !!!!!!!!!!!!!!!!!!!! */
 #articleInfo{
     font-size: 18px;
-    font-weight: 500;
-    border: 1px solid black;
-    margin: 5em;
-    height: 75vh;
+    font-weight: 400;
+    /* border: 1.5px solid black; */
+    height: 65.5vh;
     overflow-y:scroll;
-    opacity: .93;
+    opacity: .95;
 
 }
-.articleCol h2{
-    padding: 30px 0 0 0;
-    text-align: center;
+
+.setArticleInfoSize{
+    /* padding-top: 0px; */
+    padding-bottom: 20%; 
+    /* padding-left: 50px; */
+    max-width: 70vw;
+    
+
+    /* min-height: 200px;
+    max-height: 200px; */
 }
 
-#myArticles h2{
-    text-align: center;
-}
-.articleHeaders{
-text-align: center;
-}
+
+
 
 /* SCROLLBAR STYLE */
 /* width */
@@ -130,9 +198,11 @@ text-align: center;
 
 
 
-.expSubText{
-    color:gold;
-    text-shadow: 20;
 
-}
+
+/* THIS WHOLE PAGE NEEDS TO BE CLEANED UP */
+
+
+
+
 

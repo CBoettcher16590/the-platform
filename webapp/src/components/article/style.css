@@ -1,6 +1,10 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@300&display=swap');
+
+
+/* body{
     background-image: radial-gradient(circle, rgba(223,241,244,1) 41%, rgba(151,185,224,1) 100%);
-}
+} */
+
 .homeCard{
     width: auto;
     height: auto;
@@ -84,8 +88,8 @@ font-size: smaller;}
 }
 .indvArticle{
     margin-left: auto;
-    margin-right: auto;
-    width: 70vw;
+    margin-right: 26%;
+    width: 58vw;
 }
 .indvArticle h1{
     text-align: center;
@@ -110,6 +114,7 @@ padding-bottom: .5em;
 
 .InvArticleLikes{
 text-align: center;
+
 }
 .InvArticleLikes h5{
     padding-left: 10px;
@@ -211,28 +216,35 @@ padding: 5px;
     flex-direction: row; */
     /* padding: 15; */
     width: 450px;
-    height: 250px;
-    flex-wrap: nowrap;
-    transition: width .6s, height .6s;
-    transition-delay: .15s;
+    height: 300px;
+     /* flex-wrap: nowrap; */
+    transition: width .6s, height .6s, filter .35s;
+    /* transition-delay: .15s;  */
+
+
 }
 
 .favCard:hover{
+    /* The size is nice. Unsure how to set the size. */
     background: rgb(167,230,255);
-    background: radial-gradient(circle, rgba(167,230,255,1) 69%, rgba(225,238,193,1) 100%);
-    opacity: 100%;
-    width: 500px;
-    height: 300px;
-    transition: width .3s, height .3s;
+    /* background: radial-gradient(circle, rgba(167,230,255,1) 69%, rgba(225,238,193,1) 100%); */
+    /* opacity: .85; */
+    filter: saturate(2.0);
+     /* width: 451px;
+    height: 302px; */
+    transition: width .3s, height .3s, opacity .5s, filter 1.2s; 
+
 }
-.favCard:hover img{
+.favCard img{
     width: 200px;
     height:200px;
-    transition: width .3s, height .3s;
 }
 
 
 .favArticleRow{
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
     width:100%;
     height:auto;
     display: flex;
@@ -259,5 +271,117 @@ padding: 5px;
 .favArticle{
     height: auto;
     width: 400px;
-    border: 2px;      
+    border: 2px;
+}
+
+.favArticleTitle{
+    font-size: 20px;
+    font-weight: 560;
+    color: rgb(118, 30, 201);
+
+}
+
+.favArticleTitle:hover{
+    cursor:pointer;
+}
+
+
+.favArticlePreview{
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    text-anchor: initial;
+
+}
+
+.favArticleCreatedOn{
+    font-size: 10px;
+    font-weight: 600;
+
+
+}
+
+
+
+
+
+
+
+.content{
+    font-family: 'Spectral', serif;
+    margin-left: 5%;
+    width: 90%;
+    padding-bottom: 200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.content p{
+    margin-bottom: 43px
+}
+
+.content img{
+    max-width: 800px;
+    margin-bottom: 30px;
+    object-fit: cover;
+    
+}
+
+.articleIndividualTitle{
+
+    width: 55vw;
+    font-weight: 550;
+    font-size: 50px;
+    color: rgb(0, 0, 0);
+    padding-top:45px;
+    line-height: 57px;
+    letter-spacing: 1.5px;
+    padding-bottom: 15px;
+
+}
+
+.articleIndidivualHook{
+    font-style: italic;
+    margin-left: 5%;
+    width: 90%;
+    font-size: 20px;
+    line-height: 21px;
+    letter-spacing: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    opacity: 60%;
+}
+
+.favButtonRelocationFund{
+    display: flex;
+    justify-content: center;
+    /* margin-left: 77.5%; */
+    margin-left: 45vw;
+    min-height: 38px;
+    width: 180px;
+    padding-top: 10px;
+}
+
+.userProfileRow{
+    padding-top: 12px;
+}
+
+.seriesOnclickGo:hover{
+    cursor: pointer;
+
+}
+
+.InvArticleLikesNoneSeriesVariant{
+    text-align: center;
+    padding-bottom: 7px;
+    padding-left: 8px;
+
+}
+
+.authorNameSpaceIndArticleRow{
+    padding-right: 10%;
+    padding-left: 14px;
 }
