@@ -41,8 +41,8 @@ const history = useHistory();
               </div>
               <div>   
               <h2 id="discoverTitle" className="clickableTitle"  onClick={GoToArticle(_art)}>{title}</h2>
-              <p>{preview}</p>
               <Badge pill variant="success">Premium</Badge>
+              <p>{preview}</p>
               </div>
             </div>
             )

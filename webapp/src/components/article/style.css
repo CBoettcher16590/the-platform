@@ -13,7 +13,7 @@
     margin-bottom: 30px;
 }
 .homeCard p:first-of-type{
- font-size: 20px;
+    font-size: 20px;
 }
 .cardImage{
     height:200px;
@@ -22,8 +22,9 @@
     display: flex;
     align-self: center;
 }
-.date{
-font-size: smaller;}
+#date{
+    font-size: 16px;
+}
 
 #featureImg{
     padding-bottom: 2em;

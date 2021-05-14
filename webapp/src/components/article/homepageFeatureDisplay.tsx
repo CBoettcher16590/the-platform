@@ -48,7 +48,7 @@ const history = useHistory();
             <h2 className="clickableTitle"  onClick={GoToArticle(_art)}>{title}</h2>
             <Row>
               <Col xs={6}>
-                <p className="date">Date Posted: {createdOn}</p>
+                <p id="date">Date Posted: {createdOn}</p>
               </Col>
               <Col xs={6}>
               <Badge pill variant="success">Premium</Badge>
@@ -71,7 +71,7 @@ const history = useHistory();
             <h2 className="clickableTitle"  onClick={GoToArticle(_art)}>{title}</h2>
             <Row>
               <Col xs={12}>
-                <p className="date">Date Posted: {createdOn}</p>
+                <p id="date">Date Posted: {createdOn}</p>
               </Col>
             </Row>
 

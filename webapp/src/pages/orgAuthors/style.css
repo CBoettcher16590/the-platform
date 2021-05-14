@@ -63,7 +63,7 @@
     margin-left: auto;
     width: 30vw;
 }
-#myArticles{
+/* #myArticles{
     position: absolute;
     z-index: -1;
     top: 0;
@@ -74,7 +74,7 @@
     opacity: .6;
     width: 100%;
     height: 100%;
-}
+} */
 /* Button */
 #dropdownSeries{
     color:black;

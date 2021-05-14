@@ -48,7 +48,7 @@ const history = useHistory();
         
                 <Row>
                   <Col xs={6}>
-                    <p className="date">Date Posted: {createdOn}</p>
+                    <p id="date">Date Posted: {createdOn}</p>
                   </Col>
                   <Col xs={6}>
                     <Badge pill variant="success">Premium</Badge>
@@ -74,7 +74,7 @@ const history = useHistory();
       
               <p id="CenterArtPreview">{preview}</p>
       
-              <p className="date">Date Posted: {createdOn}</p>
+              <p id="date">Date Posted: {createdOn}</p>
                   
             </div>
             <div>

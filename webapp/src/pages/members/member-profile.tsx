@@ -54,9 +54,7 @@ export default function Profile() {
           <Navbar.Brand href="/">The Platform</Navbar.Brand></Nav>
         <Nav>
           <Nav.Link href="/profile"> My Account</Nav.Link>
-          <Nav.Link href='/splashPage'>Splash</Nav.Link>
-
-        </Nav>
+          </Nav>
 
 
         <Nav>
@@ -95,13 +93,12 @@ export default function Profile() {
             {favoriteArticles?.map(function (_article: IArticle, index = 1) {
               let artTitle = _article.title;
               let artImage = _article.image_link
-              let preview = _article.contents.slice(0, 70) + "...";
+              let preview = _article.preview.slice(0, 70) + "...";
               return (
                 <div className="favArticleBody" key={index}>
                   <tr>
-                    <td>{index}</td>
-                    <td><img id="favArtImg" src={artImage} alt="articleImage.jpg" /></td>
-                    <td onClick={GoToArticle(_article)}><h4>{artTitle}</h4></td>
+                    <td ><img id="favArtImg" src={artImage} alt="articleImage.jpg" /></td>
+                    <td id="favArtTitle"onClick={GoToArticle(_article)}><h4>{artTitle}</h4></td>
                     <td><h6>{preview}</h6></td>
                   </tr>
                 </div>
