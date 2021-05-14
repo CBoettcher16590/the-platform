@@ -72,14 +72,19 @@ export default function OrgAd_profile() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="/">The-Platform</Nav.Link>
+            <Navbar.Brand href="/">The-Platform</Navbar.Brand>
           </Nav>
           <Nav>
-            <Navbar.Brand href="/orgAdminProfile"> My Account</Navbar.Brand>
+            <Nav.Link id="account2" href="/orgAdminProfile">
+              <div className="border1"></div>
+              <div className="border1"></div>
+                                        My Account</Nav.Link>
           </Nav>
           <Nav>
-            <Button onClick={onClickLogout}>Logout</Button>
-          </Nav>
+          <Button id="logout" onClick={onClickLogout}>
+                <div className="border1"></div>
+                <div className="border1"></div>
+                                        Logout</Button>          </Nav>
         </Navbar.Collapse>
       </Navbar>
 

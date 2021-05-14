@@ -36,15 +36,18 @@ export default function OrgautherEdit() {
         setLoading(true);
         api.users.updateUser({ imageLink, email, phoneNumber, birthdate, bio, password, userID });
         setTimeout(function () {
-            history.push('/AUprofile');
+            history.push('/orgAuthProfile');
         }, 1000);
     }
 
     return <>
         <div id="editAuthorBG">
             <Navbar bg="dark" variant="dark">
-                <Nav className="mr-auto">
-                    <Nav.Link href='/AUprofile'>My Account</Nav.Link>
+            <Nav className="mr-auto">
+                <Nav.Link id="account1" href="/orgAuthProfile">
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        My Account</Nav.Link>
                 </Nav>
             </Navbar>
 

@@ -51,20 +51,19 @@ export default function PayButton(_article: IArticle) {
 
   return (
 
-    <div className="contentBox">
-      <div id="first" className="buttonBox">
-        <Button
+    <Button
 
-          variant="primary"
-          disabled={isLoading}
-          onClick={handleClick}
-        >
-          {isLoading ? 'Loading…' : 'Add To Favourites'}
-        </Button>   
-         <div className="border"></div>
-        <div className="border"></div>
-      </div>
-      </div>
+      id="first"
+      variant="primary"
+      disabled={isLoading}
+      onClick={handleClick}
+    >
+             <div className="border"></div>
+      <div className="border"></div>
+      {isLoading ? 'Loading…' : 'Add To Favourites'}
+    </Button>
 
-);
+
+
+  );
 }

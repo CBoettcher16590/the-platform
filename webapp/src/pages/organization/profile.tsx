@@ -109,11 +109,16 @@ export default function Org_profile() {
         <Nav className="mr-auto">
           <Navbar.Brand href="/">The Platform</Navbar.Brand>          </Nav>
         <Nav>
-          <Nav.Link href="/orgProfile"> My Account</Nav.Link>
-        </Nav>
+            <Nav.Link id="account2" href="/orgProfile">
+              <div className="border1"></div>
+              <div className="border1"></div>
+                                        My Account</Nav.Link>
+          </Nav>
         <Nav>
-          <Button onClick={onClickLogout}>Logout</Button>
-        </Nav>
+        <Button id="logout" onClick={onClickLogout}>
+                <div className="border1"></div>
+                <div className="border1"></div>
+                                        Logout</Button>        </Nav>
       </Navbar.Collapse>
     </Navbar>
 

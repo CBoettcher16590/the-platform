@@ -42,16 +42,13 @@ export default function ORG_Ad_edit_profile() {
     return <>
         <div>
             <Navbar bg="dark" variant="dark">
-                <Nav className="mr-auto">
-                    <Nav.Link href="/orgAdminHome">The-PlatForm </Nav.Link>
-                </Nav>
+
 
                 <Nav className="mr-auto">
-                    <Nav.Link href="/Orgauthors">Organization Authors</Nav.Link>
-                </Nav>
-                <Nav className="mr-auto">
-                    <Navbar.Brand href="/orgAdminProfile">My Account</Navbar.Brand>
-                </Nav>
+                <Nav.Link id="account1" href="/orgAdminProfile">
+              <div className="border1"></div>
+              <div className="border1"></div>
+                                        My Account</Nav.Link>                </Nav>
             </Navbar>
             <br />
             <h2 id="updateHeader"> Change Profile Information</h2>

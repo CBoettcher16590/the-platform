@@ -44,8 +44,11 @@ export default function Mem_edit_profile() {
         <div id="editAuthorBG">
             <Navbar bg="dark" variant="dark">
                 <Nav className="mr-auto">
-                    <Nav.Link href='/orgProfile'>My Account</Nav.Link>
-                </Nav>
+
+                    <Nav.Link id="account1" href="/orgProfile">
+                        <div className="border1"></div>
+                        <div className="border1"></div>
+                                        My Account</Nav.Link>                </Nav>
             </Navbar>
 
             <h2 id="updateHeader"> Change Profile Information</h2>

@@ -43,8 +43,11 @@ export default function Mem_edit_profile() {
     return <>
         <div id="editAuthorBG">
             <Navbar bg="dark" variant="dark">
-                <Nav className="mr-auto">
-                    <Nav.Link href='/ADProfile'>My Account</Nav.Link>
+            <Nav className="mr-auto">
+                <Nav.Link id="account1" href="/ADProfile">
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        My Account</Nav.Link>
                 </Nav>
             </Navbar>
 
