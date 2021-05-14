@@ -142,16 +142,17 @@
     font-size: 18px;
     font-weight: 400;
     /* border: 1.5px solid black; */
-    height: 65.5vh;
+    height: 69vh;
     overflow-y:scroll;
     opacity: .95;
+
 
 }
 
 .setArticleInfoSize{
     padding-bottom: 20%; 
-    padding-left: 50px;
-    max-width: 70vw;
+    padding-left: -10px;
+    max-width: 80vw;
     height: 800px;
 }
 
