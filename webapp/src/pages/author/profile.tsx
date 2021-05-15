@@ -25,7 +25,7 @@ export default function AuthorProfile() {
 
   function onClickLogout() {
     window.localStorage.clear();
-    history.push('/');
+    history.push('/');  
     alert("Logged Out");
   }
   const handelAddToSeries = (seriesID: string, artID: string) => {

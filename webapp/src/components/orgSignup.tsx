@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import '../pages/forms/styles.css'
 import '../pages/forms/style.css'
 import { Button, Form, Nav, Navbar } from "react-bootstrap";

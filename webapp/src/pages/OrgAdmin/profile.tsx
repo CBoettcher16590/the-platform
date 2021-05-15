@@ -4,7 +4,6 @@ import { useHistory } from 'react-router';
 import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api';
 import FavoriteArticles from '../../components/article/favoriteArticle';
-import cat from '../../images/cat.jpg'
 
 
 export default function OrgAd_profile() {

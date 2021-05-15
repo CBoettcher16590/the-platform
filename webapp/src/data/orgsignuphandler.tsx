@@ -1,4 +1,3 @@
-import { last } from 'lodash';
 import api from '../api';
 
 

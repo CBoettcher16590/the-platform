@@ -3,7 +3,6 @@ import { Badge, Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';
-import FavButton from '../FavButton';
 
 export default function HomepageFeatureDisplay(){
 

@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Card, CardGroup, Button, Container, Jumbotron, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css'
-import FavoriteArticles from '../../components/article/favoriteArticle';
-import { IArticle } from '../../../../services/crud-server/src/models/article';
-import api from '../../api';
+import './style.css';
 import { useHistory } from 'react-router';
-import {CardElement} from '@stripe/react-stripe-js';
+//import {CardElement} from '@stripe/react-stripe-js';
 
 
 export default function SubscriptionPlan() {

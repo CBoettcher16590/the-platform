@@ -1,7 +1,7 @@
 
-import { Button, Carousel, Col, Container, Row } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import React from "react";
-import { LinkContainer } from "react-router-bootstrap";
+//import { LinkContainer } from "react-router-bootstrap";
 
 
 //This is the container for fave articls so that users can scroll through them

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Card, CardGroup, Button, Accordion, Col, Row } from 'react-bootstrap';
+import { Navbar, Nav, Card, Button, Accordion, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css'
 import FavoriteArticles from '../../components/article/favoriteArticle';

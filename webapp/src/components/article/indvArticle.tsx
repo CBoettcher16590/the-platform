@@ -11,7 +11,6 @@ import api from '../../api'
 import { ISeries } from '../../../../services/crud-server/src/models/series';
 import FavButton from '../FavButton';
 import DOMPurify from 'dompurify';
-import parse from 'html-react-parser';
 
 
 

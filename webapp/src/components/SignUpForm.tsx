@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import '../pages/forms/style.css'
 import { Button, Form } from "react-bootstrap";
 import _SignUp from '../data/signUpHandeler';

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';      
-import { CardDeck, Card } from 'react-bootstrap';
 import { useHistory } from 'react-router';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import api from '../../api';

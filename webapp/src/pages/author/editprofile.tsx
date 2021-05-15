@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Navbar, Nav, Button, Col, Form, Row } from 'react-bootstrap';
+import { Navbar, Nav, Button, Col, Form} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api'
 import { useState } from 'react';
 import { useHistory } from 'react-router';

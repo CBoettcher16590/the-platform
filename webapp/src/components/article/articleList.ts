@@ -1,8 +1,7 @@
-import { atom, useRecoilState } from 'recoil';
+//import { atom, useRecoilState } from 'recoil';
 import{ useEffect, useState } from "react";
 import {IArticle} from "../../../../services/crud-server/src/models/article";
 import api from "../../api";
-import Axios from 'axios';
 
 // export const articleListState = atom({
 //     key: 'articleList',

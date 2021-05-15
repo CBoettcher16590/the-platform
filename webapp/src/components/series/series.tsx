@@ -2,13 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import MainLayout from '../../layouts/MainLayout';
-import {Button, Col, Row } from 'react-bootstrap';
-import { IUser } from '../../../../services/crud-server/src/models/user';
+import { Col, Row } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router';
 import api from '../../api'
 import { ISeries } from '../../../../services/crud-server/src/models/series';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
-import FavButton from '../FavButton';
 
     const IndvSeries = () => {
         const params = useParams<{id:string}>();

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { IArticle } from '../../../../services/crud-server/src/models/article';
 import { HOSTNAME } from '../config';
 
 export default {
