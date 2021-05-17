@@ -58,7 +58,7 @@ const IndvArticle = () => {
                 //then add new article Rating to the article table
                 api.articles.updateRating({ newRating: newArticleRating, article_id: article!.article_id }).catch((error) => console.error(`Error: ${error}`));
             }
-            refresh
+            // refresh
             setTimeout(function () { history.go(0); }, 500)
         }).catch((error) => console.error(`Error: ${error}`));
 
