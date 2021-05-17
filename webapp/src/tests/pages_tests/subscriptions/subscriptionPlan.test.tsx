@@ -5,7 +5,6 @@ import sinon, { spy } from 'sinon';
 import { assert, expect } from 'chai';
 import ReactDOM from 'react-dom';
 import {render} from 'enzyme'
-//the amount of libaries and toolkits interacting is something else.... 
         // console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
 
 import { Elements } from '@stripe/react-stripe-js';

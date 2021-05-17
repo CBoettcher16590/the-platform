@@ -5,8 +5,8 @@ import MainLayout from '../../layouts/MainLayout';
 import { assert, expect } from 'chai';
 import ReactDOM from 'react-dom';
 import {render} from 'enzyme'
-//the amount of libaries and toolkits interacting is something else.... 
-        // console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
+       
+// console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
 
 
 
