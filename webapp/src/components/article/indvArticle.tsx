@@ -15,7 +15,6 @@ import parse from 'html-react-parser';
 
 
 
-
 const IndvArticle = () => {
     const params = useParams<{ id: string }>();
     const numId = parseInt(params.id);
@@ -103,40 +102,55 @@ const IndvArticle = () => {
                     <Col xs={{ span: 4, offset: 8 }} md={{ span: 2, offset: 10 }}>
                         <div className="InvArticleLikesNoneSeriesVariant">
                             <Row>
-                                <h5>Likes: {article?.rating}</h5>
-                            </Row>
-                            <Row>
-                                <Badge onClick={HandelRating(1)} className="badge" pill variant="success">
-                                    Like
-                                </Badge>
-                                <Badge onClick={HandelRating(-1)} className="badge" pill variant="danger">
-                                    DisLike
-                                </Badge>
+                                <h5> LIKES {article?.rating}</h5>
                             </Row>
                         </div>
                     </Col>
+                    <div className="buttonsRatingNoSeries">
+                        <div className="slyButtonSpacing">
+                            <Button onClick={HandelRating(1)} size="sm" variant="outline-success" ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.25 10.25L12 4.75L6.75 10.25" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12 19.25V5.75" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg> </Button>{' '}
+                        </div>
+                        <div>
+                            <Button onClick={HandelRating(-1)} size="sm" variant="outline-danger"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.25 13.75L12 19.25L6.75 13.75" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12 18.25V4.75" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg> </Button>{' '}
+                        </div>
+                    </div>
+                    {/* buttons need a disable on click. */}
 
 
-                    <div className="favButtonRelocationFund">
-                        <FavButton{...article!} />
+                    <div className="userProfileRow" >
+                        <Row id="authorInfo" >
+
+                            <Col xs={1.2} lg={1.2} md={1.2}>
+                                <Image id="authorAvatar" src={articleAuthor?.user_image_link} roundedCircle />
+                            </Col>
+
+                            <Col xs={2} lg={2}  >
+                                <p>{articleAuthor?.first_name}  {articleAuthor?.last_name}</p>
+                            </Col>
+
+                            <Col xs={2} md={3} lg={3}  >
+                                <p>{'Published   ' + article?.created_on.slice(0, 10)} </p>
+                            </Col>
+
+                            <Col xs={1} lg={3} md={2} >
+                                <div className="movingFaveButton">
+                                    <div className="favButtonRelocationFund">
+                                        <FavButton{...article!} />
+                                    </div>
+                                </div>
+                            </Col>
+                        </Row>
                     </div>
 
-                    <div className="userProfileRow">
-                    <Row className="d-flex flex-row-reverse" id="authorInfo">
-                        <Col xs={3} lg={2}>
-                            <p>{'Published   ' + article?.created_on.slice(0, 10)} </p>
-                        </Col>
-                        <Col className="authorNameSpaceIndArticleRow" xs={5} lg={1}>
-                            <p>{articleAuthor?.first_name}  {articleAuthor?.last_name}</p>
-                        </Col>
-                        <Col xs={3} lg={1} >
-                            <Image id="authorAvatar" src={articleAuthor?.user_image_link} roundedCircle />
-                        </Col>
-                    </Row>
-                    </div>
                     <hr />
-                    <div className="articleIndidivualHook">{article?.preview}</div>
 
+                    <div className="articleIndidivualHook">{article?.preview}</div>
 
                     <Image className="mx-auto articleImage" src={article?.image_link} />
 
@@ -161,6 +175,7 @@ const IndvArticle = () => {
                             <div className="articleIndividualTitle">{article?.title}</div>
                         </Col>
                     </Row>
+
                     <Row>
                         <Col xs={8} md={10} >
                             <div className="seriesOnclickGo">
@@ -168,44 +183,54 @@ const IndvArticle = () => {
                                 <h5 onClick={goToSeries}>{series.series_title}</h5>
                             </div>
                         </Col>
-                        <Col xs={4} md={2} >
-                            <div className="InvArticleLikes">
+                        <Col xs={{ span: 4, offset: 8 }} md={{ span: 2, offset: 10 }}>
+                            <div className="InvArticleLikesNoneSeriesVariantSeries">
                                 <Row>
-                                    <h5>Likes: {article?.rating}</h5>
+                                    <h5> LIKES {article?.rating}</h5>
                                 </Row>
-                                <Row>
-                                    <Badge onClick={HandelRating(1)} className="badge" pill variant="success">
-                                        Like
-                                </Badge>
-                                    <Badge onClick={HandelRating(-1)} className="badge" pill variant="danger">
-                                        DisLike
-                                </Badge>
-                                </Row>
-
-
                             </div>
                         </Col>
+                        <div className="buttonsRatingSeries">
+                            <div className="slyButtonSpacing">
+                                <Button onClick={HandelRating(1)} size="sm" variant="outline-success" ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.25 10.25L12 4.75L6.75 10.25" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M12 19.25V5.75" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg> </Button>{' '}
+                            </div>
+                            <div>
+                                <Button onClick={HandelRating(-1)} size="sm" variant="outline-danger"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17.25 13.75L12 19.25L6.75 13.75" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M12 18.25V4.75" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg> </Button>{' '}
+                            </div>
+                        </div>
                     </Row>
 
-                    <div className="favButtonRelocationFund">
-                        <FavButton{...article!} />
-                    </div>
-                    <div className="userProfileRow">
-                        <Row className="d-flex flex-row-reverse" id="authorInfo">
+                    <div className="userProfileRow" >
+                        <Row id="authorInfo" >
 
-                            <Col xs={3} lg={2}>
-                                <p>{'Published   '+ article?.created_on.slice(0, 10)} </p>
+                            <Col xs={1.2} lg={1.2} md={1.2}>
+                                <Image id="authorAvatar" src={articleAuthor?.user_image_link} roundedCircle />
                             </Col>
 
-                            <Col className="authorNameSpaceIndArticleRow" xs={5} lg={1}>
+                            <Col xs={2} lg={2}  >
                                 <p>{articleAuthor?.first_name}  {articleAuthor?.last_name}</p>
                             </Col>
 
-                            <Col xs={3} lg={1} >
-                                <Image id="authorAvatar" src={articleAuthor?.user_image_link} roundedCircle />
+                            <Col xs={2} md={3} lg={3}  >
+                                <p>{'Published   ' + article?.created_on.slice(0, 10)} </p>
+                            </Col>
+
+                            <Col xs={1} lg={3} md={2} >
+                                <div className="movingFaveButton">
+                                    <div className="favButtonRelocationFund">
+                                        <FavButton{...article!} />
+                                    </div>
+                                </div>
                             </Col>
                         </Row>
                     </div>
+
                     <hr />
 
                     {/* ADD SOCIALS INTO USER DATABASE */}

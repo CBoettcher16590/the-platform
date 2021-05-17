@@ -137,7 +137,6 @@ text-align: center;
 #authorInfo{
   height: 60px;
   align-items: center;
-   
 }
 
 .homeStories{
@@ -218,21 +217,17 @@ padding: 5px;
     width: 450px;
     height: 300px;
      /* flex-wrap: nowrap; */
-    transition: width .6s, height .6s, filter .35s;
+    transition: width .6s, height .6s, filter .35s, transform .6s;
     /* transition-delay: .15s;  */
-
+    transform: scale(1); 
 
 }
 
 .favCard:hover{
-    /* The size is nice. Unsure how to set the size. */
     background: rgb(167,230,255);
-    /* background: radial-gradient(circle, rgba(167,230,255,1) 69%, rgba(225,238,193,1) 100%); */
-    /* opacity: .85; */
     filter: saturate(2.0);
-     /* width: 451px;
-    height: 302px; */
-    transition: width .3s, height .3s, opacity .5s, filter 1.2s; 
+    transition: width .3s, height .3s, opacity .5s, filter 1.2s, transform .7s;
+    transform: scale(1.05); 
 
 }
 .favCard img{
@@ -253,6 +248,12 @@ padding: 5px;
     flex-wrap: wrap;
     overflow: hidden;
 }
+
+.favArticleLockTextSize{
+    transform-origin: 0 0;
+}
+
+
 .favArticleRow h2{
    font-size: 25px;
 }
@@ -339,8 +340,6 @@ padding: 5px;
     padding-top:45px;
     line-height: 57px;
     letter-spacing: 1.5px;
-    padding-bottom: 15px;
-
 }
 
 .articleIndidivualHook{
@@ -350,38 +349,108 @@ padding: 5px;
     font-size: 20px;
     line-height: 21px;
     letter-spacing: 1px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     opacity: 60%;
 }
 
 .favButtonRelocationFund{
-    display: flex;
-    justify-content: center;
-    /* margin-left: 77.5%; */
-    margin-left: 45vw;
-    min-height: 38px;
-    width: 180px;
-    padding-top: 10px;
+    max-width: 200px;
+    min-width: 200px;
+    max-height: 60px;
+}
+
+.movingFaveButton{
+    margin-left: 15.5vw;
+
 }
 
 .userProfileRow{
-    padding-top: 12px;
+    max-width: 100%;
+    max-height: 60px;
+    padding-top: 5px;
+    padding-bottom: 65px;
 }
 
 .seriesOnclickGo:hover{
     cursor: pointer;
-
 }
 
 .InvArticleLikesNoneSeriesVariant{
     text-align: center;
     padding-bottom: 7px;
-    padding-left: 8px;
+    padding-left: 1vw;
+    margin-bottom: -8px;
 
 }
 
+.InvArticleLikesNoneSeriesVariantSeries{
+    max-width: 100px;
+    text-align: center;
+    padding-bottom: 7px;
+    margin-bottom: -8px;
+
+
+}
+
+
+
 .authorNameSpaceIndArticleRow{
-    padding-right: 10%;
-    padding-left: 14px;
+    padding-left: 1.2vw;
+    padding-right: 1.2vw;
+
+}
+
+.authorProfileIndArticleRow{
+    margin-right: 1.2vw;
+
+}
+
+.profileIndPublishPos{
+    padding-left: 3.5vw;
+    margin-right: 23vw;
+    max-width: 170px;
+}
+
+
+
+.buttonsRatingNoSeries{
+    padding-left: 52vw;
+    max-height: 50px;
+    max-width: 50px; 
+    margin-bottom: -10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+}
+
+.buttonsRatingSeries{
+    padding-left: 53vw;
+    max-height: 50px;
+    max-width: 50px; 
+    margin-bottom: -10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+}
+
+.slyButtonSpacing{
+    /* padding-bottom: 15px */
+    padding-right: 5px;
+
+}
+
+
+/* Home page fonts CenterArtPreview*/
+
+#CenterArtPreview{
+    font-family: 'Spectral', serif;
+    font-weight: 600;
+    font-size: 18px;
+    padding-top: 5px;
+    opacity: 86%;
+    letter-spacing: .25px;
+
 }

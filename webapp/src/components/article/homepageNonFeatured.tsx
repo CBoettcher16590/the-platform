@@ -35,26 +35,26 @@ const history = useHistory();
           let preview = _art.preview.slice(0,70) + "...";
           if(subscribe === "Subscribe"){
             return (
-              <div id="listArticleBody" key={_art.article_id}>
+              <div key={_art.article_id}>
               <div>
                   <img id="listArticleImg"src={image} />
               </div>
               <div>   
               <h2 id="discoverTitle" className="clickableTitle"  onClick={GoToArticle(_art)}>{title}</h2>
-              <p>{preview}</p>
+              <p id="CenterArtPreview">{preview}</p>
               <Badge pill variant="success">Premium</Badge>
               </div>
             </div>
             )
           } else {
             return (
-              <div id="listArticleBody" key={_art.article_id}>
+              <div  key={_art.article_id}>
               <div>
                   <img id="listArticleImg"src={image} />
               </div>
               <div>   
               <h2 id="discoverTitle" className="clickableTitle"  onClick={GoToArticle(_art)}>{title}</h2>
-              <p>{preview}</p>
+              <p id="CenterArtPreview">{preview}</p>
               </div>
              
             </div>

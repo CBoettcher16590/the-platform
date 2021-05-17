@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, Card, CardGroup, Col, Nav, Navbar, Row, Table } from 'react-bootstrap'
+import { Button, Card, CardGroup, Col, Container, Nav, Navbar, Row, Tab, Table, Tabs } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from 'react-router';
 import { IUser } from '../../../../services/crud-server/src/models/user';
@@ -7,12 +7,16 @@ import api from '../../api'
 import { useState } from 'react';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import './form.css';
+import FavoriteArticles from '../../components/article/favoriteArticle';
+
+
 export default function Profile() {
 
   //did not add logout to the author profile, as its a class, should we make this a regular function? 
   const history = useHistory();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
   const [favoriteArticles, setFavoriteArticles] = useState<IArticle[]>();
+  const [expiredSubscription, setSubscription] = useState<string>();
   const userID = localStorage.getItem("userID") || "";
 
 
@@ -21,6 +25,20 @@ export default function Profile() {
     history.push('/');
     alert("Logged Out");
   }
+
+  useEffect(() => {
+    api.users.getById(userID).then((responce) => {
+      const foundUser: IUser = responce.data[0];
+      if (foundUser.subscription == 1) {
+        const newString = (foundUser.sub_end_date).substring(0, (foundUser.sub_end_date).length - 14)
+
+        setSubscription('Subscription Ends ' + newString);
+
+      }
+    }).catch((err) => { console.log(`Error: ${err}`); });
+
+  }, []);
+
 
   const GoToArticle = (article: IArticle) => (event: any) => {
     //here we find the article id for our Title, Link
@@ -46,7 +64,8 @@ export default function Profile() {
   }, []);
 
 
-  return <>
+  return(
+    <div>
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
@@ -55,62 +74,41 @@ export default function Profile() {
         <Nav>
           <Nav.Link href="/profile"> My Account</Nav.Link>
           <Nav.Link href='/splashPage'>Splash</Nav.Link>
-
         </Nav>
-
-
         <Nav>
           <Button onClick={onClickLogout}>Logout</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
 
-    <Row>
-      <Col className="authorCardBG" sm={11} lg={6}>
-        <div >
+    <div className="userProf">
+        <div className="userBox">
           <Card className="authorInfoCard">
-            <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+            <Card.Img className="authorCardImg" variant="top" src={loggedInUser?.user_image_link} />
             <Card.Body className="authorInfo">
-              <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
-              <br />
-              <br />
-              <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-              <Nav.Link href="/profileEdit" >Edit Profile</Nav.Link>
+              <Card.Title className="authorProfileHead"><p >{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</p></Card.Title>
+              <Card.Title className="profBioTxt"><p>{loggedInUser?.bio}</p></Card.Title>
+              <Nav.Link className="editProfTxt" href="/AUupdateMyInfo" >  Edit Profile</Nav.Link>
+              <Card.Text className="expSubText"> {expiredSubscription}  </Card.Text>
             </Card.Body>
           </Card>
         </div>
-      </Col>
+        <Container fluid>
+          <Row>
+            <Col>
+              <Tabs className="tabsProfileCenter" defaultActiveKey="Favourites" id="uncontrolled-tab-example">
+                <Tab className="tabSpacingProfileL" eventKey="Favourites" title="Favourites">
+
+                  <FavoriteArticles></FavoriteArticles>
+
+                </Tab>
+              </Tabs>
+            </Col>
+          </Row>
+        </Container>
+    </div>
 
 
-      {/* ================= FAVORITED ARTICLES ================= */}
-
-      <Col sm={11} lg={6}>
-        <Table className="favArticleTable" striped borderless hover>
-          <thead>
-            <tr>
-              <th><h3>Favorite Articles</h3></th>
-            </tr>
-          </thead>
-          <tbody>
-            {favoriteArticles?.map(function (_article: IArticle, index = 1) {
-              let artTitle = _article.title;
-              let artImage = _article.image_link
-              let preview = _article.contents.slice(0, 70) + "...";
-              return (
-                <div className="favArticleBody" key={index}>
-                  <tr>
-                    <td>{index}</td>
-                    <td><img id="favArtImg" src={artImage} alt="articleImage.jpg" /></td>
-                    <td onClick={GoToArticle(_article)}><h4>{artTitle}</h4></td>
-                    <td><h6>{preview}</h6></td>
-                  </tr>
-                </div>
-              )
-            })}
-          </tbody>
-        </Table>
-      </Col>
-    </Row>
-
-  </>
+    </div>
+  )
 }

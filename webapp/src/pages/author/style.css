@@ -142,7 +142,7 @@
     font-size: 18px;
     font-weight: 400;
     /* border: 1.5px solid black; */
-    height: 69vh;
+    height: 520px;
     overflow-y:scroll;
     opacity: .95;
 
@@ -153,7 +153,7 @@
     padding-bottom: 20%; 
     padding-left: -10px;
     max-width: 80vw;
-    height: 800px;
+    height: 100%;
 }
 
 

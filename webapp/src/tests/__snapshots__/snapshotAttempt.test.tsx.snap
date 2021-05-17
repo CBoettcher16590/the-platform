@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snap shot test method two. 1`] = `
+<div
+  className="loginSignupBackground"
+>
+  <div
+    id="loginForm"
+  >
+    <h1>
+      Log In
+    </h1>
+    <form
+      className=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Email Address
+        </label>
+        <input
+          className="form-control form-control"
+          id="emailInput"
+          onChange={[Function]}
+          placeholder="Enter email"
+          type="email"
+          value=""
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Password
+        </label>
+        <input
+          className="form-control form-control"
+          onChange={[Function]}
+          placeholder="Enter password"
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="btn btn-primarys btn-block btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="submit"
+      >
+        Sign In
+      </button>
+      <a
+        href="#"
+      >
+        Forgot Your Password?
+      </a>
+    </form>
+    <hr />
+    <div
+      className="createAccount"
+    >
+      <h4>
+        Dont have an Account Yet?
+      </h4>
+      <a
+        href="/signup"
+      >
+        Create an Account
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Snap shot test one. 1`] = `
+<div
+  className="loginSignupBackground"
+>
+  <div
+    id="loginForm"
+  >
+    <h1>
+      Log In
+    </h1>
+    <form
+      className=""
+    >
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Email Address
+        </label>
+        <input
+          className="form-control form-control"
+          id="emailInput"
+          onChange={[Function]}
+          placeholder="Enter email"
+          type="email"
+          value=""
+        />
+      </div>
+      <div
+        className="form-group"
+      >
+        <label
+          className="form-label"
+        >
+          Password
+        </label>
+        <input
+          className="form-control form-control"
+          onChange={[Function]}
+          placeholder="Enter password"
+          type="password"
+          value=""
+        />
+      </div>
+      <button
+        className="btn btn-primarys btn-block btn btn-primary"
+        disabled={false}
+        onClick={[Function]}
+        type="submit"
+      >
+        Sign In
+      </button>
+      <a
+        href="#"
+      >
+        Forgot Your Password?
+      </a>
+    </form>
+    <hr />
+    <div
+      className="createAccount"
+    >
+      <h4>
+        Dont have an Account Yet?
+      </h4>
+      <a
+        href="/signup"
+      >
+        Create an Account
+      </a>
+    </div>
+  </div>
+</div>
+`;
