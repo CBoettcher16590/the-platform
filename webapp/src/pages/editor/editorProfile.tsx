@@ -9,14 +9,51 @@ import api from '../../api';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { IUser } from '../../../../services/crud-server/src/models/user';
+import * as ReactDOM from 'react-dom';
+import { Component } from 'react';
+import DOMPurify from 'dompurify';
+
+
+
 
 
 export default function EditorProfile() {
+
+
+
 
   const history = useHistory();
   const [pendingArticles, setPendingArticles] = useState<IArticle[]>();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
   const userId: string | null = localStorage.getItem("userID");
+
+  const [favoriteArticles, setFavoriteArticles] = useState<IArticle[]>();
+
+  //Find User Id so we can find favorites for this specific user
+  const userID = localStorage.getItem("userID");
+
+
+  const GoToArticle = (article: IArticle) => (event: any) => {
+    //here we find the article id for our Title, Link
+    let articleId = article.article_id;
+    //then We use history.push to redirect to that page
+    history.push(`/article/${articleId}`)
+  }
+
+  useEffect(() => {
+    //get all the articles that this user has favorited... user_has_article
+    api.articles.getForFavList(userID).then((responce) => {
+      const favArticles: IArticle[] = responce.data;
+      return setFavoriteArticles(favArticles);
+    })
+
+  }, []);
+
+
+
+
+
+
 
 
   //inside this useEffect is where we find all the pending articles, and assign it to pendingArtiles
@@ -65,6 +102,104 @@ export default function EditorProfile() {
   }
 
 
+  class App extends React.Component {
+
+
+    state = {
+      showMe: true
+    }
+
+
+
+
+
+
+    Operation() {
+      this.setState({
+        showMe: !this.state.showMe
+      })
+    }
+
+    render() {
+      return (
+
+        <>
+
+          <div className="pendingcard1" >
+            {
+              this.state.showMe ?
+                <div>
+                  {pendingArticles?.map((articleLoop, index) => {
+
+                    let title = articleLoop.title;
+                    let content: string = articleLoop.contents;
+
+
+                    return (
+
+                      <section >
+
+
+                        <Card key={index} className="pendingcard">
+                          <Accordion.Toggle as={Card.Header} eventKey="0">
+                            <Card.Title id="sticky">
+                              {title}
+                            </Card.Title>
+
+                            <Card.Body>
+
+                            <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}></p>
+                            </Card.Body>
+                            <Button onClick={Publish(articleLoop)} className="btn-info">Approve</Button>
+                            <Button onClick={Reject(articleLoop)} className="btn-danger">Reject </Button>
+                          </Accordion.Toggle>
+                        </Card>
+
+                      </section>
+
+                    );
+                  })}
+                </div>
+                : null
+            }
+          </div>
+          <div>
+            <Card className="editorInfoCard1">
+              <Card.Body className="editorInfo1">
+                <Card.Title><h2>Pending Articles</h2></Card.Title>
+                <br />
+                {pendingArticles?.map((articleLoop, index) => {
+
+                  let title = articleLoop.title;
+                  let atricledate = articleLoop.created_on;
+                  let content: string = articleLoop.contents;
+
+
+                  return (
+
+                    <Accordion defaultActiveKey="1">
+                      <Card key={index} className="pendingArticles">
+                        <Accordion.Toggle as={Card.Header} eventKey="0">
+                          <div>
+                            <Button id="title" onClick={() => this.Operation()}>{title}</Button>
+                          </div>
+                          <p> <strong> Created On  {atricledate.slice(0,10)}</strong></p>
+
+                        </Accordion.Toggle>
+                      </Card>
+
+                    </Accordion>
+
+                  );
+                })}
+
+              </Card.Body>
+            </Card>
+          </div></>
+      )
+    }
+  }
+
   return <>
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -73,92 +208,75 @@ export default function EditorProfile() {
           <Navbar.Brand href="/">The Platform</Navbar.Brand>        </Nav>
         <Nav>
           <Nav.Link id="account2" href="/editorProfile">
-              <div className="border1"></div>
-              <div className="border1"></div>
+            <div className="border1"></div>
+            <div className="border1"></div>
                                         My Account</Nav.Link>
         </Nav>
         <Nav>
-        <Button id="logout" onClick={onClickLogout}>
-                <div className="border1"></div>
-                <div className="border1"></div>
+          <Button id="logout" onClick={onClickLogout}>
+            <div className="border1"></div>
+            <div className="border1"></div>
                                         Logout</Button>        </Nav>
       </Navbar.Collapse>
     </Navbar>
 
-    <Row>
-      <Col className="authorCardBG" sm={11} lg={6}>
-        <div >
-          <Card className="authorInfoCard">
-            <Card.Img variant="top" src={loggedInUser?.user_image_link} />
-            <Card.Body className="authorInfo">
+    {/* <Row> */}
+    <div className="main">
+    <Col className="editorCardBG" sm={11} lg={6}>
+
+      {/* first column 1 */}
+      <div >
+        <Card className="editorInfoCard">
+          <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+          <Card.Body className="editorInfo">
             <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
-              <br/>
-              <br/>
-            <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-            <Nav.Link href = "/EDupdateInfo" >Edit Profile</Nav.Link>
-          </Card.Body>
-          </Card>
-        </div>
-      </Col>
-
-      <Col sm={11} lg={6}>
-        <Card className="reviewArticles">
-          <Card.Body>
-            <Card.Title id="pendingBoxTitle">Pending Articles</Card.Title>
             <br />
-
-            {pendingArticles?.map(function (articleLoop, index) {
-
-              let title = articleLoop.title;
-              let contents = articleLoop.contents;
-              return (
-                <Accordion defaultActiveKey="1">
-                  <Card key={index} className="pendingArticles">
-                    <Accordion.Toggle as={Card.Header} eventKey="0">
-                      <h4>{title}</h4>
-                      <hr />
-                      <p> <strong>Click Here to See Article Contents</strong></p>
-                    </Accordion.Toggle>
-
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        <p>{contents}</p>
-                        <Button onClick={Publish(articleLoop)} className="btn-info editButtons">Approve</Button>
-                        <Button onClick={Reject(articleLoop)} className="btn-danger editButtons">Reject </Button>
-                      </Card.Body>
-                    </Accordion.Collapse>
-
-                  </Card>
-
-                </Accordion>
-
-              )
-            })}
+            <br />
+            <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+            <Nav.Link href="/EDupdateInfo" >Edit Profile</Nav.Link>
           </Card.Body>
         </Card>
-      </Col>
-    </Row>
+      </div>
 
+    </Col>
+    <App />
 
-
-
-    {/* 
-<Card className="reviewArticles">
-  <Card.Img variant="top" src="" />
-  <Card.Body>
-    <Card.Title>Reported Articles</Card.Title>
-    <Card.Text>
-      A user has reported these articles, please review the Article to comfirm that it does not comply with our Code of Conduct.  
-    </Card.Text>
-    <Nav.Link href ="#">Review Articles</Nav.Link>
-  </Card.Body>
-</Card>
-  */}
 
     {/* ================= FAVORITED ARTICLES ================= */}
 
-    <FavoriteArticles></FavoriteArticles>
 
+    <Card className="fav">
+      <Card.Header className="favArtTitle"><h3>Favorite Articles</h3></Card.Header>
+      <Card.Body>
+
+        <section className="favArticleRow1">
+          {favoriteArticles?.map(function (_art: IArticle) {
+            let image = _art.image_link;
+            let title = _art.title;
+            let preview = _art.preview;
+            let createdOn = _art.created_on.slice(0, 10);
+            return (
+              <div key={_art.article_id} className="favCard">
+
+                <img className="favImage" src={image} />
+
+                <div className="favArticle">
+
+                  <p className="favArticleTitle" onClick={GoToArticle(_art)}>{title}</p>
+
+                  <p className="favArticlePreview">{preview}</p>
+
+                  <p className="favArticleCreatedOn">Posted On: {createdOn}</p>
+
+                </div>
+              </div>
+            )
+          })}
+        </section>
+      </Card.Body>
+      <Card.Footer className="text-muted" />
+    </Card>
+    </div>
 
   </>
 }

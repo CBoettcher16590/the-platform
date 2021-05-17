@@ -1,0 +1,280 @@
+
+body{
+    font-family: 'DM Serif Text', serif;}
+.navUser{
+    color:white;
+}
+
+ 
+
+ 
+
+
+/* Log Out start here */
+
+
+#logout{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 20px 40px;
+    position:relative;
+    max-width: 100px;
+    min-width: 120px;
+    flex: 20%;
+    margin-right: 51%; 
+    width:70%;
+    height:40px;
+    position:absolute;
+    background:#343a40!important;
+    color:#fff;
+    font-weight:bold;
+    letter-spacing:1px;
+    border:#fff;
+    cursor: pointer;
+    font-size:15px;
+    top:10px;
+    outline:none;
+    left:90%;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  }
+  
+  
+  /* FIRST BUTTON */
+  
+  .border1{
+      position:absolute;
+      background:none;
+      transition:all .3s ease-in-out;
+      cursor: pointer;
+
+  }
+  
+  #logout>.border1:nth-of-type(1){
+    top:0;
+    left:0;
+    border-left:2px solid white;
+    border-top:2px solid white;
+    width:5px;
+    height:5px;
+    cursor: pointer;
+
+  }
+  
+  #logout>.border1:nth-of-type(2){
+    bottom:0;
+    right:0;
+    border-right:2px solid white;
+    border-bottom:2px solid white;
+    width:5px;
+    height:5px;
+    cursor: pointer;
+
+  }
+  
+  #logout:hover .border1{
+    width:102%;
+    height:105%;
+    cursor: pointer;
+
+  }
+
+
+
+
+
+/* Logout btn styling ends here */ /* Logout btn styling ends here */  /* Logout btn styling ends here */  /* Logout btn styling ends here */ 
+
+
+
+
+
+
+
+/* Sub. button  */
+
+
+
+#subscription{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 20px 40px;
+    position:relative;
+    max-width: 150px;
+    min-width: 120px;
+    flex: 20%;
+    margin-right: 51%; 
+    width:70%;
+    height:40px;
+    position:absolute;
+    background:#343a40!important;
+    color:#fff;
+    font-weight:bold;
+    letter-spacing:1px;
+    border:#fff;
+    cursor: pointer;
+    font-size:15px;
+    top:10px;
+    outline:none;
+    left:79%;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  }
+  
+  
+  /* FIRST BUTTON */
+  
+  .border1{
+      position:absolute;
+      background:none;
+      transition:all .3s ease-in-out;
+      cursor: pointer;
+
+  }
+  
+  #subscription>.border1:nth-of-type(1){
+    top:0;
+    left:0;
+    border-left:2px solid white;
+    border-top:2px solid white;
+    width:5px;
+    height:5px;
+    cursor: pointer;
+
+  }
+  
+  #subscription>.border1:nth-of-type(2){
+    bottom:0;
+    right:0;
+    border-right:2px solid white;
+    border-bottom:2px solid white;
+    width:5px;
+    height:5px;
+    cursor: pointer;
+
+  }
+  
+  #subscription:hover .border1{
+    width:102%;
+    height:105%;
+    cursor: pointer;
+
+  }
+
+/* sub. btn styling ends here */ /* sub. btn styling ends here */  /* sub. btn styling ends here */  /* sub. btn styling ends here */ 
+
+
+
+
+.articleImage{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+    width: 700px;
+    height: 500px;
+    object-fit: cover;
+}
+#authorAvatar{
+  
+   width: 50px;
+   height: 50px;
+   object-fit: cover;
+}
+#homeArtRight{
+    padding-top: 14px;
+    padding-right: 2em;    
+}
+.homeArticles{
+    background-color: #fff !important;
+}
+.homeArticles img{
+    border-radius: 3px;
+}
+
+.articleTop{
+    margin: 30px 0 0 30px;
+}
+.welcomeText{ 
+    padding-top: 1em;
+    height: 5em;
+    text-align: center;
+}
+#newArticleHeader{
+text-align: center;
+padding-top: 10px;
+padding-bottom: 30px;
+font-size: 45px;
+}
+
+.newArticleBody{
+    padding: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 60% ;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 10px lightgray;
+    background-color: rgb(227, 245, 252) ;
+}
+
+.newArticleForm{
+    display: grid;
+    width: 850px;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+
+
+
+#artSubmitFormCheckbox{
+    padding-top: 20px;
+}
+#imageInput{
+    padding: 5px;
+    box-shadow: inset;
+    border-radius: 10px;
+}
+.series{
+    padding-bottom: 20px;
+}
+
+.bold{
+ font-weight: 600;
+}
+#newArticleTextArea{
+    height: 400px;
+
+}
+#TextAreaHeader{
+    margin-top: 10px;
+}
+
+#dropdown-basic{
+    margin: 10px 0 20px 0;
+}
+.homeSearch{
+    display: flex;
+    justify-content: center;
+}
+
+.footer{
+    scale:50%;
+}
+.seriesArticles{
+    width:100%;
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.SeriesArticleCard{
+    padding:1em;
+    width: auto;
+    height: auto;
+    display: flex;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
