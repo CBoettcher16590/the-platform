@@ -93,6 +93,7 @@ export default function AuthorProfile() {
         </Navbar.Collapse>
       </Navbar>
       
+      
       <div className="userProf">
         <div className="userBox">
           <Card className="authorInfoCard">

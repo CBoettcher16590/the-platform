@@ -13,6 +13,9 @@ import FavButton from '../FavButton';
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
 
+// import {UpArrow as Updoot} from '%PUBLIC_URL%/arrow-up.svg';
+// import {DownArrow as DownDoot} from '%PUBLIC_URL%/arrow-down.svg';
+
 
 
 const IndvArticle = () => {
@@ -21,6 +24,7 @@ const IndvArticle = () => {
     const history = useHistory();
     const loggedInUserId = localStorage.getItem("userID") || "";
     const [loggedInUser, setLoggedInUser] = useState<IUser>();
+    const [buttonDisabled, setButtonDisabled] = useState(false);
 
 
     const [article, setArticle] = useState<IArticle>();
@@ -33,14 +37,19 @@ const IndvArticle = () => {
         history.push(`/series/${series?.series_id}`)
     }
 
+
+
+
     const HandelRating = (userRating: number) => (event: any) => {
+        setButtonDisabled(true);
         event.preventDefault();
         //First we look to see if the user has already rated this article with the following api call
         api.rating.get().then((responce) => {
             let dupRating: IRating[] = responce.data.filter((_rating: IRating) => _rating.user_id === parseInt(loggedInUserId) && _rating.article_id === article!.article_id);
+            
 
             if (dupRating[0]) {
-                alert("You Can Only Rate An Article Once!");
+                // alert("You Can Only Rate An Article Once!");
             } else {
                 //First Add New Info To Ratings Table
                 api.rating.post({ article_id: article!.article_id, user_id: loggedInUserId, rating: userRating }).then(responce => {
@@ -49,7 +58,7 @@ const IndvArticle = () => {
                 api.articles.updateRating({ newRating: newArticleRating, article_id: article!.article_id }).catch((error) => console.error(`Error: ${error}`));
             }
             //refresh
-            setTimeout(function () { history.go(0); }, 500)
+            // setTimeout(function () { history.go(0); }, 500)
         }).catch((error) => console.error(`Error: ${error}`));
 
         const newArticleRating = article!.rating += userRating;
@@ -108,19 +117,18 @@ const IndvArticle = () => {
                     </Col>
                     <div className="buttonsRatingNoSeries">
                         <div className="slyButtonSpacing">
-                            <Button onClick={HandelRating(1)} size="sm" variant="outline-success" ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <Button onClick={HandelRating(1)} disabled={buttonDisabled} size="sm" variant="outline-success" ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.25 10.25L12 4.75L6.75 10.25" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M12 19.25V5.75" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg> </Button>{' '}
                         </div>
                         <div>
-                            <Button onClick={HandelRating(-1)} size="sm" variant="outline-danger"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <Button onClick={HandelRating(-1)} disabled={buttonDisabled} size="sm" variant="outline-danger"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.25 13.75L12 19.25L6.75 13.75" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 <path d="M12 18.25V4.75" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg> </Button>{' '}
                         </div>
                     </div>
-                    {/* buttons need a disable on click. */}
 
 
                     <div className="userProfileRow" >
@@ -141,12 +149,13 @@ const IndvArticle = () => {
                             <Col xs={1} lg={3} md={2} >
                                 <div className="movingFaveButton">
                                     <div className="favButtonRelocationFund">
-                                        <FavButton{...article!} />
+                                    <FavButton{...article!} />
                                     </div>
                                 </div>
                             </Col>
                         </Row>
                     </div>
+
 
                     <hr />
 
@@ -224,13 +233,13 @@ const IndvArticle = () => {
                             <Col xs={1} lg={3} md={2} >
                                 <div className="movingFaveButton">
                                     <div className="favButtonRelocationFund">
-                                        <FavButton{...article!} />
+                                    <FavButton{...article!} />
                                     </div>
                                 </div>
                             </Col>
                         </Row>
                     </div>
-
+                    
                     <hr />
 
                     {/* ADD SOCIALS INTO USER DATABASE */}

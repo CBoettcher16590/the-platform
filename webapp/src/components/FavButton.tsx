@@ -50,7 +50,7 @@ export default function PayButton(_article:IArticle) {
          
     return (
              <Button
-             
+                
                variant="primary"
                disabled={isLoading}
                onClick={handleClick}
