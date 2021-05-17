@@ -139,7 +139,7 @@ const IndvArticle = () => {
                                 <Image id="authorAvatar" src={articleAuthor?.user_image_link} roundedCircle />
                             </Col>
 
-                            <Col xs={2} lg={2}  >
+                            <Col xs={2} lg={2} >
                                 <p>{articleAuthor?.first_name}  {articleAuthor?.last_name}</p>
                             </Col>
 
