@@ -41,10 +41,6 @@ export default function OrgAd_profile() {
     }).catch((error: any) => console.error(`Error: ${error}`));
 
 
-    // api.orgs.get().then((responce) => {
-    //   const allUsers:IUser[] = responce.data;
-    //   setUserList(allUsers);
-    // }).catch(err => console.log("Error: ", err));
 
     api.orgs.get().then((responce) => {
       const authors: IUser[] = responce.data.filter((user: IUser) => user.user_type_type_id === 6);
@@ -81,9 +77,9 @@ export default function OrgAd_profile() {
                                         My Account</Nav.Link>
           </Nav>
           <Nav>
-          <Button id="logout" onClick={onClickLogout}>
-                <div className="border1"></div>
-                <div className="border1"></div>
+            <Button id="logout" onClick={onClickLogout}>
+              <div className="border1"></div>
+              <div className="border1"></div>
                                         Logout</Button>          </Nav>
         </Navbar.Collapse>
       </Navbar>

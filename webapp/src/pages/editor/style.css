@@ -56,25 +56,16 @@ left: -2%;
     padding-bottom: 25px;
     margin-bottom: 35px;
     box-shadow: 7px 7px rgb(134, 160, 150);
-    
-    /* justify-content: center;
-    flex-direction: row; */
-    /* padding: 15; */
     width: 450px;
     height: 300px;
-     /* flex-wrap: nowrap; */
-    transition: filter .35s, transform .5s;
-    /* transition-delay: .15s;  */
-    transform: scale(1); 
+    transition: width .6s, height .6s, filter .35s;
 
 }
 
 .favCard:hover{
     background: rgb(167,230,255);
     filter: saturate(2.0);
-    transition: filter 1.2s, transform .65s;
-    transform: scale(1.06); 
-
+    transition: width .3s, height .3s, opacity .5s, filter 1.2s; 
 }
 .favCard:hover img{
     width: 200px;
@@ -132,11 +123,6 @@ left: -2%;
     letter-spacing: 1px;
     line-height: 1.2;
     text-anchor: initial;
-    
-    /* background-position: absolute;
-    position: relative;
-    color: red; */
-    /* font-stretch: semi-condensed; */
 
 
 }

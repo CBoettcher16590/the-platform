@@ -148,7 +148,7 @@ export default function EditorProfile() {
 
                             <Card.Body>
 
-                            <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(content)}}></p>
+                              <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}></p>
                             </Card.Body>
                             <Button onClick={Publish(articleLoop)} className="btn-info">Approve</Button>
                             <Button onClick={Reject(articleLoop)} className="btn-danger">Reject </Button>
@@ -183,7 +183,7 @@ export default function EditorProfile() {
                           <div>
                             <Button id="title" onClick={() => this.Operation()}>{title}</Button>
                           </div>
-                          <p> <strong> Created On  {atricledate.slice(0,10)}</strong></p>
+                          <p> <strong> Created On  {atricledate.slice(0, 10)}</strong></p>
 
                         </Accordion.Toggle>
                       </Card>
@@ -222,60 +222,60 @@ export default function EditorProfile() {
 
     {/* <Row> */}
     <div className="main">
-    <Col className="editorCardBG" sm={11} lg={6}>
+      <Col className="editorCardBG" sm={11} lg={6}>
 
-      {/* first column 1 */}
-      <div >
-        <Card className="editorInfoCard">
-          <Card.Img variant="top" src={loggedInUser?.user_image_link} />
-          <Card.Body className="editorInfo">
-            <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
-            <br />
-            <br />
-            <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-            <Nav.Link href="/EDupdateInfo" >Edit Profile</Nav.Link>
-          </Card.Body>
-        </Card>
-      </div>
+        {/* first column 1 */}
+        <div >
+          <Card className="editorInfoCard">
+            <Card.Img variant="top" src={loggedInUser?.user_image_link} />
+            <Card.Body className="editorInfo">
+              <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name}'s Profile</h2></Card.Title>
+              <br />
+              <br />
+              <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
+              <Nav.Link href="/EDupdateInfo" >Edit Profile</Nav.Link>
+            </Card.Body>
+          </Card>
+        </div>
 
-    </Col>
-    <App />
-
-
-    {/* ================= FAVORITED ARTICLES ================= */}
+      </Col>
+      <App />
 
 
-    <Card className="fav">
-      <Card.Header className="favArtTitle"><h3>Favorite Articles</h3></Card.Header>
-      <Card.Body>
+      {/* ================= FAVORITED ARTICLES ================= */}
 
-        <section className="favArticleRow1">
-          {favoriteArticles?.map(function (_art: IArticle) {
-            let image = _art.image_link;
-            let title = _art.title;
-            let preview = _art.preview;
-            let createdOn = _art.created_on.slice(0, 10);
-            return (
-              <div key={_art.article_id} className="favCard">
 
-                <img className="favImage" src={image} />
+      <Card className="fav">
+        <Card.Header className="favArtTitle"><h3>Favorite Articles</h3></Card.Header>
+        <Card.Body>
 
-                <div className="favArticle">
+          <section className="favArticleRow1">
+            {favoriteArticles?.map(function (_art: IArticle) {
+              let image = _art.image_link;
+              let title = _art.title;
+              let preview = _art.preview;
+              let createdOn = _art.created_on.slice(0, 10);
+              return (
+                <div key={_art.article_id} className="favCard">
 
-                  <p className="favArticleTitle" onClick={GoToArticle(_art)}>{title}</p>
+                  <img className="favImage" src={image} />
 
-                  <p className="favArticlePreview">{preview}</p>
+                  <div className="favArticle">
 
-                  <p className="favArticleCreatedOn">Posted On: {createdOn}</p>
+                    <p className="favArticleTitle" onClick={GoToArticle(_art)}>{title}</p>
 
+                    <p className="favArticlePreview">{preview}</p>
+
+                    <p className="favArticleCreatedOn">Posted On: {createdOn}</p>
+
+                  </div>
                 </div>
-              </div>
-            )
-          })}
-        </section>
-      </Card.Body>
-      <Card.Footer className="text-muted" />
-    </Card>
+              )
+            })}
+          </section>
+        </Card.Body>
+        <Card.Footer className="text-muted" />
+      </Card>
     </div>
 
   </>

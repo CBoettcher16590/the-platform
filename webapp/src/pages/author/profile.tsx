@@ -94,7 +94,7 @@ export default function AuthorProfile() {
 
 
           <Nav>
-            <Nav.Link id="newart" href="/newArticle">
+            <Nav.Link id="newartic" href="/newArticle">
               <div className="border1"></div>
               <div className="border1"></div>
               Submit An Article</Nav.Link>
@@ -110,8 +110,6 @@ export default function AuthorProfile() {
             </Nav>          </Nav>
         </Navbar.Collapse>
       </Navbar>
-      
-      
       <div className="userProf">
         <div className="userBox">
           <Card className="authorInfoCard">

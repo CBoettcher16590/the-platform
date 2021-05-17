@@ -58,7 +58,7 @@ export default function PayButton(_article: IArticle) {
       disabled={isLoading}
       onClick={handleClick}
     >
-             <div className="border"></div>
+      <div className="border"></div>
       <div className="border"></div>
       {isLoading ? 'Loading…' : 'Add To Favourites'}
     </Button>

@@ -7,7 +7,7 @@ export default function splashPage() {
 
     return (<>
 
-        <Navbar collapseOnSelect id = "navbar"expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect id="navbar" expand="lg" bg="dark" variant="dark">
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
@@ -28,13 +28,13 @@ export default function splashPage() {
                             write, and publish their articles<br />
                             to the world from home!<br />
 
-                            <div className="banner-btn">
+                        <div className="banner-btn">
                             <div className="banner-btns">
-                <a href="/signin"><span></span> Login</a>
+                                <a href="/signin"><span></span> Login</a>
 
-                </div>
-                    <a href= "/signup"><span></span> Sign Up!</a>
-                </div>
+                            </div>
+                            <a href="/signup"><span></span> Sign Up!</a>
+                        </div>
 
                     </p>
 

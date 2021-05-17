@@ -4,7 +4,6 @@
     height:60;
     width:100vw;
 }
-/*Switch to 100% of content. vh, vw*/
 
 .subcontent{
     
@@ -14,14 +13,6 @@
     align-content: center;
 
 }
-
-/* .subscribeButton{
-    margin-top: 1.5rem;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-} */
-
 
 .SubscribeTxt{
     display:flex;
@@ -135,24 +126,6 @@
     margin-top: 10rem;
 
 }
-
-
-
-
-
-
-
-
-/* Demo Style. Should be varied up.  */
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navbar, Nav, Card, Button, Table, Dropdown, DropdownButton, Col, Row } from 'react-bootstrap';
+import { Navbar, Nav, Card, Button, Table, Dropdown, DropdownButton, Col, Row, Container, Tab, Tabs } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FavoriteArticles from '../../components/article/favoriteArticle';
 import './style.css';
@@ -11,10 +11,10 @@ import { ISeries } from '../../../../services/crud-server/src/models/series';
 
 
 export default function OrgAuthorProfile() {
-  //did not add logout to the author profile, as its a class, should we make this a regular function? 
   const history = useHistory();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
   const [userArticles, setUserArticles] = useState<IArticle[]>();
+  const [expiredSubscription, setSubscription] = useState<string>();
   const [userSeries, setUserSeries] = useState<ISeries[]>();
   const userID: string | null = localStorage.getItem("userID");
 
@@ -32,6 +32,17 @@ export default function OrgAuthorProfile() {
   // x
 
   useEffect(() => {
+
+
+    api.users.getById(userID).then((responce) => {
+      const foundUser: IUser = responce.data[0];
+      if (foundUser.subscription == 1) {
+        const newString = (foundUser.sub_end_date).substring(0, (foundUser.sub_end_date).length - 14)
+
+        setSubscription('Subscription Ends ' + newString);
+
+      }
+    }).catch((err) => { console.log(`Error: ${err}`); });
     //find logged in user 
     //get user info, and set logged in user
     api.users.getById(userID).then((responce) => {
@@ -74,10 +85,10 @@ export default function OrgAuthorProfile() {
               <div className="border1"></div>
                                         My Account</Nav.Link>
           </Nav>
- 
+
 
           <Nav>
-            <Nav.Link id="newart" href="/newArticle">
+            <Nav.Link id="newartic" href="/newArticle">
               <div className="border1"></div>
               <div className="border1"></div>
               Submit An Article</Nav.Link>
@@ -85,85 +96,102 @@ export default function OrgAuthorProfile() {
               <div className="border1"></div>
               <div className="border1"></div>
               Create New Series</Nav.Link>
-            <Nav>
-              <Button id="logout" onClick={onClickLogout}>
-                <div className="border1"></div>
-                <div className="border1"></div>
+            <Button id="logout" onClick={onClickLogout}>
+              <div className="border1"></div>
+              <div className="border1"></div>
                                         Logout</Button>
-            </Nav>          </Nav>
+          </Nav>
         </Navbar.Collapse>
       </Navbar>
 
-      <div >
-        <Row className="AuthorHeader">
-          <Col className="authorCardBG" sm={12} lg={6}>
-            <div >
-              <Card className="authorInfoCard">
-                <Card.Img variant="top" src={loggedInUser?.user_image_link} />
-                <Card.Body className="authorInfo">
-                  <Card.Title><h2>{loggedInUser?.first_name + " " + loggedInUser?.last_name} <br />{"  - An Author "} <br /> {" - Works for " + " " + loggedInUser?.org_name + " " + "Org."}</h2></Card.Title>
-                  <br />
-                  <br />
-                  <Card.Title><h5>{loggedInUser?.bio}</h5></Card.Title>
-                  <Nav.Link href="/ORAUthUpdate" >Edit Profile</Nav.Link>
-                </Card.Body>
-              </Card>
-            </div>
-          </Col>
 
-          <Col className="articleCol" sm={12} lg={6}>
-            <div id="myArticles"></div>
+      <div className="userProf">
+        <div className="userBox">
+          <Card className="authorInfoCard">
+            <Card.Img className="authorCardImg" variant="top" src={loggedInUser?.user_image_link} />
+            <Card.Body className="authorInfo">
+              <Card.Title className="authorProfileHead"><p>{loggedInUser?.first_name + " " + loggedInUser?.last_name} <br />{"  - An Author "} <br /> {" - Works for " + " " + loggedInUser?.org_name + " " + "Org."}</p></Card.Title>
+              <Card.Title className="profBioTxt"><p>{loggedInUser?.bio}</p></Card.Title>
+              <Nav.Link className="editProfTxt" href="/ORAUthUpdate" >  Edit Profile</Nav.Link>
+              <Card.Text className="expSubText"> {expiredSubscription}  </Card.Text>
+            </Card.Body>
+          </Card>
+        </div>
 
-            <div id="articleInfo">
+        <div id="articleInfo">
 
-              <Table striped borderless hover variant="dark">
+          <Container fluid>
+            <Row>
+              <Col>
+                <Tabs className="tabsProfileCenter" defaultActiveKey="Favourites" id="uncontrolled-tab-example">
+                  <Tab className="tabSpacingProfileL" eventKey="Favourites" title="Favourites">
 
-                <thead>
-                  <tr>
-                    <th colSpan={4} id="myArticlesTableH1"><h1>My Articles</h1></th>
-                  </tr>
-                  <tr>
-                    <th> </th>
-                    <th>Title</th>
-                    <th>Series ID</th>
-                    <th>Add To Series</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {userArticles?.map(function (_art, index) {
-                    let number = index + 1;
-                    let articleTitle = _art.title;
-                    let series = _art.series_series_id;
+                    <FavoriteArticles></FavoriteArticles>
 
-                    return (
-                      <tr key={_art.article_id}>
-                        <td>{number}</td>
-                        <td>{articleTitle}</td>
-                        <td>{series}</td>
-                        <td>
-                          <DropdownButton id="dropdownSeries" title="Add Article To Series">
-                            {userSeries?.map(function (serie, index) {
-                              let seriesTitle = serie.series_title;
-                              // return(
-                              //   <Dropdown.Item
-                              //   value={serie.series_title}
-                              //   seriesid={serie.series_id}
-                              //   key={index}
-                              //   onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id) )}
-                              //   >{serie.series_title}</Dropdown.Item>
-                              // )
-                            })}
+                  </Tab>
+                  <Tab eventKey="Articles" title="Articles">
+                    <div>
+                      <div className="setArticleInfoSize">
+                        <Col >
+                          <div id="myArticles"></div>
+                          <div id="articleInfo">
 
-                          </DropdownButton></td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </Table>
-            </div>
+                            <Table striped borderless hover variant="light">
 
-          </Col>
-        </Row>
+                              <thead>
+                                <tr>
+                                  <th colSpan={4} id="myArticlesTableH1"><h3>My Articles</h3></th>
+                                </tr>
+                                <tr>
+                                  <th> </th>
+                                  <th>Title</th>
+                                  <th>Series ID</th>
+                                  <th>Add To Series</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {userArticles?.map(function (_art, index) {
+                                  let number = index + 1;
+                                  let articleTitle = _art.title;
+                                  let series = _art.series_series_id;
+
+                                  return (
+                                    <tr key={_art.article_id}>
+                                      <td>{number}</td>
+                                      <td>{articleTitle}</td>
+                                      <td>{series}</td>
+                                      <td>
+                                        <DropdownButton id="dropdownSeries" title="Add Article To Series">
+                                          {userSeries?.map(function (serie, index) {
+                                            let seriesTitle = serie.series_title;
+                                            return (
+                                              <Dropdown.Item
+                                                value={serie.series_title}
+                                                seriesid={serie.series_id}
+                                                key={index}
+                                                onClick={handelAddToSeries(String(serie.series_id), String(_art.article_id))}
+                                              >{serie.series_title}</Dropdown.Item>
+                                            )
+                                          })}
+
+                                        </DropdownButton></td>
+                                    </tr>
+                                  )
+                                })}
+                              </tbody>
+                            </Table>
+                          </div>
+                        </Col>
+                      </div>
+                    </div>
+                  </Tab>
+                </Tabs>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+
+
 
       </div>
 

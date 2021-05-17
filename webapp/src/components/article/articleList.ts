@@ -1,20 +1,15 @@
 import { atom, useRecoilState } from 'recoil';
-import{ useEffect, useState } from "react";
-import {IArticle} from "../../../../services/crud-server/src/models/article";
+import { useEffect, useState } from "react";
+import { IArticle } from "../../../../services/crud-server/src/models/article";
 import api from "../../api";
 import Axios from 'axios';
 
-// export const articleListState = atom({
-//     key: 'articleList',
-//     default: [] as IArticle[]
-// });
 
-
-export default function useArticleList () {
+export default function useArticleList() {
 
 
     // const [ articleList, setArticleList ] = useRecoilState<IArticle[]>(articleListState);
-    const [ articleList, setArticleList ] = useState<IArticle[]>();
+    const [articleList, setArticleList] = useState<IArticle[]>();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,7 +18,7 @@ export default function useArticleList () {
             }).catch((error) => console.error(`Error: ${error}`));
         }
         fetchData();
-    },[]);
+    }, []);
 
     return {
         articleList
