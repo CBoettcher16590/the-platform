@@ -55,7 +55,7 @@ const history = useHistory();
               </Col>
             </Row>
 
-          <p>{preview}</p>
+          <p id="CenterArtPreview">{preview}</p>
       
             </div>
            
@@ -75,7 +75,7 @@ const history = useHistory();
               </Col>
             </Row>
 
-          <p>{preview}</p>
+          <p id="CenterArtPreview">{preview}</p>
       
             </div>
            

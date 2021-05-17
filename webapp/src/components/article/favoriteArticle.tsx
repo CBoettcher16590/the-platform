@@ -50,13 +50,12 @@ return(
             <img className="favImage"src={image} />
 
             <div className="favArticle">
-
-            <p className="favArticleTitle" onClick={GoToArticle(_art)}>{title}</p>
-
-                <p className="favArticlePreview">{preview}</p>
-
-                <p className="favArticleCreatedOn">Posted On: {createdOn}</p>
-        
+{/* maybe a div for the text to keep it static. Specifically. They are already wrapped? hmm*/}
+                <div className="favArticleLockTextSize">
+                    <p className="favArticleTitle" onClick={GoToArticle(_art)}>{title}</p>
+                    <p className="favArticlePreview">{preview}</p>
+                    <p className="favArticleCreatedOn">Posted On: {createdOn}</p>
+                </div>
             </div>
             </div>
             )

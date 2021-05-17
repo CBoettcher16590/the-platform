@@ -5,7 +5,7 @@ import OrgArticles from '../../../pages/organization/homepage';
 import { assert, expect } from 'chai';
 import ReactDOM from 'react-dom';
 import {render} from 'enzyme'
-//the amount of libaries and toolkits interacting is something else.... 
+//the amount of libaries and toolkits interacting is  else.... 
         // console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
 
 

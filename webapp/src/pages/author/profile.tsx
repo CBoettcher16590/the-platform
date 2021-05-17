@@ -20,7 +20,6 @@ export default function AuthorProfile() {
   const userID: string | null = localStorage.getItem("userID");
 
 
-  let thing = '';
 
 
   function onClickLogout() {
@@ -39,16 +38,10 @@ export default function AuthorProfile() {
   useEffect(() => {
     api.users.getById(userID).then((responce) => {
       const foundUser: IUser = responce.data[0];
-      // style={{color:'gold'}
       if (foundUser.subscription == 1) {
-        // const subExpire = foundUser.sub_end_date;
         const newString = (foundUser.sub_end_date).substring(0, (foundUser.sub_end_date).length - 14)
 
-
         setSubscription('Subscription Ends ' + newString);
-        console.log(thing)
-        console.log(newString)
-        console.log(newString)
 
       }
     }).catch((err) => { console.log(`Error: ${err}`); });
@@ -140,7 +133,7 @@ export default function AuthorProfile() {
                   <FavoriteArticles></FavoriteArticles>
 
                 </Tab>
-                <Tab className="tabSpacingProfileR" eventKey="Articles" title="Articles">
+                <Tab eventKey="Articles" title="Articles">
                   <div>
                     <div className="setArticleInfoSize">
                       <Col >

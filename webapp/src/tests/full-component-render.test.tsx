@@ -12,7 +12,6 @@ import author_profile from '../pages/author/profile';
 import AU_edit_profile from '../pages/author/editprofile';
 import ED_edit_profile from '../pages/editor/editprofile';
 import MEM_edit_profile from '../pages/members/editprofile';
-import MEM_personal_info from '../pages/members/form';
 import AD_edit_profile from '../pages/systemAdmin/editprofile';
 import EditorProfile from '../pages/editor/editorProfile';
 import Organization_profile from '../pages/organization/profile';
@@ -130,11 +129,6 @@ describe('All Components Render without surprises.', () => {
     });
 
 
-    it('MEM_personal_info renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(<MEM_personal_info />, div);
-        ReactDOM.unmountComponentAtNode(div);
-    });
 
     it('AD_edit_profile renders without crashing', () => {
         const div = document.createElement('div');

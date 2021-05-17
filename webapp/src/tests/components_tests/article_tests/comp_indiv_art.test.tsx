@@ -5,10 +5,8 @@ import IndvArticle from '../../../components/article/indvArticle';
 import { assert, expect } from 'chai';
 import ReactDOM from 'react-dom';
 import {render} from 'enzyme'
-//the amount of libaries and toolkits interacting is something else.... 
         // console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
 
-//exception to function, unsure how to test? mount on specific node?
 
 describe('<IndvArticle />', () => {
 
@@ -30,8 +28,6 @@ describe('<IndvArticle />', () => {
     xit('HorazontalDisplay profile renders', () => {
         const wrapper = shallow(<IndvArticle />);
         expect(wrapper).to.exist;
-
-        // https://enzymejs.github.io/enzyme/docs/api/shallow.html
     });
 
 })

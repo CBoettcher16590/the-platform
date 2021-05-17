@@ -5,8 +5,8 @@ import MainLayout from '../../layouts/MainLayout';
 import { assert, expect } from 'chai';
 import ReactDOM from 'react-dom';
 import {render} from 'enzyme'
-//the amount of libaries and toolkits interacting is something else.... 
-        // console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
+       
+// console.log(wrapper.debug()) prints the whole thing of a given wrapper 🤡
 
 
 
@@ -37,33 +37,3 @@ describe('<HorazontalDisplay />', () => {
 })
 
 
-/*
-
-import React, { PropsWithChildren } from "react";
-import TopNavbar from "../components/TopNavbar";
-import {Col, Container, Row } from "react-bootstrap";
-
-
-export default function MainLayout(props: PropsWithChildren<{}>) {
-    return (
-        <>
-            <Container className="main">
-                <TopNavbar />
-                <Row>
-                    <Col>{props.children}</Col>
-                </Row>
-                <footer>
-                    <Container fluid>
-                        <Row>
-                            <Col md={10} sm={8}></Col>
-                            <Col md={2} sm={4}>
-                            </Col>
-                        </Row>
-                    </Container>
-                </footer>
-            </Container>
-        </>
-    );
-}
-
-*/
