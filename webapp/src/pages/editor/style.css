@@ -1,40 +1,230 @@
-.editorInfo{
-    align-content: center;
+
+
+.editorCardBG{
+    background: black;
 }
 
 .editorInfoCard{
-    width: 30em;
-    margin-right: auto;
-    margin-left: auto;
-    box-shadow:  0 0 5px #120129;
+float: left;
+width: 30%;
+height: 570px;
+width: 45%;
+left: -2%;
+}
+
+.editorInfoCard1{
+    float: left;
+    width: 30%;
+    margin-left: 30px;
+    background-attachment: scroll;
+    background-attachment:scroll;
+    top:10px;
+    align-items: center;
 
 }
 
-.editorCardBG{
-    padding-top: 25px;
+#title {
+    background: transparent;
+    border: none;
+    color: #000;
+    width: 300px;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-align: center;
+    outline: none;
+    box-shadow: none;
+
+}
+
+
+/* fav styling  */ /* fav styling  */ /* fav styling  */ /* fav styling  */ /* fav styling  */ /* fav styling  */ 
+
+
+
+
+
+
+.favCard{
+    border: px solid grey;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 15px;
+    background-color: rgb(224, 234, 238) ;
+    padding: 20px;
+    width: 80em;
+    display: flex;
     padding-bottom: 25px;
-   
-}
-.reviewArticles{
-    box-shadow:  0 0 3px #120129;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 20px;
-    width: 85em;
-    background-color: rgb(241, 241, 241);
+    margin-bottom: 35px;
+    box-shadow: 7px 7px rgb(134, 160, 150);
+    
+    /* justify-content: center;
+    flex-direction: row; */
+    /* padding: 15; */
+    width: 450px;
+    height: 300px;
+     /* flex-wrap: nowrap; */
+    transition: width .6s, height .6s, filter .35s;
+    /* transition-delay: .15s;  */
+
+
 }
 
-.pendingArticles{
-    margin-bottom: 25px;
-    box-shadow:  0 0 5px #120129;
+.favCard:hover{
+    /* The size is nice. Unsure how to set the size. */
+    background: rgb(167,230,255);
+    /* background: radial-gradient(circle, rgba(167,230,255,1) 69%, rgba(225,238,193,1) 100%); */
+    /* opacity: .85; */
+    filter: saturate(2.0);
+     /* width: 451px;
+    height: 302px; */
+    transition: width .3s, height .3s, opacity .5s, filter 1.2s; 
+
+}
+.favCard:hover img{
+    width: 200px;
+    height:200px;
+    transition: width .3s, height .3s;
 }
 
-#pendingBoxTitle{
-    font-size: 40px;
-    text-decoration: underline;
+
+.favArticleRow{
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width:100%;
+    height:auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+.favArticleRow h2{
+   font-size: 25px;
+}
+.favImage{
+    border-radius: 5px;
+    width: 120px;
+    height:120px;
+    object-fit: cover;
+    margin-right: 20px;
+    display: flex;
+    align-self: center;
 }
 
-.editButtons{
+
+
+.favArticle{
+    height: auto;
+    width: 400px;
+    border: 2px;
+}
+
+.favArticleTitle{
+    font-size: 20px;
+    font-weight: 560;
+    color: rgb(118, 30, 201);
+
+}
+
+.favArticleTitle:hover{
+    cursor:pointer;
+}
+
+
+.favArticlePreview{
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    text-anchor: initial;
+    
+    /* background-position: absolute;
+    position: relative;
+    color: red; */
+    /* font-stretch: semi-condensed; */
+
+
+}
+
+.favArticleCreatedOn{
+    font-size: 10px;
+    font-weight: 600;
+
+
+}
+
+/* fav stylind end */
+
+
+
+
+
+
+
+
+
+
+
+.pendingcard{
+    text-align: left;
+    position:absolute;
+    left: 60%;
+    top:10%;
+    z-index: 1;
+    box-sizing: border-box;
+    background-attachment: scroll;
+    height: 600px;
+    width:40%;
+    overflow: auto;
+    background: rgb(255, 255, 255);
+    padding: 10px;
     border: 1px solid black;
-    margin-right: 15px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+
+}
+
+.fav{
+    position:  absolute;
+    right: 0%;
+    bottom: -120%;
+    width: 100%;
+    padding: 10px;
+
+
+}
+
+#sticky{
+font-weight: bold;
+text-transform: capitalize;
+text-align: center;
+text-decoration: underline;
+}
+
+.btn-info{
+    position: absolute;
+    left: 20px;
+    margin-left: 5px;
+    background: green;
+    width: 130px;
+}
+.btn-danger{
+    position: relative;
+    left: 160px;
+    margin-left: 5px;
+    background: red;
+    width: 130px;
+
+
+}
+
+.btn-danger:hover {
+
+    background:transparent;
+    color: #000;
+}
+
+.btn-info:hover {
+
+    background:transparent;
+    color: #000;
 }

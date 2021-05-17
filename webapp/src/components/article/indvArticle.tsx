@@ -13,10 +13,7 @@ import FavButton from '../FavButton';
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
 
-// import {UpArrow as Updoot} from '%PUBLIC_URL%/arrow-up.svg';
-// import {DownArrow as DownDoot} from '%PUBLIC_URL%/arrow-down.svg';
-
-
+ 
 
 const IndvArticle = () => {
     const params = useParams<{ id: string }>();

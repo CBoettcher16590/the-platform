@@ -24,7 +24,7 @@ function HomePage(props: {}) {
                 window.localStorage.clear();
                 history.go(0);
                 alert("Logged Out");
-                }
+        }
 
 
         useEffect(() => {
@@ -81,9 +81,8 @@ function HomePage(props: {}) {
                         history.push("/splashPage")
                 }
 
-               
-                    },[]);
 
+        }, []);
 
         return <>
                 <Navbar bg="dark" variant="dark">
@@ -91,34 +90,47 @@ function HomePage(props: {}) {
                         <Nav className="navUser"> Logged In As: {loggedInUser?.first_name} </Nav>
                         <Nav className="mr-auto"></Nav>
                         <Nav>
-                                <Nav.Link href={navProfileLink}>My Account</Nav.Link>
 
-                                <Nav.Link href='/subscription'>Subscription</Nav.Link>
+                                <Nav.Link id="account" href={navProfileLink}>
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        My Account</Nav.Link>
+
+                                <Nav.Link id="subscription" href='/subscription'>
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+
+                                Subscription
+
+                                         </Nav.Link>
+                                <Button id="logout" onClick={onClickLogout}>
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        Logout</Button>
 
 
                         </Nav>
-                        <Button id="logoutButton" onClick={onClickLogout}>Logout</Button>
-        </Navbar>
+                </Navbar>
 
 
-        <section className="homeArticles">
-        
-        <Row>
-        <Col id="homeArtLeft" sm={5} lg={4}>
-                <h2></h2>
-                <HomepageFeatureDisplay/>
-        </Col>
-        <Col id="homeArtCenter" sm={7} lg={5}>
-                 <h2></h2>
-                <HomepageCenterDisplay/>
-        </Col>
-        <Col id="homeArtRight" sm={12} lg={3}>
-                <h2>Discover Articles</h2>
-                <HomepageNonFeatureDisplay/>
-        </Col>
-        </Row>                   
-        </section>
-         </>    
+                <section className="homeArticles">
+
+                        <Row>
+                                <Col id="homeArtLeft" sm={5} lg={4}>
+                                        <h2></h2>
+                                        <HomepageFeatureDisplay />
+                                </Col>
+                                <Col id="homeArtCenter" sm={7} lg={5}>
+                                        <h2></h2>
+                                        <HomepageCenterDisplay />
+                                </Col>
+                                <Col id="homeArtRight" sm={12} lg={3}>
+                                        <h2>Discover Articles</h2>
+                                        <HomepageNonFeatureDisplay />
+                                </Col>
+                        </Row>
+                </section>
+        </>
 
 }
 

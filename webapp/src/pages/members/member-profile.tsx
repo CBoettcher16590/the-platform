@@ -72,11 +72,16 @@ export default function Profile() {
         <Nav className="mr-auto">
           <Navbar.Brand href="/">The Platform</Navbar.Brand></Nav>
         <Nav>
-          <Nav.Link href="/profile"> My Account</Nav.Link>
-          <Nav.Link href='/splashPage'>Splash</Nav.Link>
+        <Nav.Link id="account2" href="/profile">
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        My Account</Nav.Link>
         </Nav>
         <Nav>
-          <Button onClick={onClickLogout}>Logout</Button>
+        <Button id="logout" onClick={onClickLogout}>
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        Logout</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

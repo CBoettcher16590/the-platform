@@ -25,7 +25,7 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   //error with button varient being a string[]
   //const  varient = ["danger","success"];
   const permissionButtonText = ["Disable User Login","Enable User Login"];
-  const userType = ["Admin","Author","Editor","Member"];
+  const userType = ["Admin","Author","Editor","Member", "orgAuthor", "orgAdmin", "organization"];
 
 
   // Inside the .catch I wanted to show that both these useEffects do the same thing even though they are written differently
@@ -90,12 +90,20 @@ import { IArticle } from '../../../../services/crud-server/src/models/article';
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
       <Navbar.Brand href="/">The Platform</Navbar.Brand>          </Nav> 
-    <Nav>
-        <Nav.Link href="/ADProfile"> My Account</Nav.Link>
-      </Nav>
       <Nav>
-        <Button onClick={onClickLogout}>Logout</Button>
-      </Nav>
+        <Nav.Link id="account2" href="/ADProfile">
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        My Account</Nav.Link>
+        </Nav>
+
+
+        <Nav>
+        <Button id="logout" onClick={onClickLogout}>
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        Logout</Button>
+        </Nav>
     </Navbar.Collapse> 
   </Navbar>
 

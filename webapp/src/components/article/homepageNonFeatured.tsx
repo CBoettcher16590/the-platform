@@ -25,7 +25,7 @@ const history = useHistory();
     //then We use history.push to redirect to that page
     history.push(`/article/${articleId}`)
     }
-    return <>
+    return <> 
     <section className="homeDiscoverList">
       {articles?.map(function(_art, index){
         

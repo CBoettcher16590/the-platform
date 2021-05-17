@@ -86,10 +86,28 @@ export default function AuthorProfile() {
             <Navbar.Brand href="/">The Platform</Navbar.Brand>
           </Nav>
           <Nav>
-            <Nav.Link href="/newArticle">Submit An Article</Nav.Link>
-            <Nav.Link href="/newSeries">Create New Series</Nav.Link>
-            <Button onClick={onClickLogout}>Logout</Button>
+            <Nav.Link id="account2" href="/AUprofile">
+              <div className="border1"></div>
+              <div className="border1"></div>
+                                        My Account</Nav.Link>
           </Nav>
+
+
+          <Nav>
+            <Nav.Link id="newart" href="/newArticle">
+              <div className="border1"></div>
+              <div className="border1"></div>
+              Submit An Article</Nav.Link>
+            <Nav.Link id="newseries" href="/newSeries">
+              <div className="border1"></div>
+              <div className="border1"></div>
+              Create New Series</Nav.Link>
+            <Nav>
+              <Button id="logout" onClick={onClickLogout}>
+                <div className="border1"></div>
+                <div className="border1"></div>
+                                        Logout</Button>
+            </Nav>          </Nav>
         </Navbar.Collapse>
       </Navbar>
       

@@ -5,6 +5,8 @@ import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api'
 import { useState } from 'react';
 import { useHistory } from 'react-router';
+import './form.css';
+
 
 export default function Mem_edit_profile() {
 
@@ -41,10 +43,13 @@ export default function Mem_edit_profile() {
     }
 
     return <>
-        <div id="editAuthorBG">
+        <div id="editBG">
             <Navbar bg="dark" variant="dark">
                 <Nav className="mr-auto">
-                    <Nav.Link href='/AUprofile'>My Account</Nav.Link>
+                <Nav.Link id="account1" href="/profile">
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        My Account</Nav.Link>
                 </Nav>
             </Navbar>
 

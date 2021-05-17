@@ -9,6 +9,7 @@ import api from '../../api';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { IUser } from '../../../../services/crud-server/src/models/user';
 
 
 
@@ -16,6 +17,7 @@ export default function Subscription() {
 
 
   const history = useHistory();
+
 
   function onClickLogout() {
     window.localStorage.clear()
@@ -34,11 +36,12 @@ export default function Subscription() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Navbar.Brand href="/">The Platform</Navbar.Brand>        </Nav>
+     
         <Nav>
-          <Navbar.Brand href="/editorProfile"> My Account</Navbar.Brand>
-        </Nav>
-        <Nav>
-          <Button onClick={onClickLogout}>Logout</Button>
+        <Button id="logout" onClick={onClickLogout}>
+                                        <div className="border1"></div>
+                                        <div className="border1"></div>
+                                        Logout</Button>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
@@ -49,8 +52,8 @@ export default function Subscription() {
         <br />
         <div className="subscribeButton">
           <div>
-            <Button variant="primary" size="lg" block onClick={routeToSub}>
-              Subscribe Today
+            <Button id= "button1"  onClick={routeToSub}>
+              Subscribe Today!
              </Button>{''}
           </div>
         </div>

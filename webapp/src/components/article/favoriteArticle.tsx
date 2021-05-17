@@ -42,7 +42,7 @@ return(
         {favoriteArticles?.map(function(_art:IArticle){
             let image = _art.image_link;
             let title = _art.title;
-            let preview = _art.preview; 
+            let preview = _art.preview;  
             let createdOn = _art.created_on.slice(0,10);
             return (
             <div key={_art.article_id} className="favCard">

@@ -5,76 +5,7 @@ body{
     color:white;
 }
 
- /* My account btn style starts here */ /* My account btn style starts here */ /* My account btn style starts here */ /* My account btn style starts here */
-
- #account{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: 0 20px 40px;
-    position:relative;
-    max-width: 100px;
-    min-width: 120px;
-    flex: 20%;
-    margin-right: 51%; 
-    width:70%;
-    height:40px;
-    position:absolute;
-    background:#343a40!important;
-    color:#fff;
-    font-weight:bold;
-    letter-spacing:1px;
-    border:#fff;
-    cursor: pointer;
-    top: 10px;
-    font-size:15px;
-    outline:none;
-    left:70%;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  }
-  
-  
-  /* FIRST BUTTON */
-  
-  .border1{
-      position:absolute;
-      background:none;
-      transition:all .3s ease-in-out;
-      cursor: pointer;
-
-  }
-  
-  #account>.border1:nth-of-type(1){
-    top:0;
-    left:0;
-    border-left:2px solid #fff;
-    border-top:2px solid #fff;
-    width:5px;
-    height:5px;
-    cursor: pointer;
-
-  }
-  
-  #account>.border1:nth-of-type(2){
-    bottom:0;
-    right:0;
-    border-right:2px solid #fff;
-    border-bottom:2px solid #fff;
-    width:5px;
-    height:5px;
-    cursor: pointer;
-
-  }
-  
-  #account:hover .border1{
-    width:102%;
-    height:105%;
-    cursor: pointer;
-
-  }
-
- /*My account btn style ends here */ /*My account btn style ends here */ /*My account btn style ends here */ /*My account btn style ends here */
-
+ 
 
  
 
