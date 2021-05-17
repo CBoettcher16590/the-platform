@@ -98,7 +98,7 @@ export default function AuthorProfile() {
               <div className="border1"></div>
               <div className="border1"></div>
               Submit An Article</Nav.Link>
-            <Nav.Link id="newseries" href="/newSeries">
+            <Nav.Link className="patchWorkAuthorCreateOffset" id="newseries" href="/newSeries">
               <div className="border1"></div>
               <div className="border1"></div>
               Create New Series</Nav.Link>
