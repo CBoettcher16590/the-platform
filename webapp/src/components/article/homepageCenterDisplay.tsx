@@ -48,7 +48,7 @@ export default function HomepageCenterDisplay() {
 
                   <Row>
                     <Col xs={6}>
-                      <p className="date">Date Posted: {createdOn}</p>
+                      <p id="dateSeries">Date Posted: {createdOn}</p>
                     </Col>
                     <Col xs={6}>
                       <Badge pill variant="success">Premium</Badge>

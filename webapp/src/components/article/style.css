@@ -18,8 +18,16 @@
     display: flex;
     align-self: center;
 }
+
+#dateSeries{
+    padding-top: 4px;
+    font-size: 16px;
+
+}
+
 .date{
-font-size: smaller;}
+font-size: smaller;
+}
 
 #featureImg{
     padding-bottom: 2em;
@@ -28,6 +36,7 @@ font-size: smaller;}
     margin-left: auto;
     margin-right: auto;
 }
+
 #featureArticleBody{
     padding: 25px; 
 }
