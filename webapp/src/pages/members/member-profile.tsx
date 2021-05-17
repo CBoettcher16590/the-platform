@@ -12,7 +12,6 @@ import FavoriteArticles from '../../components/article/favoriteArticle';
 
 export default function Profile() {
 
-  //did not add logout to the author profile, as its a class, should we make this a regular function? 
   const history = useHistory();
   const [loggedInUser, setLoggedInUser] = useState<IUser>();
   const [favoriteArticles, setFavoriteArticles] = useState<IArticle[]>();
@@ -64,29 +63,29 @@ export default function Profile() {
   }, []);
 
 
-  return(
+  return (
     <div>
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <Navbar.Brand href="/">The Platform</Navbar.Brand></Nav>
-        <Nav>
-        <Nav.Link id="account2" href="/profile">
-                                        <div className="border1"></div>
-                                        <div className="border1"></div>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <Navbar.Brand href="/">The Platform</Navbar.Brand></Nav>
+          <Nav>
+            <Nav.Link id="account2" href="/profile">
+              <div className="border1"></div>
+              <div className="border1"></div>
                                         My Account</Nav.Link>
-        </Nav>
-        <Nav>
-        <Button id="logout" onClick={onClickLogout}>
-                                        <div className="border1"></div>
-                                        <div className="border1"></div>
+          </Nav>
+          <Nav>
+            <Button id="logout" onClick={onClickLogout}>
+              <div className="border1"></div>
+              <div className="border1"></div>
                                         Logout</Button>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
 
-    <div className="userProf">
+      <div className="userProf">
         <div className="userBox">
           <Card className="authorInfoCard">
             <Card.Img className="authorCardImg" variant="top" src={loggedInUser?.user_image_link} />
@@ -111,7 +110,7 @@ export default function Profile() {
             </Col>
           </Row>
         </Container>
-    </div>
+      </div>
 
 
     </div>

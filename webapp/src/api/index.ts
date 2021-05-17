@@ -2,7 +2,7 @@
 import tokens from './tokens';
 import series from './series'
 import articles from './articles';
-import  users from './users';
+import users from './users';
 import user from './users/user';
 import subscription from './subscription';
 import rating from './rating';
@@ -13,7 +13,7 @@ import authors from './authors'
 
 export default {
     tokens,
-    articles, 
+    articles,
     users,
     user,
     series,
@@ -23,5 +23,5 @@ export default {
     org,
     update,
     authors
-    
- }
+
+}

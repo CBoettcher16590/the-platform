@@ -4,7 +4,7 @@ import { HOSTNAME } from '../config';
 
 export default {
 
-    patchMonthly: async (body:any) => {
+    patchMonthly: async (body: any) => {
         console.log("we made it here?")
         console.log(body);
         return axios.patch(`${HOSTNAME}/subscription`, body, {
@@ -34,4 +34,3 @@ export default {
 
 
 
-    

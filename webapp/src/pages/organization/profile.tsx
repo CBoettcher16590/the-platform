@@ -24,10 +24,7 @@ export default function Org_profile() {
 
 
 
-  //variables for the userList
   const disableLogin = ["False", "True"];
-  //error with button varient being a string[]
-  //const  varient = ["danger","success"];
   const permissionButtonText = ["Disable User Login", "Enable User Login"];
   const userType = ["Admin", "Author", "Editor", "Member", "orgAdmin", "orgAuthor", "organization"];
 
@@ -109,15 +106,15 @@ export default function Org_profile() {
         <Nav className="mr-auto">
           <Navbar.Brand href="/">The Platform</Navbar.Brand>          </Nav>
         <Nav>
-            <Nav.Link id="account2" href="/orgProfile">
-              <div className="border1"></div>
-              <div className="border1"></div>
+          <Nav.Link id="account2" href="/orgProfile">
+            <div className="border1"></div>
+            <div className="border1"></div>
                                         My Account</Nav.Link>
-          </Nav>
+        </Nav>
         <Nav>
-        <Button id="logout" onClick={onClickLogout}>
-                <div className="border1"></div>
-                <div className="border1"></div>
+          <Button id="logout" onClick={onClickLogout}>
+            <div className="border1"></div>
+            <div className="border1"></div>
                                         Logout</Button>        </Nav>
       </Navbar.Collapse>
     </Navbar>

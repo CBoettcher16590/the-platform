@@ -17,10 +17,10 @@ export default function CheckoutFormMonth() {
   const history = useHistory();
 
 
-const x = window.localStorage.getItem('userID');
+  const x = window.localStorage.getItem('userID');
 
 
-  const handleSubmit = async (event:any) => {
+  const handleSubmit = async (event: any) => {
     // Block native form submission.
     event.preventDefault();
 

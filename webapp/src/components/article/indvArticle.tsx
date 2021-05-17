@@ -13,7 +13,7 @@ import FavButton from '../FavButton';
 import DOMPurify from 'dompurify';
 import parse from 'html-react-parser';
 
- 
+
 
 const IndvArticle = () => {
     const params = useParams<{ id: string }>();

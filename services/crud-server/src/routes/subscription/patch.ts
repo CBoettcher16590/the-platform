@@ -1,5 +1,5 @@
-import {SubscriptionModel} from '../../models/subscription'
-import { IUser} from '../../models/user';
+import { SubscriptionModel } from '../../models/subscription'
+import { IUser } from '../../models/user';
 
 enum PatchType {
     Monthly = 'M',
@@ -7,30 +7,30 @@ enum PatchType {
 }
 
 
-export function patch(app:any){
+export function patch(app: any) {
 
-    app.patch('/subscription', async(request:any, response:any) => {
+    app.patch('/subscription', async (request: any, response: any) => {
         const headerCode = request.headers.code;
         const userID = request.headers.userid;
 
-    switch(headerCode){
-        
-        case PatchType.Monthly:{
-            SubscriptionModel.editSubscriptionMonthly(userID);
-            break;
-        }
+        switch (headerCode) {
 
-        case PatchType.Yearly:{
-            SubscriptionModel.editSubscriptionAnnualy(userID);
-            break;
+            case PatchType.Monthly: {
+                SubscriptionModel.editSubscriptionMonthly(userID);
+                break;
+            }
+
+            case PatchType.Yearly: {
+                SubscriptionModel.editSubscriptionAnnualy(userID);
+                break;
+            }
+
+            default: {
+                console.error("No Patch code by that Name");
+                break;
+            }
+
         }
-        
-       default:{
-           console.error("No Patch code by that Name");
-        break;
-        }
-           
-    }
 
     });
 

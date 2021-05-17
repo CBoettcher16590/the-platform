@@ -41,95 +41,95 @@ export default function AU_edit_profile() {
     }
 
     return <>
-    <div id="editAuthorBG">
-        <Navbar bg="dark" variant="dark">
-            <Nav className="mr-auto">
-            <Nav.Link id="account1" href="/AUprofile">
-              <div className="border1"></div>
-              <div className="border1"></div>
+        <div id="editAuthorBG">
+            <Navbar bg="dark" variant="dark">
+                <Nav className="mr-auto">
+                    <Nav.Link id="account1" href="/AUprofile">
+                        <div className="border1"></div>
+                        <div className="border1"></div>
                                         My Account</Nav.Link>            </Nav>
-        </Navbar>
-        
-        <h2 id="updateHeader"> Change Profile Information</h2>
+            </Navbar>
 
-        <Form className="UpdateForm">
-            <Form.Group className="updateInfo">     
+            <h2 id="updateHeader"> Change Profile Information</h2>
 
-                <Form.Label className="label">Profile Picture</Form.Label>
-                <Col sm={10}> 
-                    <Form.Control
-                    value={imageLink}
-                    onChange={(e)=>setImageLink(e.target.value)}
-                    type="text"
-                    placeholder="Enter New Image URL"/>  
-                </Col>
-         
-                <Form.Label className="label">New Password</Form.Label>
-                <Col sm={10}>
-                    <Form.Control
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
-                    type ="password"/>  
-                </Col>
+            <Form className="UpdateForm">
+                <Form.Group className="updateInfo">
 
-                <Form.Label className="label">Email</Form.Label>
-                <Col sm={10}>
-                    <Form.Control
-                    value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
-                    type="email"
-                    placeholder="New Email" />  
-                </Col>
-                
-                <Form.Label className="label">Phone</Form.Label>
-                <Col sm={10}>
-                    <Form.Control
-                    value={phoneNumber}
-                    onChange={(e)=>setPhoneNumber(e.target.value)}
-                    type="tel"
-                    placeholder="New Phone Number" />
-                </Col>
-                
-                <Form.Label className="label">Birthdate</Form.Label>
-                <Col sm={10}>
-                    <Form.Control
-                    value={birthdate}
-                    onChange={(e)=>setBirthdate(e.target.value)}
-                    type="date"
-                    placeholder="BirthDate" />
-                </Col>
+                    <Form.Label className="label">Profile Picture</Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            value={imageLink}
+                            onChange={(e) => setImageLink(e.target.value)}
+                            type="text"
+                            placeholder="Enter New Image URL" />
+                    </Col>
 
-                <Form.Label className="label">Bio </Form.Label>
-                <Col sm={10}>
-                    <Form.Control
-                    value={bio}
-                    onChange={(e)=>setBio(e.target.value)}
-                    maxLength = {200} 
-                    as="textarea"
-                    rows={3}
-                    
-                    />  
-                </Col>
-       
+                    <Form.Label className="label">New Password</Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            type="password" />
+                    </Col>
 
-            </Form.Group>
-    
-            <Button type="submit" disabled={isLoading} id="updateButton"className="btn btn-primary" onClick={SubmitUserUpdate}>
-                {isLoading ? 'Loading…' : 'Update'}
-            </Button>
-</Form>
+                    <Form.Label className="label">Email</Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            type="email"
+                            placeholder="New Email" />
+                    </Col>
 
-<br>
-</br>
-<br>
-</br>
-<br>
-</br>
-<br>
-</br>
+                    <Form.Label className="label">Phone</Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            type="tel"
+                            placeholder="New Phone Number" />
+                    </Col>
+
+                    <Form.Label className="label">Birthdate</Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            value={birthdate}
+                            onChange={(e) => setBirthdate(e.target.value)}
+                            type="date"
+                            placeholder="BirthDate" />
+                    </Col>
+
+                    <Form.Label className="label">Bio </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control
+                            value={bio}
+                            onChange={(e) => setBio(e.target.value)}
+                            maxLength={200}
+                            as="textarea"
+                            rows={3}
+
+                        />
+                    </Col>
 
 
-    </div>
+                </Form.Group>
 
-</>
+                <Button type="submit" disabled={isLoading} id="updateButton" className="btn btn-primary" onClick={SubmitUserUpdate}>
+                    {isLoading ? 'Loading…' : 'Update'}
+                </Button>
+            </Form>
+
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+            <br>
+            </br>
+
+
+        </div>
+
+    </>
 }

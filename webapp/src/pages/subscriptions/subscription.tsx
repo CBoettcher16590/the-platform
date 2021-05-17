@@ -36,11 +36,11 @@ export default function Subscription() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <Navbar.Brand href="/">The Platform</Navbar.Brand>        </Nav>
-     
+
         <Nav>
-        <Button id="logout" onClick={onClickLogout}>
-                                        <div className="border1"></div>
-                                        <div className="border1"></div>
+          <Button id="logout" onClick={onClickLogout}>
+            <div className="border1"></div>
+            <div className="border1"></div>
                                         Logout</Button>
         </Nav>
       </Navbar.Collapse>
@@ -52,7 +52,7 @@ export default function Subscription() {
         <br />
         <div className="subscribeButton">
           <div>
-            <Button id= "button1"  onClick={routeToSub}>
+            <Button id="button1" onClick={routeToSub}>
               Subscribe Today!
              </Button>{''}
           </div>
@@ -81,8 +81,8 @@ export default function Subscription() {
                   <Card.Body className="subCardText">
                     <Card.Title>Want exclusive content?</Card.Title>
                     <Card.Text>
-                       Tired of being locked out?
-                       Better filler text
+                      Tired of being locked out?
+                      Better filler text
 
                   </Card.Text>
                   </Card.Body>

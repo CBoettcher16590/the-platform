@@ -45,9 +45,9 @@ export default function ORG_Ad_edit_profile() {
 
 
                 <Nav className="mr-auto">
-                <Nav.Link id="account1" href="/orgAdminProfile">
-              <div className="border1"></div>
-              <div className="border1"></div>
+                    <Nav.Link id="account1" href="/orgAdminProfile">
+                        <div className="border1"></div>
+                        <div className="border1"></div>
                                         My Account</Nav.Link>                </Nav>
             </Navbar>
             <br />

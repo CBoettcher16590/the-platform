@@ -17,15 +17,7 @@ export default function SubmitArticle(props: {}) {
   const editorRef = useRef<any>(null);
 
 
-  const [content, setContent] = useState<string>("");
-
-    
-  // setContent(editorRef.current.getContent());
-  
-
- 
-//if there is no better way a meta function should be used to editorRef.current.getContent()); and then the call should be made to data/submit
-
+  const [content, setContent] = useState<string>("");  
 
 
   const [title, setTitle] = useState<string>("");
@@ -56,13 +48,10 @@ export default function SubmitArticle(props: {}) {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#Reported Reviews">My Organization</Nav.Link>
-        </Nav>
-        <Nav className="mr-auto">
-          <Nav.Link href="/newSeries"> Create a New Series</Nav.Link>
-        </Nav>
-        <Nav>
-          <Nav.Link href="/AUProfile"> My Account</Nav.Link>
+          <Nav.Link id ="newartic" href="/newSeries"> 
+          <div className="border1"></div>
+            <div className="border1"></div>
+          Create a New Series</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
@@ -118,8 +107,6 @@ export default function SubmitArticle(props: {}) {
             </Form.Group>
           </Col>
         </Form.Row>
-
-        {/* <Editor apiKey='your-api-key' init={{  your other settings }} /> */}
         <Form.Group>
           <Form.Label>Whats on your Mind?</Form.Label>
           <Editor

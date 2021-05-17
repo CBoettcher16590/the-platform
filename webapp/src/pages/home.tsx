@@ -61,7 +61,7 @@ function HomePage(props: {}) {
                                                 break;
                                         }
                                         case 6: {
-                                                //Organization Admin
+                                                //Organization Author
                                                 setNavProfileLink("/orgAuthProfile");
                                                 break;
                                         }

@@ -1,5 +1,4 @@
 .userProf{
-    /* background-color: rgb(57, 231, 86); */    
     max-width: 100%;
     max-height: 100%;
     min-height: 100%;
@@ -35,7 +34,6 @@
     margin-right: 0;
     margin-left: 0; 
     box-shadow: #f7f7f7 1px 1px 10px;
-    /* margin-bottom: 50px; */
 } 
 
 .authorProfileHead{
@@ -128,7 +126,6 @@
     width: 100%;
     height: 100%;
 }
-/* Button */
 #dropdownSeries{
     color:black;
     background: rgb(245, 212, 121);
@@ -137,11 +134,9 @@
     text-align: center;
 }
 
-/* // !!!!!!!!!!!!!!!!!!!! */
 #articleInfo{
     font-size: 18px;
     font-weight: 400;
-    /* border: 1.5px solid black; */
     height: 520px;
     overflow-y:scroll;
     opacity: .95;
@@ -156,10 +151,8 @@
     height: 100%;
 }
 
-
-
-
 /* SCROLLBAR STYLE */
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -179,12 +172,6 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-
-
-
-
-
-/* THIS WHOLE PAGE NEEDS TO BE CLEANED UP */
 
 
 

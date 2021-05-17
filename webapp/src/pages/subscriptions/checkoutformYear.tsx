@@ -17,10 +17,10 @@ export default function CheckoutFormMonth() {
   const history = useHistory();
 
 
-const x = window.localStorage.getItem('userID');
+  const x = window.localStorage.getItem('userID');
 
 
-  const handleSubmit = async (event:any) => {
+  const handleSubmit = async (event: any) => {
     // Block native form submission.
     event.preventDefault();
 
@@ -39,7 +39,7 @@ const x = window.localStorage.getItem('userID');
 
     const cardElement = elements.getElement(CardElement)!; //this exclamation mark is very very important :)
 
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
     });
@@ -53,32 +53,32 @@ const x = window.localStorage.getItem('userID');
 
   return (
 
-    
+
     <div className="payMain">
       <div className="checkoutCenterText"> <p className="checkoutCenterTextP">  60$ Monthly    </p></div>
       <div className="checkoutCenter">
 
-      <form className="checkoutForm" onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: '16px',
-                color: '#424770',
-                '::placeholder': {
-                  color: '#aab7c4',
+        <form className="checkoutForm" onSubmit={handleSubmit}>
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: '16px',
+                  color: '#424770',
+                  '::placeholder': {
+                    color: '#aab7c4',
+                  },
+                },
+                invalid: {
+                  color: '#9e2146',
                 },
               },
-              invalid: {
-                color: '#9e2146',
-              },
-            },
-          }}
-        />
-        <button className="checkoutButton" type="submit" disabled={!stripe}>
-          Pay 
+            }}
+          />
+          <button className="checkoutButton" type="submit" disabled={!stripe}>
+            Pay
         </button>
-      </form>
+        </form>
       </div>
     </div>
   );

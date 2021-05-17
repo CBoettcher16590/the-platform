@@ -56,29 +56,16 @@ left: -2%;
     padding-bottom: 25px;
     margin-bottom: 35px;
     box-shadow: 7px 7px rgb(134, 160, 150);
-    
-    /* justify-content: center;
-    flex-direction: row; */
-    /* padding: 15; */
     width: 450px;
     height: 300px;
-     /* flex-wrap: nowrap; */
     transition: width .6s, height .6s, filter .35s;
-    /* transition-delay: .15s;  */
-
 
 }
 
 .favCard:hover{
-    /* The size is nice. Unsure how to set the size. */
     background: rgb(167,230,255);
-    /* background: radial-gradient(circle, rgba(167,230,255,1) 69%, rgba(225,238,193,1) 100%); */
-    /* opacity: .85; */
     filter: saturate(2.0);
-     /* width: 451px;
-    height: 302px; */
     transition: width .3s, height .3s, opacity .5s, filter 1.2s; 
-
 }
 .favCard:hover img{
     width: 200px;
@@ -137,11 +124,6 @@ left: -2%;
     letter-spacing: 1px;
     line-height: 1.2;
     text-anchor: initial;
-    
-    /* background-position: absolute;
-    position: relative;
-    color: red; */
-    /* font-stretch: semi-condensed; */
 
 
 }

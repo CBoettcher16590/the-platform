@@ -4,14 +4,14 @@ dotenv.config();
 
 export const TokenModel = {
 
-    generateAccessToken: ( payload:any ) => {
-        return jwt.sign( payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '43000s' }); //Token Expires in 12h  
+    generateAccessToken: (payload: any) => {
+        return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '43000s' }); //Token Expires in 12h  
     },
 
-    validateToken: ( token:string, onError:(err:any)=>any, onSuccess:(payload:any)=>any ) => {
-        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, ( err:any, payload:any ) => {
-            
-            if( err ){
+    validateToken: (token: string, onError: (err: any) => any, onSuccess: (payload: any) => any) => {
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err: any, payload: any) => {
+
+            if (err) {
                 onError(err);
                 console.log("Token Validation Error");
                 return;

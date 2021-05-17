@@ -2,38 +2,38 @@ import { UserModel } from '../../models/user';
 
 enum PatchType {
     Update = "Update",
-    LoginPermission ="LoginPermission"
+    LoginPermission = "LoginPermission"
 }
 
-export function patch(app:any){
+export function patch(app: any) {
 
-    app.patch('/orgs', async(request:any, response:any) => {
-    const headerCode = request.headers.code;
+    app.patch('/orgs', async (request: any, response: any) => {
+        const headerCode = request.headers.code;
 
-    switch(headerCode){
-        case PatchType.Update:{
-            UserModel.editOrgProfile(request.body);
-             break;
-        }
-        
-        case PatchType.LoginPermission:{
-        //if req.disable_login is a 0, patched user needs to be changed to 0 
-            if(request.body.disable_login === 0){
-                UserModel.enableLogin(request.body);
+        switch (headerCode) {
+            case PatchType.Update: {
+                UserModel.editOrgProfile(request.body);
+                break;
             }
-        //if req.disable_login is a 1, patched user needs to be changed to 1
-            if(request.body.disable_login === 1){
-                UserModel.disableLogin(request.body);
+
+            case PatchType.LoginPermission: {
+                //if req.disable_login is a 0, patched user needs to be changed to 0 
+                if (request.body.disable_login === 0) {
+                    UserModel.enableLogin(request.body);
+                }
+                //if req.disable_login is a 1, patched user needs to be changed to 1
+                if (request.body.disable_login === 1) {
+                    UserModel.disableLogin(request.body);
+                }
+                break;
             }
-             break;
-        } 
-        
-       default:{
-           console.error("No Patch code by that Name");
-        break;
+
+            default: {
+                console.error("No Patch code by that Name");
+                break;
+            }
+
         }
-           
-    }
 
     });
 
