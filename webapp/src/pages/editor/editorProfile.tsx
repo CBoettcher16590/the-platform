@@ -224,7 +224,7 @@ export default function EditorProfile() {
     <div className="main">
       <Col className="editorCardBG" sm={11} lg={6}>
 
-        {/* first column 1 */}
+        {/* first column 1 */} 
         <div >
           <Card className="editorInfoCard">
             <Card.Img variant="top" src={loggedInUser?.user_image_link} />
@@ -249,7 +249,7 @@ export default function EditorProfile() {
         <Card.Header className="favArtTitle"><h3>Favorite Articles</h3></Card.Header>
         <Card.Body>
 
-          <section className="favArticleRow1">
+          <section className="favArticleRow">
             {favoriteArticles?.map(function (_art: IArticle) {
               let image = _art.image_link;
               let title = _art.title;

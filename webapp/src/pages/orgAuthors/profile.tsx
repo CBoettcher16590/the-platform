@@ -5,6 +5,8 @@ import FavoriteArticles from '../../components/article/favoriteArticle';
 import { useHistory } from 'react-router';
 import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api';
+import '../author/style.css';
+import '../pages.css';
 import { IArticle } from '../../../../services/crud-server/src/models/article';
 import { ISeries } from '../../../../services/crud-server/src/models/series';
 
