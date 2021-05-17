@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Card, Button, Table, Dropdown, DropdownButton, Col, Row, Container, Tab, Tabs } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FavoriteArticles from '../../components/article/favoriteArticle';
-import './style.css';
 import { useHistory } from 'react-router';
 import { IUser } from '../../../../services/crud-server/src/models/user';
 import api from '../../api';
