@@ -365,7 +365,7 @@ padding: 5px;
 }
 
 .movingFaveButton{    
-    margin-left: calc(22vw - 100px);
+    margin-left: calc(19vw - 100px);
 }
 
 
@@ -385,9 +385,9 @@ padding: 5px;
 .InvArticleLikesNoneSeriesVariant{
     text-align: center;
     padding-bottom: 7px;
-    padding-left: 1vw;
     margin-bottom: -8px;
-
+    max-width: 100px;
+    font-style: italic;
 }
 
 .InvArticleLikesNoneSeriesVariantSeries{
@@ -395,6 +395,8 @@ padding: 5px;
     text-align: center;
     padding-bottom: 7px;
     margin-bottom: -8px;
+    font-style: italic;
+
 
 
 }

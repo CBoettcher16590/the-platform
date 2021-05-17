@@ -140,7 +140,7 @@ const IndvArticle = () => {
                                 <p>{articleAuthor?.first_name}  {articleAuthor?.last_name}</p>
                             </Col>
 
-                            <Col xs={2} md={3} lg={3}  >
+                            <Col  xs={2} md={3} lg={3}   >
                                 <p>{'Published   ' + article?.created_on.slice(0, 10)} </p>
                             </Col>
 
